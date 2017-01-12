@@ -145,7 +145,7 @@ public abstract class NLGElement {
      */
     public void setFeature(String featureName, long featureValue) {
         if (featureName != null) {
-            this.features.put(featureName, new Long(featureValue));
+            this.features.put(featureName, featureValue);
         }
     }
 
@@ -157,7 +157,7 @@ public abstract class NLGElement {
      */
     public void setFeature(String featureName, float featureValue) {
         if (featureName != null) {
-            this.features.put(featureName, new Float(featureValue));
+            this.features.put(featureName, featureValue);
         }
     }
 
@@ -170,7 +170,7 @@ public abstract class NLGElement {
      */
     public void setFeature(String featureName, double featureValue) {
         if (featureName != null) {
-            this.features.put(featureName, new Double(featureValue));
+            this.features.put(featureName, featureValue);
         }
     }
 
@@ -320,7 +320,7 @@ public abstract class NLGElement {
         if (value instanceof Integer) {
             intValue = (Integer) value;
         } else if (value instanceof Number) {
-            intValue = new Integer(((Number) value).intValue());
+            intValue = ((Number) value).intValue();
         } else if (value instanceof String) {
             try {
                 intValue = new Integer((String) value);
@@ -347,7 +347,7 @@ public abstract class NLGElement {
         if (value instanceof Long) {
             longValue = (Long) value;
         } else if (value instanceof Number) {
-            longValue = new Long(((Number) value).longValue());
+            longValue = ((Number) value).longValue();
         } else if (value instanceof String) {
             try {
                 longValue = new Long((String) value);
@@ -374,7 +374,7 @@ public abstract class NLGElement {
         if (value instanceof Float) {
             floatValue = (Float) value;
         } else if (value instanceof Number) {
-            floatValue = new Float(((Number) value).floatValue());
+            floatValue = ((Number) value).floatValue();
         } else if (value instanceof String) {
             try {
                 floatValue = new Float((String) value);
@@ -401,7 +401,7 @@ public abstract class NLGElement {
         if (value instanceof Double) {
             doubleValue = (Double) value;
         } else if (value instanceof Number) {
-            doubleValue = new Double(((Number) value).doubleValue());
+            doubleValue = ((Number) value).doubleValue();
         } else if (value instanceof String) {
             try {
                 doubleValue = new Double((String) value);
