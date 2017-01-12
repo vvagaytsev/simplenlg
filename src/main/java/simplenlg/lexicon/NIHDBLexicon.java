@@ -712,7 +712,7 @@ public class NIHDBLexicon extends Lexicon {
      * @param record
      */
     private void addSpellingVariants(WordElement wordElement, LexRecord record) {
-        Vector<String> vars = record.GetSpellingVars();
+        List<String> vars = record.GetSpellingVars();
 
         if (vars != null && !vars.isEmpty()) {
             List<String> wordVars = new ArrayList<String>();

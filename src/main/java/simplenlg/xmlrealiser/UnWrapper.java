@@ -28,6 +28,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.List;
 
 // TODO: Auto-generated Javadoc
 
@@ -154,7 +155,7 @@ public class UnWrapper {
             SPhraseSpec sp = factory.createClause();
             NLGElement vp = null;
 
-            ArrayList<NLGElement> subjects = new ArrayList<NLGElement>();
+            List<NLGElement> subjects = new ArrayList<NLGElement>();
             for (simplenlg.xmlrealiser.wrapper.XmlNLGElement p : wp.getSubj()) {
                 NLGElement p1 = UnwrapNLGElement(p);
                 checkFunction(simplenlg.features.DiscourseFunction.SUBJECT, p1);

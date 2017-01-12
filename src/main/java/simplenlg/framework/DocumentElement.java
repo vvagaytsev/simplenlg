@@ -201,7 +201,7 @@ public class DocumentElement extends NLGElement {
     public void addComponents(List<?> textComponents) {
         if (textComponents != null) {
             ElementCategory thisCategory = this.getCategory();
-            ArrayList<NLGElement> elementsToAdd = new ArrayList<NLGElement>();
+            List<NLGElement> elementsToAdd = new ArrayList<NLGElement>();
             ElementCategory category = null;
 
             for (Object eachElement : textComponents) {

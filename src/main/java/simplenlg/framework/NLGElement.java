@@ -59,7 +59,7 @@ public abstract class NLGElement {
     /**
      * The features of this element.
      */
-    protected HashMap<String, Object> features = new HashMap<String, Object>();
+    protected Map<String, Object> features = new HashMap<String, Object>();
 
     /**
      * The parent of this element.
