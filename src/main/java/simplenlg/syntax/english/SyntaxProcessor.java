@@ -133,17 +133,14 @@ public class SyntaxProcessor extends NLGModule {
     @Override
     public List<NLGElement> realise(List<NLGElement> elements) {
         List<NLGElement> realisedList = new ArrayList<NLGElement>();
-        NLGElement childRealisation = null;
-
+        NLGElement childRealisation;
         if (elements != null) {
             for (NLGElement eachElement : elements) {
                 if (eachElement != null) {
                     childRealisation = realise(eachElement);
                     if (childRealisation != null) {
                         if (childRealisation instanceof ListElement) {
-                            realisedList
-                                    .addAll(((ListElement) childRealisation)
-                                            .getChildren());
+                            realisedList.addAll(childRealisation.getChildren());
                         } else {
                             realisedList.add(childRealisation);
                         }

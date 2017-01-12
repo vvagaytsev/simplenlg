@@ -193,7 +193,7 @@ public class MorphologyProcessor extends NLGModule {
 
                     if (prevElement != null && prevElement instanceof StringElement
                             && eachElement instanceof InflectedWordElement
-                            && ((InflectedWordElement) eachElement).getCategory().equals(LexicalCategory.NOUN)) {
+                            && eachElement.getCategory().equals(LexicalCategory.NOUN)) {
 
                         String prevString = prevElement.getRealisation();
 
@@ -218,7 +218,7 @@ public class MorphologyProcessor extends NLGModule {
 
                         if (currentElement instanceof ListElement) {
                             // list elements: ensure det matches first element
-                            NLGElement firstChild = ((ListElement) currentElement).getChildren().get(0);
+                            NLGElement firstChild = currentElement.getChildren().get(0);
 
                             if (firstChild != null) {
                                 //AG: need to check if child is a coordinate

@@ -310,7 +310,7 @@ public class NLGFactory {
         if (word instanceof WordElement) {
             inflElement = new InflectedWordElement((WordElement) word);
         } else if (word instanceof String) {
-            NLGElement baseword = createWord((String) word, category);
+            NLGElement baseword = createWord(word, category);
             if (baseword != null && baseword instanceof WordElement) {
                 inflElement = new InflectedWordElement((WordElement) baseword);
             } else {

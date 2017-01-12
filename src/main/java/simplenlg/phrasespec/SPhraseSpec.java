@@ -125,7 +125,7 @@ public class SPhraseSpec extends PhraseElement {
         super.setFeature(featureName, featureValue);
 
         if (vpFeatures.contains(featureName)) {
-            NLGElement verbPhrase = (NLGElement) getFeatureAsElement(InternalFeature.VERB_PHRASE);
+            NLGElement verbPhrase = getFeatureAsElement(InternalFeature.VERB_PHRASE);
             if (verbPhrase != null || verbPhrase instanceof VPPhraseSpec)
                 verbPhrase.setFeature(featureName, featureValue);
         }
@@ -140,7 +140,7 @@ public class SPhraseSpec extends PhraseElement {
      */
     @Override
     public void addPreModifier(NLGElement newPreModifier) {
-        NLGElement verbPhrase = (NLGElement) getFeatureAsElement(InternalFeature.VERB_PHRASE);
+        NLGElement verbPhrase = getFeatureAsElement(InternalFeature.VERB_PHRASE);
 
         if (verbPhrase != null) {
 
@@ -195,7 +195,7 @@ public class SPhraseSpec extends PhraseElement {
         if (vpFeatures.contains(featureName)) {
             //PhraseElement verbPhrase = (PhraseElement) getFeatureAsElement(InternalFeature.VERB_PHRASE);
             //AG: bug fix: VP could be coordinate phrase, so cast to NLGElement not PhraseElement
-            NLGElement verbPhrase = (NLGElement) getFeatureAsElement(InternalFeature.VERB_PHRASE);
+            NLGElement verbPhrase = getFeatureAsElement(InternalFeature.VERB_PHRASE);
             if (verbPhrase != null || verbPhrase instanceof VPPhraseSpec)
                 verbPhrase.setFeature(featureName, featureValue);
         }
@@ -209,7 +209,7 @@ public class SPhraseSpec extends PhraseElement {
         if (super.getFeature(featureName) != null)
             return super.getFeature(featureName);
         if (vpFeatures.contains(featureName)) {
-            NLGElement verbPhrase = (NLGElement) getFeatureAsElement(InternalFeature.VERB_PHRASE);
+            NLGElement verbPhrase = getFeatureAsElement(InternalFeature.VERB_PHRASE);
             if (verbPhrase != null || verbPhrase instanceof VPPhraseSpec)
                 return verbPhrase.getFeature(featureName);
         }

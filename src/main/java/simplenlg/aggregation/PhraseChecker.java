@@ -65,7 +65,7 @@ public abstract class PhraseChecker {
         boolean expl = true;
 
         for (int i = 1; i < sentences.length && expl; i++) {
-            expl = (sentences[i] instanceof SPhraseSpec ? ((SPhraseSpec) sentences[i])
+            expl = (sentences[i] instanceof SPhraseSpec ? sentences[i]
                     .getFeatureAsBoolean(LexicalFeature.EXPLETIVE_SUBJECT)
                     : false);
 

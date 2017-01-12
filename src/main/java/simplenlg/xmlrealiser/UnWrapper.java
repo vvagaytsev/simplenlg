@@ -126,7 +126,7 @@ public class UnWrapper {
         }
 
         if (wps instanceof XmlDocumentElement) {
-            return (NLGElement) UnwrapDocumentElement((XmlDocumentElement) wps);
+            return UnwrapDocumentElement((XmlDocumentElement) wps);
         }
 
         // Handle coordinate phrase specs first, which will cause recursion.

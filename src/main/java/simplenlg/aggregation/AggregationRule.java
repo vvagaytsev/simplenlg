@@ -118,7 +118,7 @@ public abstract class AggregationRule {
         NLGElement result = null;
 
         if (phrase instanceof CoordinatedPhraseElement) {
-            List<NLGElement> children = ((CoordinatedPhraseElement) phrase).getChildren();
+            List<NLGElement> children = phrase.getChildren();
             List<NLGElement> aggregated = apply(children);
 
             if (aggregated.size() == 1) {

@@ -326,9 +326,9 @@ abstract class NounPhraseHelper {
 
         if (proElement instanceof WordElement) {
             element = new InflectedWordElement((WordElement) proElement);
-            element.setFeature(LexicalFeature.GENDER, ((WordElement) proElement).getFeature(LexicalFeature.GENDER));
+            element.setFeature(LexicalFeature.GENDER, proElement.getFeature(LexicalFeature.GENDER));
             // Ehud - also copy over person
-            element.setFeature(Feature.PERSON, ((WordElement) proElement).getFeature(Feature.PERSON));
+            element.setFeature(Feature.PERSON, proElement.getFeature(Feature.PERSON));
         } else {
             element = proElement;
         }
