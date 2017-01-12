@@ -72,7 +72,7 @@ public class Realiser extends NLGModule {
      * comma-separated.
      */
     public boolean isCommaSepPremodifiers() {
-        return this.orthography == null ? false : this.orthography.isCommaSepPremodifiers();
+        return this.orthography != null && this.orthography.isCommaSepPremodifiers();
     }
 
     /**
@@ -102,7 +102,7 @@ public class Realiser extends NLGModule {
      * @return <code>true</code> if cue phrases have a comma before the remainder of the host phrase
      */
     public boolean isCommaSepCuephrase() {
-        return this.orthography == null ? false : this.orthography.isCommaSepCuephrase();
+        return this.orthography != null && this.orthography.isCommaSepCuephrase();
     }
 
     /**

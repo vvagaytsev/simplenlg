@@ -46,13 +46,13 @@ public class WordElement extends NLGElement {
      * it is convenient to have the set of irregular inflected forms available
      * without necessitating a new call to the lexicon to get the forms.
      */
-    private class InflectionSet {
+    private static final class InflectionSet {
         // the infl type
         @SuppressWarnings("unused")
-        Inflection infl;
+        private final Inflection infl;
 
         // the forms, mapping values of LexicalFeature to actual word forms
-        Map<String, String> forms;
+        private final Map<String, String> forms;
 
         InflectionSet(Inflection infl) {
             this.infl = infl;
@@ -81,14 +81,14 @@ public class WordElement extends NLGElement {
     // Words have baseForm, category, id, and features
     // features are inherited from NLGElement
 
-    String baseForm; // base form, eg "dog". currently also in NLG Element, but
+    private String baseForm; // base form, eg "dog". currently also in NLG Element, but
     // will be removed from there
 
-    String id; // id in lexicon (may be null);
+    private String id; // id in lexicon (may be null);
 
-    Map<Inflection, InflectionSet> inflVars; // the inflectional variants
+    private Map<Inflection, InflectionSet> inflVars; // the inflectional variants
 
-    Inflection defaultInfl; // the default inflectional variant
+    private Inflection defaultInfl; // the default inflectional variant
 
     // LexicalCategory category; // type of word
 

@@ -44,22 +44,22 @@ public class Recording {
     /**
      * The recording on.
      */
-    boolean recordingOn = false;
+    private boolean recordingOn = false;
 
     /**
      * The recording folder.
      */
-    String recordingFolder;
+    private final String recordingFolder;
 
     /**
      * The record.
      */
-    RecordSet record = null;
+    private RecordSet record = null;
 
     /**
      * The recording file.
      */
-    File recordingFile;
+    private File recordingFile;
 
     /**
      * Instantiate a Recording from an XML file. Recordings can contain multiple

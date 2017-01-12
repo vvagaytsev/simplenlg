@@ -59,7 +59,7 @@ public abstract class NLGElement {
     /**
      * The features of this element.
      */
-    protected Map<String, Object> features = new HashMap<String, Object>();
+    protected final Map<String, Object> features = new HashMap<String, Object>();
 
     /**
      * The parent of this element.
@@ -470,8 +470,7 @@ public abstract class NLGElement {
      * otherwise.
      */
     public boolean hasFeature(String featureName) {
-        return featureName != null ? this.features.containsKey(featureName)
-                : false;
+        return featureName != null && this.features.containsKey(featureName);
     }
 
     /**

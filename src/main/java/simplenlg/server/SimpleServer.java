@@ -53,7 +53,7 @@ public class SimpleServer implements Runnable {
     /**
      * Set to true to enable printing debug messages.
      */
-    static boolean DEBUG = false;
+    static final boolean DEBUG = false;
 
     /**
      * This path should be replaced by the path to the specialist lexicon.
@@ -61,7 +61,7 @@ public class SimpleServer implements Runnable {
      * will be searched for the lexicon file. Otherwise, the path below will
      * be used.
      */
-    String lexiconPath = "src/main/resources/NIHLexicon/lexAccess2011.data";
+    private String lexiconPath = "src/main/resources/NIHLexicon/lexAccess2011.data";
 
     // control the run loop
     private boolean isActive = true;
@@ -94,7 +94,7 @@ public class SimpleServer implements Runnable {
      * @throws IOException
      * @throws SocketException
      */
-    private void startServer(ServerSocket socket) throws IOException, SocketException {
+    private void startServer(ServerSocket socket) throws IOException {
         serverSocket = socket;
         serverSocket.setReuseAddress(true);
         serverSocket.setSoTimeout(0);

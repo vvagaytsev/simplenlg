@@ -201,7 +201,7 @@ abstract class NounPhraseHelper {
                         changesMade = true;
                     }
                 }
-            } while (changesMade == true);
+            } while (changesMade);
         }
         return orderedModifiers;
     }

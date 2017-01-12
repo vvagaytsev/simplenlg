@@ -22,22 +22,7 @@ import simplenlg.features.*;
 import simplenlg.framework.*;
 import simplenlg.lexicon.Lexicon;
 import simplenlg.phrasespec.*;
-import simplenlg.xmlrealiser.wrapper.NLGSpec;
-import simplenlg.xmlrealiser.wrapper.XmlAdjPhraseSpec;
-import simplenlg.xmlrealiser.wrapper.XmlAdvPhraseSpec;
-import simplenlg.xmlrealiser.wrapper.XmlCoordinatedPhraseElement;
-import simplenlg.xmlrealiser.wrapper.XmlDocumentCategory;
-import simplenlg.xmlrealiser.wrapper.XmlDocumentElement;
-import simplenlg.xmlrealiser.wrapper.XmlLexicalCategory;
-import simplenlg.xmlrealiser.wrapper.XmlNLGElement;
-import simplenlg.xmlrealiser.wrapper.XmlNPPhraseSpec;
-import simplenlg.xmlrealiser.wrapper.XmlPPPhraseSpec;
-import simplenlg.xmlrealiser.wrapper.XmlPhraseCategory;
-import simplenlg.xmlrealiser.wrapper.XmlPhraseElement;
-import simplenlg.xmlrealiser.wrapper.XmlSPhraseSpec;
-import simplenlg.xmlrealiser.wrapper.XmlStringElement;
-import simplenlg.xmlrealiser.wrapper.XmlVPPhraseSpec;
-import simplenlg.xmlrealiser.wrapper.XmlWordElement;
+import simplenlg.xmlrealiser.wrapper.*;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
@@ -153,8 +138,7 @@ public class UnWrapper {
         // Literal text.
         if (wps instanceof XmlStringElement) {
             XmlStringElement wp = (XmlStringElement) wps;
-            NLGElement p = factory.createStringElement(wp.getVal());
-            return p;
+            return factory.createStringElement(wp.getVal());
         }
 
         // WordElements (delegate to UnwrapWordElement) -- useful to have
@@ -265,8 +249,7 @@ public class UnWrapper {
 
             // Prepositional Phrase
             else if (wps instanceof XmlPPPhraseSpec) {
-                PPPhraseSpec p = factory.createPrepositionPhrase(head);
-                hp = p;
+                hp = factory.createPrepositionPhrase(head);
             }
 
             // Adverb Phrase

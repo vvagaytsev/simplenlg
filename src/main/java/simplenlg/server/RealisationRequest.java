@@ -45,9 +45,9 @@ import java.net.Socket;
  */
 public class RealisationRequest implements Runnable {
 
-    Socket socket;
+    private static final boolean DEBUG = SimpleServer.DEBUG;
 
-    static boolean DEBUG = SimpleServer.DEBUG;
+    private Socket socket;
 
     public RealisationRequest(Socket s) {
         this.socket = s;
@@ -130,9 +130,7 @@ public class RealisationRequest implements Runnable {
     }
 
     protected String doRealisation(Reader inputReader) throws XMLRealiserException {
-        RequestType request =
-                XMLRealiser.getRequest(inputReader);
-        String output = XMLRealiser.realise(request.getDocument());
-        return output;
+        RequestType request = XMLRealiser.getRequest(inputReader);
+        return XMLRealiser.realise(request.getDocument());
     }
 }
