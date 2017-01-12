@@ -123,17 +123,17 @@ public class ListElement extends NLGElement {
 
     @Override
     public String printTree(String indent) {
-        String thisIndent = indent == null ? " |-" : indent + " |-"; //$NON-NLS-1$ //$NON-NLS-2$
-        String childIndent = indent == null ? " | " : indent + " | "; //$NON-NLS-1$ //$NON-NLS-2$
-        String lastIndent = indent == null ? " \\-" : indent + " \\-"; //$NON-NLS-1$ //$NON-NLS-2$
-        String lastChildIndent = indent == null ? "   " : indent + "   "; //$NON-NLS-1$ //$NON-NLS-2$
-        StringBuffer print = new StringBuffer();
-        print.append("ListElement: features={"); //$NON-NLS-1$
+        String thisIndent = indent == null ? " |-" : indent + " |-";
+        String childIndent = indent == null ? " | " : indent + " | ";
+        String lastIndent = indent == null ? " \\-" : indent + " \\-";
+        String lastChildIndent = indent == null ? "   " : indent + "   ";
+        StringBuffer print = new StringBuffer().append("ListElement: features={");
 
         Map<String, Object> features = getAllFeatures();
         for (String eachFeature : features.keySet()) {
-            print.append(eachFeature).append('=').append(
-                    features.get(eachFeature).toString()).append(' ');
+            print.append(eachFeature)
+                    .append('=')
+                    .append(features.get(eachFeature)).append(' ');
         }
         print.append("}\n"); //$NON-NLS-1$
 
@@ -142,12 +142,10 @@ public class ListElement extends NLGElement {
         int index = 0;
 
         for (index = 0; index < length; index++) {
-            print.append(thisIndent).append(
-                    children.get(index).printTree(childIndent));
+            print.append(thisIndent).append(children.get(index).printTree(childIndent));
         }
         if (length >= 0) {
-            print.append(lastIndent).append(
-                    children.get(length).printTree(lastChildIndent));
+            print.append(lastIndent).append(children.get(length).printTree(lastChildIndent));
         }
         return print.toString();
     }

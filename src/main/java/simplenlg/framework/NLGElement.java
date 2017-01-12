@@ -555,10 +555,10 @@ public abstract class NLGElement {
     public String toString() {
         StringBuffer buffer = new StringBuffer("{realisation=").append(this.realisation); //$NON-NLS-1$
         if (this.category != null) {
-            buffer.append(", category=").append(this.category.toString()); //$NON-NLS-1$
+            buffer.append(", category=").append(this.category);
         }
         if (this.features != null) {
-            buffer.append(", features=").append(this.features.toString()); //$NON-NLS-1$
+            buffer.append(", features=").append(this.features);
         }
         buffer.append('}');
         return buffer.toString();

@@ -85,10 +85,7 @@ public class Recording {
      * @return the string
      */
     public String GetRecordingFile() {
-        if (recordingOn)
-            return recordingFile.getAbsolutePath();
-        else
-            return "";
+        return recordingOn ? recordingFile.getAbsolutePath() : "";
     }
 
     /**
@@ -97,20 +94,16 @@ public class Recording {
      * @throws IOException Signals that an I/O exception has occurred.
      */
     public void start() throws IOException {
-
         if (recordingFolder.isEmpty() || recordingOn) {
             return;
         }
-
         File recordingDir = new File(recordingFolder);
         if (!recordingDir.exists()) {
             boolean ok = recordingDir.mkdirs();
             if (!ok) {
                 return;
             }
-
-            recordingFile = File.createTempFile("xmlrealiser", ".xml",
-                    recordingDir);
+            recordingFile = File.createTempFile("xmlrealiser", ".xml", recordingDir);
             recordingOn = true;
             record = new RecordSet();
         }
@@ -129,7 +122,7 @@ public class Recording {
         }
         DocumentRealisation t = new DocumentRealisation();
         Integer testNumber = record.getRecord().size() + 1;
-        String testName = "TEST_" + testNumber.toString();
+        String testName = "TEST_" + testNumber;
         t.setName(testName);
         t.setDocument(input);
         t.setRealisation(output);
@@ -143,12 +136,10 @@ public class Recording {
      * @throws IOException          Signals that an I/O exception has occurred.
      * @throws TransformerException the transformer exception
      */
-    public void finish() throws JAXBException, IOException,
-            TransformerException {
+    public void finish() throws JAXBException, IOException, TransformerException {
         if (!recordingOn) {
             return;
         }
-
         recordingOn = false;
         FileOutputStream os = new FileOutputStream(recordingFile);
         os.getChannel().truncate(0);
@@ -166,9 +157,7 @@ public class Recording {
      */
     public static void writeRecording(RecordSet record, OutputStream os)
             throws JAXBException, IOException, TransformerException {
-        JAXBContext jc;
-        jc = JAXBContext
-                .newInstance(simplenlg.xmlrealiser.wrapper.NLGSpec.class);
+        JAXBContext jc = JAXBContext.newInstance(simplenlg.xmlrealiser.wrapper.NLGSpec.class);
         Marshaller m = jc.createMarshaller();
 
         NLGSpec nlg = new NLGSpec();
@@ -179,14 +168,11 @@ public class Recording {
 
         // Prettify it.
         Source xmlInput = new StreamSource(new StringReader(osTemp.toString()));
-        StreamResult xmlOutput = new StreamResult(new OutputStreamWriter(os,
-                "UTF-8"));
-        Transformer transformer = TransformerFactory.newInstance()
-                .newTransformer();
+        StreamResult xmlOutput = new StreamResult(new OutputStreamWriter(os, "UTF-8"));
+        Transformer transformer = TransformerFactory.newInstance().newTransformer();
         if (transformer != null) {
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            transformer.setOutputProperty(
-                    "{http://xml.apache.org/xslt}indent-amount", "2");
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
             transformer.transform(xmlInput, xmlOutput);
         }
     }

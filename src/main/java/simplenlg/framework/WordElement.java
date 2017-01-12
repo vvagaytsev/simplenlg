@@ -344,10 +344,9 @@ public class WordElement extends NLGElement {
     @Override
     public String toString() {
         ElementCategory _category = getCategory();
-        StringBuffer buffer = new StringBuffer("WordElement["); //$NON-NLS-1$
-        buffer.append(getBaseForm()).append(':');
+        StringBuffer buffer = new StringBuffer("WordElement[").append(getBaseForm()).append(':');
         if (_category != null) {
-            buffer.append(_category.toString());
+            buffer.append(_category);
         } else {
             buffer.append("no category"); //$NON-NLS-1$
         }
@@ -397,10 +396,14 @@ public class WordElement extends NLGElement {
 
     @Override
     public String printTree(String indent) {
-        StringBuffer print = new StringBuffer();
-        print.append("WordElement: base=").append(getBaseForm()) //$NON-NLS-1$
-                .append(", category=").append(getCategory().toString()) //$NON-NLS-1$
-                .append(", ").append(super.toString()).append('\n'); //$NON-NLS-1$
+        StringBuffer print = new StringBuffer()
+                .append("WordElement: base=")
+                .append(getBaseForm())
+                .append(", category=")
+                .append(getCategory())
+                .append(", ")
+                .append(super.toString())
+                .append('\n');
         return print.toString();
     }
 
@@ -415,7 +418,6 @@ public class WordElement extends NLGElement {
     public boolean equals(Object o) {
         if (o instanceof WordElement) {
             WordElement we = (WordElement) o;
-
             return (this.baseForm == we.baseForm || this.baseForm
                     .equals(we.baseForm))
                     && (this.id == we.id || this.id.equals(we.id))

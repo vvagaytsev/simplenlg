@@ -38,15 +38,11 @@ public class FunctionalSet {
     public static FunctionalSet newInstance(DiscourseFunction func,
                                             ElementCategory category, Periphery periphery,
                                             NLGElement... components) {
-
         FunctionalSet pair = null;
-
         if (components.length >= 2) {
             pair = new FunctionalSet(func, category, periphery, components);
         }
-
         return pair;
-
     }
 
     FunctionalSet(DiscourseFunction func, ElementCategory category,
@@ -60,11 +56,9 @@ public class FunctionalSet {
     public boolean formIdentical() {
         boolean ident = true;
         NLGElement firstElement = this.components.get(0);
-
         for (int i = 1; i < this.components.size() && ident; i++) {
             ident = firstElement.equals(components.get(i));
         }
-
         return ident;
     }
 
@@ -81,7 +75,6 @@ public class FunctionalSet {
     public void elideRightMost() {
         for (int i = this.components.size() - 1; i > 0; i--) {
             recursiveElide(components.get(i));
-
         }
     }
 
@@ -113,11 +106,9 @@ public class FunctionalSet {
 
     public String toString() {
         StringBuffer buffer = new StringBuffer();
-
         for (NLGElement elem : this.components) {
-            buffer.append("ELEMENT: ").append(elem.toString()).append("\n");
+            buffer.append("ELEMENT: ").append(elem).append("\n");
         }
-
         return buffer.toString();
     }
 }

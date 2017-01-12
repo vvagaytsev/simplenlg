@@ -82,10 +82,13 @@ public class InflectedWordElement extends NLGElement {
 
     @Override
     public String printTree(String indent) {
-        StringBuffer print = new StringBuffer();
-        print.append("InflectedWordElement: base=").append(getBaseForm()) //$NON-NLS-1$
-                .append(", category=").append(getCategory().toString()).append( //$NON-NLS-1$
-                ", ").append(super.toString()).append('\n'); //$NON-NLS-1$
+        StringBuffer print = new StringBuffer()
+                .append("InflectedWordElement: base=")
+                .append(getBaseForm())
+                .append(", category=")
+                .append(getCategory()).append(", ")
+                .append(super.toString())
+                .append('\n');
         return print.toString();
     }
 
@@ -116,8 +119,7 @@ public class InflectedWordElement extends NLGElement {
      * from the lexicon.
      */
     public WordElement getBaseWord() {
-        NLGElement baseWord = this
-                .getFeatureAsElement(InternalFeature.BASE_WORD);
+        NLGElement baseWord = this.getFeatureAsElement(InternalFeature.BASE_WORD);
         return baseWord instanceof WordElement ? (WordElement) baseWord : null;
     }
 }

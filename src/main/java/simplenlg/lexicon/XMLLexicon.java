@@ -98,18 +98,14 @@ public class XMLLexicon extends Lexicon {
 
     public XMLLexicon() {
         try {
-
             URL defaultLexicon = this.getClass().getClassLoader().getResource("default-lexicon.xml");
-
             if (null != defaultLexicon) {
                 createLexicon(defaultLexicon.toURI());
             } else {
-                createLexicon(this.getClass().getResource(
-                        "/simplenlg/lexicon/default-lexicon.xml").toURI());
+                createLexicon(this.getClass().getResource("/simplenlg/lexicon/default-lexicon.xml").toURI());
             }
-
         } catch (URISyntaxException ex) {
-            System.out.println(ex.toString());
+            System.out.println(ex);
         }
     }
 
@@ -126,11 +122,9 @@ public class XMLLexicon extends Lexicon {
         indexByVariant = new HashMap<String, List<WordElement>>();
 
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory
-                    .newInstance();
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document doc = builder.parse(lexiconURI.toString());
-
             if (doc != null) {
                 Element lexRoot = doc.getDocumentElement();
                 NodeList wordNodes = lexRoot.getChildNodes();
@@ -147,9 +141,8 @@ public class XMLLexicon extends Lexicon {
                 }
             }
         } catch (Exception ex) {
-            System.out.println(ex.toString());
+            System.out.println(ex);
         }
-
         addSpecialCases();
     }
 
@@ -177,8 +170,9 @@ public class XMLLexicon extends Lexicon {
      */
     private WordElement convertNodeToWord(Node wordNode) {
         // if this isn't a Word node, ignore it
-        if (!wordNode.getNodeName().equalsIgnoreCase(XML_WORD))
+        if (!wordNode.getNodeName().equalsIgnoreCase(XML_WORD)) {
             return null;
+        }
 
         // // if there is no base, flag an error and return null
         // String base = XPathUtil.extractValue(wordNode, Constants.XML_BASE);
@@ -225,10 +219,10 @@ public class XMLLexicon extends Lexicon {
                         // otherwise assume it's a boolean feature
                         word.setFeature(feature, true);
                     }
-                } else
+                } else {
                     word.setFeature(feature, value);
+                }
             }
-
         }
 
         // if no infl specified, assume regular
@@ -238,8 +232,7 @@ public class XMLLexicon extends Lexicon {
 
         // default inflection code is "reg" if we have it, else random pick form
         // infl codes available
-        Inflection defaultInfl = inflections.contains(Inflection.REGULAR) ? Inflection.REGULAR
-                : inflections.get(0);
+        Inflection defaultInfl = inflections.contains(Inflection.REGULAR) ? Inflection.REGULAR : inflections.get(0);
 
         word.setFeature(LexicalFeature.DEFAULT_INFL, defaultInfl);
         word.setDefaultInflectionalVariant(defaultInfl);
@@ -264,22 +257,18 @@ public class XMLLexicon extends Lexicon {
         if (base != null) {
             updateIndex(word, base, indexByBase);
         }
-
         // now index by ID, which should be unique (if present)
         String id = word.getId();
         if (id != null) {
-            if (indexByID.containsKey(id))
-                System.out.println("Lexicon error: ID " + id
-                        + " occurs more than once");
+            if (indexByID.containsKey(id)) {
+                System.out.println("Lexicon error: ID " + id + " occurs more than once");
+            }
             indexByID.put(id, word);
         }
-
         // now index by variant
         for (String variant : getVariants(word)) {
             updateIndex(word, variant, indexByVariant);
         }
-
-        // done
     }
 
     /**
@@ -291,8 +280,9 @@ public class XMLLexicon extends Lexicon {
      */
     private void updateIndex(WordElement word, String base,
                              Map<String, List<WordElement>> index) {
-        if (!index.containsKey(base))
+        if (!index.containsKey(base)) {
             index.put(base, new ArrayList<WordElement>());
+        }
         index.get(base).add(word);
     }
 
@@ -390,19 +380,15 @@ public class XMLLexicon extends Lexicon {
                     break;
 
                 case ADJECTIVE:
-                    variants
-                            .add(getVariant(word, LexicalFeature.COMPARATIVE, "er"));
-                    variants
-                            .add(getVariant(word, LexicalFeature.SUPERLATIVE, "est"));
+                    variants.add(getVariant(word, LexicalFeature.COMPARATIVE, "er"));
+                    variants.add(getVariant(word, LexicalFeature.SUPERLATIVE, "est"));
                     break;
 
                 case VERB:
                     variants.add(getVariant(word, LexicalFeature.PRESENT3S, "s"));
                     variants.add(getVariant(word, LexicalFeature.PAST, "ed"));
-                    variants.add(getVariant(word, LexicalFeature.PAST_PARTICIPLE,
-                            "ed"));
-                    variants.add(getVariant(word,
-                            LexicalFeature.PRESENT_PARTICIPLE, "ing"));
+                    variants.add(getVariant(word, LexicalFeature.PAST_PARTICIPLE, "ed"));
+                    variants.add(getVariant(word, LexicalFeature.PRESENT_PARTICIPLE, "ing"));
                     break;
 
                 default:
@@ -423,10 +409,7 @@ public class XMLLexicon extends Lexicon {
      * @return
      */
     private String getVariant(WordElement word, String feature, String suffix) {
-        if (word.hasFeature(feature))
-            return word.getFeatureAsString(feature);
-        else
-            return getForm(word.getBaseForm(), suffix);
+        return word.hasFeature(feature) ? word.getFeatureAsString(feature) : getForm(word.getBaseForm(), suffix);
     }
 
     /**

@@ -71,21 +71,18 @@ public class StringElement extends NLGElement {
     }
 
     private boolean realisationsMatch(StringElement o) {
-        if (getRealisation() == null) {
-            return o.getRealisation() == null;
-        } else
-            return getRealisation().equals(o.getRealisation());
+        return getRealisation() == null ? o.getRealisation() == null : getRealisation().equals(o.getRealisation());
     }
 
     @Override
     public String printTree(String indent) {
-        StringBuffer print = new StringBuffer();
-        print
-                .append("StringElement: content=\"").append(getRealisation()).append('\"'); //$NON-NLS-1$
+        StringBuffer print = new StringBuffer()
+                .append("StringElement: content=\"")
+                .append(getRealisation())
+                .append('\"');
         Map<String, Object> features = this.getAllFeatures();
-
         if (features != null) {
-            print.append(", features=").append(features.toString()); //$NON-NLS-1$
+            print.append(", features=").append(features);
         }
         print.append('\n');
         return print.toString();

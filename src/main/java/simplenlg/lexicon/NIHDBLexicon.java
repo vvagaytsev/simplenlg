@@ -83,7 +83,7 @@ public class NIHDBLexicon extends Lexicon {
             lexdb = new LexAccessApi(conn);
 
         } catch (Exception ex) {
-            System.out.println("Cannot open lexical db: " + ex.toString());
+            System.out.println("Cannot open lexical db: " + ex);
             // probably should thrown an exception
         }
     }
@@ -109,7 +109,7 @@ public class NIHDBLexicon extends Lexicon {
             // now set up lexical access object
             lexdb = new LexAccessApi(conn);
         } catch (Exception ex) {
-            System.out.println("Cannot open lexical db: " + ex.toString());
+            System.out.println("Cannot open lexical db: " + ex);
             // probably should thrown an exception
         }
     }
@@ -155,7 +155,7 @@ public class NIHDBLexicon extends Lexicon {
                     LexAccessApi.B_EXACT);
             return getWordsFromLexResult(category, lexResult);
         } catch (SQLException ex) {
-            System.out.println("Lexical DB error: " + ex.toString());
+            System.out.println("Lexical DB error: " + ex);
             // probably should thrown an exception
         }
         return null;
@@ -173,7 +173,7 @@ public class NIHDBLexicon extends Lexicon {
             LexAccessApiResult lexResult = lexdb.GetLexRecords(id);
             return getWordsFromLexResult(LexicalCategory.ANY, lexResult);
         } catch (SQLException ex) {
-            System.out.println("Lexical DB error: " + ex.toString());
+            System.out.println("Lexical DB error: " + ex);
             // probably should thrown an exception
         }
         return null;
@@ -193,7 +193,7 @@ public class NIHDBLexicon extends Lexicon {
             LexAccessApiResult lexResult = lexdb.GetLexRecords(variant);
             return getWordsFromLexResult(category, lexResult);
         } catch (SQLException ex) {
-            System.out.println("Lexical DB error: " + ex.toString());
+            System.out.println("Lexical DB error: " + ex);
             // probably should thrown an exception
         }
         return null;

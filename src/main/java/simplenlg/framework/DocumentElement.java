@@ -239,7 +239,6 @@ public class DocumentElement extends NLGElement {
      */
     public boolean removeComponent(NLGElement textComponent) {
         boolean removed = false;
-
         if (textComponent != null) {
             List<NLGElement> components = getComponents();
             if (components != null) {
@@ -284,13 +283,11 @@ public class DocumentElement extends NLGElement {
 
     @Override
     public String printTree(String indent) {
-        String thisIndent = indent == null ? " |-" : indent + " |-"; //$NON-NLS-1$ //$NON-NLS-2$
-        String childIndent = indent == null ? " | " : indent + " | "; //$NON-NLS-1$ //$NON-NLS-2$
-        String lastIndent = indent == null ? " \\-" : indent + " \\-"; //$NON-NLS-1$ //$NON-NLS-2$
-        String lastChildIndent = indent == null ? "   " : indent + "   "; //$NON-NLS-1$ //$NON-NLS-2$
-        StringBuffer print = new StringBuffer();
-        print.append("DocumentElement: category=").append( //$NON-NLS-1$
-                getCategory().toString());
+        String thisIndent = indent == null ? " |-" : indent + " |-";
+        String childIndent = indent == null ? " | " : indent + " | ";
+        String lastIndent = indent == null ? " \\-" : indent + " \\-";
+        String lastChildIndent = indent == null ? "   " : indent + "   ";
+        StringBuffer print = new StringBuffer().append("DocumentElement: category=").append(getCategory());
 
         String realisation = getRealisation();
         if (realisation != null) {
@@ -304,11 +301,9 @@ public class DocumentElement extends NLGElement {
 
         if (!children.isEmpty()) {
             for (index = 0; index < length; index++) {
-                print.append(thisIndent).append(
-                        children.get(index).printTree(childIndent));
+                print.append(thisIndent).append(children.get(index).printTree(childIndent));
             }
-            print.append(lastIndent).append(
-                    children.get(index).printTree(lastChildIndent));
+            print.append(lastIndent).append(children.get(index).printTree(lastChildIndent));
         }
         return print.toString();
     }
