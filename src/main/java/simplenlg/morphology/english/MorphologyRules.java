@@ -115,7 +115,7 @@ public abstract class MorphologyRules extends NLGModule {
 				// .booleanValue()) {
 				// pluralForm = baseForm;
 				String baseDefaultInfl = baseWord.getFeatureAsString(LexicalFeature.DEFAULT_INFL);
-				if(baseDefaultInfl != null && "uncount".equals(baseDefaultInfl)) {
+				if("uncount".equals(baseDefaultInfl)) {
 					pluralForm = baseForm;
 				} else {
 					pluralForm = baseWord.getFeatureAsString(LexicalFeature.PLURAL);
@@ -165,7 +165,7 @@ public abstract class MorphologyRules extends NLGModule {
 			if(baseForm.matches(".*[b-z&&[^eiou]]y\\b")) { //$NON-NLS-1$
 				plural = baseForm.replaceAll("y\\b", "ies"); //$NON-NLS-1$ //$NON-NLS-2$
 
-				//AG: changed regex from ".*[szx(ch)(sh)]\\b" (tip of the hat to Ian Tabolt)				
+				//AG: changed regex from ".*[szx(ch)(sh)]\\b" (tip of the hat to Ian Tabolt)
 			} else if(baseForm.matches(".*([szx]|[cs]h)\\b")) { //$NON-NLS-1$
 				plural = baseForm + "es"; //$NON-NLS-1$
 
