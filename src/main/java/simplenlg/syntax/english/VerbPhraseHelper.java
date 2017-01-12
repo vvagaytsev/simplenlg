@@ -208,7 +208,7 @@ abstract class VerbPhraseHelper {
         for (NLGElement word : vgComponents) {
             if (!mainVerbSeen) {
                 mainVerbRealisation.push(word);
-                if (!word.equals("not")) { //$NON-NLS-1$
+                if (!"not".equals(word)) { //$NON-NLS-1$
                     mainVerbSeen = true;
                 }
             } else {

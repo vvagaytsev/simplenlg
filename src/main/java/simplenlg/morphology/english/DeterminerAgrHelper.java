@@ -126,7 +126,7 @@ public final class DeterminerAgrHelper {
     static String checkEndsWithIndefiniteArticle(String text, String np) {
         String[] tokens = text.split(" ");
         String lastToken = tokens[tokens.length - 1];
-        if (lastToken.equalsIgnoreCase("a") && DeterminerAgrHelper.requiresAn(np)) {
+        if ("a".equalsIgnoreCase(lastToken) && DeterminerAgrHelper.requiresAn(np)) {
             tokens[tokens.length - 1] = "an";
             return stringArrayToString(tokens);
         }

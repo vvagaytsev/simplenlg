@@ -324,7 +324,7 @@ abstract class ClauseHelper {
                     // flag if passive subject is coordinated with an "and"
                     if (!coordSubj && subject instanceof CoordinatedPhraseElement) {
                         String conj = ((CoordinatedPhraseElement) subject).getConjunction();
-                        coordSubj = (conj != null && conj.equals("and"));
+                        coordSubj = (conj != null && "and".equals(conj));
                     }
 
                     if (passiveNumber == null) {

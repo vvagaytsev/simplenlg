@@ -88,25 +88,25 @@ public final class NIHLexiconXMLDumpUtil {
                         String base = cols[0];
                         String cat = cols[1];
                         WordElement word = null;
-                        if (cat.equalsIgnoreCase("noun"))
+                        if ("noun".equalsIgnoreCase(cat))
                             word = lex.getWord(base, LexicalCategory.NOUN);
-                        else if (cat.equalsIgnoreCase("verb"))
+                        else if ("verb".equalsIgnoreCase(cat))
                             word = lex.getWord(base, LexicalCategory.VERB);
-                        else if (cat.equalsIgnoreCase("adv"))
+                        else if ("adv".equalsIgnoreCase(cat))
                             word = lex.getWord(base, LexicalCategory.ADVERB);
-                        else if (cat.equalsIgnoreCase("adj"))
+                        else if ("adj".equalsIgnoreCase(cat))
                             word = lex.getWord(base, LexicalCategory.ADJECTIVE);
-                        else if (cat.equalsIgnoreCase("det"))
+                        else if ("det".equalsIgnoreCase(cat))
                             word = lex.getWord(base, LexicalCategory.DETERMINER);
-                        else if (cat.equalsIgnoreCase("prep"))
+                        else if ("prep".equalsIgnoreCase(cat))
                             word = lex.getWord(base, LexicalCategory.PREPOSITION);
-                        else if (cat.equalsIgnoreCase("pron"))
+                        else if ("pron".equalsIgnoreCase(cat))
                             word = lex.getWord(base, LexicalCategory.PRONOUN);
-                        else if (cat.equalsIgnoreCase("conj"))
+                        else if ("conj".equalsIgnoreCase(cat))
                             word = lex.getWord(base, LexicalCategory.CONJUNCTION);
-                        else if (cat.equalsIgnoreCase("modal"))
+                        else if ("modal".equalsIgnoreCase(cat))
                             word = lex.getWord(base, LexicalCategory.MODAL);
-                        else if (cat.equalsIgnoreCase("interjection"))
+                        else if ("interjection".equalsIgnoreCase(cat))
                             word = lex.getWord(base, LexicalCategory.NOUN); // Kilgarriff;s interjections are mostly nouns in the lexicon
 
                         if (word == null)

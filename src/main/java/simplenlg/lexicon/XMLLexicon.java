@@ -215,7 +215,7 @@ public class XMLLexicon extends Lexicon {
                 else if (feature.equalsIgnoreCase(XML_ID))
                     word.setId(value);
 
-                else if (value == null || value.equals("")) {
+                else if (value == null || "".equals(value)) {
                     // if this is an infl code, add it to inflections
                     Inflection infl = Inflection.getInflCode(feature);
 

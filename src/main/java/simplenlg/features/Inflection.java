@@ -97,18 +97,18 @@ public enum Inflection {
         code = code.toLowerCase().trim();
         Inflection infl = null;
 
-        if (code.equals("reg")) {
+        if ("reg".equals(code)) {
             infl = Inflection.REGULAR;
-        } else if (code.equals("irreg")) {
+        } else if ("irreg".equals(code)) {
             infl = Inflection.IRREGULAR;
-        } else if (code.equals("regd")) {
+        } else if ("regd".equals(code)) {
             infl = Inflection.REGULAR_DOUBLE;
-        } else if (code.equals("glreg")) {
+        } else if ("glreg".equals(code)) {
             infl = Inflection.GRECO_LATIN_REGULAR;
-        } else if (code.equals("uncount") || code.equals("noncount")
-                || code.equals("groupuncount")) {
+        } else if ("uncount".equals(code) || "noncount".equals(code)
+                || "groupuncount".equals(code)) {
             infl = Inflection.UNCOUNT;
-        } else if (code.equals("inv")) {
+        } else if ("inv".equals(code)) {
             infl = Inflection.INVARIANT;
         }
 

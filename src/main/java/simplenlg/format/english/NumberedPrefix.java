@@ -30,7 +30,7 @@ public class NumberedPrefix {
      * This method starts a new level to the prefix (e.g., 1.1 if the current is 1, 2.3.1 if current is 2.3, or 1 if the current is 0).
      */
     public void upALevel() {
-        if (prefix.equals("0")) {
+        if ("0".equals(prefix)) {
             prefix = "1";
         } else {
             prefix = prefix + ".1";

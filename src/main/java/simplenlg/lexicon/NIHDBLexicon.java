@@ -371,30 +371,30 @@ public class NIHDBLexicon extends Lexicon {
         String cat = record.GetCategory();
         if (cat == null)
             return LexicalCategory.ANY;
-        else if (cat.equalsIgnoreCase("noun"))
+        else if ("noun".equalsIgnoreCase(cat))
             return LexicalCategory.NOUN;
-        else if (cat.equalsIgnoreCase("verb"))
+        else if ("verb".equalsIgnoreCase(cat))
             return LexicalCategory.VERB;
-        else if (cat.equalsIgnoreCase("aux")
-                && record.GetBase().equalsIgnoreCase("be")) // return aux "be"
+        else if ("aux".equalsIgnoreCase(cat)
+                && "be".equalsIgnoreCase(record.GetBase())) // return aux "be"
             // as a VERB
             // not needed for other aux "have" and "do", they have a verb entry
             return LexicalCategory.VERB;
-        else if (cat.equalsIgnoreCase("adj"))
+        else if ("adj".equalsIgnoreCase(cat))
             return LexicalCategory.ADJECTIVE;
-        else if (cat.equalsIgnoreCase("adv"))
+        else if ("adv".equalsIgnoreCase(cat))
             return LexicalCategory.ADVERB;
-        else if (cat.equalsIgnoreCase("pron"))
+        else if ("pron".equalsIgnoreCase(cat))
             return LexicalCategory.PRONOUN;
-        else if (cat.equalsIgnoreCase("det"))
+        else if ("det".equalsIgnoreCase(cat))
             return LexicalCategory.DETERMINER;
-        else if (cat.equalsIgnoreCase("prep"))
+        else if ("prep".equalsIgnoreCase(cat))
             return LexicalCategory.PREPOSITION;
-        else if (cat.equalsIgnoreCase("conj"))
+        else if ("conj".equalsIgnoreCase(cat))
             return LexicalCategory.CONJUNCTION;
-        else if (cat.equalsIgnoreCase("compl"))
+        else if ("compl".equalsIgnoreCase(cat))
             return LexicalCategory.COMPLEMENTISER;
-        else if (cat.equalsIgnoreCase("modal"))
+        else if ("modal".equalsIgnoreCase(cat))
             return LexicalCategory.MODAL;
 
             // return ANY for other cats
@@ -412,19 +412,19 @@ public class NIHDBLexicon extends Lexicon {
     private String getSimplenlgInflection(String NIHInflection) {
         if (NIHInflection == null)
             return null;
-        else if (NIHInflection.equalsIgnoreCase("comparative"))
+        else if ("comparative".equalsIgnoreCase(NIHInflection))
             return LexicalFeature.COMPARATIVE;
-        else if (NIHInflection.equalsIgnoreCase("superlative"))
+        else if ("superlative".equalsIgnoreCase(NIHInflection))
             return LexicalFeature.SUPERLATIVE;
-        else if (NIHInflection.equalsIgnoreCase("plural"))
+        else if ("plural".equalsIgnoreCase(NIHInflection))
             return LexicalFeature.PLURAL;
-        else if (NIHInflection.equalsIgnoreCase("pres3s"))
+        else if ("pres3s".equalsIgnoreCase(NIHInflection))
             return LexicalFeature.PRESENT3S;
-        else if (NIHInflection.equalsIgnoreCase("past"))
+        else if ("past".equalsIgnoreCase(NIHInflection))
             return LexicalFeature.PAST;
-        else if (NIHInflection.equalsIgnoreCase("pastPart"))
+        else if ("pastPart".equalsIgnoreCase(NIHInflection))
             return LexicalFeature.PAST_PARTICIPLE;
-        else if (NIHInflection.equalsIgnoreCase("presPart"))
+        else if ("presPart".equalsIgnoreCase(NIHInflection))
             return LexicalFeature.PRESENT_PARTICIPLE;
         else
             // no equvalent in simplenlg, eg clitic or negative

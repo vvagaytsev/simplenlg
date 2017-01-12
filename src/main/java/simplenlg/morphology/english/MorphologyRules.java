@@ -115,7 +115,7 @@ public abstract class MorphologyRules extends NLGModule {
 				// .booleanValue()) {
 				// pluralForm = baseForm;
 				String baseDefaultInfl = baseWord.getFeatureAsString(LexicalFeature.DEFAULT_INFL);
-				if(baseDefaultInfl != null && baseDefaultInfl.equals("uncount")) {
+				if(baseDefaultInfl != null && "uncount".equals(baseDefaultInfl)) {
 					pluralForm = baseForm;
 				} else {
 					pluralForm = baseWord.getFeatureAsString(LexicalFeature.PLURAL);
@@ -437,7 +437,7 @@ public abstract class MorphologyRules extends NLGModule {
 	private static String buildPresent3SVerb(String baseForm) {
 		String morphology = null;
 		if(baseForm != null) {
-			if(baseForm.equalsIgnoreCase("be")) { //$NON-NLS-1$
+			if("be".equalsIgnoreCase(baseForm)) { //$NON-NLS-1$
 				morphology = "is"; //$NON-NLS-1$
 			} else if(baseForm.matches(".*[szx(ch)(sh)]\\b")) { //$NON-NLS-1$
 				morphology = baseForm + "es"; //$NON-NLS-1$
@@ -477,7 +477,7 @@ public abstract class MorphologyRules extends NLGModule {
 	private static String buildRegularPastVerb(String baseForm, Object number, Object person) {
 		String morphology = null;
 		if(baseForm != null) {
-			if(baseForm.equalsIgnoreCase("be")) { //$NON-NLS-1$
+			if("be".equalsIgnoreCase(baseForm)) { //$NON-NLS-1$
 				if(NumberAgreement.PLURAL.equals(number)) {
 					morphology = "were"; //$NON-NLS-1$
 
@@ -539,7 +539,7 @@ public abstract class MorphologyRules extends NLGModule {
 	private static String buildRegularPresPartVerb(String baseForm) {
 		String morphology = null;
 		if(baseForm != null) {
-			if(baseForm.equalsIgnoreCase("be")) { //$NON-NLS-1$
+			if("be".equalsIgnoreCase(baseForm)) { //$NON-NLS-1$
 				morphology = "being"; //$NON-NLS-1$
 			} else if(baseForm.endsWith("ie")) { //$NON-NLS-1$
 				morphology = baseForm.replaceAll("ie\\b", "ying"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -845,7 +845,7 @@ public abstract class MorphologyRules extends NLGModule {
 
 		if(realisation != null) {
 
-			if(!(determiner.getRealisation().equals("a"))) {
+			if(!("a".equals(determiner.getRealisation()))) {
 				if(determiner.isPlural()) {
 					// Use default inflection rules:
 					if("that".equals(determiner.getRealisation())) {
@@ -865,7 +865,7 @@ public abstract class MorphologyRules extends NLGModule {
 			}
 
 			// Special "a" determiner and perform a/an agreement:
-			if(determiner.getRealisation().equals("a")) { //$NON-NLS-1$
+			if("a".equals(determiner.getRealisation())) { //$NON-NLS-1$
 				if(determiner.isPlural()) {
 					determiner.setRealisation("some");
 				} else if(DeterminerAgrHelper.requiresAn(realisation)) {
