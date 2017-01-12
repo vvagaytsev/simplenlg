@@ -33,18 +33,12 @@ import java.io.LineNumberReader;
  *
  * @author Ehud Reiter
  */
-public class NIHLexiconXMLDumpUtil {
+public final class NIHLexiconXMLDumpUtil {
 
-    // filenames
-    private static String DB_FILENAME;  // DB location
-    private static String WORDLIST_FILENAME;  // word list
-    private static String XML_FILENAME;  // word list
+    private NIHLexiconXMLDumpUtil() {
+    }
 
     /**
-     * This main method reads a list of CSV words and POS tags and looks up against
-     * the NIHDB Lexicon for a corresponding entry. If found the baseform is written out into a XML
-     * file, which can be used in SimpleNLG or elsewhere.
-     *
      * @param args : List of Arguments that this command line application must be provided with in order:
      *             <ol>
      *             <li>The full path to the NIHDB Lexicon database file e.g. C:\\NIHDB\\lexAccess2009</li>
@@ -59,13 +53,13 @@ public class NIHLexiconXMLDumpUtil {
      *             </p>
      */
     public static void main(String[] args) {
-        Lexicon lex = null;
+        Lexicon lex;
 
         if (args.length == 3) {
 
-            DB_FILENAME = args[0];
-            WORDLIST_FILENAME = args[1];
-            XML_FILENAME = args[2];
+            String dbFilename = args[0];
+            String wordListFilename = args[1];
+            String xmlFilename = args[2];
 
             // Check to see if the HSQLDB driver is available on the classpath:
             boolean dbDriverAvaliable = false;
@@ -78,14 +72,14 @@ public class NIHLexiconXMLDumpUtil {
                 System.err.println("*** Please add the HSQLDB JDBCDriver to your Java classpath and try again.");
             }
 
-            if ((null != DB_FILENAME && !DB_FILENAME.isEmpty()) &&
-                    (null != WORDLIST_FILENAME && !WORDLIST_FILENAME.isEmpty()) &&
-                    (null != XML_FILENAME && !XML_FILENAME.isEmpty()) && dbDriverAvaliable) {
-                lex = new NIHDBLexicon(DB_FILENAME);
+            if ((null != dbFilename && !dbFilename.isEmpty()) &&
+                    (null != wordListFilename && !wordListFilename.isEmpty()) &&
+                    (null != xmlFilename && !xmlFilename.isEmpty()) && dbDriverAvaliable) {
+                lex = new NIHDBLexicon(dbFilename);
 
                 try {
-                    LineNumberReader wordListFile = new LineNumberReader(new FileReader(WORDLIST_FILENAME));
-                    FileWriter xmlFile = new FileWriter(XML_FILENAME);
+                    LineNumberReader wordListFile = new LineNumberReader(new FileReader(wordListFilename));
+                    FileWriter xmlFile = new FileWriter(xmlFilename);
                     xmlFile.write(String.format("<lexicon>%n"));
                     String line = wordListFile.readLine();
                     while (line != null) {
