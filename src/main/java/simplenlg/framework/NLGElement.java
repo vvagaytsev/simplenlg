@@ -552,7 +552,7 @@ public abstract class NLGElement {
 
     @Override
     public String toString() {
-        StringBuffer buffer = new StringBuffer("{realisation=").append(this.realisation); //$NON-NLS-1$
+        StringBuilder buffer = new StringBuilder("{realisation=").append(this.realisation);
         if (this.category != null) {
             buffer.append(", category=").append(this.category);
         }
@@ -597,15 +597,12 @@ public abstract class NLGElement {
     public String printTree(String indent) {
         String thisIndent = indent == null ? " |-" : indent + " |-"; //$NON-NLS-1$ //$NON-NLS-2$
         String childIndent = indent == null ? " |-" : indent + " |-"; //$NON-NLS-1$ //$NON-NLS-2$
-        StringBuffer print = new StringBuffer();
-        print.append("NLGElement: ").append(toString()).append('\n'); //$NON-NLS-1$
+        StringBuilder print = new StringBuilder().append("NLGElement: ").append(toString()).append('\n');
 
         List<NLGElement> children = getChildren();
-
         if (children != null) {
             for (NLGElement eachChild : getChildren()) {
-                print.append(thisIndent).append(
-                        eachChild.printTree(childIndent));
+                print.append(thisIndent).append(eachChild.printTree(childIndent));
             }
         }
         return print.toString();

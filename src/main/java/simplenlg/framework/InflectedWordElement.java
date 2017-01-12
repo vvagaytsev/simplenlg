@@ -80,14 +80,12 @@ public class InflectedWordElement extends NLGElement {
 
     @Override
     public String printTree(String indent) {
-        StringBuffer print = new StringBuffer()
-                .append("InflectedWordElement: base=")
-                .append(getBaseForm())
-                .append(", category=")
-                .append(getCategory()).append(", ")
-                .append(super.toString())
-                .append('\n');
-        return print.toString();
+        return "InflectedWordElement: base=" +
+                getBaseForm() +
+                ", category=" +
+                getCategory() + ", " +
+                super.toString() +
+                '\n';
     }
 
     /**

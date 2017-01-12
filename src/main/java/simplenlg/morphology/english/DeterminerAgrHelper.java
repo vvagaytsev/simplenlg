@@ -90,11 +90,11 @@ public final class DeterminerAgrHelper {
      * Retrieve the numeral prefix of a string.
      */
     private static String getNumericPrefix(String string) {
-        StringBuffer numeric = new StringBuffer();
+        StringBuilder numeric = new StringBuilder();
         if (string != null) {
             string = string.trim();
             if (!string.isEmpty()) {
-                StringBuffer buffer = new StringBuffer(string);
+                StringBuilder buffer = new StringBuilder(string);
                 char first = buffer.charAt(0);
                 if (Character.isDigit(first)) {
                     numeric.append(first);

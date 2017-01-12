@@ -127,7 +127,7 @@ public class ListElement extends NLGElement {
         String childIndent = indent == null ? " | " : indent + " | ";
         String lastIndent = indent == null ? " \\-" : indent + " \\-";
         String lastChildIndent = indent == null ? "   " : indent + "   ";
-        StringBuffer print = new StringBuffer().append("ListElement: features={");
+        StringBuilder print = new StringBuilder().append("ListElement: features={");
 
         Map<String, Object> features = getAllFeatures();
         for (String eachFeature : features.keySet()) {

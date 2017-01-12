@@ -105,7 +105,7 @@ public class FunctionalSet {
     }
 
     public String toString() {
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder buffer = new StringBuilder();
         for (NLGElement elem : this.components) {
             buffer.append("ELEMENT: ").append(elem).append("\n");
         }

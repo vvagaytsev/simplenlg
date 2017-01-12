@@ -287,7 +287,7 @@ public class DocumentElement extends NLGElement {
         String childIndent = indent == null ? " | " : indent + " | ";
         String lastIndent = indent == null ? " \\-" : indent + " \\-";
         String lastChildIndent = indent == null ? "   " : indent + "   ";
-        StringBuffer print = new StringBuffer().append("DocumentElement: category=").append(getCategory());
+        StringBuilder print = new StringBuilder().append("DocumentElement: category=").append(getCategory());
 
         String realisation = getRealisation();
         if (realisation != null) {

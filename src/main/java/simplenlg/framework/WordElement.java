@@ -342,7 +342,7 @@ public class WordElement extends NLGElement {
     @Override
     public String toString() {
         ElementCategory _category = getCategory();
-        StringBuffer buffer = new StringBuffer("WordElement[").append(getBaseForm()).append(':');
+        StringBuilder buffer = new StringBuilder("WordElement[").append(getBaseForm()).append(':');
         if (_category != null) {
             buffer.append(_category);
         } else {
@@ -394,15 +394,13 @@ public class WordElement extends NLGElement {
 
     @Override
     public String printTree(String indent) {
-        StringBuffer print = new StringBuffer()
-                .append("WordElement: base=")
-                .append(getBaseForm())
-                .append(", category=")
-                .append(getCategory())
-                .append(", ")
-                .append(super.toString())
-                .append('\n');
-        return print.toString();
+        return "WordElement: base=" +
+                getBaseForm() +
+                ", category=" +
+                getCategory() +
+                ", " +
+                super.toString() +
+                '\n';
     }
 
     /**

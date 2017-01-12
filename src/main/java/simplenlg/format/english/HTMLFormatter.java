@@ -54,7 +54,7 @@ public class HTMLFormatter extends NLGModule {
     @Override
     public NLGElement realise(NLGElement element) { // realise a single element
         NLGElement realisedComponent = null;
-        StringBuffer realisation = new StringBuffer();
+        StringBuilder realisation = new StringBuilder();
 
         if (element != null) {
             ElementCategory category = element.getCategory();
@@ -73,7 +73,7 @@ public class HTMLFormatter extends NLGModule {
 
                     case DOCUMENT:
                         String title = element instanceof DocumentElement ? ((DocumentElement) element).getTitle() : null;
-                        realisation.append("<h1>" + title + "</h1>");
+                        realisation.append("<h1>").append(title).append("</h1>");
 
                         for (NLGElement eachComponent : components) {
                             realisedComponent = realise(eachComponent);
@@ -89,7 +89,7 @@ public class HTMLFormatter extends NLGModule {
 
                         if (title != null) {
                             String sectionTitle = ((DocumentElement) element).getTitle();
-                            realisation.append("<h2>" + sectionTitle + "</h2>");
+                            realisation.append("<h2>").append(sectionTitle).append("</h2>");
                         }
 
                         for (NLGElement eachComponent : components) {

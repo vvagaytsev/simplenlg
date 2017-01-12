@@ -76,7 +76,7 @@ public class StringElement extends NLGElement {
 
     @Override
     public String printTree(String indent) {
-        StringBuffer print = new StringBuffer()
+        StringBuilder print = new StringBuilder()
                 .append("StringElement: content=\"")
                 .append(getRealisation())
                 .append('\"');

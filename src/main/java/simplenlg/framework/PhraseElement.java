@@ -495,7 +495,7 @@ public class PhraseElement extends NLGElement {
         String childIndent = indent == null ? " | " : indent + " | ";
         String lastIndent = indent == null ? " \\-" : indent + " \\-";
         String lastChildIndent = indent == null ? "   " : indent + "   ";
-        StringBuffer print = new StringBuffer()
+        StringBuilder print = new StringBuilder()
                 .append("PhraseElement: category=")
                 .append(getCategory())
                 .append(", features={");

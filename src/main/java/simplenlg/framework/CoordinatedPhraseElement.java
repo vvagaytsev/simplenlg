@@ -221,24 +221,21 @@ public class CoordinatedPhraseElement extends NLGElement {
 
     @Override
     public String printTree(String indent) {
-        String thisIndent = indent == null ? " |-" : indent + " |-"; //$NON-NLS-1$ //$NON-NLS-2$
-        String childIndent = indent == null ? " | " : indent + " | "; //$NON-NLS-1$ //$NON-NLS-2$
-        String lastIndent = indent == null ? " \\-" : indent + " \\-"; //$NON-NLS-1$ //$NON-NLS-2$
-        String lastChildIndent = indent == null ? "   " : indent + "   "; //$NON-NLS-1$ //$NON-NLS-2$
-        StringBuffer print = new StringBuffer();
-        print.append("CoordinatedPhraseElement:\n"); //$NON-NLS-1$
+        String thisIndent = indent == null ? " |-" : indent + " |-";
+        String childIndent = indent == null ? " | " : indent + " | ";
+        String lastIndent = indent == null ? " \\-" : indent + " \\-";
+        String lastChildIndent = indent == null ? "   " : indent + "   ";
+        StringBuilder print = new StringBuilder().append("CoordinatedPhraseElement:\n");
 
         List<NLGElement> children = getChildren();
         int length = children.size() - 1;
         int index = 0;
 
         for (index = 0; index < length; index++) {
-            print.append(thisIndent).append(
-                    children.get(index).printTree(childIndent));
+            print.append(thisIndent).append(children.get(index).printTree(childIndent));
         }
         if (length >= 0) {
-            print.append(lastIndent).append(
-                    children.get(length).printTree(lastChildIndent));
+            print.append(lastIndent).append(children.get(length).printTree(lastChildIndent));
         }
         return print.toString();
     }

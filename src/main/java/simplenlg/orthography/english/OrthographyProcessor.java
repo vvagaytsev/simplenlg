@@ -400,7 +400,7 @@ public class OrthographyProcessor extends NLGModule {
      * @return the realised element as an <code>NLGElement</code>.
      */
     private NLGElement realiseCoordinatedPhrase(List<NLGElement> components) {
-        StringBuffer realisation = new StringBuffer();
+        StringBuilder realisation = new StringBuilder();
         NLGElement realisedChild = null;
 
         int length = components.size();

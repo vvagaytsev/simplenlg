@@ -141,7 +141,7 @@ public class TextFormatter extends NLGModule {
                             if (element.getParent().getCategory() == DocumentCategory.LIST) {
                                 realisation.append(" * ");
                             } else if (element.getParent().getCategory() == DocumentCategory.ENUMERATED_LIST) {
-                                realisation.append(numberedPrefix.getPrefix() + " - ");
+                                realisation.append(numberedPrefix.getPrefix()).append(" - ");
                             }
                         }
 
