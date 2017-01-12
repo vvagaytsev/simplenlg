@@ -18,11 +18,11 @@
  */
 package simplenlg.framework;
 
+import simplenlg.features.Feature;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import simplenlg.features.Feature;
 
 /**
  * <p>
@@ -30,68 +30,64 @@ import simplenlg.features.Feature;
  * SimpleNLG library. Once assigned a value, the string element should not be
  * changed by any other processors.
  * </p>
- * 
- * 
+ *
  * @author D. Westwater, University of Aberdeen.
  * @version 4.0
- * 
  */
 public class StringElement extends NLGElement {
 
-	/**
-	 * Constructs a new string element representing some canned text.
-	 * 
-	 * @param value
-	 *            the text for this string element.
-	 */
-	public StringElement(String value) {
-		setCategory(PhraseCategory.CANNED_TEXT);
-		setFeature(Feature.ELIDED, false);
-		setRealisation(value);
-	}
+    /**
+     * Constructs a new string element representing some canned text.
+     *
+     * @param value the text for this string element.
+     */
+    public StringElement(String value) {
+        setCategory(PhraseCategory.CANNED_TEXT);
+        setFeature(Feature.ELIDED, false);
+        setRealisation(value);
+    }
 
-	/**
-	 * The string element contains no children so this method will always return
-	 * an empty list.
-	 */
-	@Override
-	public List<NLGElement> getChildren() {
-		return new ArrayList<NLGElement>();
-	}
+    /**
+     * The string element contains no children so this method will always return
+     * an empty list.
+     */
+    @Override
+    public List<NLGElement> getChildren() {
+        return new ArrayList<NLGElement>();
+    }
 
-	@Override
-	public String toString() {
-		return getRealisation();
-	}
+    @Override
+    public String toString() {
+        return getRealisation();
+    }
 
-	/* (non-Javadoc)
-	 * @see simplenlg.framework.NLGElement#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object o) {
-		// TODO Auto-generated method stub
-		return super.equals(o) && (o instanceof StringElement) && realisationsMatch((StringElement) o);
-	}
+    /* (non-Javadoc)
+     * @see simplenlg.framework.NLGElement#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object o) {
+        // TODO Auto-generated method stub
+        return super.equals(o) && (o instanceof StringElement) && realisationsMatch((StringElement) o);
+    }
 
-	private boolean realisationsMatch(StringElement o) {
-		if  (getRealisation() == null) {
-			return o.getRealisation() == null;
-		}
-		else
-			return getRealisation().equals(o.getRealisation());
-	}
+    private boolean realisationsMatch(StringElement o) {
+        if (getRealisation() == null) {
+            return o.getRealisation() == null;
+        } else
+            return getRealisation().equals(o.getRealisation());
+    }
 
-	@Override
-	public String printTree(String indent) {
-		StringBuffer print = new StringBuffer();
-		print
-				.append("StringElement: content=\"").append(getRealisation()).append('\"'); //$NON-NLS-1$
-		Map<String, Object> features = this.getAllFeatures();
+    @Override
+    public String printTree(String indent) {
+        StringBuffer print = new StringBuffer();
+        print
+                .append("StringElement: content=\"").append(getRealisation()).append('\"'); //$NON-NLS-1$
+        Map<String, Object> features = this.getAllFeatures();
 
-		if (features != null) {
-			print.append(", features=").append(features.toString()); //$NON-NLS-1$
-		}
-		print.append('\n');
-		return print.toString();
-	}
+        if (features != null) {
+            print.append(", features=").append(features.toString()); //$NON-NLS-1$
+        }
+        print.append('\n');
+        return print.toString();
+    }
 }

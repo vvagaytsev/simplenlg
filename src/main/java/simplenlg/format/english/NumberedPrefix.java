@@ -4,6 +4,7 @@ package simplenlg.format.english;
  * This class keeps track of the prefix for numbered lists.
  */
 public class NumberedPrefix {
+
     String prefix;
 
     public NumberedPrefix() {
@@ -12,7 +13,7 @@ public class NumberedPrefix {
 
     public void increment() {
         int dotPosition = prefix.lastIndexOf('.');
-        if(dotPosition == -1) {
+        if (dotPosition == -1) {
             int counter = Integer.valueOf(prefix);
             counter++;
             prefix = String.valueOf(counter);
@@ -29,7 +30,7 @@ public class NumberedPrefix {
      * This method starts a new level to the prefix (e.g., 1.1 if the current is 1, 2.3.1 if current is 2.3, or 1 if the current is 0).
      */
     public void upALevel() {
-        if(prefix.equals("0")) {
+        if (prefix.equals("0")) {
             prefix = "1";
         } else {
             prefix = prefix + ".1";
@@ -41,7 +42,7 @@ public class NumberedPrefix {
      */
     public void downALevel() {
         int dotPosition = prefix.lastIndexOf('.');
-        if(dotPosition == -1) {
+        if (dotPosition == -1) {
             prefix = "0";
         } else {
             prefix = prefix.substring(0, dotPosition);

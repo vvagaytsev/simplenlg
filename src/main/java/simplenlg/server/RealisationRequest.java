@@ -19,42 +19,39 @@
  */
 package simplenlg.server;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.Reader;
-import java.io.StringReader;
-import java.net.Socket;
-
 import simplenlg.xmlrealiser.XMLRealiser;
 import simplenlg.xmlrealiser.XMLRealiserException;
 
+import java.io.*;
+import java.net.Socket;
+
 /**
  * This class handles one realisation request.
- * @author Roman Kutlak
- *
- * The object will parse the xml from the client socket and return 
+ * <p>
+ * The object will parse the xml from the client socket and return
  * a surface realisation of the xml structure.
- * 
+ * <p>
  * If an exception occurs, the request attempts to inform the client
  * by sending a string that starts with "Exception: " and continues
  * with the message of the exception. Sending the error might fail
  * (for example, if the client disconnected).
- * 
+ * <p>
  * The program implements the "standard" socket protocol:
  * each message is preceded with an integer indicating the
  * length of the message (int is 4 bytes).
+ *
+ * @author Roman Kutlak
  */
 public class RealisationRequest implements Runnable {
 
     Socket socket;
-    
+
     static boolean DEBUG = SimpleServer.DEBUG;
-    
+
     public RealisationRequest(Socket s) {
         this.socket = s;
     }
-    
+
     public void run() {
         if (null == socket)
             return;
@@ -66,14 +63,14 @@ public class RealisationRequest implements Runnable {
             System.out.println("Client connected from "
                     + socket.getRemoteSocketAddress());
         }
-        
+
         try {
             input = new DataInputStream(socket.getInputStream());
             output = new DataOutputStream(socket.getOutputStream());
 
             // read the message length
             int msgLen = input.readInt();
-            
+
             // create a buffer
             byte[] data = new byte[msgLen];
             // read the entire message (blocks until complete)
@@ -81,28 +78,28 @@ public class RealisationRequest implements Runnable {
 
             if (data.length < 1) {
                 throw new Exception("Client did not send data.");
-            } 
-            
+            }
+
             // now convert the raw bytes to utf-8
             String tmp = new String(data, "UTF-8");
             StringReader reader = new StringReader(tmp);
-            
+
             // get the realisation
             String result = doRealisation(reader).trim();
-            
+
             // convert the string to raw bytes
             byte[] tmp2 = result.getBytes("UTF-8");
-            
+
             // write the length
             output.writeInt(tmp2.length);
             // write the data
             output.write(tmp2);
-            
+
             if (DEBUG) {
                 String text = "The following realisation was sent to client:";
                 System.out.println(text + "\n\t" + result);
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace();
             try {

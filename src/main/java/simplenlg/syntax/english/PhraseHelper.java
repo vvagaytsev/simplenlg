@@ -18,196 +18,177 @@
  */
 package simplenlg.syntax.english;
 
-import java.util.List;
-
 import simplenlg.features.DiscourseFunction;
 import simplenlg.features.Feature;
 import simplenlg.features.InternalFeature;
 import simplenlg.features.LexicalFeature;
-import simplenlg.framework.InflectedWordElement;
-import simplenlg.framework.LexicalCategory;
-import simplenlg.framework.ListElement;
-import simplenlg.framework.NLGElement;
-import simplenlg.framework.PhraseCategory;
-import simplenlg.framework.PhraseElement;
+import simplenlg.framework.*;
+
+import java.util.List;
 
 /**
- * <p>
  * This class contains static methods to help the syntax processor realise
  * phrases.
  * </p>
- * 
+ *
  * @author E. Reiter and D. Westwater, University of Aberdeen.
  * @version 4.0
  */
 abstract class PhraseHelper {
 
-	/**
-	 * The main method for realising phrases.
-	 * 
-	 * @param parent
-	 *            the <code>SyntaxProcessor</code> that called this method.
-	 * @param phrase
-	 *            the <code>PhraseElement</code> to be realised.
-	 * @return the realised <code>NLGElement</code>.
-	 */
-	static NLGElement realise(SyntaxProcessor parent, PhraseElement phrase) {
-		ListElement realisedElement = null;
+    /**
+     * The main method for realising phrases.
+     *
+     * @param parent the <code>SyntaxProcessor</code> that called this method.
+     * @param phrase the <code>PhraseElement</code> to be realised.
+     * @return the realised <code>NLGElement</code>.
+     */
+    static NLGElement realise(SyntaxProcessor parent, PhraseElement phrase) {
+        ListElement realisedElement = null;
 
-		if (phrase != null) {
-			realisedElement = new ListElement();
+        if (phrase != null) {
+            realisedElement = new ListElement();
 
-			realiseList(parent, realisedElement, phrase.getPreModifiers(),
-					DiscourseFunction.PRE_MODIFIER);
+            realiseList(parent, realisedElement, phrase.getPreModifiers(),
+                    DiscourseFunction.PRE_MODIFIER);
 
-			realiseHead(parent, phrase, realisedElement);
-			realiseComplements(parent, phrase, realisedElement);
+            realiseHead(parent, phrase, realisedElement);
+            realiseComplements(parent, phrase, realisedElement);
 
-			PhraseHelper.realiseList(parent, realisedElement, phrase
-					.getPostModifiers(), DiscourseFunction.POST_MODIFIER);
-		}
-		
-		return realisedElement;
-	}
+            PhraseHelper.realiseList(parent, realisedElement, phrase
+                    .getPostModifiers(), DiscourseFunction.POST_MODIFIER);
+        }
 
-	/**
-	 * Realises the complements of the phrase adding <em>and</em> where
-	 * appropriate.
-	 * 
-	 * @param parent
-	 *            the parent <code>SyntaxProcessor</code> that will do the
-	 *            realisation of the complementiser.
-	 * @param phrase
-	 *            the <code>PhraseElement</code> representing this noun phrase.
-	 * @param realisedElement
-	 *            the current realisation of the noun phrase.
-	 */
-	private static void realiseComplements(SyntaxProcessor parent,
-			PhraseElement phrase, ListElement realisedElement) {
+        return realisedElement;
+    }
 
-		boolean firstProcessed = false;
-		NLGElement currentElement = null;
+    /**
+     * Realises the complements of the phrase adding <em>and</em> where
+     * appropriate.
+     *
+     * @param parent          the parent <code>SyntaxProcessor</code> that will do the
+     *                        realisation of the complementiser.
+     * @param phrase          the <code>PhraseElement</code> representing this noun phrase.
+     * @param realisedElement the current realisation of the noun phrase.
+     */
+    private static void realiseComplements(SyntaxProcessor parent,
+                                           PhraseElement phrase, ListElement realisedElement) {
 
-		for (NLGElement complement : phrase
-				.getFeatureAsElementList(InternalFeature.COMPLEMENTS)) {
-			currentElement = parent.realise(complement);
-			if (currentElement != null) {
-				currentElement.setFeature(InternalFeature.DISCOURSE_FUNCTION,
-						DiscourseFunction.COMPLEMENT);
-				if (firstProcessed) {
-					realisedElement.addComponent(new InflectedWordElement(
-							"and", LexicalCategory.CONJUNCTION)); //$NON-NLS-1$
-				} else {
-					firstProcessed = true;
-				}
-				realisedElement.addComponent(currentElement);
-			}
-		}
-	}
+        boolean firstProcessed = false;
+        NLGElement currentElement = null;
 
-	/**
-	 * Realises the head element of the phrase.
-	 * 
-	 * @param parent
-	 *            the parent <code>SyntaxProcessor</code> that will do the
-	 *            realisation of the complementiser.
-	 * @param phrase
-	 *            the <code>PhraseElement</code> representing this noun phrase.
-	 * @param realisedElement
-	 *            the current realisation of the noun phrase.
-	 */
-	private static void realiseHead(SyntaxProcessor parent,
-			PhraseElement phrase, ListElement realisedElement) {
+        for (NLGElement complement : phrase
+                .getFeatureAsElementList(InternalFeature.COMPLEMENTS)) {
+            currentElement = parent.realise(complement);
+            if (currentElement != null) {
+                currentElement.setFeature(InternalFeature.DISCOURSE_FUNCTION,
+                        DiscourseFunction.COMPLEMENT);
+                if (firstProcessed) {
+                    realisedElement.addComponent(new InflectedWordElement(
+                            "and", LexicalCategory.CONJUNCTION)); //$NON-NLS-1$
+                } else {
+                    firstProcessed = true;
+                }
+                realisedElement.addComponent(currentElement);
+            }
+        }
+    }
 
-		NLGElement head = phrase.getHead();
-		if (head != null) {
-			if (phrase.hasFeature(Feature.IS_COMPARATIVE)) {
-				head.setFeature(Feature.IS_COMPARATIVE, phrase
-						.getFeature(Feature.IS_COMPARATIVE));
-			} else if (phrase.hasFeature(Feature.IS_SUPERLATIVE)) {
-				head.setFeature(Feature.IS_SUPERLATIVE, phrase
-						.getFeature(Feature.IS_SUPERLATIVE));
-			}
-			head = parent.realise(head);
-			head.setFeature(InternalFeature.DISCOURSE_FUNCTION,
-					DiscourseFunction.HEAD);
-			realisedElement.addComponent(head);
-		}
-	}
+    /**
+     * Realises the head element of the phrase.
+     *
+     * @param parent          the parent <code>SyntaxProcessor</code> that will do the
+     *                        realisation of the complementiser.
+     * @param phrase          the <code>PhraseElement</code> representing this noun phrase.
+     * @param realisedElement the current realisation of the noun phrase.
+     */
+    private static void realiseHead(SyntaxProcessor parent,
+                                    PhraseElement phrase, ListElement realisedElement) {
 
-	/**
-	 * Iterates through a <code>List</code> of <code>NLGElement</code>s
-	 * realisation each element and adding it to the on-going realisation of
-	 * this clause.
-	 * 
-	 * @param parent
-	 *            the parent <code>SyntaxProcessor</code> that will do the
-	 *            realisation of the complementiser.
-	 * @param realisedElement
-	 *            the current realisation of the clause.
-	 * @param elementList
-	 *            the <code>List</code> of <code>NLGElement</code>s to be
-	 *            realised.
-	 * @param function
-	 *            the <code>DiscourseFunction</code> each element in the list is
-	 *            to take. If this is <code>null</code> then the function is not
-	 *            set and any existing discourse function is kept.
-	 */
-	static void realiseList(SyntaxProcessor parent,
-			ListElement realisedElement, List<NLGElement> elementList,
-			DiscourseFunction function) {
+        NLGElement head = phrase.getHead();
+        if (head != null) {
+            if (phrase.hasFeature(Feature.IS_COMPARATIVE)) {
+                head.setFeature(Feature.IS_COMPARATIVE, phrase
+                        .getFeature(Feature.IS_COMPARATIVE));
+            } else if (phrase.hasFeature(Feature.IS_SUPERLATIVE)) {
+                head.setFeature(Feature.IS_SUPERLATIVE, phrase
+                        .getFeature(Feature.IS_SUPERLATIVE));
+            }
+            head = parent.realise(head);
+            head.setFeature(InternalFeature.DISCOURSE_FUNCTION,
+                    DiscourseFunction.HEAD);
+            realisedElement.addComponent(head);
+        }
+    }
 
-		// AG: Change here: the original list structure is kept, i.e. rather
-		// than taking the elements of the list and putting them in the realised
-		// element, we now add the realised elements to a new list and put that
-		// in the realised element list. This preserves constituency for
-		// orthography and morphology processing later.
-		ListElement realisedList = new ListElement();
-		NLGElement currentElement = null;
+    /**
+     * Iterates through a <code>List</code> of <code>NLGElement</code>s
+     * realisation each element and adding it to the on-going realisation of
+     * this clause.
+     *
+     * @param parent          the parent <code>SyntaxProcessor</code> that will do the
+     *                        realisation of the complementiser.
+     * @param realisedElement the current realisation of the clause.
+     * @param elementList     the <code>List</code> of <code>NLGElement</code>s to be
+     *                        realised.
+     * @param function        the <code>DiscourseFunction</code> each element in the list is
+     *                        to take. If this is <code>null</code> then the function is not
+     *                        set and any existing discourse function is kept.
+     */
+    static void realiseList(SyntaxProcessor parent,
+                            ListElement realisedElement, List<NLGElement> elementList,
+                            DiscourseFunction function) {
 
-		for (NLGElement eachElement : elementList) {
-			currentElement = parent.realise(eachElement);
+        // AG: Change here: the original list structure is kept, i.e. rather
+        // than taking the elements of the list and putting them in the realised
+        // element, we now add the realised elements to a new list and put that
+        // in the realised element list. This preserves constituency for
+        // orthography and morphology processing later.
+        ListElement realisedList = new ListElement();
+        NLGElement currentElement = null;
 
-			if (currentElement != null) {
-				currentElement.setFeature(InternalFeature.DISCOURSE_FUNCTION,
-						function);
+        for (NLGElement eachElement : elementList) {
+            currentElement = parent.realise(eachElement);
 
-				if (eachElement.getFeatureAsBoolean(Feature.APPOSITIVE).booleanValue()) {
-					currentElement.setFeature(Feature.APPOSITIVE, true);
-				}
+            if (currentElement != null) {
+                currentElement.setFeature(InternalFeature.DISCOURSE_FUNCTION,
+                        function);
 
-				// realisedElement.addComponent(currentElement);
-				realisedList.addComponent(currentElement);
-			}
-		}
+                if (eachElement.getFeatureAsBoolean(Feature.APPOSITIVE).booleanValue()) {
+                    currentElement.setFeature(Feature.APPOSITIVE, true);
+                }
 
-		if (!realisedList.getChildren().isEmpty()) {
-			realisedElement.addComponent(realisedList);
-		}
-	}
+                // realisedElement.addComponent(currentElement);
+                realisedList.addComponent(currentElement);
+            }
+        }
 
-	/**
-	 * Determines if the given phrase has an expletive as a subject.
-	 * 
-	 * @param phrase
-	 *            the <code>PhraseElement</code> to be examined.
-	 * @return <code>true</code> if the phrase has an expletive subject.
-	 */
-	public static boolean isExpletiveSubject(PhraseElement phrase) {
-		List<NLGElement> subjects = phrase
-				.getFeatureAsElementList(InternalFeature.SUBJECTS);
-		boolean expletive = false;
+        if (!realisedList.getChildren().isEmpty()) {
+            realisedElement.addComponent(realisedList);
+        }
+    }
 
-		if (subjects.size() == 1) {
-			NLGElement subjectNP = subjects.get(0);
+    /**
+     * Determines if the given phrase has an expletive as a subject.
+     *
+     * @param phrase the <code>PhraseElement</code> to be examined.
+     * @return <code>true</code> if the phrase has an expletive subject.
+     */
+    public static boolean isExpletiveSubject(PhraseElement phrase) {
+        List<NLGElement> subjects = phrase
+                .getFeatureAsElementList(InternalFeature.SUBJECTS);
+        boolean expletive = false;
 
-			if (subjectNP.isA(PhraseCategory.NOUN_PHRASE)) {
-				expletive = subjectNP.getFeatureAsBoolean(
-						LexicalFeature.EXPLETIVE_SUBJECT).booleanValue();
-			} else if (subjectNP.isA(PhraseCategory.CANNED_TEXT)) {
-				expletive = "there".equalsIgnoreCase(subjectNP.getRealisation()); //$NON-NLS-1$
-			}
-		}
-		return expletive;
-	}
+        if (subjects.size() == 1) {
+            NLGElement subjectNP = subjects.get(0);
+
+            if (subjectNP.isA(PhraseCategory.NOUN_PHRASE)) {
+                expletive = subjectNP.getFeatureAsBoolean(
+                        LexicalFeature.EXPLETIVE_SUBJECT).booleanValue();
+            } else if (subjectNP.isA(PhraseCategory.CANNED_TEXT)) {
+                expletive = "there".equalsIgnoreCase(subjectNP.getRealisation()); //$NON-NLS-1$
+            }
+        }
+        return expletive;
+    }
 }

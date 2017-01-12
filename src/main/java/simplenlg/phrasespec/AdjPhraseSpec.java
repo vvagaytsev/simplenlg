@@ -19,11 +19,8 @@
 
 package simplenlg.phrasespec;
 
-import simplenlg.framework.LexicalCategory;
-import simplenlg.framework.NLGElement;
-import simplenlg.framework.PhraseCategory;
-import simplenlg.framework.PhraseElement;
-import simplenlg.framework.NLGFactory;
+import simplenlg.framework.*;
+
 /**
  * <p>
  * This class defines a adjective phrase.  It is essentially
@@ -31,57 +28,55 @@ import simplenlg.framework.NLGFactory;
  * for setting common constituents such as preModifier.
  * For example, the <code>setAdjective</code> method in this class sets
  * the head of the element to be the specified adjective
- *
+ * <p>
  * From an API perspective, this class is a simplified version of the AdjPhraseSpec
  * class in simplenlg V3.  It provides an alternative way for creating syntactic
  * structures, compared to directly manipulating a V4 <code>PhraseElement</code>.
- * 
+ * <p>
  * Methods are provided for setting and getting the following constituents:
  * <UL>
  * <LI>PreModifier		(eg, "very")
  * <LI>Adjective        (eg, "happy")
  * </UL>
- * 
+ * <p>
  * NOTE: AdjPhraseSpec do not usually have (user-set) features
- * 
+ * <p>
  * <code>AdjPhraseSpec</code> are produced by the <code>createAdjectivePhrase</code>
  * method of a <code>PhraseFactory</code>
  * </p>
- * 
- * 
+ *
  * @author E. Reiter, University of Aberdeen.
  * @version 4.1
- * 
  */
 public class AdjPhraseSpec extends PhraseElement {
 
-	public AdjPhraseSpec(NLGFactory phraseFactory) {
-		super(PhraseCategory.ADJECTIVE_PHRASE);
-		this.setFactory(phraseFactory);
-	}
+    public AdjPhraseSpec(NLGFactory phraseFactory) {
+        super(PhraseCategory.ADJECTIVE_PHRASE);
+        this.setFactory(phraseFactory);
+    }
 
-	/** sets the adjective (head) of the phrase
-	 * @param adjective
-	 */
-	public void setAdjective(Object adjective) {
-		if (adjective instanceof NLGElement)
-			setHead(adjective);
-		else {
-			// create noun as word
-			NLGElement adjectiveElement = getFactory().createWord(adjective, LexicalCategory.ADJECTIVE);
+    /**
+     * sets the adjective (head) of the phrase
+     *
+     * @param adjective
+     */
+    public void setAdjective(Object adjective) {
+        if (adjective instanceof NLGElement)
+            setHead(adjective);
+        else {
+            // create noun as word
+            NLGElement adjectiveElement = getFactory().createWord(adjective, LexicalCategory.ADJECTIVE);
+            // set head of NP to nounElement
+            setHead(adjectiveElement);
+        }
+    }
 
-			// set head of NP to nounElement
-			setHead(adjectiveElement);
-		}
-	}
+    /**
+     * @return adjective (head) of  phrase
+     */
+    public NLGElement getAdjective() {
+        return getHead();
+    }
 
-	/**
-	 * @return adjective (head) of  phrase
-	 */
-	public NLGElement getAdjective() {
-		return getHead();
-	}
-	
-	// inherit usual modifier routines
-	
+    // inherit usual modifier routines
 }

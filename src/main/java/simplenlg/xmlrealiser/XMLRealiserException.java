@@ -22,51 +22,52 @@ import java.io.Serializable;
 
 /**
  * This class represents an exception thrown by the xml realiser framework.
- * 
+ *
  * @author Christopher Howell Agfa Healthcare Corporation
  * @author Albert Gatt, University of Malta
  */
 public class XMLRealiserException extends Throwable implements Serializable {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
+    /**
+     * The Constant serialVersionUID.
+     */
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * Instantiates a new xML realiser exception.
-	 */
-	public XMLRealiserException() {
-		// TODO Auto-generated constructor stub
-	}
+    /**
+     * Instantiates a new xML realiser exception.
+     */
+    public XMLRealiserException() {
+        // TODO Auto-generated constructor stub
+    }
 
-	/**
-	 * Instantiates a new xML realiser exception.
-	 *
-	 * @param arg0 the arg0
-	 */
-	public XMLRealiserException(String arg0) {
-		super(arg0);
-		// TODO Auto-generated constructor stub
-	}
+    /**
+     * Instantiates a new xML realiser exception.
+     *
+     * @param arg0 the arg0
+     */
+    public XMLRealiserException(String arg0) {
+        super(arg0);
+        // TODO Auto-generated constructor stub
+    }
 
-	/**
-	 * Instantiates a new xML realiser exception.
-	 *
-	 * @param arg0 the arg0
-	 */
-	public XMLRealiserException(Throwable arg0) {
-		super(arg0);
-		// TODO Auto-generated constructor stub
-	}
+    /**
+     * Instantiates a new xML realiser exception.
+     *
+     * @param arg0 the arg0
+     */
+    public XMLRealiserException(Throwable arg0) {
+        super(arg0);
+        // TODO Auto-generated constructor stub
+    }
 
-	/**
-	 * Instantiates a new xML realiser exception.
-	 *
-	 * @param arg0 the arg0
-	 * @param arg1 the arg1
-	 */
-	public XMLRealiserException(String arg0, Throwable arg1) {
-		super(arg0, arg1);
-		// TODO Auto-generated constructor stub
-	}
-
+    /**
+     * Instantiates a new xML realiser exception.
+     *
+     * @param arg0 the arg0
+     * @param arg1 the arg1
+     */
+    public XMLRealiserException(String arg0, Throwable arg1) {
+        super(arg0, arg1);
+        // TODO Auto-generated constructor stub
+    }
 }

@@ -25,76 +25,100 @@ package simplenlg.framework;
  * <em>dog</em> is a noun, <em>chase</em> is a verb, <em>the</em> is a
  * determiner, and so on.
  * </p>
- * 
- * 
+ *
  * @author A. Gatt and D. Westwater, University of Aberdeen.
  * @version 4.0
- * 
  */
 public enum LexicalCategory implements ElementCategory {
 
-	/** A default value, indicating an unspecified category. */
-	ANY,
+    /**
+     * A default value, indicating an unspecified category.
+     */
+    ANY,
 
-	/** The element represents a symbol. */
-	SYMBOL,
+    /**
+     * The element represents a symbol.
+     */
+    SYMBOL,
 
-	/** A noun element. */
-	NOUN,
+    /**
+     * A noun element.
+     */
+    NOUN,
 
-	/** An adjective element. */
-	ADJECTIVE,
+    /**
+     * An adjective element.
+     */
+    ADJECTIVE,
 
-	/** An adverb element. */
-	ADVERB,
+    /**
+     * An adverb element.
+     */
+    ADVERB,
 
-	/** A verb element. */
-	VERB,
+    /**
+     * A verb element.
+     */
+    VERB,
 
-	/** A determiner element often referred to as a specifier. */
-	DETERMINER,
+    /**
+     * A determiner element often referred to as a specifier.
+     */
+    DETERMINER,
 
-	/** A pronoun element. */
-	PRONOUN,
+    /**
+     * A pronoun element.
+     */
+    PRONOUN,
 
-	/** A conjunction element. */
-	CONJUNCTION,
+    /**
+     * A conjunction element.
+     */
+    CONJUNCTION,
 
-	/** A preposition element. */
-	PREPOSITION,
+    /**
+     * A preposition element.
+     */
+    PREPOSITION,
 
-	/** A complementiser element. */
-	COMPLEMENTISER,
+    /**
+     * A complementiser element.
+     */
+    COMPLEMENTISER,
 
-	/** A modal element. */
-	MODAL,
+    /**
+     * A modal element.
+     */
+    MODAL,
 
-	/** An auxiliary verb element. */
-	AUXILIARY;
+    /**
+     * An auxiliary verb element.
+     */
+    AUXILIARY;
 
-	/**
-	 * <p>
-	 * Checks to see if the given object is equal to this lexical category.
-	 * This is done by checking the enumeration if the object is of the type
-	 * <code>LexicalCategory</code> or by converting the object and this
-	 * category to strings and comparing the strings.
-	 * </p>
-	 * <p>
-	 * For example, <code>LexicalCategory.NOUN</code> will match another
-	 * <code>LexicalCategory.NOUN</code> but will also match the string
-	 * <em>"noun"</em> as well.
-	 */
-	public boolean equalTo(Object checkObject) {
-		boolean match = false;
+    /**
+     * <p>
+     * Checks to see if the given object is equal to this lexical category.
+     * This is done by checking the enumeration if the object is of the type
+     * <code>LexicalCategory</code> or by converting the object and this
+     * category to strings and comparing the strings.
+     * </p>
+     * <p>
+     * For example, <code>LexicalCategory.NOUN</code> will match another
+     * <code>LexicalCategory.NOUN</code> but will also match the string
+     * <em>"noun"</em> as well.
+     */
+    public boolean equalTo(Object checkObject) {
+        boolean match = false;
 
-		if (checkObject != null) {
-			if (checkObject instanceof DocumentCategory) {
-				match = this.equals(checkObject);
-			} else {
-				match = this.toString()
-						.equalsIgnoreCase(checkObject.toString());
-			}
-		}
-		return match;
-	}
+        if (checkObject != null) {
+            if (checkObject instanceof DocumentCategory) {
+                match = this.equals(checkObject);
+            } else {
+                match = this.toString()
+                        .equalsIgnoreCase(checkObject.toString());
+            }
+        }
+        return match;
+    }
 }

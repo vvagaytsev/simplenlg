@@ -19,38 +19,32 @@
  */
 package simplenlg.server;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import simplenlg.xmlrealiser.XMLRealiser;
+import simplenlg.xmlrealiser.XMLRealiser.LexiconType;
+
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.util.Properties;
 
-import simplenlg.xmlrealiser.XMLRealiser;
-import simplenlg.xmlrealiser.XMLRealiser.LexiconType;
-
 /**
  * SimpleServer is a program that realises xml requests.
- * 
- * @author Roman Kutlak.
- *
- * The program listens on a socket for client connections. 
- * When a client connects, the server creates an instance 
+ * <p>
+ * The program listens on a socket for client connections.
+ * When a client connects, the server creates an instance
  * of RealisationRequest that serves the client.
- * 
+ * <p>
  * The RealisationRequest parses the xml structure and
  * sends back corresponding surface string.
- * 
+ * <p>
  * The server port can be specified as the first parameter
  * of the program; 50007 is used by default.
- * 
+ * <p>
  * Typing exit will terminate the server.
+ *
+ * @author Roman Kutlak.
  */
 public class SimpleServer implements Runnable {
 
@@ -60,7 +54,7 @@ public class SimpleServer implements Runnable {
      * Set to true to enable printing debug messages.
      */
     static boolean DEBUG = false;
-    
+
     /**
      * This path should be replaced by the path to the specialist lexicon.
      * If there is an entry for DB_FILENAME in lexicon.properties, that path
@@ -71,50 +65,50 @@ public class SimpleServer implements Runnable {
 
     // control the run loop
     private boolean isActive = true;
-    
+
     /**
      * Construct a new server.
-     * 
-     * @param port
-     *      the port on which to listen
-     *      
+     *
+     * @param port the port on which to listen
      * @throws IOException
      */
     public SimpleServer(int port) throws IOException {
         startServer(new ServerSocket(port, 8));
     }
-   
+
     /**
      * Construct a server with a pre-allocated socket.
+     *
      * @param socket
      * @throws IOException
      */
     public SimpleServer(ServerSocket socket) throws IOException {
-    	startServer(socket);
+        startServer(socket);
     }
-    
 
-	/**
-	 * startServer -- Start's the SimpleServer with a created ServerSocket.
-	 * @param socket -- The socket for the server to use.
-	 * @throws IOException
-	 * @throws SocketException
-	 */
-	private void startServer(ServerSocket socket) throws IOException, SocketException {
-		serverSocket = socket;
+
+    /**
+     * startServer -- Start's the SimpleServer with a created ServerSocket.
+     *
+     * @param socket -- The socket for the server to use.
+     * @throws IOException
+     * @throws SocketException
+     */
+    private void startServer(ServerSocket socket) throws IOException, SocketException {
+        serverSocket = socket;
         serverSocket.setReuseAddress(true);
         serverSocket.setSoTimeout(0);
-        
+
         System.out.println("Port Number used by Server is: " + serverSocket.getLocalPort());
-        
+
         // try to read the lexicon path from lexicon.properties file
         try {
             Properties prop = new Properties();
             FileReader reader = new FileReader(new File("./src/main/resources/lexicon.properties"));
             prop.load(reader);
-            
+
             String dbFile = prop.getProperty("DB_FILENAME");
-            
+
             if (null != dbFile)
                 lexiconPath = dbFile;
             else
@@ -122,12 +116,12 @@ public class SimpleServer implements Runnable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         System.out.println("Server is using the following lexicon: "
-                           + lexiconPath);
-        
+                + lexiconPath);
+
         XMLRealiser.setLexicon(LexiconType.NIHDB, this.lexiconPath);
-	}
+    }
 
     static void print(Object o) {
         System.out.println(o);
@@ -141,13 +135,13 @@ public class SimpleServer implements Runnable {
         this.isActive = false;
     }
 
-    
+
     /**
      * Start the server.
-     * 
+     * <p>
      * The server will listen on the port specified at construction
      * until terminated by calling the <code>terminate()</code> method.
-     * 
+     * <p>
      * Note that the <code>exit()</code> and <code>exit(int)</code>
      * methods will terminate the program by calling System.exit().
      */
@@ -159,7 +153,7 @@ public class SimpleServer implements Runnable {
                         System.out.println("Waiting for client on port " +
                                 serverSocket.getLocalPort() + "...");
                     }
-                    
+
                     Socket clientSocket = serverSocket.accept();
                     handleClient(clientSocket);
                 } catch (SocketTimeoutException s) {
@@ -182,11 +176,10 @@ public class SimpleServer implements Runnable {
     }
 
     /**
-     * Handle the incoming client connection by constructing 
+     * Handle the incoming client connection by constructing
      * a <code>RealisationRequest</code> and starting it in a thread.
-     * 
-     * @param socket
-     *          the socket on which the client connected
+     *
+     * @param socket the socket on which the client connected
      */
     protected void handleClient(Socket socket) {
         if (null == socket)
@@ -202,7 +195,7 @@ public class SimpleServer implements Runnable {
      */
     synchronized public void shutdown() {
         System.out.println("Server shutting down.");
-        
+
         terminate();
         // cleanup...like close log, etc.
     }
@@ -216,9 +209,8 @@ public class SimpleServer implements Runnable {
 
     /**
      * Exit the program signalling an error code.
-     * 
-     * @param code
-     *          Error code; 0 means no error
+     *
+     * @param code Error code; 0 means no error
      */
     synchronized public void exit(int code) {
         System.exit(code);
@@ -226,16 +218,15 @@ public class SimpleServer implements Runnable {
 
     /**
      * The main method that starts the server.
-     * 
+     * <p>
      * The program takes one optional parameter,
      * which is the port number on which to listen.
      * The default value is 50007.
-     * 
+     * <p>
      * Once the program starts, it can be terminated
      * by typing the command 'exit'
-     * 
-     * @param args
-     *          Program arguments
+     *
+     * @param args Program arguments
      */
     public static void main(String[] args) {
         int port;

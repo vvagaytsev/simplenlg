@@ -26,29 +26,27 @@ package simplenlg.features;
  * personal pronouns. The gender is recorded in the {@code Feature.GENDER}
  * feature and applies to nouns and pronouns.
  * </p>
- * 
+ *
  * @author A. Gatt and D. Westwater, University of Aberdeen.
  * @version 4.0
- * 
  */
-
 public enum Gender {
 
-	/**
-	 * A word or phrase pertaining to a male topic. For example, <em>he</em>,
-	 * <em>him</em>, <em>his</em>.
-	 */
-	MASCULINE,
+    /**
+     * A word or phrase pertaining to a male topic. For example, <em>he</em>,
+     * <em>him</em>, <em>his</em>.
+     */
+    MASCULINE,
 
-	/**
-	 * A word or phrase pertaining to a female topic. For example, <em>she</em>,
-	 * <em>her</em>, <em>hers</em>.
-	 */
-	FEMININE,
+    /**
+     * A word or phrase pertaining to a female topic. For example, <em>she</em>,
+     * <em>her</em>, <em>hers</em>.
+     */
+    FEMININE,
 
-	/**
-	 * A word or phrase pertaining to a neutral or gender-less topic. For
-	 * example, <em>it</em>, <em>its</em>.
-	 */
-	NEUTER;
+    /**
+     * A word or phrase pertaining to a neutral or gender-less topic. For
+     * example, <em>it</em>, <em>its</em>.
+     */
+    NEUTER;
 }

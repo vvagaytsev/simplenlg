@@ -20,25 +20,22 @@ package simplenlg.framework;
 
 /**
  * <p>
- * This is the base interface for defining categories for the sub classes of 
+ * This is the base interface for defining categories for the sub classes of
  * <code>NLGElement</code>. Each type of category that is used must implement
  * this interface.
  * </p>
- * 
- * 
+ *
  * @author D. Westwater, University of Aberdeen.
  * @version 4.0
- * 
  */
 public interface ElementCategory {
 
-	/**
-	 * Checks to see if this supplied object matches this particular category.
-	 * 
-	 * @param checkObject
-	 *            the object to be checked against.
-	 * @return <code>true</code> if the object matches, <code>false</code>
-	 *         otherwise.
-	 */
-	public boolean equalTo(Object checkObject);
+    /**
+     * Checks to see if this supplied object matches this particular category.
+     *
+     * @param checkObject the object to be checked against.
+     * @return <code>true</code> if the object matches, <code>false</code>
+     * otherwise.
+     */
+    public boolean equalTo(Object checkObject);
 }

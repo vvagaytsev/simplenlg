@@ -18,11 +18,11 @@
  */
 package simplenlg.framework;
 
+import simplenlg.features.InternalFeature;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import simplenlg.features.InternalFeature;
 
 /**
  * <p>
@@ -35,145 +35,139 @@ import simplenlg.features.InternalFeature;
  * inflected words. Using the list element helps to keep the inflected word
  * elements together.
  * </p>
- * 
+ * <p>
  * <p>
  * There is no sorting within the list element and components are added in the
  * order they are given.
  * </p>
- * 
- * 
+ *
  * @author D. Westwater, University of Aberdeen.
  * @version 4.0
  */
 public class ListElement extends NLGElement {
 
-	
-	
-	/**
-	 * Creates a new list element with no components.
-	 */
-	public ListElement() {
-		// Do nothing
-	}
+    /**
+     * Creates a new list element with no components.
+     */
+    public ListElement() {
+        // Do nothing
+    }
 
-	/**
-	 * Creates a new list element containing the given components.
-	 * 
-	 * @param components
-	 *            the initial components for this list element.
-	 */
-	public ListElement(List<NLGElement> components) {
-		this();
-		this.addComponents(components);
-	}
+    /**
+     * Creates a new list element containing the given components.
+     *
+     * @param components the initial components for this list element.
+     */
+    public ListElement(List<NLGElement> components) {
+        this();
+        this.addComponents(components);
+    }
 
-	@Override
-	public List<NLGElement> getChildren() {
-		return getFeatureAsElementList(InternalFeature.COMPONENTS);
-	}
+    @Override
+    public List<NLGElement> getChildren() {
+        return getFeatureAsElementList(InternalFeature.COMPONENTS);
+    }
 
-	/**
-	 * Creates a new list element containing the given component.
-	 * 
-	 * @param newComponent
-	 *            the initial component for this list element.
-	 */
-	public ListElement(NLGElement newComponent) {
-		this();
-		this.addComponent(newComponent);
-	}
+    /**
+     * Creates a new list element containing the given component.
+     *
+     * @param newComponent the initial component for this list element.
+     */
+    public ListElement(NLGElement newComponent) {
+        this();
+        this.addComponent(newComponent);
+    }
 
-	/**
-	 * Adds the given component to the list element.
-	 * 
-	 * @param newComponent
-	 *            the <code>NLGElement</code> component to be added.
-	 */
-	public void addComponent(NLGElement newComponent) {
-		List<NLGElement> components = getFeatureAsElementList(InternalFeature.COMPONENTS);
-		if (components == null) {
-			components = new ArrayList<NLGElement>();
-		}
-		setFeature(InternalFeature.COMPONENTS, components);
-		components.add(newComponent);
-	}
+    /**
+     * Adds the given component to the list element.
+     *
+     * @param newComponent the <code>NLGElement</code> component to be added.
+     */
+    public void addComponent(NLGElement newComponent) {
+        List<NLGElement> components = getFeatureAsElementList(InternalFeature.COMPONENTS);
+        if (components == null) {
+            components = new ArrayList<NLGElement>();
+        }
+        setFeature(InternalFeature.COMPONENTS, components);
+        components.add(newComponent);
+    }
 
-	/**
-	 * Adds the given components to the list element.
-	 * 
-	 * @param newComponents
-	 *            a <code>List</code> of <code>NLGElement</code>s to be added.
-	 */
-	public void addComponents(List<NLGElement> newComponents) {
-		List<NLGElement> components = getFeatureAsElementList(InternalFeature.COMPONENTS);
-		if (components == null) {
-			components = new ArrayList<NLGElement>();
-		}
-		setFeature(InternalFeature.COMPONENTS, components);
-		components.addAll(newComponents);
-	}
+    /**
+     * Adds the given components to the list element.
+     *
+     * @param newComponents a <code>List</code> of <code>NLGElement</code>s to be added.
+     */
+    public void addComponents(List<NLGElement> newComponents) {
+        List<NLGElement> components = getFeatureAsElementList(InternalFeature.COMPONENTS);
+        if (components == null) {
+            components = new ArrayList<NLGElement>();
+        }
+        setFeature(InternalFeature.COMPONENTS, components);
+        components.addAll(newComponents);
+    }
 
-	/**
-	 * Replaces the current components in the list element with the given list.
-	 * 
-	 * @param newComponents
-	 *            a <code>List</code> of <code>NLGElement</code>s to be used as
-	 *            the components.
-	 */
-	public void setComponents(List<NLGElement> newComponents) {
-		setFeature(InternalFeature.COMPONENTS, newComponents);
-	}
+    /**
+     * Replaces the current components in the list element with the given list.
+     *
+     * @param newComponents a <code>List</code> of <code>NLGElement</code>s to be used as
+     *                      the components.
+     */
+    public void setComponents(List<NLGElement> newComponents) {
+        setFeature(InternalFeature.COMPONENTS, newComponents);
+    }
 
-	@Override
-	public String toString() {
-		return getChildren().toString();
-	}
+    @Override
+    public String toString() {
+        return getChildren().toString();
+    }
 
-	@Override
-	public String printTree(String indent) {
-		String thisIndent = indent == null ? " |-" : indent + " |-"; //$NON-NLS-1$ //$NON-NLS-2$
-		String childIndent = indent == null ? " | " : indent + " | "; //$NON-NLS-1$ //$NON-NLS-2$
-		String lastIndent = indent == null ? " \\-" : indent + " \\-"; //$NON-NLS-1$ //$NON-NLS-2$
-		String lastChildIndent = indent == null ? "   " : indent + "   "; //$NON-NLS-1$ //$NON-NLS-2$
-		StringBuffer print = new StringBuffer();
-		print.append("ListElement: features={"); //$NON-NLS-1$
+    @Override
+    public String printTree(String indent) {
+        String thisIndent = indent == null ? " |-" : indent + " |-"; //$NON-NLS-1$ //$NON-NLS-2$
+        String childIndent = indent == null ? " | " : indent + " | "; //$NON-NLS-1$ //$NON-NLS-2$
+        String lastIndent = indent == null ? " \\-" : indent + " \\-"; //$NON-NLS-1$ //$NON-NLS-2$
+        String lastChildIndent = indent == null ? "   " : indent + "   "; //$NON-NLS-1$ //$NON-NLS-2$
+        StringBuffer print = new StringBuffer();
+        print.append("ListElement: features={"); //$NON-NLS-1$
 
-		Map<String, Object> features = getAllFeatures();
-		for (String eachFeature : features.keySet()) {
-			print.append(eachFeature).append('=').append(
-					features.get(eachFeature).toString()).append(' ');
-		}
-		print.append("}\n"); //$NON-NLS-1$
+        Map<String, Object> features = getAllFeatures();
+        for (String eachFeature : features.keySet()) {
+            print.append(eachFeature).append('=').append(
+                    features.get(eachFeature).toString()).append(' ');
+        }
+        print.append("}\n"); //$NON-NLS-1$
 
-		List<NLGElement> children = getChildren();
-		int length = children.size() - 1;
-		int index = 0;
+        List<NLGElement> children = getChildren();
+        int length = children.size() - 1;
+        int index = 0;
 
-		for (index = 0; index < length; index++) {
-			print.append(thisIndent).append(
-					children.get(index).printTree(childIndent));
-		}
-		if (length >= 0) {
-			print.append(lastIndent).append(
-					children.get(length).printTree(lastChildIndent));
-		}
-		return print.toString();
-	}
+        for (index = 0; index < length; index++) {
+            print.append(thisIndent).append(
+                    children.get(index).printTree(childIndent));
+        }
+        if (length >= 0) {
+            print.append(lastIndent).append(
+                    children.get(length).printTree(lastChildIndent));
+        }
+        return print.toString();
+    }
 
-	/**
-	 * Retrieves the number of components in this list element.
-	 * @return the number of components.
-	 */
-	public int size() {
-		return getChildren().size();
-	}
+    /**
+     * Retrieves the number of components in this list element.
+     *
+     * @return the number of components.
+     */
+    public int size() {
+        return getChildren().size();
+    }
 
-	/**
-	 * Retrieves the first component in the list.
-	 * @return the <code>NLGElement</code> at the top of the list.
-	 */
-	public NLGElement getFirst() {
-		List<NLGElement> children = getChildren();
-		return children == null ? null : children.get(0);
-	}
+    /**
+     * Retrieves the first component in the list.
+     *
+     * @return the <code>NLGElement</code> at the top of the list.
+     */
+    public NLGElement getFirst() {
+        List<NLGElement> children = getChildren();
+        return children == null ? null : children.get(0);
+    }
 }

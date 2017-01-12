@@ -25,31 +25,29 @@ package simplenlg.features;
  * number agreement is recorded in the {@code Feature.NUMBER} feature and
  * applies to nouns and verbs, and their associated phrases.
  * </p>
- * 
- * 
+ *
  * @author A. Gatt and D. Westwater, University of Aberdeen.
  * @version 4.0
- * 
  */
 public enum NumberAgreement {
-	
-	/**
-	 * This represents words that have the same form regardless of whether they 
-	 * are singular or plural. For example, <em>sheep</em>, <em>fish</em>.
-	 */
-	BOTH,
 
-	/**
-	 * This represents verbs and nouns that are written in the plural. For
-	 * example, <em>dogs</em> as opposed to <em>dog</em>, and
-	 * <em>John and Simon <b>kiss</b> Mary</em>.
-	 */
-	PLURAL,
+    /**
+     * This represents words that have the same form regardless of whether they
+     * are singular or plural. For example, <em>sheep</em>, <em>fish</em>.
+     */
+    BOTH,
 
-	/**
-	 * This represents verbs and nouns that are written in the singular. For
-	 * example, <em>dog</em> as opposed to <em>dogs</em>, and
-	 * <em>John <b>kisses</b> Mary</em>.
-	 */
-	SINGULAR;
+    /**
+     * This represents verbs and nouns that are written in the plural. For
+     * example, <em>dogs</em> as opposed to <em>dog</em>, and
+     * <em>John and Simon <b>kiss</b> Mary</em>.
+     */
+    PLURAL,
+
+    /**
+     * This represents verbs and nouns that are written in the singular. For
+     * example, <em>dog</em> as opposed to <em>dogs</em>, and
+     * <em>John <b>kisses</b> Mary</em>.
+     */
+    SINGULAR;
 }

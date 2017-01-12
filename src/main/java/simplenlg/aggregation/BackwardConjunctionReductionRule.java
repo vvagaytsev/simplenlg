@@ -18,10 +18,10 @@
  */
 package simplenlg.aggregation;
 
-import java.util.List;
-
 import simplenlg.framework.NLGElement;
 import simplenlg.framework.PhraseCategory;
+
+import java.util.List;
 
 /**
  * Implementation of the backward conjunction reduction rule. Given two
@@ -30,74 +30,69 @@ import simplenlg.framework.PhraseCategory;
  * <I>form-identical</I> to a constituent with the same function in
  * <code>s2</code>, that is, the two constituents are essentially identical in
  * their final, realised, form.
- * 
- * <P>
+ * <p>
+ * <p>
  * The current implementation is loosely based on the algorithm in Harbusch and
  * Kempen (2009), which is described here:
- * 
+ * <p>
  * <a href="http://aclweb.org/anthology-new/W/W09/W09-0624.pdf">
  * http://aclweb.org/anthology-new/W/W09/W09-0624.pdf</a>
  * </P>
- * 
- * <P>
+ * <p>
+ * <p>
  * <strong>Implementation note:</strong> The current implementation only applies
  * ellipsis to phrasal constituents (i.e. not to their component lexical items).
  * </P>
- * 
+ * <p>
  * *
- * <P>
+ * <p>
  * <STRONG>Note:</STRONG>: this rule can be used in conjunction with the
  * {@link ForwardConjunctionReductionRule} in {@link Aggregator}.
  * </P>
- * 
+ *
  * @author Albert Gatt, University of Malta and University of Aberdeen
- * 
  */
 public class BackwardConjunctionReductionRule extends AggregationRule {
 
-	//private SyntaxProcessor _syntaxProcessor;
+    //private SyntaxProcessor _syntaxProcessor;
 
-	/**
-	 * Creates a new <code>BackwardConjunctionReduction</code>.
-	 */
-	public BackwardConjunctionReductionRule() {
-		super();
-		//this._syntaxProcessor = new SyntaxProcessor();
-	}
+    /**
+     * Creates a new <code>BackwardConjunctionReduction</code>.
+     */
+    public BackwardConjunctionReductionRule() {
+        super();
+        //this._syntaxProcessor = new SyntaxProcessor();
+    }
 
-	/**
-	 * Applies backward conjunction reduction to two NLGElements e1 and e2,
-	 * succeeding only if they are clauses (that is, e1.getCategory() ==
-	 * e2.getCategory == {@link simplenlg.framework.PhraseCategory#CLAUSE}).
-	 * 
-	 * @param previous
-	 *            the first phrase
-	 * @param next
-	 *            the second phrase
-	 * @return a coordinate phrase if aggregation is successful,
-	 *         <code>null</code> otherwise
-	 */
-	@Override
-	public NLGElement apply(NLGElement previous, NLGElement next) {
-		boolean success = false;
+    /**
+     * Applies backward conjunction reduction to two NLGElements e1 and e2,
+     * succeeding only if they are clauses (that is, e1.getCategory() ==
+     * e2.getCategory == {@link simplenlg.framework.PhraseCategory#CLAUSE}).
+     *
+     * @param previous the first phrase
+     * @param next     the second phrase
+     * @return a coordinate phrase if aggregation is successful,
+     * <code>null</code> otherwise
+     */
+    @Override
+    public NLGElement apply(NLGElement previous, NLGElement next) {
+        boolean success = false;
 
-		if (previous.getCategory() == PhraseCategory.CLAUSE
-				&& next.getCategory() == PhraseCategory.CLAUSE
-				&& PhraseChecker.nonePassive(previous, next)) {
-			
-			List<PhraseSet> rightPeriphery = PhraseChecker.rightPeriphery(
-					previous, next);
+        if (previous.getCategory() == PhraseCategory.CLAUSE
+                && next.getCategory() == PhraseCategory.CLAUSE
+                && PhraseChecker.nonePassive(previous, next)) {
 
-			for (PhraseSet pair : rightPeriphery) {
-				if (pair.lemmaIdentical()) {
-					pair.elideLeftmost();
-					success = true;
-				}
-			}
-		}
+            List<PhraseSet> rightPeriphery = PhraseChecker.rightPeriphery(
+                    previous, next);
 
-		return success ? this.factory.createCoordinatedPhrase(previous, next)
-				: null;
-	}
+            for (PhraseSet pair : rightPeriphery) {
+                if (pair.lemmaIdentical()) {
+                    pair.elideLeftmost();
+                    success = true;
+                }
+            }
+        }
 
+        return success ? this.factory.createCoordinatedPhrase(previous, next) : null;
+    }
 }

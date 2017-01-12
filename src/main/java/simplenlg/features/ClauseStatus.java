@@ -26,7 +26,7 @@ package simplenlg.features;
  * are not contained within any other clause and frequently span an entire
  * sentence, whereas a subordinate clauses is contained within another clause.
  * </p>
- * 
+ * <p>
  * <p>
  * As an example, take the phrase, <em><b>whoever said it</b> is wrong</em>.
  * This phrase has two clauses, one being the main clause and the other being a
@@ -36,7 +36,7 @@ package simplenlg.features;
  * <em>X is wrong</em>. <em>X</em> can be replaced with a single subject or, as
  * is the case here, by a subordinate clause.
  * </p>
- * 
+ * <p>
  * <p>
  * The clause status is recorded under the {@code Feature.CLAUSE_STATUS} feature
  * and applies only to clauses.
@@ -44,24 +44,21 @@ package simplenlg.features;
  * <p>
  * Copyright (C) 2010, University of Aberdeen
  * </p>
- * 
- * 
+ *
  * @author A. Gatt and D. Westwater, University of Aberdeen.
  * @version 4.0
- * 
  */
-
 public enum ClauseStatus {
 
-	/**
-	 * This enumeration represents a matrix clause. A matrix clause is not
-	 * subordinate to any other clause and therefore sits at the top-level of
-	 * the clause hierarchy, typically spanning the whole sentence.
-	 */
-	MATRIX,
+    /**
+     * This enumeration represents a matrix clause. A matrix clause is not
+     * subordinate to any other clause and therefore sits at the top-level of
+     * the clause hierarchy, typically spanning the whole sentence.
+     */
+    MATRIX,
 
-	/**
-	 * The subordinate clauses are contained within a higher clause.
-	 */
-	SUBORDINATE;
+    /**
+     * The subordinate clauses are contained within a higher clause.
+     */
+    SUBORDINATE;
 }
