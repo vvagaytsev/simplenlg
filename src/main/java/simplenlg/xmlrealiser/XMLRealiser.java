@@ -133,7 +133,7 @@ public final class XMLRealiser {
                 output = realise(request.getDocument());
 
                 break;
-            case setLexicon: {
+            case setLexicon:
                 if (args.length <= argx + 1) {
                     throw new XMLRealiserException("invalid setLexicon args");
                 }
@@ -149,15 +149,13 @@ public final class XMLRealiser {
 
                 setLexicon(lexType, lexFile);
                 break;
-            }
-            case startRecording: {
+            case startRecording:
                 if (args.length <= argx) {
                     throw new XMLRealiserException("invalid args");
                 }
                 String path = (String) args[argx++];
                 startRecording(path);
                 break;
-            }
             case stopRecording:
                 if (record != null) {
                     output = record.GetRecordingFile();
