@@ -46,7 +46,6 @@ public class Realiser extends NLGModule {
      * create a realiser (no lexicon)
      */
     public Realiser() {
-        super();
         initialise();
     }
 

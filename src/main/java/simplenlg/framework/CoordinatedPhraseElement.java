@@ -62,7 +62,6 @@ public class CoordinatedPhraseElement extends NLGElement {
      * The default conjunction used is <em>and</em>.
      */
     public CoordinatedPhraseElement() {
-        super();
         this.setFeature(Feature.CONJUNCTION, "and"); //$NON-NLS-1$
     }
 

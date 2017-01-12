@@ -59,7 +59,6 @@ public class ClauseCoordinationRule extends AggregationRule {
      * Constructs an instance of the ClauseCoordinationRule
      */
     public ClauseCoordinationRule() {
-        super();
     }
 
     /**

@@ -46,7 +46,6 @@ public class InflectedWordElement extends NLGElement {
      * @param category the lexical category for the word.
      */
     public InflectedWordElement(String word, LexicalCategory category) {
-        super();
         setFeature(LexicalFeature.BASE_FORM, word);
         setCategory(category);
     }
@@ -57,7 +56,6 @@ public class InflectedWordElement extends NLGElement {
      * @param word underlying wordelement
      */
     public InflectedWordElement(WordElement word) {
-        super();
         setFeature(InternalFeature.BASE_WORD, word);
         // AG: changed to use the default spelling variant
         // setFeature(LexicalFeature.BASE_FORM, word.getBaseForm());

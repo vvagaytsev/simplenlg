@@ -60,7 +60,6 @@ public class BackwardConjunctionReductionRule extends AggregationRule {
      * Creates a new <code>BackwardConjunctionReduction</code>.
      */
     public BackwardConjunctionReductionRule() {
-        super();
         //this._syntaxProcessor = new SyntaxProcessor();
     }
 

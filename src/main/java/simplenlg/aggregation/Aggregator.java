@@ -40,7 +40,6 @@ public class Aggregator extends NLGModule {
      * Creates an instance of Aggregator
      */
     public Aggregator() {
-        super();
     }
 
     /**

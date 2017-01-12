@@ -71,7 +71,6 @@ public class XMLLexicon extends Lexicon {
      * @param filename
      */
     public XMLLexicon(String filename) {
-        super();
         File file = new File(filename);
         createLexicon(file.toURI());
     }
@@ -82,7 +81,6 @@ public class XMLLexicon extends Lexicon {
      * @param file
      */
     public XMLLexicon(File file) {
-        super();
         createLexicon(file.toURI());
     }
 
@@ -92,7 +90,6 @@ public class XMLLexicon extends Lexicon {
      * @param lexiconURI
      */
     public XMLLexicon(URI lexiconURI) {
-        super();
         createLexicon(lexiconURI);
     }
 

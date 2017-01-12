@@ -131,7 +131,6 @@ public class WordElement extends NLGElement {
      * @param id       - ID of word in lexicon
      */
     public WordElement(String baseForm, LexicalCategory category, String id) {
-        super();
         this.baseForm = baseForm;
         setCategory(category);
         this.id = id;
@@ -144,7 +143,6 @@ public class WordElement extends NLGElement {
      * @param currentWord - An existing WordElement
      */
     public WordElement(WordElement currentWord) {
-        super();
         this.baseForm = currentWord.getBaseForm();
         setCategory(currentWord.getCategory());
         this.id = currentWord.getId();

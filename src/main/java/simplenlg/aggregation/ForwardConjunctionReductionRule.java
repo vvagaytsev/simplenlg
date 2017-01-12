@@ -71,7 +71,6 @@ public class ForwardConjunctionReductionRule extends AggregationRule {
      * Creates a new <code>ForwardConjunctionReduction</code>.
      */
     public ForwardConjunctionReductionRule() {
-        super();
     }
 
     /**

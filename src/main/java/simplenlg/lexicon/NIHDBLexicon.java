@@ -67,7 +67,6 @@ public class NIHDBLexicon extends Lexicon {
      * @param filename of HSQL DB
      */
     public NIHDBLexicon(String filename) {
-        super();
         // get rid of .data at end of filename if necessary
         String dbfilename = filename;
         if (dbfilename.endsWith(DB_HSQL_EXTENSION))
@@ -99,8 +98,6 @@ public class NIHDBLexicon extends Lexicon {
      */
     public NIHDBLexicon(String driver, String url, String username,
                         String password) {
-
-        super();
 
         // try to open DB and set up lexicon
         try {

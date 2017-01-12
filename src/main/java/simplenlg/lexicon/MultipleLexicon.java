@@ -49,7 +49,6 @@ public class MultipleLexicon extends Lexicon {
      * create an empty multi lexicon
      */
     public MultipleLexicon() {
-        super();
         lexiconList = new ArrayList<Lexicon>();
         alwaysSearchAll = false;
     }
