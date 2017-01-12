@@ -41,7 +41,7 @@ import java.util.List;
  */
 public class TextFormatter extends NLGModule {
 
-    static private NumberedPrefix numberedPrefix = new NumberedPrefix();
+    private static final NumberedPrefix numberedPrefix = new NumberedPrefix();
 
     @Override
     public void initialise() {

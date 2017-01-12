@@ -30,10 +30,10 @@ import java.util.List;
 
 public class FunctionalSet {
 
-    private List<NLGElement> components;
-    private DiscourseFunction function;
-    private ElementCategory category;
-    private Periphery periphery;
+    private final List<NLGElement> components;
+    private final DiscourseFunction function;
+    private final ElementCategory category;
+    private final Periphery periphery;
 
     public static FunctionalSet newInstance(DiscourseFunction func,
                                             ElementCategory category, Periphery periphery,

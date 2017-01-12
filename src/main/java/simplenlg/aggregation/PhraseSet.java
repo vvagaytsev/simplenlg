@@ -38,8 +38,8 @@ import java.util.List;
  */
 public class PhraseSet {
 
-    private DiscourseFunction function;
-    private List<NLGElement> phrases;
+    private final DiscourseFunction function;
+    private final List<NLGElement> phrases;
 
     /**
      * Construct a set of compatible phrases and their function
@@ -122,7 +122,6 @@ public class PhraseSet {
         for (int i = 1; i < this.phrases.size() && ident; i++) {
             NLGElement left = this.phrases.get(i - 1);
             NLGElement right = this.phrases.get(i);
-
 
             if (left != null && right != null) {
                 NLGElement leftHead = left.getFeatureAsElement(InternalFeature.HEAD);
