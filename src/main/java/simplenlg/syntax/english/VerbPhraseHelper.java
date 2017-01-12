@@ -225,10 +225,9 @@ abstract class VerbPhraseHelper {
      * @param parent the parent <code>SyntaxProcessor</code> that will do the
      *               realisation of the complementiser.
      * @param phrase the <code>PhraseElement</code> representing this noun phrase.
-     * @return the verb group as a <code>Stack</code> of <code>NLGElement</code>
-     * s.
+     * @return the verb group as a <code>Stack</code> of <code>NLGElement</code>s.
      */
-    static final private Stack<NLGElement> createVerbGroup(
+    private static Stack<NLGElement> createVerbGroup(
             SyntaxProcessor parent, PhraseElement phrase) {
 
         String actualModal = null;
