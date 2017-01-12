@@ -24,17 +24,18 @@ import simplenlg.framework.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public final class AggregationHelper {
 
-    public static List<DiscourseFunction> FUNCTIONS = Arrays.asList(
+    public static final List<DiscourseFunction> FUNCTIONS = Arrays.asList(
             DiscourseFunction.SUBJECT, DiscourseFunction.HEAD,
             DiscourseFunction.COMPLEMENT, DiscourseFunction.PRE_MODIFIER,
             DiscourseFunction.POST_MODIFIER, DiscourseFunction.VERB_PHRASE
     );
 
-    public static List<DiscourseFunction> RECURSIVE = Arrays.asList(DiscourseFunction.VERB_PHRASE);
+    public static final List<DiscourseFunction> RECURSIVE = Collections.singletonList(DiscourseFunction.VERB_PHRASE);
 
     private AggregationHelper() {
         throw new AssertionError("No instances allowed.");

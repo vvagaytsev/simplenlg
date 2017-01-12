@@ -27,6 +27,7 @@ import simplenlg.phrasespec.NPPhraseSpec;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * <p>
@@ -500,10 +501,10 @@ public class PhraseElement extends NLGElement {
                 .append(getCategory())
                 .append(", features={");
         Map<String, Object> features = getAllFeatures();
-        for (String eachFeature : features.keySet()) {
-            print.append(eachFeature)
+        for (Entry<String, Object> entry : features.entrySet()) {
+            print.append(entry.getKey())
                     .append('=')
-                    .append(features.get(eachFeature))
+                    .append(entry.getValue())
                     .append(' ');
         }
         print.append("}\n");

@@ -121,7 +121,7 @@ public abstract class NLGElement {
      */
     public void setFeature(String featureName, boolean featureValue) {
         if (featureName != null) {
-            this.features.put(featureName, new Boolean(featureValue));
+            this.features.put(featureName, featureValue);
         }
     }
 
@@ -133,7 +133,7 @@ public abstract class NLGElement {
      */
     public void setFeature(String featureName, int featureValue) {
         if (featureName != null) {
-            this.features.put(featureName, new Integer(featureValue));
+            this.features.put(featureName, featureValue);
         }
     }
 

@@ -23,6 +23,7 @@ import simplenlg.features.InternalFeature;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * <p>
@@ -130,10 +131,10 @@ public class ListElement extends NLGElement {
         StringBuilder print = new StringBuilder().append("ListElement: features={");
 
         Map<String, Object> features = getAllFeatures();
-        for (String eachFeature : features.keySet()) {
-            print.append(eachFeature)
+        for (Entry<String, Object> entry : features.entrySet()) {
+            print.append(entry.getKey())
                     .append('=')
-                    .append(features.get(eachFeature)).append(' ');
+                    .append(entry.getValue()).append(' ');
         }
         print.append("}\n"); //$NON-NLS-1$
 

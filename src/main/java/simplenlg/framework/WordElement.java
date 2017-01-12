@@ -134,7 +134,7 @@ public class WordElement extends NLGElement {
         this.baseForm = baseForm;
         setCategory(category);
         this.id = id;
-        this.inflVars = new HashMap<Inflection, InflectionSet>();
+        this.inflVars = new EnumMap<Inflection, InflectionSet>(Inflection.class);
     }
 
     /**

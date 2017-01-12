@@ -22,6 +22,7 @@ import simplenlg.framework.LexicalCategory;
 import simplenlg.framework.WordElement;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -60,8 +61,7 @@ public class MultipleLexicon extends Lexicon {
      */
     public MultipleLexicon(Lexicon... lexicons) {
         this();
-        for (Lexicon lex : lexicons)
-            lexiconList.add(lex);
+        Collections.addAll(lexiconList, lexicons);
     }
 
     /**********************************************************************/

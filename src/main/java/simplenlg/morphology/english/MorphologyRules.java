@@ -167,7 +167,7 @@ public abstract class MorphologyRules extends NLGModule {
                 plural = baseForm + "es"; //$NON-NLS-1$
 
             } else {
-                plural = baseForm + "s"; //$NON-NLS-1$
+                plural = baseForm + 's'; //$NON-NLS-1$
             }
         }
         return plural;
@@ -208,7 +208,7 @@ public abstract class MorphologyRules extends NLGModule {
             } else if (baseForm.endsWith("ma")) { //$NON-NLS-1$
                 plural = baseForm + "ta"; //$NON-NLS-1$
             } else if (baseForm.endsWith("a")) { //$NON-NLS-1$
-                plural = baseForm + "e"; //$NON-NLS-1$
+                plural = baseForm + 'e'; //$NON-NLS-1$
             } else if (baseForm.matches(".*[(um)(on)]\\b")) { //$NON-NLS-1$
                 plural = baseForm.replaceAll("[(um)(on)]\\b", "a"); //$NON-NLS-1$ //$NON-NLS-2$
             } else if (baseForm.endsWith("sis")) { //$NON-NLS-1$
@@ -435,7 +435,7 @@ public abstract class MorphologyRules extends NLGModule {
             } else if (baseForm.matches(".*[b-z&&[^eiou]]y\\b")) { //$NON-NLS-1$
                 morphology = baseForm.replaceAll("y\\b", "ies"); //$NON-NLS-1$ //$NON-NLS-2$
             } else {
-                morphology = baseForm + "s"; //$NON-NLS-1$
+                morphology = baseForm + 's'; //$NON-NLS-1$
             }
         }
         return morphology;
@@ -477,7 +477,7 @@ public abstract class MorphologyRules extends NLGModule {
                     morphology = "was";
                 }
             } else if (baseForm.endsWith("e")) { //$NON-NLS-1$
-                morphology = baseForm + "d"; //$NON-NLS-1$
+                morphology = baseForm + 'd'; //$NON-NLS-1$
             } else if (baseForm.matches(".*[b-z&&[^eiou]]y\\b")) { //$NON-NLS-1$
                 morphology = baseForm.replaceAll("y\\b", "ied"); //$NON-NLS-1$ //$NON-NLS-2$
             } else {
@@ -646,7 +646,7 @@ public abstract class MorphologyRules extends NLGModule {
             if (baseForm.matches(".*[b-z&&[^eiou]]y\\b")) { //$NON-NLS-1$
                 morphology = baseForm.replaceAll("y\\b", "ier"); //$NON-NLS-1$ //$NON-NLS-2$
             } else if (baseForm.endsWith("e")) { //$NON-NLS-1$
-                morphology = baseForm + "r"; //$NON-NLS-1$
+                morphology = baseForm + 'r'; //$NON-NLS-1$
             } else {
                 morphology = baseForm + "er"; //$NON-NLS-1$
             }

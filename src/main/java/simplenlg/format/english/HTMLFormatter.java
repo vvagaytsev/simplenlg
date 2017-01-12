@@ -131,7 +131,7 @@ public class HTMLFormatter extends NLGModule {
                             }
                             for (int i = 1; i < components.size(); i++) {
                                 if (realisedComponent != null) {
-                                    realisation.append(" ");
+                                    realisation.append(' ');
                                 }
                                 realisedComponent = realise(components.get(i));
                                 if (realisedComponent != null) {

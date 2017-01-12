@@ -158,7 +158,7 @@ public class TextFormatter extends NLGModule {
                             }
                         }
                         //finally, append newline
-                        realisation.append("\n");
+                        realisation.append('\n');
                         break;
                 }
 
@@ -206,7 +206,7 @@ public class TextFormatter extends NLGModule {
         if (title != null && !title.isEmpty()) {
             realisation.append(title);
             for (int i = 0; i < numberOfLineBreaksAfterTitle; i++) {
-                realisation.append("\n");
+                realisation.append('\n');
             }
         }
     }

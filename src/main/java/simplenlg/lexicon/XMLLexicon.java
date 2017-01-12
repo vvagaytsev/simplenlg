@@ -206,7 +206,7 @@ public class XMLLexicon extends Lexicon {
                 else if (feature.equalsIgnoreCase(XML_ID))
                     word.setId(value);
 
-                else if (value == null || "".equals(value)) {
+                else if (value == null || value.isEmpty()) {
                     // if this is an infl code, add it to inflections
                     Inflection infl = Inflection.getInflCode(feature);
 
@@ -437,7 +437,7 @@ public class XMLLexicon extends Lexicon {
                 && (base.endsWith("s") || base.endsWith("x")
                 || base.endsWith("z") || base.endsWith("ch") || base
                 .endsWith("sh")))
-            base = base + "e";
+            base = base + 'e';
 
         // have made changes, now append and return
         return base + suffix; // eg, want + s = wants

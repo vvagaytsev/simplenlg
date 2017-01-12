@@ -507,7 +507,7 @@ public class NIHDBLexicon extends Lexicon {
             List<Inflection> wordVariants = new ArrayList<Inflection>();
 
             for (String v : variants) {
-                int index = v.indexOf("|");
+                int index = v.indexOf('|');
                 String code;
 
                 if (index > -1) {
@@ -588,7 +588,7 @@ public class NIHDBLexicon extends Lexicon {
             List<Inflection> wordVariants = new ArrayList<Inflection>();
 
             for (String v : variants) {
-                int index = v.indexOf("|");
+                int index = v.indexOf('|');
                 String code;
                 Inflection infl;
 
@@ -656,7 +656,7 @@ public class NIHDBLexicon extends Lexicon {
                 if (fullForm.contains("|")) {
                     // get the acronym id
                     String acronymID = fullForm.substring(
-                            fullForm.indexOf("|") + 1, fullForm.length());
+                            fullForm.indexOf('|') + 1, fullForm.length());
                     // create the full form element
                     WordElement fullFormWE = this.getWordByID(acronymID);
 
@@ -702,13 +702,11 @@ public class NIHDBLexicon extends Lexicon {
         List<String> vars = record.GetSpellingVars();
 
         if (vars != null && !vars.isEmpty()) {
-            List<String> wordVars = new ArrayList<String>();
-            wordVars.addAll(vars);
+            List<String> wordVars = new ArrayList<String>(vars);
             wordElement.setFeature(LexicalFeature.SPELL_VARS, wordVars);
         }
 
         // we set the default spelling var as the baseForm
-        wordElement.setFeature(LexicalFeature.DEFAULT_SPELL, wordElement
-                .getBaseForm());
+        wordElement.setFeature(LexicalFeature.DEFAULT_SPELL, wordElement.getBaseForm());
     }
 }

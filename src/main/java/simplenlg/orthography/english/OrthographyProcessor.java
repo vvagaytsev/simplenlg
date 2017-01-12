@@ -189,8 +189,8 @@ public class OrthographyProcessor extends NLGModule {
                         } else {
                             buffer.append(realise(postmod));
                             if (postmod instanceof ListElement
-                                    || (postmod.getRealisation() != null && !"".equals(postmod.getRealisation()))) {
-                                buffer.append(" ");
+                                    || postmod.getRealisation() != null && !postmod.getRealisation().isEmpty()) {
+                                buffer.append(' ');
                             }
                         }
                     }
@@ -224,7 +224,7 @@ public class OrthographyProcessor extends NLGModule {
                 String realisation = realisedElement.getRealisation();
 
                 if (!realisation.endsWith(",")) {
-                    realisation = realisation + ",";
+                    realisation = realisation + ',';
                 }
 
                 realisedElement.setRealisation(realisation);

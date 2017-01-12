@@ -110,7 +110,7 @@ public final class NIHLexiconXMLDumpUtil {
                             word = lex.getWord(base, LexicalCategory.NOUN); // Kilgarriff;s interjections are mostly nouns in the lexicon
 
                         if (word == null)
-                            System.out.println("*** The following baseform and POS tag is not found: " + base + ":" + cat);
+                            System.out.println("*** The following baseform and POS tag is not found: " + base + ':' + cat);
                         else
                             xmlFile.write(word.toXML());
                         line = wordListFile.readLine();

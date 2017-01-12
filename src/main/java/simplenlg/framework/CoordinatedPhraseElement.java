@@ -24,7 +24,7 @@ import simplenlg.features.InternalFeature;
 import simplenlg.features.NumberAgreement;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -55,7 +55,7 @@ public class CoordinatedPhraseElement extends NLGElement {
      * Coordinators which make the coordinate plural (eg, "and" but not "or")
      */
     @SuppressWarnings("nls")
-    private static final List<String> PLURAL_COORDINATORS = Arrays.asList("and");
+    private static final List<String> PLURAL_COORDINATORS = Collections.singletonList("and");
 
     /**
      * Creates a blank coordinated phrase ready for new coordinates to be added.

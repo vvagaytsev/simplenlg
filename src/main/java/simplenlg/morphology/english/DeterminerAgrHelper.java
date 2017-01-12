@@ -62,7 +62,7 @@ public final class DeterminerAgrHelper {
      */
     private static boolean isAnException(String string) {
         for (String ex : AN_EXCEPTIONS) {
-            if (string.matches("^" + ex + ".*")) {
+            if (string.matches('^' + ex + ".*")) {
                 // if (string.equalsIgnoreCase(ex)) {
                 return true;
             }
@@ -140,7 +140,7 @@ public final class DeterminerAgrHelper {
         for (int i = 0; i < sArray.length; i++) {
             buf.append(sArray[i]);
             if (i != sArray.length - 1) {
-                buf.append(" ");
+                buf.append(' ');
             }
         }
         return buf.toString();

@@ -21,7 +21,7 @@ public class NumberedPrefix {
             final String subCounterStr = prefix.substring(dotPosition + 1);
             int subCounter = Integer.valueOf(subCounterStr);
             subCounter++;
-            prefix = prefix.substring(0, dotPosition) + "." + subCounter;
+            prefix = prefix.substring(0, dotPosition) + '.' + subCounter;
         }
     }
 

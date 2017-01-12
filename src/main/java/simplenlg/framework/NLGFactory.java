@@ -23,6 +23,7 @@ import simplenlg.lexicon.Lexicon;
 import simplenlg.phrasespec.*;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -204,13 +205,13 @@ public class NLGFactory {
      * The list of English pronouns that can be singular or plural.
      */
     @SuppressWarnings("nls")
-    private static final List<String> EITHER_NUMBER_PRONOUNS = Arrays.asList("there");
+    private static final List<String> EITHER_NUMBER_PRONOUNS = Collections.singletonList("there");
 
     /**
      * The list of expletive English pronouns.
      */
     @SuppressWarnings("nls")
-    private static final List<String> EXPLETIVE_PRONOUNS = Arrays.asList("there");
+    private static final List<String> EXPLETIVE_PRONOUNS = Collections.singletonList("there");
 
     /**
      * regex for determining if a string is a single word or not
