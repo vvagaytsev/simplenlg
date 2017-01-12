@@ -83,7 +83,11 @@ import simplenlg.framework.PhraseCategory;
  * @version 4.0
  */
 @SuppressWarnings("nls")
-public abstract class LexicalFeature {
+public final class LexicalFeature {
+
+    private LexicalFeature() {
+        throw new AssertionError("No instances allowed.");
+    }
 
     /**
      * <p>
@@ -1068,13 +1072,6 @@ public abstract class LexicalFeature {
      * </table>
      */
     public static final String EXPLETIVE_SUBJECT = "expletive_subject";
-
-    /**
-     * The constructor is never needed.
-     */
-    private LexicalFeature() {
-        // do nothing
-    }
 
     /**
      * Return those features related to a word's inflection, depending on its

@@ -79,13 +79,10 @@ package simplenlg.features;
  * @version 4.0
  */
 @SuppressWarnings("nls")
-abstract public class Feature {
+public final class Feature {
 
-    /**
-     * The constructor is never needed.
-     */
     private Feature() {
-        // do nothing
+        throw new AssertionError("No instances allowed.");
     }
 
     /**

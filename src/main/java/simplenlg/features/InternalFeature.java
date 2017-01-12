@@ -76,7 +76,11 @@ package simplenlg.features;
  * @version 4.0
  */
 @SuppressWarnings("nls")
-public abstract class InternalFeature {
+public final class InternalFeature {
+
+    private InternalFeature() {
+        throw new AssertionError("No instances allowed.");
+    }
 
     /**
      * <p>
@@ -710,11 +714,4 @@ public abstract class InternalFeature {
      * </table>
      */
     public static final String VERB_PHRASE = "verb_phrase";
-
-    /**
-     * The constructor is never needed.
-     */
-    private InternalFeature() {
-        // do nothing
-    }
 }
