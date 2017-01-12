@@ -26,15 +26,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class AggregationHelper {
+public final class AggregationHelper {
 
     public static List<DiscourseFunction> FUNCTIONS = Arrays.asList(
             DiscourseFunction.SUBJECT, DiscourseFunction.HEAD,
             DiscourseFunction.COMPLEMENT, DiscourseFunction.PRE_MODIFIER,
-            DiscourseFunction.POST_MODIFIER, DiscourseFunction.VERB_PHRASE);
+            DiscourseFunction.POST_MODIFIER, DiscourseFunction.VERB_PHRASE
+    );
 
-    public static List<DiscourseFunction> RECURSIVE = Arrays
-            .asList(DiscourseFunction.VERB_PHRASE);
+    public static List<DiscourseFunction> RECURSIVE = Arrays.asList(DiscourseFunction.VERB_PHRASE);
+
+    private AggregationHelper() {
+        throw new AssertionError("No instances allowed.");
+    }
 
     public static List<FunctionalSet> collectFunctionalPairs(
             NLGElement phrase1, NLGElement phrase2) {

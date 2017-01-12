@@ -36,6 +36,7 @@ import java.io.LineNumberReader;
 public final class NIHLexiconXMLDumpUtil {
 
     private NIHLexiconXMLDumpUtil() {
+        throw new AssertionError("No instances allowed.");
     }
 
     /**

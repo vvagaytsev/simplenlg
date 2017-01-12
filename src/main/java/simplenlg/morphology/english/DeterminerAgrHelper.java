@@ -6,7 +6,8 @@ package simplenlg.morphology.english;
  *
  * @author bertugatt
  */
-public class DeterminerAgrHelper {
+public final class DeterminerAgrHelper {
+
     /*
      * An array of strings which are exceptions to the rule that "an" comes
      * before vowels
@@ -17,6 +18,10 @@ public class DeterminerAgrHelper {
      * Start of string involving vowels, for use of "an"
      */
     private static final String AN_AGREEMENT = "\\A(a|e|i|o|u).*";
+
+    private DeterminerAgrHelper() {
+        throw new AssertionError("No instances allowed.");
+    }
 
 	/*
      * Start of string involving numbers, for use of "an" -- courtesy of Chris

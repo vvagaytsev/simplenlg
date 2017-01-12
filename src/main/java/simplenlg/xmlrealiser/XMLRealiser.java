@@ -20,7 +20,7 @@ import java.io.StringReader;
  * @author Christopher Howell Agfa Healthcare Corporation
  * @author Albert Gatt, University of Malta
  */
-public class XMLRealiser {
+public final class XMLRealiser {
 
     /**
      * The lex db.
@@ -41,6 +41,10 @@ public class XMLRealiser {
      * The record.
      */
     static Recording record = null;
+
+    private XMLRealiser() {
+        throw new AssertionError("No instances allowed.");
+    }
 
     /**
      * The Enum OpCode.
