@@ -32,7 +32,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 /**
  * This class gets Words from the NIH Specialist Lexicon
@@ -42,12 +41,12 @@ import java.util.Vector;
 public class NIHDBLexicon extends Lexicon {
 
     // default DB parameters
-    private static String DB_HSQL_DRIVER = "org.hsqldb.jdbc.JDBCDriver"; // DB driver
-    private static String DB_HQSL_JDBC = "jdbc:hsqldb:"; // JDBC specifier for
+    private static final String DB_HSQL_DRIVER = "org.hsqldb.jdbc.JDBCDriver"; // DB driver
+    private static final String DB_HQSL_JDBC = "jdbc:hsqldb:"; // JDBC specifier for
     // HSQL
-    private static String DB_DEFAULT_USERNAME = "sa"; // DB username
-    private static String DB_DEFAULT_PASSWORD = ""; // DB password
-    private static String DB_HSQL_EXTENSION = ".data"; // filename extension for
+    private static final String DB_DEFAULT_USERNAME = "sa"; // DB username
+    private static final String DB_DEFAULT_PASSWORD = ""; // DB password
+    private static final String DB_HSQL_EXTENSION = ".data"; // filename extension for
     // HSQL DB
 
     // class variables
