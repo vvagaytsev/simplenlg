@@ -457,7 +457,6 @@ public class NIHDBLexicon extends Lexicon {
         wordElement.setFeature(LexicalFeature.COLOUR, colourAdj);
         wordElement.setFeature(LexicalFeature.CLASSIFYING, classifyingAdj);
         wordElement.setFeature(LexicalFeature.PREDICATIVE, predicativeAdj);
-        return;
     }
 
     /**
@@ -484,10 +483,8 @@ public class NIHDBLexicon extends Lexicon {
         }
         // ignore (for now) other info in record
         wordElement.setFeature(LexicalFeature.VERB_MODIFIER, verbModifier);
-        wordElement.setFeature(LexicalFeature.SENTENCE_MODIFIER,
-                sentenceModifier);
+        wordElement.setFeature(LexicalFeature.SENTENCE_MODIFIER, sentenceModifier);
         wordElement.setFeature(LexicalFeature.INTENSIFIER, intensifier);
-        return;
     }
 
     /**
@@ -555,8 +552,6 @@ public class NIHDBLexicon extends Lexicon {
         // && !regVariant);
         wordElement.setFeature(LexicalFeature.PROPER, proper);
         // ignore (for now) other info in record
-
-        return;
     }
 
     /**
@@ -613,17 +608,15 @@ public class NIHDBLexicon extends Lexicon {
 
             // if the variants include "reg", this is the default, otherwise
             // just a random pick
-            Inflection defaultVariant = wordVariants
-                    .contains(Inflection.REGULAR)
-                    || wordVariants.isEmpty() ? Inflection.REGULAR
-                    : wordVariants.get(0);
+            Inflection defaultVariant = wordVariants.contains(Inflection.REGULAR) || wordVariants.isEmpty() ?
+                    Inflection.REGULAR
+                    :
+                    wordVariants.get(0);
 //			wordElement.setFeature(LexicalFeature.INFLECTIONS, wordVariants);
 //			wordElement.setFeature(LexicalFeature.DEFAULT_INFL, defaultVariant);
             wordElement.setDefaultInflectionalVariant(defaultVariant);
         }
-
         // ignore (for now) other info in record
-        return;
     }
 
     /**
@@ -692,8 +685,6 @@ public class NIHDBLexicon extends Lexicon {
         // acronym = acronym.substring(0, acronym.indexOf("|"));
         // wordElement.setFeature(LexicalFeature.ACRONYM_OF, acronym);
         // }
-
-        return;
     }
 
     /**
