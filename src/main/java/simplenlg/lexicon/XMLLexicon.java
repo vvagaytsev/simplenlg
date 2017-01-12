@@ -204,16 +204,14 @@ public class XMLLexicon extends Lexicon {
                     value = value.trim();
 
                 if (feature == null) {
-                    System.err.println("Error in XML lexicon node for "
-                            + word.toString());
+                    System.err.println("Error in XML lexicon node for " + word.toString());
                     break;
                 }
 
                 if (feature.equalsIgnoreCase(XML_BASE)) {
                     word.setBaseForm(value);
                 } else if (feature.equalsIgnoreCase(XML_CATEGORY))
-                    word.setCategory(LexicalCategory.valueOf(value
-                            .toUpperCase()));
+                    word.setCategory(LexicalCategory.valueOf(value.toUpperCase()));
                 else if (feature.equalsIgnoreCase(XML_ID))
                     word.setId(value);
 
