@@ -64,7 +64,7 @@ public class ClauseCoordinationRule extends AggregationRule {
     /**
      * Applies aggregation to two NLGElements e1 and e2, succeeding only if they
      * are clauses (that is, e1.getCategory() == e2.getCategory ==
-     * {@link simplenlg.framework.PhraseCategory#CLAUSE}).
+     * {@link PhraseCategory#CLAUSE}).
      */
     @Override
     public NLGElement apply(NLGElement previous, NLGElement next) {

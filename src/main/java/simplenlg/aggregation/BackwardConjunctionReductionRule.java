@@ -66,7 +66,7 @@ public class BackwardConjunctionReductionRule extends AggregationRule {
     /**
      * Applies backward conjunction reduction to two NLGElements e1 and e2,
      * succeeding only if they are clauses (that is, e1.getCategory() ==
-     * e2.getCategory == {@link simplenlg.framework.PhraseCategory#CLAUSE}).
+     * e2.getCategory == {@link PhraseCategory#CLAUSE}).
      *
      * @param previous the first phrase
      * @param next     the second phrase

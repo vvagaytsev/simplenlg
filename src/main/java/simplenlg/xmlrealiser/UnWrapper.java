@@ -22,6 +22,21 @@ import simplenlg.features.*;
 import simplenlg.framework.*;
 import simplenlg.lexicon.Lexicon;
 import simplenlg.phrasespec.*;
+import simplenlg.xmlrealiser.wrapper.NLGSpec;
+import simplenlg.xmlrealiser.wrapper.XmlAdjPhraseSpec;
+import simplenlg.xmlrealiser.wrapper.XmlAdvPhraseSpec;
+import simplenlg.xmlrealiser.wrapper.XmlCoordinatedPhraseElement;
+import simplenlg.xmlrealiser.wrapper.XmlDocumentCategory;
+import simplenlg.xmlrealiser.wrapper.XmlDocumentElement;
+import simplenlg.xmlrealiser.wrapper.XmlLexicalCategory;
+import simplenlg.xmlrealiser.wrapper.XmlNLGElement;
+import simplenlg.xmlrealiser.wrapper.XmlNPPhraseSpec;
+import simplenlg.xmlrealiser.wrapper.XmlPPPhraseSpec;
+import simplenlg.xmlrealiser.wrapper.XmlPhraseCategory;
+import simplenlg.xmlrealiser.wrapper.XmlPhraseElement;
+import simplenlg.xmlrealiser.wrapper.XmlSPhraseSpec;
+import simplenlg.xmlrealiser.wrapper.XmlStringElement;
+import simplenlg.xmlrealiser.wrapper.XmlVPPhraseSpec;
 import simplenlg.xmlrealiser.wrapper.XmlWordElement;
 
 import javax.xml.bind.JAXBContext;
@@ -52,17 +67,17 @@ public class UnWrapper {
      * @return the nLG spec
      * @throws XMLRealiserException the xML realiser exception
      */
-    public static simplenlg.xmlrealiser.wrapper.NLGSpec getNLGSpec(
+    public static NLGSpec getNLGSpec(
             Reader xmlReader) throws XMLRealiserException {
-        simplenlg.xmlrealiser.wrapper.NLGSpec wt = null;
+        NLGSpec wt = null;
         try {
             JAXBContext jc = JAXBContext
-                    .newInstance(simplenlg.xmlrealiser.wrapper.NLGSpec.class);
+                    .newInstance(NLGSpec.class);
             Unmarshaller u = jc.createUnmarshaller();
             Object obj = u.unmarshal(xmlReader);
 
-            if (obj instanceof simplenlg.xmlrealiser.wrapper.NLGSpec) {
-                wt = (simplenlg.xmlrealiser.wrapper.NLGSpec) obj;
+            if (obj instanceof NLGSpec) {
+                wt = (NLGSpec) obj;
             }
         } catch (Throwable e) {
             throw new XMLRealiserException("XML unmarshal error", e);
@@ -92,7 +107,7 @@ public class UnWrapper {
      * @return the document element
      */
     public DocumentElement UnwrapDocumentElement(
-            simplenlg.xmlrealiser.wrapper.XmlDocumentElement wt) {
+            XmlDocumentElement wt) {
         DocumentElement t = factory.createDocument();
 
         if (wt.getCat() != null) {
@@ -103,7 +118,7 @@ public class UnWrapper {
             t.setTitle(wt.getTitle());
         }
 
-        for (simplenlg.xmlrealiser.wrapper.XmlNLGElement wp : wt.getChild()) {
+        for (XmlNLGElement wp : wt.getChild()) {
             NLGElement p = UnwrapNLGElement(wp);
             t.addComponent(p);
         }
@@ -118,15 +133,15 @@ public class UnWrapper {
      * @param wps The wrapper object
      * @return the NLGElement
      */
-    public simplenlg.framework.NLGElement UnwrapNLGElement(
-            simplenlg.xmlrealiser.wrapper.XmlNLGElement wps) {
+    public NLGElement UnwrapNLGElement(
+            XmlNLGElement wps) {
 
         if (wps == null) {
             return null;
         }
 
-        if (wps instanceof simplenlg.xmlrealiser.wrapper.XmlDocumentElement) {
-            return (NLGElement) UnwrapDocumentElement((simplenlg.xmlrealiser.wrapper.XmlDocumentElement) wps);
+        if (wps instanceof XmlDocumentElement) {
+            return (NLGElement) UnwrapDocumentElement((XmlDocumentElement) wps);
         }
 
         // Handle coordinate phrase specs first, which will cause recursion.
@@ -136,8 +151,8 @@ public class UnWrapper {
         }
 
         // Literal text.
-        if (wps instanceof simplenlg.xmlrealiser.wrapper.XmlStringElement) {
-            simplenlg.xmlrealiser.wrapper.XmlStringElement wp = (simplenlg.xmlrealiser.wrapper.XmlStringElement) wps;
+        if (wps instanceof XmlStringElement) {
+            XmlStringElement wp = (XmlStringElement) wps;
             NLGElement p = factory.createStringElement(wp.getVal());
             return p;
         }
@@ -145,20 +160,20 @@ public class UnWrapper {
         // WordElements (delegate to UnwrapWordElement) -- useful to have
         // because it is called by unWrapPhraseComponents, and pre/post mods
         // might be WordElements
-        if (wps instanceof simplenlg.xmlrealiser.wrapper.XmlWordElement) {
-            return UnwrapWordElement((simplenlg.xmlrealiser.wrapper.XmlWordElement) wps);
+        if (wps instanceof XmlWordElement) {
+            return UnwrapWordElement((XmlWordElement) wps);
         }
 
         // Sentence
-        else if (wps instanceof simplenlg.xmlrealiser.wrapper.XmlSPhraseSpec) {
-            simplenlg.xmlrealiser.wrapper.XmlSPhraseSpec wp = (simplenlg.xmlrealiser.wrapper.XmlSPhraseSpec) wps;
+        else if (wps instanceof XmlSPhraseSpec) {
+            XmlSPhraseSpec wp = (XmlSPhraseSpec) wps;
             SPhraseSpec sp = factory.createClause();
             NLGElement vp = null;
 
             List<NLGElement> subjects = new ArrayList<NLGElement>();
-            for (simplenlg.xmlrealiser.wrapper.XmlNLGElement p : wp.getSubj()) {
+            for (XmlNLGElement p : wp.getSubj()) {
                 NLGElement p1 = UnwrapNLGElement(p);
-                checkFunction(simplenlg.features.DiscourseFunction.SUBJECT, p1);
+                checkFunction(DiscourseFunction.SUBJECT, p1);
                 subjects.add(p1);
             }
 
@@ -191,8 +206,8 @@ public class UnWrapper {
         }
 
         // Phrases
-        else if (wps instanceof simplenlg.xmlrealiser.wrapper.XmlPhraseElement) {
-            simplenlg.xmlrealiser.wrapper.XmlPhraseElement we = (simplenlg.xmlrealiser.wrapper.XmlPhraseElement) wps;
+        else if (wps instanceof XmlPhraseElement) {
+            XmlPhraseElement we = (XmlPhraseElement) wps;
             PhraseElement hp = null;
             XmlWordElement w = we.getHead();
             NLGElement head = UnwrapWordElement(w);
@@ -212,19 +227,19 @@ public class UnWrapper {
             // }
 
             // Noun Phrase
-            if (wps instanceof simplenlg.xmlrealiser.wrapper.XmlNPPhraseSpec) {
-                simplenlg.xmlrealiser.wrapper.XmlNPPhraseSpec wp = (simplenlg.xmlrealiser.wrapper.XmlNPPhraseSpec) wps;
+            if (wps instanceof XmlNPPhraseSpec) {
+                XmlNPPhraseSpec wp = (XmlNPPhraseSpec) wps;
 
                 NPPhraseSpec p = factory.createNounPhrase(head);
                 hp = p;
 
                 if (wp.getSpec() != null) {
                     // p.setSpecifier(UnwrapWordElement(wp.getSpec()));
-                    simplenlg.xmlrealiser.wrapper.XmlNLGElement spec = wp
+                    XmlNLGElement spec = wp
                             .getSpec();
 
-                    if (spec instanceof simplenlg.xmlrealiser.wrapper.XmlWordElement) {
-                        WordElement specifier = (WordElement) UnwrapWordElement((simplenlg.xmlrealiser.wrapper.XmlWordElement) spec);
+                    if (spec instanceof XmlWordElement) {
+                        WordElement specifier = (WordElement) UnwrapWordElement((XmlWordElement) spec);
 
                         if (specifier != null) {
                             p.setSpecifier(specifier);
@@ -239,8 +254,8 @@ public class UnWrapper {
             }
 
             // Adjective Phrase
-            else if (wps instanceof simplenlg.xmlrealiser.wrapper.XmlAdjPhraseSpec) {
-                simplenlg.xmlrealiser.wrapper.XmlAdjPhraseSpec wp = (simplenlg.xmlrealiser.wrapper.XmlAdjPhraseSpec) wps;
+            else if (wps instanceof XmlAdjPhraseSpec) {
+                XmlAdjPhraseSpec wp = (XmlAdjPhraseSpec) wps;
                 AdjPhraseSpec p = factory.createAdjectivePhrase(head);
                 hp = p;
 
@@ -249,14 +264,14 @@ public class UnWrapper {
             }
 
             // Prepositional Phrase
-            else if (wps instanceof simplenlg.xmlrealiser.wrapper.XmlPPPhraseSpec) {
+            else if (wps instanceof XmlPPPhraseSpec) {
                 PPPhraseSpec p = factory.createPrepositionPhrase(head);
                 hp = p;
             }
 
             // Adverb Phrase
-            else if (wps instanceof simplenlg.xmlrealiser.wrapper.XmlAdvPhraseSpec) {
-                simplenlg.xmlrealiser.wrapper.XmlAdvPhraseSpec wp = (simplenlg.xmlrealiser.wrapper.XmlAdvPhraseSpec) wps;
+            else if (wps instanceof XmlAdvPhraseSpec) {
+                XmlAdvPhraseSpec wp = (XmlAdvPhraseSpec) wps;
                 AdvPhraseSpec p = factory.createAdverbPhrase();
                 p.setHead(head);
                 hp = p;
@@ -265,8 +280,8 @@ public class UnWrapper {
             }
 
             // Verb Phrase
-            else if (wps instanceof simplenlg.xmlrealiser.wrapper.XmlVPPhraseSpec) {
-                simplenlg.xmlrealiser.wrapper.XmlVPPhraseSpec wp = (simplenlg.xmlrealiser.wrapper.XmlVPPhraseSpec) wps;
+            else if (wps instanceof XmlVPPhraseSpec) {
+                XmlVPPhraseSpec wp = (XmlVPPhraseSpec) wps;
                 VPPhraseSpec p = factory.createVerbPhrase(head);
                 hp = p;
                 setVPFeatures(wp, p);
@@ -278,7 +293,7 @@ public class UnWrapper {
             // set the discourse function, if defined
             if (we.getDiscourseFunction() != null) {
                 hp.setFeature(InternalFeature.DISCOURSE_FUNCTION, Enum.valueOf(
-                        simplenlg.features.DiscourseFunction.class, we
+                        DiscourseFunction.class, we
                                 .getDiscourseFunction().toString()));
             }
 
@@ -304,48 +319,48 @@ public class UnWrapper {
      * @param wps The wrapper object
      */
     public void UnwrapPhraseComponents(PhraseElement hp,
-                                       simplenlg.xmlrealiser.wrapper.XmlNLGElement wps) {
+                                       XmlNLGElement wps) {
 
         if (hp != null && wps != null) {
-            simplenlg.xmlrealiser.wrapper.XmlPhraseElement wp = (simplenlg.xmlrealiser.wrapper.XmlPhraseElement) wps;
+            XmlPhraseElement wp = (XmlPhraseElement) wps;
 
-            for (simplenlg.xmlrealiser.wrapper.XmlNLGElement p : wp
+            for (XmlNLGElement p : wp
                     .getFrontMod()) {
                 NLGElement p1 = UnwrapNLGElement(p);
                 checkFunction(
-                        simplenlg.features.DiscourseFunction.FRONT_MODIFIER, p1);
+                        DiscourseFunction.FRONT_MODIFIER, p1);
 
                 if (p1 != null) {
                     hp.addFrontModifier(p1);
                 }
             }
 
-            for (simplenlg.xmlrealiser.wrapper.XmlNLGElement p : wp.getPreMod()) {
+            for (XmlNLGElement p : wp.getPreMod()) {
                 NLGElement p1 = UnwrapNLGElement(p);
                 checkFunction(
-                        simplenlg.features.DiscourseFunction.PRE_MODIFIER, p1);
+                        DiscourseFunction.PRE_MODIFIER, p1);
 
                 if (p1 != null) {
                     hp.addPreModifier(p1);
                 }
             }
 
-            for (simplenlg.xmlrealiser.wrapper.XmlNLGElement p : wp
+            for (XmlNLGElement p : wp
                     .getPostMod()) {
                 NLGElement p1 = UnwrapNLGElement(p);
                 checkFunction(
-                        simplenlg.features.DiscourseFunction.POST_MODIFIER, p1);
+                        DiscourseFunction.POST_MODIFIER, p1);
 
                 if (p1 != null) {
                     hp.addPostModifier(p1);
                 }
             }
 
-            for (simplenlg.xmlrealiser.wrapper.XmlNLGElement p : wp.getCompl()) {
+            for (XmlNLGElement p : wp.getCompl()) {
                 NLGElement p1 = UnwrapNLGElement(p);
 
                 // NB: set function to object by default, unless user set
-                checkFunction(simplenlg.features.DiscourseFunction.OBJECT, p1);
+                checkFunction(DiscourseFunction.OBJECT, p1);
 
                 if (p1 != null) {
                     hp.addComplement(p1);
@@ -364,12 +379,12 @@ public class UnWrapper {
      * phrase.
      */
     public NLGElement UnwrapCoordinatePhraseSpec(
-            simplenlg.xmlrealiser.wrapper.XmlNLGElement wps) {
+            XmlNLGElement wps) {
         NLGElement ret = null;
 
         // CoordinatedPhraseElement
-        if (wps instanceof simplenlg.xmlrealiser.wrapper.XmlCoordinatedPhraseElement) {
-            simplenlg.xmlrealiser.wrapper.XmlCoordinatedPhraseElement wp = (simplenlg.xmlrealiser.wrapper.XmlCoordinatedPhraseElement) wps;
+        if (wps instanceof XmlCoordinatedPhraseElement) {
+            XmlCoordinatedPhraseElement wp = (XmlCoordinatedPhraseElement) wps;
             CoordinatedPhraseElement cp = new CoordinatedPhraseElement();
             ElementCategory cat = UnwrapCategory(wp.getCat());
 
@@ -385,7 +400,7 @@ public class UnWrapper {
 
             setCoordinatedPhraseFeatures(wp, cp);
 
-            for (simplenlg.xmlrealiser.wrapper.XmlNLGElement p : wp.getCoord()) {
+            for (XmlNLGElement p : wp.getCoord()) {
                 NLGElement p1 = UnwrapNLGElement(p);
                 if (p1 != null) {
                     cp.addCoordinate(p1);
@@ -405,7 +420,7 @@ public class UnWrapper {
      * @return the nLG element
      */
     private NLGElement UnwrapWordElement(
-            simplenlg.xmlrealiser.wrapper.XmlWordElement wordElement) {
+            XmlWordElement wordElement) {
         NLGElement word = null;
 
         if (wordElement != null) {
@@ -479,13 +494,13 @@ public class UnWrapper {
             return null;
         }
         if (cat.getClass().equals(
-                simplenlg.xmlrealiser.wrapper.XmlLexicalCategory.class)) {
+                XmlLexicalCategory.class)) {
             return Enum.valueOf(LexicalCategory.class, cat.toString());
         } else if (cat.getClass().equals(
-                simplenlg.xmlrealiser.wrapper.XmlPhraseCategory.class)) {
+                XmlPhraseCategory.class)) {
             return Enum.valueOf(PhraseCategory.class, cat.toString());
         } else if (cat.getClass().equals(
-                simplenlg.xmlrealiser.wrapper.XmlDocumentCategory.class)) {
+                XmlDocumentCategory.class)) {
             return Enum.valueOf(DocumentCategory.class, cat.toString());
         } else {
             return null;
@@ -499,8 +514,8 @@ public class UnWrapper {
      * @param p  the internal CoordinatedPhraseElement object to get the features.
      */
     private void setCoordinatedPhraseFeatures(
-            simplenlg.xmlrealiser.wrapper.XmlCoordinatedPhraseElement wp,
-            simplenlg.framework.CoordinatedPhraseElement p) {
+            XmlCoordinatedPhraseElement wp,
+            CoordinatedPhraseElement p) {
 
         if (wp.getPERSON() != null) {
             p.setFeature(Feature.PERSON, wp.getPERSON());
@@ -518,7 +533,7 @@ public class UnWrapper {
         if (wp.getNUMBER() != null) {
             // map number feature from wrapper ~NumberAgr to actual NumberAgr
             String numString = wp.getNUMBER().toString();
-            simplenlg.features.NumberAgreement simplenlgNum = simplenlg.features.NumberAgreement
+            NumberAgreement simplenlgNum = NumberAgreement
                     .valueOf(numString);
             // p.setFeature(Feature.NUMBER, wp.getNUMBER());
             p.setFeature(Feature.NUMBER, simplenlgNum);
@@ -527,7 +542,7 @@ public class UnWrapper {
         if (wp.getPERSON() != null) {
             // map person feature from wrapper Person to actual Person
             String perString = wp.getPERSON().toString();
-            simplenlg.features.Person simplenlgPers = simplenlg.features.Person
+            Person simplenlgPers = Person
                     .valueOf(perString);
             p.setFeature(Feature.PERSON, simplenlgPers);
         }
@@ -548,13 +563,13 @@ public class UnWrapper {
      * @param p  the NPPhraseSpec object to get the features.
      */
     private void setNPFeatures(
-            simplenlg.xmlrealiser.wrapper.XmlNPPhraseSpec wp,
-            simplenlg.phrasespec.NPPhraseSpec p) {
+            XmlNPPhraseSpec wp,
+            NPPhraseSpec p) {
 
         if (wp.getNUMBER() != null) {
             // map number feature from wrapper ~NumberAgr to actual NumberAgr
             String numString = wp.getNUMBER().toString();
-            simplenlg.features.NumberAgreement simplenlgNum = simplenlg.features.NumberAgreement
+            NumberAgreement simplenlgNum = NumberAgreement
                     .valueOf(numString);
             // p.setFeature(Feature.NUMBER, wp.getNUMBER());
             p.setFeature(Feature.NUMBER, simplenlgNum);
@@ -563,7 +578,7 @@ public class UnWrapper {
         if (wp.getPERSON() != null) {
             // map person feature from wrapper Person to actual Person
             String perString = wp.getPERSON().toString();
-            simplenlg.features.Person simplenlgPers = simplenlg.features.Person
+            Person simplenlgPers = Person
                     .valueOf(perString);
             p.setFeature(Feature.PERSON, simplenlgPers);
         }
@@ -571,7 +586,7 @@ public class UnWrapper {
         if (wp.getGENDER() != null) {
             // map gender feature from wrapper Gender to actual Gender
             String genString = wp.getGENDER().toString();
-            simplenlg.features.Gender simplenlgGen = simplenlg.features.Gender
+            Gender simplenlgGen = Gender
                     .valueOf(genString);
             p.setFeature(LexicalFeature.GENDER, simplenlgGen);
         }
@@ -589,8 +604,8 @@ public class UnWrapper {
      * @param p  the internal VP object to get features from xml object.
      */
     private void setVPFeatures(
-            simplenlg.xmlrealiser.wrapper.XmlVPPhraseSpec wp,
-            simplenlg.phrasespec.VPPhraseSpec p) {
+            XmlVPPhraseSpec wp,
+            VPPhraseSpec p) {
         if (wp.getFORM() != null) {
             p.setFeature(Feature.FORM, Enum.valueOf(Form.class, wp.getFORM()
                     .toString()));
@@ -627,9 +642,9 @@ public class UnWrapper {
      * @param sp the sentence.
      * @param vp the verb phrase.
      */
-    private void setSFeatures(simplenlg.xmlrealiser.wrapper.XmlSPhraseSpec wp,
-                              simplenlg.phrasespec.SPhraseSpec sp,
-                              simplenlg.framework.NLGElement vp) {
+    private void setSFeatures(XmlSPhraseSpec wp,
+                              SPhraseSpec sp,
+                              NLGElement vp) {
 
         if (wp.getCLAUSESTATUS() != null) {
             sp.setFeature(InternalFeature.CLAUSE_STATUS, Enum.valueOf(
@@ -664,7 +679,7 @@ public class UnWrapper {
         // interrogative
         if (wp.getINTERROGATIVETYPE() != null) {
             sp.setFeature(Feature.INTERROGATIVE_TYPE, Enum.valueOf(
-                    simplenlg.features.InterrogativeType.class, wp
+                    InterrogativeType.class, wp
                             .getINTERROGATIVETYPE().toString()));
         } else if (vp != null && vp.hasFeature(Feature.INTERROGATIVE_TYPE)) {
             sp.setFeature(Feature.INTERROGATIVE_TYPE, vp
@@ -719,8 +734,8 @@ public class UnWrapper {
      * @param function the function
      * @param phrase   the phrase
      */
-    private void checkFunction(simplenlg.features.DiscourseFunction function,
-                               simplenlg.framework.NLGElement phrase) {
+    private void checkFunction(DiscourseFunction function,
+                               NLGElement phrase) {
         if (!phrase.hasFeature(InternalFeature.DISCOURSE_FUNCTION)) {
             phrase.setFeature(InternalFeature.DISCOURSE_FUNCTION, function);
         }

@@ -26,11 +26,11 @@ import java.util.List;
 /**
  * This is the generic abstract class for a Lexicon. In simplenlg V4, a
  * <code>Lexicon</code> is a collection of
- * {@link simplenlg.framework.WordElement} objects; it does not do any
+ * {@link WordElement} objects; it does not do any
  * morphological processing (as was the case in simplenlg V3). Information about
  * <code>WordElement</code> can be obtained from a database (
- * {@link simplenlg.lexicon.NIHDBLexicon}) or from an XML file (
- * {@link simplenlg.lexicon.XMLLexicon}). Simplenlg V4 comes with a default
+ * {@link NIHDBLexicon}) or from an XML file (
+ * {@link XMLLexicon}). Simplenlg V4 comes with a default
  * (XML) lexicon, which is retrieved by the <code>getDefaultLexicon</code>
  * method.
  * <p>
@@ -38,7 +38,7 @@ import java.util.List;
  * <code>lookupWord</code>. More control is available from the
  * <code>getXXXX</code> methods, which allow words to retrieved in several ways
  * <OL>
- * <LI>baseform and {@link simplenlg.framework.LexicalCategory}; for example
+ * <LI>baseform and {@link LexicalCategory}; for example
  * "university" and <code>Noun</code>
  * <LI>just baseform; for example, "university"
  * <LI>ID string (if this is supported by the underlying DB or XML file); for
@@ -49,20 +49,20 @@ import java.util.List;
  * "United Kingdom" are regarded as different words). <br>
  * <I>Note:</I> variant lookup is not guaranteed, this is a feature which
  * hopefully will develop over time
- * <LI>variant and {@link simplenlg.framework.LexicalCategory}; for example
+ * <LI>variant and {@link LexicalCategory}; for example
  * "universities" and <code>Noun</code>
  * </OL>
  * <p>
  * For each type of lookup, there are three methods
  * <UL>
  * <LI> <code>getWords</code>: get all matching
- * {@link simplenlg.framework.WordElement} in the Lexicon. For example,
+ * {@link WordElement} in the Lexicon. For example,
  * <code>getWords("dog")</code> would return a <code>List</code> of two
  * <code>WordElement</code>, one for the noun "dog" and one for the verb "dog".
  * If there are no matching entries in the lexicon, this method returns an empty
  * collection
  * <LI> <code>getWord</code>: get a single matching
- * {@link simplenlg.framework.WordElement} in the Lexicon. For example,
+ * {@link WordElement} in the Lexicon. For example,
  * <code>getWord("dog")</code> would a <code> for either the noun "dog" or the
  * verb "dog" (unpredictable).   If there are no matching entries in
  * the lexicon, this method will create a default <code>WordElement</code> based

@@ -65,7 +65,7 @@ public class Realiser extends NLGModule {
      * <p>
      * <br/>
      * <strong>Implementation note:</strong> this method checks whether the
-     * {@link simplenlg.orthography.english.OrthographyProcessor} has the
+     * {@link OrthographyProcessor} has the
      * parameter set.
      *
      * @return <code>true</code> if premodifiers in the noun phrase are
@@ -81,7 +81,7 @@ public class Realiser extends NLGModule {
      * If <code>false</code>, they won't. <br/>
      * <strong>Implementation note:</strong>: this method sets the relevant
      * parameter in the
-     * {@link simplenlg.orthography.english.OrthographyProcessor}.
+     * {@link OrthographyProcessor}.
      *
      * @param commaSepPremodifiers the commaSepPremodifiers to set
      */
@@ -96,7 +96,7 @@ public class Realiser extends NLGModule {
      * <p>
      * <br/>
      * <strong>Implementation note:</strong> this method checks whether the
-     * {@link simplenlg.orthography.english.OrthographyProcessor} has the
+     * {@link OrthographyProcessor} has the
      * parameter set.
      *
      * @return <code>true</code> if cue phrases have a comma before the remainder of the host phrase
@@ -111,7 +111,7 @@ public class Realiser extends NLGModule {
      * If <code>false</code>, they won't. <br/>
      * <strong>Implementation note:</strong>: this method sets the relevant
      * parameter in the
-     * {@link simplenlg.orthography.english.OrthographyProcessor}.
+     * {@link OrthographyProcessor}.
      *
      * @param commaSepcuephrase
      */

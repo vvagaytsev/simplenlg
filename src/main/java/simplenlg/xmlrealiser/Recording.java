@@ -22,6 +22,7 @@ package simplenlg.xmlrealiser;
 import simplenlg.xmlrealiser.wrapper.DocumentRealisation;
 import simplenlg.xmlrealiser.wrapper.NLGSpec;
 import simplenlg.xmlrealiser.wrapper.RecordSet;
+import simplenlg.xmlrealiser.wrapper.XmlDocumentElement;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -115,7 +116,7 @@ public class Recording {
      * @param input  the DocumentElement in this record
      * @param output the realisation
      */
-    public void addRecord(simplenlg.xmlrealiser.wrapper.XmlDocumentElement input,
+    public void addRecord(XmlDocumentElement input,
                           String output) {
         if (!recordingOn) {
             return;
@@ -157,7 +158,7 @@ public class Recording {
      */
     public static void writeRecording(RecordSet record, OutputStream os)
             throws JAXBException, IOException, TransformerException {
-        JAXBContext jc = JAXBContext.newInstance(simplenlg.xmlrealiser.wrapper.NLGSpec.class);
+        JAXBContext jc = JAXBContext.newInstance(NLGSpec.class);
         Marshaller m = jc.createMarshaller();
 
         NLGSpec nlg = new NLGSpec();

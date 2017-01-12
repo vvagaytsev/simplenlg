@@ -110,7 +110,7 @@ public class PhraseSet {
      * <code>true</code> in the following cases:
      * <p>
      * <OL>
-     * <LI>All phrases are {@link simplenlg.framework.NLGElement}s and they
+     * <LI>All phrases are {@link NLGElement}s and they
      * have the same lexical head, irrespective of inflectional variations.</LI>
      * </OL>
      *

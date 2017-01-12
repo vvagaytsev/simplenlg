@@ -94,7 +94,7 @@ public class OrthographyProcessor extends NLGModule {
      * phrase using a comma. Cue phrases are typically at the start of a
      * sentence (e.g. <i><u>However</u>, John left early</i>). This will only
      * apply to phrases with the feature
-     * {@link simplenlg.features.DiscourseFunction#CUE_PHRASE} or {@link simplenlg.features.DiscourseFunction#FRONT_MODIFIER}.
+     * {@link DiscourseFunction#CUE_PHRASE} or {@link DiscourseFunction#FRONT_MODIFIER}.
      *
      * @param commaSepCuephrase whether to separate cue phrases using a comma
      */

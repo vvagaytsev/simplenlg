@@ -21,6 +21,7 @@ package simplenlg.server;
 
 import simplenlg.xmlrealiser.XMLRealiser;
 import simplenlg.xmlrealiser.XMLRealiserException;
+import simplenlg.xmlrealiser.wrapper.RequestType;
 
 import java.io.*;
 import java.net.Socket;
@@ -129,7 +130,7 @@ public class RealisationRequest implements Runnable {
     }
 
     protected String doRealisation(Reader inputReader) throws XMLRealiserException {
-        simplenlg.xmlrealiser.wrapper.RequestType request =
+        RequestType request =
                 XMLRealiser.getRequest(inputReader);
         String output = XMLRealiser.realise(request.getDocument());
         return output;

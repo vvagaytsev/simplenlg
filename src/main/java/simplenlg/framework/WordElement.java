@@ -29,7 +29,7 @@ import java.util.*;
  * WordElement via a lookup method in the lexicon
  * <p>
  * Words always have a base form, and usually have a
- * {@link simplenlg.framework.LexicalCategory}. They may also have a Lexicon ID.
+ * {@link LexicalCategory}. They may also have a Lexicon ID.
  * <p>
  * Words also have features (which are retrieved from the Lexicon), these are
  * held in the standard NLGElement feature map

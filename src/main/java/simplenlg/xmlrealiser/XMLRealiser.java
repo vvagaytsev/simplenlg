@@ -9,6 +9,10 @@ import simplenlg.lexicon.Lexicon;
 import simplenlg.lexicon.NIHDBLexicon;
 import simplenlg.lexicon.XMLLexicon;
 import simplenlg.realiser.english.Realiser;
+import simplenlg.xmlrealiser.wrapper.NLGSpec;
+import simplenlg.xmlrealiser.wrapper.RecordSet;
+import simplenlg.xmlrealiser.wrapper.RequestType;
+import simplenlg.xmlrealiser.wrapper.XmlDocumentElement;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -129,7 +133,7 @@ public final class XMLRealiser {
                 }
                 input = (String) args[argx++];
                 StringReader reader = new StringReader(input);
-                simplenlg.xmlrealiser.wrapper.RequestType request = getRequest(reader);
+                RequestType request = getRequest(reader);
                 output = realise(request.getDocument());
 
                 break;
@@ -214,11 +218,11 @@ public final class XMLRealiser {
      * @return the request
      * @throws XMLRealiserException the xML realiser exception
      */
-    public static simplenlg.xmlrealiser.wrapper.RequestType getRequest(
+    public static RequestType getRequest(
             Reader input) throws XMLRealiserException {
-        simplenlg.xmlrealiser.wrapper.NLGSpec spec = UnWrapper
+        NLGSpec spec = UnWrapper
                 .getNLGSpec(input);
-        simplenlg.xmlrealiser.wrapper.RequestType request = spec.getRequest();
+        RequestType request = spec.getRequest();
         if (request == null) {
             throw new XMLRealiserException("Must have Request element");
         }
@@ -233,11 +237,11 @@ public final class XMLRealiser {
      * @return the recording
      * @throws XMLRealiserException the xML realiser exception
      */
-    public static simplenlg.xmlrealiser.wrapper.RecordSet getRecording(
+    public static RecordSet getRecording(
             Reader input) throws XMLRealiserException {
-        simplenlg.xmlrealiser.wrapper.NLGSpec spec = UnWrapper
+        NLGSpec spec = UnWrapper
                 .getNLGSpec(input);
-        simplenlg.xmlrealiser.wrapper.RecordSet recording = spec.getRecording();
+        RecordSet recording = spec.getRecording();
         if (recording == null) {
             throw new XMLRealiserException("Must have Recording element");
         }
@@ -254,7 +258,7 @@ public final class XMLRealiser {
      * @throws XMLRealiserException the xML realiser exception
      */
     public static String realise(
-            simplenlg.xmlrealiser.wrapper.XmlDocumentElement wt)
+            XmlDocumentElement wt)
             throws XMLRealiserException {
         String output = "";
         if (wt != null) {

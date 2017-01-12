@@ -117,8 +117,8 @@ public class SPhraseSpec extends PhraseElement {
      * adds a feature, possibly to the underlying VP as well as the SPhraseSpec
      * itself
      *
-     * @see simplenlg.framework.NLGElement#setFeature(java.lang.String,
-     * java.lang.Object)
+     * @see NLGElement#setFeature(String,
+     * Object)
      */
     @Override
     public void setFeature(String featureName, Object featureValue) {

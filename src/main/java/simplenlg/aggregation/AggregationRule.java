@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * This class represents an aggregation rule. All such rules need to implement
  * an {@link #apply(NLGElement, NLGElement)} which takes an arbitrary number of
- * {@link simplenlg.framework.NLGElement}s and perform some form of aggregation
+ * {@link NLGElement}s and perform some form of aggregation
  * on them, returning an <code>SPhraseSpec</code> as a result, or
  * <code>null</code> if the operation fails.
  *
@@ -108,7 +108,7 @@ public abstract class AggregationRule {
 
     /**
      * Perform aggregation on a single phrase. This method only works on a
-     * {@link simplenlg.framework.CoordinatedPhraseElement}, in which case it
+     * {@link CoordinatedPhraseElement}, in which case it
      * calls {@link #apply(List)} on the children of the coordinated phrase,
      * returning a coordinated phrase whose children are the result.
      *

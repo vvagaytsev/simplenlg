@@ -76,7 +76,7 @@ public class ForwardConjunctionReductionRule extends AggregationRule {
     /**
      * Applies forward conjunction reduction to two NLGElements e1 and e2,
      * succeeding only if they are clauses (that is, e1.getCategory() ==
-     * e2.getCategory == {@link simplenlg.framework.PhraseCategory#CLAUSE}) and
+     * e2.getCategory == {@link PhraseCategory#CLAUSE}) and
      * the clauses are not passive.
      *
      * @param previous the first phrase
