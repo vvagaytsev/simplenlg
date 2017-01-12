@@ -48,5 +48,5 @@ public enum Gender {
      * A word or phrase pertaining to a neutral or gender-less topic. For
      * example, <em>it</em>, <em>its</em>.
      */
-    NEUTER;
+    NEUTER
 }

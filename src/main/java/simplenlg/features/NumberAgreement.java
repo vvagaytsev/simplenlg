@@ -49,5 +49,5 @@ public enum NumberAgreement {
      * example, <em>dog</em> as opposed to <em>dogs</em>, and
      * <em>John <b>kisses</b> Mary</em>.
      */
-    SINGULAR;
+    SINGULAR
 }

@@ -74,7 +74,6 @@ public abstract class AggregationRule {
      */
     public List<NLGElement> apply(List<NLGElement> phrases) {
         List<NLGElement> results = new ArrayList<NLGElement>();
-        ;
 
         if (phrases.size() >= 2) {
             List<NLGElement> removed = new ArrayList<NLGElement>();

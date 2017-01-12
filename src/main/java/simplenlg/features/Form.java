@@ -81,5 +81,5 @@ public enum Form {
      * verb being used as a noun. The present participle remains as a verb. For
      * example, <em>Jim was <b>sleeping</b></em>.
      */
-    PRESENT_PARTICIPLE;
+    PRESENT_PARTICIPLE
 }

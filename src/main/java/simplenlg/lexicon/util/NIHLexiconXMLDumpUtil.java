@@ -114,7 +114,6 @@ public final class NIHLexiconXMLDumpUtil {
                         else
                             xmlFile.write(word.toXML());
                         line = wordListFile.readLine();
-                        ;
                     }
                     xmlFile.write(String.format("</lexicon>%n"));
                     wordListFile.close();

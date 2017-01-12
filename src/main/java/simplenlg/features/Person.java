@@ -50,5 +50,5 @@ public enum Person {
      * person. Third person narrative uses the personal pronouns of <em>he</em>,
      * <em>her</em> and <em>they</em>.
      */
-    THIRD;
+    THIRD
 }

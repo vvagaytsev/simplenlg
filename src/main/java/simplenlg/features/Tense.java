@@ -47,5 +47,5 @@ public enum Tense {
      * The action described by the verb is happening in the present time. For
      * example, <em>John kisses Mary</em>, <em>the dog eats a bone</em>.
      */
-    PRESENT;
+    PRESENT
 }

@@ -128,5 +128,5 @@ public enum DiscourseFunction {
      * particle, such as <em>kiss</em>, <em>talk</em>, <em>bark</em>,
      * <em>fall down</em>, <em>pick up</em>.
      */
-    VERB_PHRASE;
+    VERB_PHRASE
 }

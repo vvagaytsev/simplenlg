@@ -60,5 +60,5 @@ public enum ClauseStatus {
     /**
      * The subordinate clauses are contained within a higher clause.
      */
-    SUBORDINATE;
+    SUBORDINATE
 }
