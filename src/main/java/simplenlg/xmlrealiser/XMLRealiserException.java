@@ -18,15 +18,13 @@
  */
 package simplenlg.xmlrealiser;
 
-import java.io.Serializable;
-
 /**
  * This class represents an exception thrown by the xml realiser framework.
  *
  * @author Christopher Howell Agfa Healthcare Corporation
  * @author Albert Gatt, University of Malta
  */
-public class XMLRealiserException extends Throwable implements Serializable {
+public class XMLRealiserException extends Throwable {
 
     /**
      * The Constant serialVersionUID.
@@ -34,7 +32,7 @@ public class XMLRealiserException extends Throwable implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Instantiates a new xML realiser exception.
+     * Instantiates a new ZML realiser exception.
      */
     public XMLRealiserException() {
         // TODO Auto-generated constructor stub
