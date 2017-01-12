@@ -37,5 +37,5 @@ public interface ElementCategory {
      * @return <code>true</code> if the object matches, <code>false</code>
      * otherwise.
      */
-    public boolean equalTo(Object checkObject);
+    boolean equalTo(Object checkObject);
 }
