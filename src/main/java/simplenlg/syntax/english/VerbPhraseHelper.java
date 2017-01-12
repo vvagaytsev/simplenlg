@@ -202,20 +202,17 @@ abstract class VerbPhraseHelper {
     private static void splitVerbGroup(Stack<NLGElement> vgComponents,
                                        Stack<NLGElement> mainVerbRealisation,
                                        Stack<NLGElement> auxiliaryRealisation) {
-
         boolean mainVerbSeen = false;
-
         for (NLGElement word : vgComponents) {
             if (!mainVerbSeen) {
                 mainVerbRealisation.push(word);
-                if (!"not".equals(word)) { //$NON-NLS-1$
+                if (!"not".equals(word)) {
                     mainVerbSeen = true;
                 }
             } else {
                 auxiliaryRealisation.push(word);
             }
         }
-
     }
 
     /**

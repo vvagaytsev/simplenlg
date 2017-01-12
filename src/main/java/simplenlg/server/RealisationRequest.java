@@ -54,15 +54,15 @@ public class RealisationRequest implements Runnable {
     }
 
     public void run() {
-        if (null == socket)
+        if (null == socket) {
             return;
+        }
 
         DataInputStream input = null;
         DataOutputStream output = null;
 
         if (DEBUG) {
-            System.out.println("Client connected from "
-                    + socket.getRemoteSocketAddress());
+            System.out.println("Client connected from " + socket.getRemoteSocketAddress());
         }
 
         try {
