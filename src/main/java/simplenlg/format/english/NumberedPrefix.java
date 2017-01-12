@@ -5,7 +5,7 @@ package simplenlg.format.english;
  */
 public class NumberedPrefix {
 
-    String prefix;
+    private String prefix;
 
     public NumberedPrefix() {
         prefix = "0";
