@@ -123,7 +123,7 @@ public class HTMLFormatter extends NLGModule {
                         break;
 
                     case PARAGRAPH:
-                        if (null != components && 0 < components.size()) {
+                        if (null != components && !components.isEmpty()) {
                             realisedComponent = realise(components.get(0));
                             if (realisedComponent != null) {
                                 realisation.append("<p>");

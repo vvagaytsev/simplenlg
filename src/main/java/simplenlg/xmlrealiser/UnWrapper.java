@@ -162,7 +162,7 @@ public class UnWrapper {
                 subjects.add(p1);
             }
 
-            if (subjects.size() > 0) {
+            if (!subjects.isEmpty()) {
                 sp.setFeature(InternalFeature.SUBJECTS, subjects);
             }
 

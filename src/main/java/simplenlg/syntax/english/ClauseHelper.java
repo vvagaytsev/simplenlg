@@ -161,7 +161,7 @@ abstract class ClauseHelper {
         if (phrase.getFeatureAsBoolean(Feature.PASSIVE).booleanValue()) {
             List<NLGElement> allSubjects = phrase.getFeatureAsElementList(InternalFeature.SUBJECTS);
 
-            if (allSubjects.size() > 0 || phrase.hasFeature(Feature.INTERROGATIVE_TYPE)) {
+            if (!allSubjects.isEmpty() || phrase.hasFeature(Feature.INTERROGATIVE_TYPE)) {
                 realisedElement.addComponent(parent.realise(phraseFactory.createPrepositionPhrase("by"))); //$NON-NLS-1$
             }
 
@@ -761,7 +761,7 @@ abstract class ClauseHelper {
             if (Form.IMPERATIVE.equals(clauseForm)) {
                 phrase.setFeature(Feature.SUPRESSED_COMPLEMENTISER, true);
                 phrase.setFeature(Feature.FORM, Form.INFINITIVE);
-            } else if (Form.GERUND.equals(clauseForm) && subjects.size() == 0) {
+            } else if (Form.GERUND.equals(clauseForm) && subjects.isEmpty()) {
                 phrase.setFeature(Feature.SUPRESSED_COMPLEMENTISER, true);
             }
         } else if (DiscourseFunction.SUBJECT.equals(discourseValue)) {

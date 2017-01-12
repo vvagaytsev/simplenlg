@@ -133,7 +133,7 @@ public class OrthographyProcessor extends NLGModule {
                         break;
 
                     case LIST_ITEM:
-                        if (components != null && components.size() > 0) {
+                        if (components != null && !components.isEmpty()) {
                             // recursively realise whatever is in the list item
                             // NB: this will realise embedded lists within list
                             // items
@@ -268,7 +268,7 @@ public class OrthographyProcessor extends NLGModule {
     private NLGElement realiseSentence(List<NLGElement> components, NLGElement element) {
 
         NLGElement realisedElement = null;
-        if (components != null && components.size() > 0) {
+        if (components != null && !components.isEmpty()) {
             StringBuffer realisation = new StringBuffer();
             realiseList(realisation, components, "");
 
@@ -340,7 +340,7 @@ public class OrthographyProcessor extends NLGModule {
     public List<NLGElement> realise(List<NLGElement> elements) {
         List<NLGElement> realisedList = new ArrayList<NLGElement>();
 
-        if (elements != null && elements.size() > 0) {
+        if (elements != null && !elements.isEmpty()) {
             for (NLGElement eachElement : elements) {
                 if (eachElement instanceof DocumentElement) {
                     realisedList.add(realise(eachElement));
@@ -373,7 +373,7 @@ public class OrthographyProcessor extends NLGModule {
             String childRealisation = realisedChild.getRealisation();
 
             // check that the child realisation is non-empty
-            if (childRealisation != null && childRealisation.length() > 0 && !childRealisation.matches("^[\\s\\n]+$")) {
+            if (childRealisation != null && !childRealisation.isEmpty() && !childRealisation.matches("^[\\s\\n]+$")) {
                 realisation.append(realisedChild.getRealisation());
 
                 if (components.size() > 1 && i < components.size() - 1) {

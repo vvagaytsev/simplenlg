@@ -62,7 +62,7 @@ abstract class CoordinatedPhraseHelper {
 
             InflectedWordElement conjunctionElement = null;
 
-            if (children != null && children.size() > 0) {
+            if (children != null && !children.isEmpty()) {
 
                 if (phrase.getFeatureAsBoolean(Feature.RAISE_SPECIFIER)
                         .booleanValue()) {
@@ -96,7 +96,7 @@ abstract class CoordinatedPhraseHelper {
                     }
 
                     //skip conjunction if it's null or empty string
-                    if (conjunction != null && conjunction.length() > 0) {
+                    if (conjunction != null && !conjunction.isEmpty()) {
                         conjunctionElement = new InflectedWordElement(
                                 conjunction, LexicalCategory.CONJUNCTION);
                         conjunctionElement.setFeature(

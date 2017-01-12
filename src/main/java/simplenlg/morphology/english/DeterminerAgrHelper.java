@@ -45,7 +45,7 @@ public final class DeterminerAgrHelper {
             req = true;
         } else {
             String numPref = getNumericPrefix(lowercaseInput);
-            if (numPref != null && numPref.length() > 0
+            if (numPref != null && !numPref.isEmpty()
                     && numPref.matches("^(8|11|18).*$")) {
                 Integer num = Integer.parseInt(numPref);
                 req = checkNum(num);
@@ -93,7 +93,7 @@ public final class DeterminerAgrHelper {
         StringBuffer numeric = new StringBuffer();
         if (string != null) {
             string = string.trim();
-            if (string.length() > 0) {
+            if (!string.isEmpty()) {
                 StringBuffer buffer = new StringBuffer(string);
                 char first = buffer.charAt(0);
                 if (Character.isDigit(first)) {

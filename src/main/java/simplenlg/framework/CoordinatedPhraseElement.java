@@ -96,12 +96,12 @@ public class CoordinatedPhraseElement extends NLGElement {
         if (coordinates == null) {
             coordinates = new ArrayList<NLGElement>();
             setFeature(InternalFeature.COORDINATES, coordinates);
-        } else if (coordinates.size() == 0) {
+        } else if (coordinates.isEmpty()) {
             setFeature(InternalFeature.COORDINATES, coordinates);
         }
         if (newCoordinate instanceof NLGElement) {
             if (((NLGElement) newCoordinate).isA(PhraseCategory.CLAUSE)
-                    && coordinates.size() > 0) {
+                    && !coordinates.isEmpty()) {
 
                 ((NLGElement) newCoordinate).setFeature(
                         Feature.SUPRESSED_COMPLEMENTISER, true);
@@ -287,7 +287,7 @@ public class CoordinatedPhraseElement extends NLGElement {
      */
     public NLGElement getLastCoordinate() {
         List<NLGElement> children = getChildren();
-        return children != null && children.size() > 0 ? children.get(children
+        return children != null && !children.isEmpty() ? children.get(children
                 .size() - 1) : null;
     }
 

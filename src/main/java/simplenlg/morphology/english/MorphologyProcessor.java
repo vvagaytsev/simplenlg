@@ -97,7 +97,7 @@ public class MorphologyProcessor extends NLGModule {
             List<NLGElement> children = element.getChildren();
             ((CoordinatedPhraseElement) element).clearCoordinates();
 
-            if (children != null && children.size() > 0) {
+            if (children != null && !children.isEmpty()) {
                 ((CoordinatedPhraseElement) element).addCoordinate(realise(children.get(0)));
 
                 for (int index = 1; index < children.size(); index++) {

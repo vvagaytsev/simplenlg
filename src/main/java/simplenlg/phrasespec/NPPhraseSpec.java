@@ -216,7 +216,7 @@ public class NPPhraseSpec extends PhraseElement {
             modifierElement = (NLGElement) modifier;
         else if (modifier instanceof String) {
             String modifierString = (String) modifier;
-            if (modifierString.length() > 0 && !modifierString.contains(" "))
+            if (!modifierString.isEmpty() && !modifierString.contains(" "))
                 modifierElement = getFactory().createWord(modifier,
                         LexicalCategory.ANY);
         }

@@ -217,7 +217,7 @@ public class DocumentElement extends NLGElement {
                     }
                 }
             }
-            if (elementsToAdd.size() > 0) {
+            if (!elementsToAdd.isEmpty()) {
                 List<NLGElement> components = getComponents();
                 if (components == null) {
                     components = new ArrayList<NLGElement>();
@@ -302,7 +302,7 @@ public class DocumentElement extends NLGElement {
         int length = children.size() - 1;
         int index = 0;
 
-        if (children.size() > 0) {
+        if (!children.isEmpty()) {
             for (index = 0; index < length; index++) {
                 print.append(thisIndent).append(
                         children.get(index).printTree(childIndent));
