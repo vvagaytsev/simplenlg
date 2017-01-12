@@ -17,12 +17,11 @@ public class NumberedPrefix {
             int counter = Integer.valueOf(prefix);
             counter++;
             prefix = String.valueOf(counter);
-
         } else {
             final String subCounterStr = prefix.substring(dotPosition + 1);
             int subCounter = Integer.valueOf(subCounterStr);
             subCounter++;
-            prefix = prefix.substring(0, dotPosition) + "." + String.valueOf(subCounter);
+            prefix = prefix.substring(0, dotPosition) + "." + subCounter;
         }
     }
 
