@@ -195,7 +195,7 @@ public class XMLLexicon extends Lexicon {
                     value = value.trim();
 
                 if (feature == null) {
-                    System.err.println("Error in XML lexicon node for " + word.toString());
+                    System.err.println("Error in XML lexicon node for " + word);
                     break;
                 }
 
