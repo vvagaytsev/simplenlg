@@ -171,7 +171,7 @@ public enum DocumentCategory implements ElementCategory {
             if (elementCategory instanceof DocumentCategory) {
                 switch (this) {
                     case DOCUMENT:
-                        subPart = !(elementCategory.equals(DOCUMENT)) && !(elementCategory.equals(LIST_ITEM));
+                        subPart = !elementCategory.equals(DOCUMENT) && !elementCategory.equals(LIST_ITEM);
                         break;
 
                     case SECTION:

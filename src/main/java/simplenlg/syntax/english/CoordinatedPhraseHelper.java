@@ -199,10 +199,10 @@ abstract class CoordinatedPhraseHelper {
                 // phrase.
                 // it could be a Wordelement, in which case, we want the
                 // baseform
-                test = (specifier instanceof WordElement) ? ((WordElement) specifier)
-                        .getBaseForm()
-                        : specifier
-                        .getFeatureAsString(LexicalFeature.BASE_FORM);
+                test = specifier instanceof WordElement ?
+                        ((WordElement) specifier).getBaseForm()
+                        :
+                        specifier.getFeatureAsString(LexicalFeature.BASE_FORM);
             }
 
             if (test != null) {
@@ -217,10 +217,10 @@ abstract class CoordinatedPhraseHelper {
                     } else {
                         specifier = child
                                 .getFeatureAsElement(InternalFeature.SPECIFIER);
-                        String childForm = (specifier instanceof WordElement) ? ((WordElement) specifier)
-                                .getBaseForm()
-                                : specifier
-                                .getFeatureAsString(LexicalFeature.BASE_FORM);
+                        String childForm = specifier instanceof WordElement ?
+                                ((WordElement) specifier).getBaseForm()
+                                :
+                                specifier.getFeatureAsString(LexicalFeature.BASE_FORM);
 
                         if (!test.equals(childForm)) {
                             allMatch = false;

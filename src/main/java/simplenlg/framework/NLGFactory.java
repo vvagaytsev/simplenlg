@@ -504,8 +504,8 @@ public class NLGFactory {
      * @return
      */
     private boolean stringIsWord(String string, LexicalCategory category) {
-        return lexicon != null
-                && (lexicon.hasWord(string, category) || PRONOUNS.contains(string) || (string.matches(WORD_REGEX)));
+        return lexicon != null &&
+                (lexicon.hasWord(string, category) || PRONOUNS.contains(string) || string.matches(WORD_REGEX));
     }
 
     /**

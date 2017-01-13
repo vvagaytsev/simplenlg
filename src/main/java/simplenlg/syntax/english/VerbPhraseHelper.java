@@ -648,8 +648,7 @@ abstract class VerbPhraseHelper {
                     : ((PhraseElement) element).getHead();
 
             if (head != null) {
-                copular = (head instanceof WordElement && "be"
-                        .equals(((WordElement) head).getBaseForm()));
+                copular = head instanceof WordElement && "be".equals(((WordElement) head).getBaseForm());
             }
         }
 

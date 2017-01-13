@@ -67,7 +67,7 @@ public class StringElement extends NLGElement {
     @Override
     public boolean equals(Object o) {
         // TODO Auto-generated method stub
-        return super.equals(o) && (o instanceof StringElement) && realisationsMatch((StringElement) o);
+        return super.equals(o) && o instanceof StringElement && realisationsMatch((StringElement) o);
     }
 
     private boolean realisationsMatch(StringElement o) {

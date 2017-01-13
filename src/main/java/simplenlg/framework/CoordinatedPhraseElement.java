@@ -310,7 +310,7 @@ public class CoordinatedPhraseElement extends NLGElement {
         // doing this right is quite complex, take simple approach for now
         int size = getChildren().size();
         if (size == 1)
-            return (NumberAgreement.PLURAL.equals(getLastCoordinate().getFeature(Feature.NUMBER)));
+            return NumberAgreement.PLURAL.equals(getLastCoordinate().getFeature(Feature.NUMBER));
         else
             return PLURAL_COORDINATORS.contains(getConjunction());
     }

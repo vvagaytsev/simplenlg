@@ -176,10 +176,8 @@ public class OrthographyProcessor extends NLGModule {
                     // bug fix due to Owen Bennett
                     int len = postmods.size();
 
-                    for (int i = 0; i < len; i++) {
+                    for (NLGElement postmod : postmods) {
                         // for(NLGElement postmod: element.getChildren()) {
-                        NLGElement postmod = postmods.get(i);
-
                         // if the postmod is appositive, it's sandwiched in
                         // commas
                         if (postmod.getFeatureAsBoolean(Feature.APPOSITIVE)) {
@@ -198,7 +196,6 @@ public class OrthographyProcessor extends NLGModule {
                 } else if ((DiscourseFunction.CUE_PHRASE.equals(function) || DiscourseFunction.FRONT_MODIFIER.equals(function))
                         && this.commaSepCuephrase) {
                     realiseList(buffer, element.getChildren(), this.commaSepCuephrase ? "," : "");
-
                 } else {
                     realiseList(buffer, element.getChildren(), "");
                 }

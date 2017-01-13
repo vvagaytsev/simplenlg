@@ -65,10 +65,10 @@ abstract class ClauseHelper {
 
             if (phrase.hasFeature(Feature.INTERROGATIVE_TYPE)) {
                 Object inter = phrase.getFeature(Feature.INTERROGATIVE_TYPE);
-                interrogObj = (InterrogativeType.WHAT_OBJECT.equals(inter)
+                interrogObj = InterrogativeType.WHAT_OBJECT.equals(inter)
                         || InterrogativeType.WHO_OBJECT.equals(inter)
                         || InterrogativeType.HOW_PREDICATE.equals(inter) || InterrogativeType.HOW.equals(inter)
-                        || InterrogativeType.WHY.equals(inter) || InterrogativeType.WHERE.equals(inter));
+                        || InterrogativeType.WHY.equals(inter) || InterrogativeType.WHERE.equals(inter);
                 splitVerb = realiseInterrogative(phrase, parent, realisedElement, phraseFactory, verbElement);
             } else {
                 PhraseHelper.realiseList(parent,
@@ -797,7 +797,7 @@ abstract class ClauseHelper {
                     if (currentElement instanceof CoordinatedPhraseElement
                             && ((CoordinatedPhraseElement) currentElement).checkIfPlural())
                         pluralSubjects = true;
-                    else if ((currentElement.getFeature(Feature.NUMBER) == NumberAgreement.PLURAL)
+                    else if (currentElement.getFeature(Feature.NUMBER) == NumberAgreement.PLURAL
                             && !(currentElement instanceof SPhraseSpec)) // ER mod-
                         // clauses
                         // are
@@ -818,7 +818,7 @@ abstract class ClauseHelper {
                         if (currentHead == null) {
                             // subject is null and therefore is not gonna be plural
                             pluralSubjects = false;
-                        } else if ((currentHead.getFeature(Feature.NUMBER) == NumberAgreement.PLURAL))
+                        } else if (currentHead.getFeature(Feature.NUMBER) == NumberAgreement.PLURAL)
                             pluralSubjects = true;
                         else if (currentHead instanceof ListElement) {
                             pluralSubjects = true;

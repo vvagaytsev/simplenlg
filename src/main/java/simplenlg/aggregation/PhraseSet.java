@@ -84,7 +84,6 @@ public class PhraseSet {
     public void elideRightmost() {
         for (int i = 1; i < this.phrases.size(); i++) {
             NLGElement phrase = this.phrases.get(i);
-
             if (phrase != null) {
                 phrase.setFeature(Feature.ELIDED, true);
             }
@@ -98,7 +97,6 @@ public class PhraseSet {
     public void elideLeftmost() {
         for (int i = this.phrases.size() - 2; i >= 0; i--) {
             NLGElement phrase = this.phrases.get(i);
-
             if (phrase != null) {
                 phrase.setFeature(Feature.ELIDED, true);
             }
@@ -118,18 +116,15 @@ public class PhraseSet {
      */
     public boolean lemmaIdentical() {
         boolean ident = !this.phrases.isEmpty();
-
         for (int i = 1; i < this.phrases.size() && ident; i++) {
             NLGElement left = this.phrases.get(i - 1);
             NLGElement right = this.phrases.get(i);
-
             if (left != null && right != null) {
                 NLGElement leftHead = left.getFeatureAsElement(InternalFeature.HEAD);
                 NLGElement rightHead = right.getFeatureAsElement(InternalFeature.HEAD);
-                ident = (leftHead == rightHead || leftHead.equals(rightHead));
+                ident = leftHead == rightHead || leftHead.equals(rightHead);
             }
         }
-
         return ident;
     }
 
@@ -142,16 +137,13 @@ public class PhraseSet {
      */
     public boolean formIdentical() {
         boolean ident = !this.phrases.isEmpty();
-
         for (int i = 1; i < this.phrases.size() && ident; i++) {
             NLGElement left = this.phrases.get(i - 1);
             NLGElement right = this.phrases.get(i);
-
             if (left != null && right != null) {
                 ident = left.equals(right);
             }
         }
-
         return ident;
     }
 }

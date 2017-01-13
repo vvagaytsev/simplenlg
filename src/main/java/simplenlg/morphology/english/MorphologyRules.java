@@ -759,8 +759,8 @@ public abstract class MorphologyRules extends NLGModule {
             Object discourseValue = element.getFeature(InternalFeature.DISCOURSE_FUNCTION);
 
             int numberIndex = element.isPlural() ? 1 : 0;
-            int genderIndex = (genderValue instanceof Gender) ? ((Gender) genderValue).ordinal() : 2;
-            int personIndex = (personValue instanceof Person) ? ((Person) personValue).ordinal() : 2;
+            int genderIndex = genderValue instanceof Gender ? ((Gender) genderValue).ordinal() : 2;
+            int personIndex = personValue instanceof Person ? ((Person) personValue).ordinal() : 2;
             if (personIndex == 2) {
                 personIndex += genderIndex;
             }
@@ -811,7 +811,7 @@ public abstract class MorphologyRules extends NLGModule {
      */
     public static void doDeterminerMorphology(NLGElement determiner, String realisation) {
         if (realisation != null) {
-            if (!("a".equals(determiner.getRealisation()))) {
+            if (!"a".equals(determiner.getRealisation())) {
                 if (determiner.isPlural()) {
                     // Use default inflection rules:
                     if ("that".equals(determiner.getRealisation())) {

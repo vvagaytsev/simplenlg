@@ -272,9 +272,10 @@ public class NIHDBLexicon extends Lexicon {
 
                 // if the infl variant is the default, also set this feature on
                 // the word
-                if (defaultInfl == null
-                        || (defaultInfl.equals(inflType) && !(Inflection.REGULAR
-                        .equals(inflType) && !this.keepStandardInflections))) {
+                if (defaultInfl == null ||
+                        (defaultInfl.equals(inflType) &&
+                                !(Inflection.REGULAR.equals(inflType) &&
+                                        !this.keepStandardInflections))) {
                     wordElement.setFeature(simplenlgInflection, inflectedForm);
                 }
 

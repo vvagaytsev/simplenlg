@@ -45,13 +45,11 @@ public abstract class PhraseChecker {
      */
     public static boolean sameSentences(NLGElement... sentences) {
         boolean equal = false;
-
         if (sentences.length >= 2) {
             for (int i = 1; i < sentences.length; i++) {
                 equal = sentences[i - 1].equals(sentences[i]);
             }
         }
-
         return equal;
     }
 
@@ -63,14 +61,12 @@ public abstract class PhraseChecker {
      */
     public static boolean expletiveSubjects(NLGElement... sentences) {
         boolean expl = true;
-
         for (int i = 1; i < sentences.length && expl; i++) {
-            expl = (sentences[i] instanceof SPhraseSpec ? sentences[i]
-                    .getFeatureAsBoolean(LexicalFeature.EXPLETIVE_SUBJECT)
-                    : false);
-
+            expl = sentences[i] instanceof SPhraseSpec ?
+                    sentences[i].getFeatureAsBoolean(LexicalFeature.EXPLETIVE_SUBJECT)
+                    :
+                    false;
         }
-
         return expl;
     }
 
@@ -85,39 +81,26 @@ public abstract class PhraseChecker {
      */
     public static boolean sameFrontMods(NLGElement... sentences) {
         boolean equal = true;
-
         if (sentences.length >= 2) {
             for (int i = 1; i < sentences.length && equal; i++) {
-
                 if (!sentences[i - 1].hasFeature(Feature.CUE_PHRASE)
                         && !sentences[i].hasFeature(Feature.CUE_PHRASE)) {
                     equal = sentences[i - 1]
-                            .getFeatureAsElementList(
-                                    InternalFeature.FRONT_MODIFIERS)
-                            .equals(
-                                    sentences[i]
-                                            .getFeatureAsElementList(InternalFeature.FRONT_MODIFIERS));
-
+                            .getFeatureAsElementList(InternalFeature.FRONT_MODIFIERS)
+                            .equals(sentences[i].getFeatureAsElementList(InternalFeature.FRONT_MODIFIERS));
                 } else if (sentences[i - 1].hasFeature(Feature.CUE_PHRASE)
                         && sentences[i].hasFeature(Feature.CUE_PHRASE)) {
                     equal = sentences[i - 1]
-                            .getFeatureAsElementList(
-                                    InternalFeature.FRONT_MODIFIERS)
-                            .equals(
-                                    sentences[i]
-                                            .getFeatureAsElementList(InternalFeature.FRONT_MODIFIERS))
-                            && sentences[i]
-                            .getFeatureAsElementList(Feature.CUE_PHRASE)
-                            .equals(
-                                    sentences[i - 1]
-                                            .getFeatureAsElementList(Feature.CUE_PHRASE));
+                            .getFeatureAsElementList(InternalFeature.FRONT_MODIFIERS)
+                            .equals(sentences[i].getFeatureAsElementList(InternalFeature.FRONT_MODIFIERS)) &&
+                            sentences[i].getFeatureAsElementList(Feature.CUE_PHRASE)
+                                    .equals(sentences[i - 1].getFeatureAsElementList(Feature.CUE_PHRASE));
 
                 } else {
                     equal = false;
                 }
             }
         }
-
         return equal;
     }
 
@@ -129,18 +112,13 @@ public abstract class PhraseChecker {
      */
     public static boolean samePostMods(NLGElement... sentences) {
         boolean equal = true;
-
         if (sentences.length >= 2) {
-
             for (int i = 1; i < sentences.length && equal; i++) {
                 equal = sentences[i - 1]
                         .getFeatureAsElementList(InternalFeature.POSTMODIFIERS)
-                        .equals(
-                                sentences[i]
-                                        .getFeatureAsElementList(InternalFeature.POSTMODIFIERS));
+                        .equals(sentences[i].getFeatureAsElementList(InternalFeature.POSTMODIFIERS));
             }
         }
-
         return equal;
     }
 
@@ -154,14 +132,11 @@ public abstract class PhraseChecker {
      */
     public static boolean sameSubjects(NLGElement... sentences) {
         boolean equal = sentences.length >= 2;
-
         for (int i = 1; i < sentences.length && equal; i++) {
-            equal = sentences[i - 1].getFeatureAsElementList(
-                    InternalFeature.SUBJECTS).equals(
-                    sentences[i]
-                            .getFeatureAsElementList(InternalFeature.SUBJECTS));
+            equal = sentences[i - 1]
+                    .getFeatureAsElementList(InternalFeature.SUBJECTS)
+                    .equals(sentences[i].getFeatureAsElementList(InternalFeature.SUBJECTS));
         }
-
         return equal;
     }
 
@@ -198,11 +173,9 @@ public abstract class PhraseChecker {
      */
     public static boolean allPassive(NLGElement... sentences) {
         boolean passive = true;
-
         for (int i = 0; i < sentences.length && passive; i++) {
             passive = sentences[i].getFeatureAsBoolean(Feature.PASSIVE);
         }
-
         return passive;
     }
 
@@ -215,11 +188,9 @@ public abstract class PhraseChecker {
      */
     public static boolean allActive(NLGElement... sentences) {
         boolean active = true;
-
         for (int i = 0; i < sentences.length && active; i++) {
             active = !sentences[i].getFeatureAsBoolean(Feature.PASSIVE);
         }
-
         return active;
     }
 
@@ -232,9 +203,9 @@ public abstract class PhraseChecker {
      * @return <code>true</code> if the sentences have the same surface subjects
      */
     public static boolean sameSurfaceSubjects(NLGElement... sentences) {
-        return PhraseChecker.allActive(sentences)
-                && PhraseChecker.sameSubjects(sentences)
-                || PhraseChecker.allPassive(sentences);
+        return PhraseChecker.allActive(sentences) &&
+                PhraseChecker.sameSubjects(sentences) ||
+                PhraseChecker.allPassive(sentences);
         // && PhraseChecker.samePassiveRaisingSubjects(sentences);
     }
 
@@ -248,23 +219,18 @@ public abstract class PhraseChecker {
      */
     public static boolean sameVPHead(NLGElement... sentences) {
         boolean equal = sentences.length >= 2;
-
         for (int i = 1; i < sentences.length && equal; i++) {
-            NLGElement vp1 = sentences[i - 1]
-                    .getFeatureAsElement(InternalFeature.VERB_PHRASE);
-            NLGElement vp2 = sentences[i]
-                    .getFeatureAsElement(InternalFeature.VERB_PHRASE);
+            NLGElement vp1 = sentences[i - 1].getFeatureAsElement(InternalFeature.VERB_PHRASE);
+            NLGElement vp2 = sentences[i].getFeatureAsElement(InternalFeature.VERB_PHRASE);
 
             if (vp1 != null && vp2 != null) {
                 NLGElement h1 = vp1.getFeatureAsElement(InternalFeature.HEAD);
                 NLGElement h2 = vp2.getFeatureAsElement(InternalFeature.HEAD);
                 equal = h1 != null && h2 != null ? h1.equals(h2) : false;
-
             } else {
                 equal = false;
             }
         }
-
         return equal;
     }
 
@@ -277,15 +243,12 @@ public abstract class PhraseChecker {
     public static boolean haveSameVoice(NLGElement... sentences) {
         boolean samePassive = true;
         boolean prevIsPassive = false;
-
         if (sentences.length > 1) {
             prevIsPassive = sentences[0].getFeatureAsBoolean(Feature.PASSIVE);
-
             for (int i = 1; i < sentences.length && samePassive; i++) {
                 samePassive = sentences[i].getFeatureAsBoolean(Feature.PASSIVE) == prevIsPassive;
             }
         }
-
         return samePassive;
     }
 
@@ -318,14 +281,11 @@ public abstract class PhraseChecker {
      */
     public static boolean sameVP(NLGElement... sentences) {
         boolean equal = sentences.length >= 2;
-
         for (int i = 1; i < sentences.length && equal; i++) {
-            equal = sentences[i - 1].getFeatureAsElement(
-                    InternalFeature.VERB_PHRASE).equals(
-                    sentences[i]
-                            .getFeatureAsElement(InternalFeature.VERB_PHRASE));
+            equal = sentences[i - 1]
+                    .getFeatureAsElement(InternalFeature.VERB_PHRASE)
+                    .equals(sentences[i].getFeatureAsElement(InternalFeature.VERB_PHRASE));
         }
-
         return equal;
     }
 
@@ -339,20 +299,12 @@ public abstract class PhraseChecker {
      */
     public static boolean sameVPArgs(NLGElement... sentences) {
         boolean equal = sentences.length >= 2;
-
         for (int i = 1; i < sentences.length && equal; i++) {
-            NLGElement vp1 = sentences[i - 1]
-                    .getFeatureAsElement(InternalFeature.VERB_PHRASE);
-            NLGElement vp2 = sentences[i]
-                    .getFeatureAsElement(InternalFeature.VERB_PHRASE);
-
-            equal = vp1
-                    .getFeatureAsElementList(InternalFeature.COMPLEMENTS)
-                    .equals(
-                            vp2
-                                    .getFeatureAsElementList(InternalFeature.COMPLEMENTS));
+            NLGElement vp1 = sentences[i - 1].getFeatureAsElement(InternalFeature.VERB_PHRASE);
+            NLGElement vp2 = sentences[i].getFeatureAsElement(InternalFeature.VERB_PHRASE);
+            equal = vp1.getFeatureAsElementList(InternalFeature.COMPLEMENTS)
+                    .equals(vp2.getFeatureAsElementList(InternalFeature.COMPLEMENTS));
         }
-
         return equal;
     }
 
@@ -366,26 +318,16 @@ public abstract class PhraseChecker {
      */
     public static boolean sameVPModifiers(NLGElement... sentences) {
         boolean equal = sentences.length >= 2;
-
         for (int i = 1; i < sentences.length && equal; i++) {
-            NLGElement vp1 = sentences[i - 1]
-                    .getFeatureAsElement(InternalFeature.VERB_PHRASE);
-            NLGElement vp2 = sentences[i]
-                    .getFeatureAsElement(InternalFeature.VERB_PHRASE);
+            NLGElement vp1 = sentences[i - 1].getFeatureAsElement(InternalFeature.VERB_PHRASE);
+            NLGElement vp2 = sentences[i].getFeatureAsElement(InternalFeature.VERB_PHRASE);
 
-            equal = vp1
-                    .getFeatureAsElementList(InternalFeature.POSTMODIFIERS)
-                    .equals(
-                            vp2
-                                    .getFeatureAsElementList(InternalFeature.POSTMODIFIERS))
-                    && vp1
-                    .getFeatureAsElementList(
-                            InternalFeature.PREMODIFIERS)
-                    .equals(
-                            vp2
-                                    .getFeatureAsElementList(InternalFeature.PREMODIFIERS));
+            equal = vp1.getFeatureAsElementList(InternalFeature.POSTMODIFIERS)
+                    .equals(vp2.getFeatureAsElementList(InternalFeature.POSTMODIFIERS))
+                    &&
+                    vp1.getFeatureAsElementList(InternalFeature.PREMODIFIERS)
+                            .equals(vp2.getFeatureAsElementList(InternalFeature.PREMODIFIERS));
         }
-
         return equal;
     }
 
@@ -408,16 +350,11 @@ public abstract class PhraseChecker {
             if (s.hasFeature(Feature.CUE_PHRASE)) {
                 cue.addPhrases(s.getFeatureAsElementList(Feature.CUE_PHRASE));
             }
-
             if (s.hasFeature(InternalFeature.FRONT_MODIFIERS)) {
-                front
-                        .addPhrases(s
-                                .getFeatureAsElementList(InternalFeature.FRONT_MODIFIERS));
+                front.addPhrases(s.getFeatureAsElementList(InternalFeature.FRONT_MODIFIERS));
             }
-
             if (s.hasFeature(InternalFeature.SUBJECTS)) {
-                subj.addPhrases(s
-                        .getFeatureAsElementList(InternalFeature.SUBJECTS));
+                subj.addPhrases(s.getFeatureAsElementList(InternalFeature.SUBJECTS));
             }
         }
 
@@ -444,25 +381,16 @@ public abstract class PhraseChecker {
 
         for (NLGElement s : sentences) {
             NLGElement vp = s.getFeatureAsElement(InternalFeature.VERB_PHRASE);
-
             if (vp != null) {
                 if (vp.hasFeature(InternalFeature.COMPLEMENTS)) {
-                    comps
-                            .addPhrases(vp
-                                    .getFeatureAsElementList(InternalFeature.COMPLEMENTS));
+                    comps.addPhrases(vp.getFeatureAsElementList(InternalFeature.COMPLEMENTS));
                 }
-
                 if (vp.hasFeature(InternalFeature.POSTMODIFIERS)) {
-                    pmods
-                            .addPhrases(vp
-                                    .getFeatureAsElementList(InternalFeature.POSTMODIFIERS));
+                    pmods.addPhrases(vp.getFeatureAsElementList(InternalFeature.POSTMODIFIERS));
                 }
             }
-
             if (s.hasFeature(InternalFeature.POSTMODIFIERS)) {
-                pmods
-                        .addPhrases(s
-                                .getFeatureAsElementList(InternalFeature.POSTMODIFIERS));
+                pmods.addPhrases(s.getFeatureAsElementList(InternalFeature.POSTMODIFIERS));
             }
         }
 
@@ -479,11 +407,9 @@ public abstract class PhraseChecker {
      */
     public static boolean nonePassive(NLGElement... sentences) {
         boolean nopass = true;
-
         for (int i = 0; i < sentences.length && nopass; i++) {
             nopass = !sentences[i].getFeatureAsBoolean(Feature.PASSIVE);
         }
-
         return nopass;
     }
 }
