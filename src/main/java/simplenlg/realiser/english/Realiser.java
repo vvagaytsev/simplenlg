@@ -140,7 +140,7 @@ public class Realiser extends NLGModule {
         StringBuilder debug = new StringBuilder();
 
         if (this.debug) {
-            System.out.println("INITIAL TREE\n"); //$NON-NLS-1$
+            System.out.println("INITIAL TREE\n");
             System.out.println(element.printTree(null));
             debug.append("INITIAL TREE<br/>");
             debug.append(element.printTree("&nbsp;&nbsp;").replaceAll("\n", "<br/>"));
@@ -148,7 +148,7 @@ public class Realiser extends NLGModule {
 
         NLGElement postSyntax = this.syntax.realise(element);
         if (this.debug) {
-            System.out.println("<br/>POST-SYNTAX TREE<br/>"); //$NON-NLS-1$
+            System.out.println("<br/>POST-SYNTAX TREE<br/>");
             System.out.println(postSyntax.printTree(null));
             debug.append("<br/>POST-SYNTAX TREE<br/>");
             debug.append(postSyntax.printTree("&nbsp;&nbsp;").replaceAll("\n", "<br/>"));
@@ -156,7 +156,7 @@ public class Realiser extends NLGModule {
 
         NLGElement postMorphology = this.morphology.realise(postSyntax);
         if (this.debug) {
-            System.out.println("\nPOST-MORPHOLOGY TREE\n"); //$NON-NLS-1$
+            System.out.println("\nPOST-MORPHOLOGY TREE\n");
             System.out.println(postMorphology.printTree(null));
             debug.append("<br/>POST-MORPHOLOGY TREE<br/>");
             debug.append(postMorphology.printTree("&nbsp;&nbsp;").replaceAll("\n", "<br/>"));
@@ -164,7 +164,7 @@ public class Realiser extends NLGModule {
 
         NLGElement postOrthography = this.orthography.realise(postMorphology);
         if (this.debug) {
-            System.out.println("\nPOST-ORTHOGRAPHY TREE\n"); //$NON-NLS-1$
+            System.out.println("\nPOST-ORTHOGRAPHY TREE\n");
             System.out.println(postOrthography.printTree(null));
             debug.append("<br/>POST-ORTHOGRAPHY TREE<br/>");
             debug.append(postOrthography.printTree("&nbsp;&nbsp;").replaceAll("\n", "<br/>"));
@@ -174,7 +174,7 @@ public class Realiser extends NLGModule {
         if (this.formatter != null) {
             postFormatter = this.formatter.realise(postOrthography);
             if (this.debug) {
-                System.out.println("\nPOST-FORMATTER TREE\n"); //$NON-NLS-1$
+                System.out.println("\nPOST-FORMATTER TREE\n");
                 System.out.println(postFormatter.printTree(null));
                 debug.append("<br/>POST-FORMATTER TREE<br/>");
                 debug.append(postFormatter.printTree("&nbsp;&nbsp;").replaceAll("\n", "<br/>"));

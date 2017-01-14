@@ -335,9 +335,9 @@ public class NLGFactory {
         } else if (SECOND_PRONOUNS.contains(word)) {
             wordElement.setFeature(Feature.PERSON, Person.SECOND);
 
-            if ("yourself".equalsIgnoreCase(word)) { //$NON-NLS-1$
+            if ("yourself".equalsIgnoreCase(word)) {
                 wordElement.setPlural(false);
-            } else if ("yourselves".equalsIgnoreCase(word)) { //$NON-NLS-1$
+            } else if ("yourselves".equalsIgnoreCase(word)) {
                 wordElement.setPlural(true);
             } else {
                 wordElement.setFeature(Feature.NUMBER, NumberAgreement.BOTH);

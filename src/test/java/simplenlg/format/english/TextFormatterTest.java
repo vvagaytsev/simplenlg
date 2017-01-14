@@ -16,10 +16,9 @@
  *
  * Contributor(s): Ehud Reiter, Albert Gatt, Dave Wewstwater, Roman Kutlak, Margaret Mitchell, Saad Mahamood.
  */
-
 package simplenlg.format.english;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 import org.junit.Test;
 import simplenlg.framework.DocumentElement;
 import simplenlg.framework.NLGFactory;
@@ -28,6 +27,7 @@ import simplenlg.realiser.english.Realiser;
 
 /**
  * TextFormatterTest -- Test's the TextFormatter.
+ *
  * @author Daniel Paiva -- Arria NLG plc.
  */
 public class TextFormatterTest {
@@ -40,7 +40,6 @@ public class TextFormatterTest {
         realiser.setFormatter(new TextFormatter());
         DocumentElement document = nlgFactory.createDocument("Document");
         DocumentElement paragraph = nlgFactory.createParagraph();
-
 
         DocumentElement subListItem1 = nlgFactory.createListItem();
         DocumentElement subListSentence1 = nlgFactory.createSentence("this", "be", "sub-list sentence 1");
@@ -69,12 +68,12 @@ public class TextFormatterTest {
         paragraph.addComponent(list);
         document.addComponent(paragraph);
         String expectedOutput = "Document\n" +
-                                "\n" +
-                                "1.1 - This is sub-list sentence 1.\n" +
-                                "1.2 - This is sub-list sentence 2.\n"+
-                                "2 - This is the first sentence.\n" +
-                                "3 - This is the second sentence.\n" +
-                                "\n\n"; // for the end of a paragraph
+                '\n' +
+                "1.1 - This is sub-list sentence 1.\n" +
+                "1.2 - This is sub-list sentence 2.\n" +
+                "2 - This is the first sentence.\n" +
+                "3 - This is the second sentence.\n" +
+                "\n\n"; // for the end of a paragraph
 
         String realisedOutput = realiser.realise(document).getRealisation();
         Assert.assertEquals(expectedOutput, realisedOutput);
@@ -141,17 +140,16 @@ public class TextFormatterTest {
         document.addComponent(paragraph);
 
         String expectedOutput = "Document\n" +
-                                "\n" +
-                                "1.1 - Sub-list item 1.\n" +
-                                "1.2.1 - Sub-sub-list item 1.\n" +
-                                "1.2.2 - Sub-sub-list item 2.\n" +
-                                "1.3 - Sub-list item 3.\n"+
-                                "2 - Item 2.\n" +
-                                "3 - Item 3.\n" +
-                                "\n\n";
+                '\n' +
+                "1.1 - Sub-list item 1.\n" +
+                "1.2.1 - Sub-sub-list item 1.\n" +
+                "1.2.2 - Sub-sub-list item 2.\n" +
+                "1.3 - Sub-list item 3.\n" +
+                "2 - Item 2.\n" +
+                "3 - Item 3.\n" +
+                "\n\n";
 
         String realisedOutput = realiser.realise(document).getRealisation();
         Assert.assertEquals(expectedOutput, realisedOutput);
     }
-
 }

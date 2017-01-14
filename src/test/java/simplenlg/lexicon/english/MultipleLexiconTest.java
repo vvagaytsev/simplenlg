@@ -18,86 +18,83 @@
  */
 package simplenlg.lexicon.english;
 
-import java.io.File;
-import java.io.FileReader;
-import java.util.Properties;
-
-import junit.framework.Assert;
-
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 import simplenlg.features.LexicalFeature;
 import simplenlg.framework.WordElement;
 import simplenlg.lexicon.MultipleLexicon;
 import simplenlg.lexicon.NIHDBLexicon;
 import simplenlg.lexicon.XMLLexicon;
 
+import java.io.File;
+import java.io.FileReader;
+import java.util.Properties;
+
 /**
  * @author Dave Westwater, Data2Text Ltd
- *
  */
 public class MultipleLexiconTest {
 
-	// NIH, XML lexicon location
-	static String DB_FILENAME = "src/test/resources/NIHLexicon/lexAccess2011.data";
-	static String XML_FILENAME = "src/main/resources/default-lexicon.xml";
-	
-	// multi lexicon
-	MultipleLexicon lexicon;
+    // NIH, XML lexicon location
+    static String DB_FILENAME = "src/test/resources/NIHLexicon/lexAccess2011.data";
+    static String XML_FILENAME = "src/main/resources/default-lexicon.xml";
+
+    // multi lexicon
+    MultipleLexicon lexicon;
 
 
-	@Before
-	public void setUp() throws Exception {
+    @Before
+    public void setUp() throws Exception {
         try {
             Properties prop = new Properties();
             FileReader reader = new FileReader(new File("./src/main/resources/lexicon.properties"));
             prop.load(reader);
-
             String xmlFile = prop.getProperty("XML_FILENAME");
             String dbFile = prop.getProperty("DB_FILENAME");
-            
-            this.lexicon = new MultipleLexicon(new XMLLexicon(xmlFile),
-                                               new NIHDBLexicon(dbFile));
+            this.lexicon = new MultipleLexicon(
+                    new XMLLexicon(xmlFile),
+                    new NIHDBLexicon(dbFile)
+            );
         } catch (Exception e) {
             e.printStackTrace();
-            this.lexicon = new MultipleLexicon(new XMLLexicon(XML_FILENAME),
-                                               new NIHDBLexicon(DB_FILENAME));
+            this.lexicon = new MultipleLexicon(
+                    new XMLLexicon(XML_FILENAME),
+                    new NIHDBLexicon(DB_FILENAME)
+            );
         }
-	}
+    }
 
-	@After
-	public void tearDown() throws Exception {
-		lexicon.close();
-	}
+    @After
+    public void tearDown() throws Exception {
+        lexicon.close();
+    }
 
-	@Test
-	public void basicLexiconTests() {
-		SharedLexiconTests tests = new SharedLexiconTests();
-		tests.doBasicTests(lexicon);
-	}
-	
-	@Test
-	public void multipleSpecificsTests() {
-		// try to get word which is only in NIH lexicon
-		WordElement UK = lexicon.getWord("UK");
-		
-		Assert.assertEquals(true, UK.getFeatureAsString(LexicalFeature.ACRONYM_OF).contains("United Kingdom"));
+    @Test
+    public void basicLexiconTests() {
+        SharedLexiconTests tests = new SharedLexiconTests();
+        tests.doBasicTests(lexicon);
+    }
 
-		// test alwaysSearchAll flag
-		boolean alwaysSearchAll = lexicon.isAlwaysSearchAll();
-		
-		// tree as noun exists in both, but as verb only in NIH
-		lexicon.setAlwaysSearchAll(true);
-		Assert.assertEquals(3, lexicon.getWords("tree").size()); // 3 = once in XML plus twice in NIH
+    @Test
+    public void multipleSpecificsTests() {
+        // try to get word which is only in NIH lexicon
+        WordElement UK = lexicon.getWord("UK");
 
-		lexicon.setAlwaysSearchAll(false);
-		Assert.assertEquals(1, lexicon.getWords("tree").size());
+        Assert.assertTrue(UK.getFeatureAsString(LexicalFeature.ACRONYM_OF).contains("United Kingdom"));
 
-		// restore flag to original state
-		lexicon.setAlwaysSearchAll(alwaysSearchAll);	
-	}
+        // test alwaysSearchAll flag
+        boolean alwaysSearchAll = lexicon.isAlwaysSearchAll();
 
+        // tree as noun exists in both, but as verb only in NIH
+        lexicon.setAlwaysSearchAll(true);
+        Assert.assertEquals(3, lexicon.getWords("tree").size()); // 3 = once in XML plus twice in NIH
 
+        lexicon.setAlwaysSearchAll(false);
+        Assert.assertEquals(1, lexicon.getWords("tree").size());
+
+        // restore flag to original state
+        lexicon.setAlwaysSearchAll(alwaysSearchAll);
+    }
 }

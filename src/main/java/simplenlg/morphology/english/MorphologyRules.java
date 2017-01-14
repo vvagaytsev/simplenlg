@@ -160,14 +160,14 @@ public abstract class MorphologyRules extends NLGModule {
     private static String buildRegularPluralNoun(String baseForm) {
         String plural = null;
         if (baseForm != null) {
-            if (baseForm.matches(".*[b-z&&[^eiou]]y\\b")) { //$NON-NLS-1$
-                plural = baseForm.replaceAll("y\\b", "ies"); //$NON-NLS-1$ //$NON-NLS-2$
+            if (baseForm.matches(".*[b-z&&[^eiou]]y\\b")) {
+                plural = baseForm.replaceAll("y\\b", "ies");
                 //AG: changed regex from ".*[szx(ch)(sh)]\\b" (tip of the hat to Ian Tabolt)
-            } else if (baseForm.matches(".*([szx]|[cs]h)\\b")) { //$NON-NLS-1$
-                plural = baseForm + "es"; //$NON-NLS-1$
+            } else if (baseForm.matches(".*([szx]|[cs]h)\\b")) {
+                plural = baseForm + "es";
 
             } else {
-                plural = baseForm + 's'; //$NON-NLS-1$
+                plural = baseForm + 's';
             }
         }
         return plural;
@@ -203,24 +203,24 @@ public abstract class MorphologyRules extends NLGModule {
     private static String buildGrecoLatinPluralNoun(String baseForm) {
         String plural = null;
         if (baseForm != null) {
-            if (baseForm.endsWith("us")) { //$NON-NLS-1$
-                plural = baseForm.replaceAll("us\\b", "i"); //$NON-NLS-1$ //$NON-NLS-2$
-            } else if (baseForm.endsWith("ma")) { //$NON-NLS-1$
-                plural = baseForm + "ta"; //$NON-NLS-1$
-            } else if (baseForm.endsWith("a")) { //$NON-NLS-1$
-                plural = baseForm + 'e'; //$NON-NLS-1$
-            } else if (baseForm.matches(".*[(um)(on)]\\b")) { //$NON-NLS-1$
-                plural = baseForm.replaceAll("[(um)(on)]\\b", "a"); //$NON-NLS-1$ //$NON-NLS-2$
-            } else if (baseForm.endsWith("sis")) { //$NON-NLS-1$
-                plural = baseForm.replaceAll("sis\\b", "ses"); //$NON-NLS-1$ //$NON-NLS-2$
-            } else if (baseForm.endsWith("is")) { //$NON-NLS-1$
-                plural = baseForm.replaceAll("is\\b", "ides"); //$NON-NLS-1$ //$NON-NLS-2$
-            } else if (baseForm.endsWith("men")) { //$NON-NLS-1$
-                plural = baseForm.replaceAll("men\\b", "mina"); //$NON-NLS-1$ //$NON-NLS-2$
-            } else if (baseForm.endsWith("ex")) { //$NON-NLS-1$
-                plural = baseForm.replaceAll("ex\\b", "ices"); //$NON-NLS-1$ //$NON-NLS-2$
-            } else if (baseForm.endsWith("x")) { //$NON-NLS-1$
-                plural = baseForm.replaceAll("x\\b", "ces"); //$NON-NLS-1$ //$NON-NLS-2$
+            if (baseForm.endsWith("us")) {
+                plural = baseForm.replaceAll("us\\b", "i");
+            } else if (baseForm.endsWith("ma")) {
+                plural = baseForm + "ta";
+            } else if (baseForm.endsWith("a")) {
+                plural = baseForm + 'e';
+            } else if (baseForm.matches(".*[(um)(on)]\\b")) {
+                plural = baseForm.replaceAll("[(um)(on)]\\b", "a");
+            } else if (baseForm.endsWith("sis")) {
+                plural = baseForm.replaceAll("sis\\b", "ses");
+            } else if (baseForm.endsWith("is")) {
+                plural = baseForm.replaceAll("is\\b", "ides");
+            } else if (baseForm.endsWith("men")) {
+                plural = baseForm.replaceAll("men\\b", "mina");
+            } else if (baseForm.endsWith("ex")) {
+                plural = baseForm.replaceAll("ex\\b", "ices");
+            } else if (baseForm.endsWith("x")) {
+                plural = baseForm.replaceAll("x\\b", "ces");
             } else {
                 plural = baseForm;
             }
@@ -287,8 +287,8 @@ public abstract class MorphologyRules extends NLGModule {
                 }
 
                 if (realised == null) {
-                    if ("be".equalsIgnoreCase(baseForm)) { //$NON-NLS-1$
-                        realised = "been"; //$NON-NLS-1$
+                    if ("be".equalsIgnoreCase(baseForm)) {
+                        realised = "been";
                     } else if (Inflection.REGULAR_DOUBLE.equals(patternValue)) {
                         realised = buildDoublePastVerb(baseForm);
                     } else {
@@ -318,7 +318,7 @@ public abstract class MorphologyRules extends NLGModule {
 
             realised = element.getFeatureAsString(LexicalFeature.PRESENT3S);
 
-            if (realised == null && baseWord != null && !"be".equalsIgnoreCase(baseForm)) { //$NON-NLS-1$
+            if (realised == null && baseWord != null && !"be".equalsIgnoreCase(baseForm)) {
                 realised = baseWord.getFeatureAsString(LexicalFeature.PRESENT3S);
             }
             if (realised == null) {
@@ -326,12 +326,12 @@ public abstract class MorphologyRules extends NLGModule {
             }
 
         } else {
-            if ("be".equalsIgnoreCase(baseForm)) { //$NON-NLS-1$
+            if ("be".equalsIgnoreCase(baseForm)) {
                 if (Person.FIRST.equals(personValue) && (NumberAgreement.SINGULAR.equals(numberValue)
                         || numberValue == null)) {
-                    realised = "am"; //$NON-NLS-1$
+                    realised = "am";
                 } else {
-                    realised = "are"; //$NON-NLS-1$
+                    realised = "are";
                 }
             } else {
                 realised = baseForm;
@@ -404,7 +404,7 @@ public abstract class MorphologyRules extends NLGModule {
             if (realised.charAt(realised.length() - 1) == 's') {
                 realised.append('\'');
             } else {
-                realised.append("'s"); //$NON-NLS-1$
+                realised.append("'s");
             }
         }
     }
@@ -428,14 +428,14 @@ public abstract class MorphologyRules extends NLGModule {
     private static String buildPresent3SVerb(String baseForm) {
         String morphology = null;
         if (baseForm != null) {
-            if ("be".equalsIgnoreCase(baseForm)) { //$NON-NLS-1$
-                morphology = "is"; //$NON-NLS-1$
-            } else if (baseForm.matches(".*[szx(ch)(sh)]\\b")) { //$NON-NLS-1$
-                morphology = baseForm + "es"; //$NON-NLS-1$
-            } else if (baseForm.matches(".*[b-z&&[^eiou]]y\\b")) { //$NON-NLS-1$
-                morphology = baseForm.replaceAll("y\\b", "ies"); //$NON-NLS-1$ //$NON-NLS-2$
+            if ("be".equalsIgnoreCase(baseForm)) {
+                morphology = "is";
+            } else if (baseForm.matches(".*[szx(ch)(sh)]\\b")) {
+                morphology = baseForm + "es";
+            } else if (baseForm.matches(".*[b-z&&[^eiou]]y\\b")) {
+                morphology = baseForm.replaceAll("y\\b", "ies");
             } else {
-                morphology = baseForm + 's'; //$NON-NLS-1$
+                morphology = baseForm + 's';
             }
         }
         return morphology;
@@ -465,23 +465,23 @@ public abstract class MorphologyRules extends NLGModule {
     private static String buildRegularPastVerb(String baseForm, Object number, Object person) {
         String morphology = null;
         if (baseForm != null) {
-            if ("be".equalsIgnoreCase(baseForm)) { //$NON-NLS-1$
+            if ("be".equalsIgnoreCase(baseForm)) {
                 if (NumberAgreement.PLURAL.equals(number)) {
-                    morphology = "were"; //$NON-NLS-1$
+                    morphology = "were";
 
                     // AG - bug fix to handle second person past (courtesy of
                     // Minh Le)
                 } else if (Person.SECOND.equals(person)) {
-                    morphology = "were"; //$NON-NLS-1$
+                    morphology = "were";
                 } else {
                     morphology = "was";
                 }
-            } else if (baseForm.endsWith("e")) { //$NON-NLS-1$
-                morphology = baseForm + 'd'; //$NON-NLS-1$
-            } else if (baseForm.matches(".*[b-z&&[^eiou]]y\\b")) { //$NON-NLS-1$
-                morphology = baseForm.replaceAll("y\\b", "ied"); //$NON-NLS-1$ //$NON-NLS-2$
+            } else if (baseForm.endsWith("e")) {
+                morphology = baseForm + 'd';
+            } else if (baseForm.matches(".*[b-z&&[^eiou]]y\\b")) {
+                morphology = baseForm.replaceAll("y\\b", "ied");
             } else {
-                morphology = baseForm + "ed"; //$NON-NLS-1$
+                morphology = baseForm + "ed";
             }
         }
         return morphology;
@@ -498,7 +498,7 @@ public abstract class MorphologyRules extends NLGModule {
     private static String buildDoublePastVerb(String baseForm) {
         String morphology = null;
         if (baseForm != null) {
-            morphology = baseForm + baseForm.charAt(baseForm.length() - 1) + "ed"; //$NON-NLS-1$
+            morphology = baseForm + baseForm.charAt(baseForm.length() - 1) + "ed";
         }
         return morphology;
     }
@@ -525,14 +525,14 @@ public abstract class MorphologyRules extends NLGModule {
     private static String buildRegularPresPartVerb(String baseForm) {
         String morphology = null;
         if (baseForm != null) {
-            if ("be".equalsIgnoreCase(baseForm)) { //$NON-NLS-1$
-                morphology = "being"; //$NON-NLS-1$
-            } else if (baseForm.endsWith("ie")) { //$NON-NLS-1$
-                morphology = baseForm.replaceAll("ie\\b", "ying"); //$NON-NLS-1$ //$NON-NLS-2$
-            } else if (baseForm.matches(".*[^iyeo]e\\b")) { //$NON-NLS-1$
-                morphology = baseForm.replaceAll("e\\b", "ing"); //$NON-NLS-1$ //$NON-NLS-2$
+            if ("be".equalsIgnoreCase(baseForm)) {
+                morphology = "being";
+            } else if (baseForm.endsWith("ie")) {
+                morphology = baseForm.replaceAll("ie\\b", "ying");
+            } else if (baseForm.matches(".*[^iyeo]e\\b")) {
+                morphology = baseForm.replaceAll("e\\b", "ing");
             } else {
-                morphology = baseForm + "ing"; //$NON-NLS-1$
+                morphology = baseForm + "ing";
             }
         }
         return morphology;
@@ -550,7 +550,7 @@ public abstract class MorphologyRules extends NLGModule {
     private static String buildDoublePresPartVerb(String baseForm) {
         String morphology = null;
         if (baseForm != null) {
-            morphology = baseForm + baseForm.charAt(baseForm.length() - 1) + "ing"; //$NON-NLS-1$
+            morphology = baseForm + baseForm.charAt(baseForm.length() - 1) + "ing";
         }
         return morphology;
     }
@@ -643,12 +643,12 @@ public abstract class MorphologyRules extends NLGModule {
     private static String buildRegularComparative(String baseForm) {
         String morphology = null;
         if (baseForm != null) {
-            if (baseForm.matches(".*[b-z&&[^eiou]]y\\b")) { //$NON-NLS-1$
-                morphology = baseForm.replaceAll("y\\b", "ier"); //$NON-NLS-1$ //$NON-NLS-2$
-            } else if (baseForm.endsWith("e")) { //$NON-NLS-1$
-                morphology = baseForm + 'r'; //$NON-NLS-1$
+            if (baseForm.matches(".*[b-z&&[^eiou]]y\\b")) {
+                morphology = baseForm.replaceAll("y\\b", "ier");
+            } else if (baseForm.endsWith("e")) {
+                morphology = baseForm + 'r';
             } else {
-                morphology = baseForm + "er"; //$NON-NLS-1$
+                morphology = baseForm + "er";
             }
         }
         return morphology;
@@ -665,7 +665,7 @@ public abstract class MorphologyRules extends NLGModule {
     private static String buildDoubleSuperAdjective(String baseForm) {
         String morphology = null;
         if (baseForm != null) {
-            morphology = baseForm + baseForm.charAt(baseForm.length() - 1) + "est"; //$NON-NLS-1$
+            morphology = baseForm + baseForm.charAt(baseForm.length() - 1) + "est";
         }
         return morphology;
     }
@@ -689,12 +689,12 @@ public abstract class MorphologyRules extends NLGModule {
     private static String buildRegularSuperlative(String baseForm) {
         String morphology = null;
         if (baseForm != null) {
-            if (baseForm.matches(".*[b-z&&[^eiou]]y\\b")) { //$NON-NLS-1$
-                morphology = baseForm.replaceAll("y\\b", "iest"); //$NON-NLS-1$ //$NON-NLS-2$
-            } else if (baseForm.endsWith("e")) { //$NON-NLS-1$
-                morphology = baseForm + "st"; //$NON-NLS-1$
+            if (baseForm.matches(".*[b-z&&[^eiou]]y\\b")) {
+                morphology = baseForm.replaceAll("y\\b", "iest");
+            } else if (baseForm.endsWith("e")) {
+                morphology = baseForm + "st";
             } else {
-                morphology = baseForm + "est"; //$NON-NLS-1$
+                morphology = baseForm + "est";
             }
         }
         return morphology;
@@ -830,7 +830,7 @@ public abstract class MorphologyRules extends NLGModule {
                 }
             }
             // Special "a" determiner and perform a/an agreement:
-            if ("a".equals(determiner.getRealisation())) { //$NON-NLS-1$
+            if ("a".equals(determiner.getRealisation())) {
                 if (determiner.isPlural()) {
                     determiner.setRealisation("some");
                 } else if (DeterminerAgrHelper.requiresAn(realisation)) {

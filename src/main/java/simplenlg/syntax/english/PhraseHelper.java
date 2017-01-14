@@ -85,7 +85,7 @@ abstract class PhraseHelper {
                         DiscourseFunction.COMPLEMENT);
                 if (firstProcessed) {
                     realisedElement.addComponent(new InflectedWordElement(
-                            "and", LexicalCategory.CONJUNCTION)); //$NON-NLS-1$
+                            "and", LexicalCategory.CONJUNCTION));
                 } else {
                     firstProcessed = true;
                 }
@@ -186,7 +186,7 @@ abstract class PhraseHelper {
                 expletive = subjectNP.getFeatureAsBoolean(
                         LexicalFeature.EXPLETIVE_SUBJECT);
             } else if (subjectNP.isA(PhraseCategory.CANNED_TEXT)) {
-                expletive = "there".equalsIgnoreCase(subjectNP.getRealisation()); //$NON-NLS-1$
+                expletive = "there".equalsIgnoreCase(subjectNP.getRealisation());
             }
         }
         return expletive;

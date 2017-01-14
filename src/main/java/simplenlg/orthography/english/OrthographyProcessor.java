@@ -407,13 +407,13 @@ public class OrthographyProcessor extends NLGModule {
             if (index < length - 2
                     && DiscourseFunction.CONJUNCTION.equals(realisedChild.getFeature(InternalFeature.DISCOURSE_FUNCTION))) {
 
-                realisation.append(", "); //$NON-NLS-1$
+                realisation.append(", ");
             } else {
                 realisedChild = realise(realisedChild);
                 realisation.append(realisedChild.getRealisation()).append(' ');
             }
         }
         realisation.setLength(realisation.length() - 1);
-        return new StringElement(realisation.toString().replace(" ,", ",")); //$NON-NLS-1$ //$NON-NLS-2$
+        return new StringElement(realisation.toString().replace(" ,", ","));
     }
 }

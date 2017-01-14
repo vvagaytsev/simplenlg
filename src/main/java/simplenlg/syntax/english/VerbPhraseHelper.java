@@ -240,7 +240,7 @@ abstract class VerbPhraseHelper {
         }
 
         if (Form.INFINITIVE.equals(formValue)) {
-            actualModal = "to"; //$NON-NLS-1$
+            actualModal = "to";
 
         } else if (formValue == null || Form.NORMAL.equals(formValue)) {
             if (Tense.FUTURE.equals(tenseValue)
@@ -248,7 +248,7 @@ abstract class VerbPhraseHelper {
                     && ((!(phrase.getHead() instanceof CoordinatedPhraseElement)) || (phrase
                     .getHead() instanceof CoordinatedPhraseElement && interrogative))) {
 
-                actualModal = "will"; //$NON-NLS-1$
+                actualModal = "will";
 
             } else if (modal != null) {
                 actualModal = modal;
@@ -386,7 +386,7 @@ abstract class VerbPhraseHelper {
 
             if (!vgComponents.empty() || frontVG != null && isCopular(frontVG)) {
                 vgComponents.push(new InflectedWordElement(
-                        "not", LexicalCategory.ADVERB)); //$NON-NLS-1$
+                        "not", LexicalCategory.ADVERB));
             } else {
                 if (frontVG != null && !hasModal) {
                     frontVG.setFeature(Feature.NEGATED, true);
@@ -394,7 +394,7 @@ abstract class VerbPhraseHelper {
                 }
 
                 vgComponents.push(new InflectedWordElement(
-                        "not", LexicalCategory.ADVERB)); //$NON-NLS-1$
+                        "not", LexicalCategory.ADVERB));
 
                 if (addDo) {
                     if (factory != null) {
@@ -403,7 +403,7 @@ abstract class VerbPhraseHelper {
 
                     } else {
                         newFront = new InflectedWordElement(
-                                "do", LexicalCategory.VERB); //$NON-NLS-1$
+                                "do", LexicalCategory.VERB);
                     }
                 }
             }
@@ -454,7 +454,7 @@ abstract class VerbPhraseHelper {
             frontVG.setFeature(Feature.FORM, Form.PAST_PARTICIPLE);
             vgComponents.push(frontVG);
         }
-        newFront = new InflectedWordElement("have", LexicalCategory.VERB); //$NON-NLS-1$
+        newFront = new InflectedWordElement("have", LexicalCategory.VERB);
         newFront.setFeature(Feature.TENSE, tenseValue);
         if (modal != null) {
             newFront.setFeature(InternalFeature.NON_MORPH, true);
@@ -477,7 +477,7 @@ abstract class VerbPhraseHelper {
             frontVG.setFeature(Feature.FORM, frontForm);
             vgComponents.push(frontVG);
         }
-        return new InflectedWordElement("be", LexicalCategory.VERB); //$NON-NLS-1$
+        return new InflectedWordElement("be", LexicalCategory.VERB);
     }
 
     /**
@@ -632,11 +632,11 @@ abstract class VerbPhraseHelper {
         boolean copular = false;
 
         if (element instanceof InflectedWordElement) {
-            copular = "be".equalsIgnoreCase(((InflectedWordElement) element) //$NON-NLS-1$
+            copular = "be".equalsIgnoreCase(((InflectedWordElement) element)
                     .getBaseForm());
 
         } else if (element instanceof WordElement) {
-            copular = "be".equalsIgnoreCase(((WordElement) element) //$NON-NLS-1$
+            copular = "be".equalsIgnoreCase(((WordElement) element)
                     .getBaseForm());
 
         } else if (element instanceof PhraseElement) {

@@ -16,13 +16,10 @@
  *
  * Contributor(s): Ehud Reiter, Albert Gatt, Dave Wewstwater, Roman Kutlak, Margaret Mitchell, Saad Mahamood.
  */
-
 package simplenlg.format.english;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
-
 import simplenlg.framework.DocumentElement;
 import simplenlg.framework.NLGFactory;
 import simplenlg.lexicon.Lexicon;
@@ -30,69 +27,68 @@ import simplenlg.realiser.english.Realiser;
 
 /**
  * This tests that two sentences are realised as a list.
- * @author Rodrigo de Oliveira - Data2Text Ltd
  *
+ * @author Rodrigo de Oliveira - Data2Text Ltd
  */
 public class EnumeratedListTest {
 
-	@Test
-	public void bulletList() {
-		Lexicon lexicon = Lexicon.getDefaultLexicon();
-		NLGFactory nlgFactory = new NLGFactory(lexicon);
-		Realiser realiser = new Realiser(lexicon);
-		realiser.setFormatter(new HTMLFormatter());
-		DocumentElement document = nlgFactory.createDocument("Document");
-		DocumentElement paragraph = nlgFactory.createParagraph();
-		DocumentElement list = nlgFactory.createList();
-		DocumentElement item1 = nlgFactory.createListItem();
-		DocumentElement item2 = nlgFactory.createListItem();
-		// NB: a list item employs orthographical operations only until sentence level;
-		// nest clauses within a sentence to generate more than 1 clause per list item. 
-		DocumentElement sentence1 = nlgFactory.createSentence("this", "be", "the first sentence");
-		DocumentElement sentence2 = nlgFactory.createSentence("this", "be", "the second sentence");
-		item1.addComponent(sentence1);
-		item2.addComponent(sentence2);
-		list.addComponent(item1);
-		list.addComponent(item2);
-		paragraph.addComponent(list);
-		document.addComponent(paragraph);
-		String expectedOutput = "<h1>Document</h1>" + "<p>" + "<ul>" + "<li>This is the first sentence.</li>"
-		                        + "<li>This is the second sentence.</li>" + "</ul>" + "</p>";
+    @Test
+    public void bulletList() {
+        Lexicon lexicon = Lexicon.getDefaultLexicon();
+        NLGFactory nlgFactory = new NLGFactory(lexicon);
+        Realiser realiser = new Realiser(lexicon);
+        realiser.setFormatter(new HTMLFormatter());
+        DocumentElement document = nlgFactory.createDocument("Document");
+        DocumentElement paragraph = nlgFactory.createParagraph();
+        DocumentElement list = nlgFactory.createList();
+        DocumentElement item1 = nlgFactory.createListItem();
+        DocumentElement item2 = nlgFactory.createListItem();
+        // NB: a list item employs orthographical operations only until sentence level;
+        // nest clauses within a sentence to generate more than 1 clause per list item.
+        DocumentElement sentence1 = nlgFactory.createSentence("this", "be", "the first sentence");
+        DocumentElement sentence2 = nlgFactory.createSentence("this", "be", "the second sentence");
+        item1.addComponent(sentence1);
+        item2.addComponent(sentence2);
+        list.addComponent(item1);
+        list.addComponent(item2);
+        paragraph.addComponent(list);
+        document.addComponent(paragraph);
+        String expectedOutput = "<h1>Document</h1>" + "<p>" + "<ul>" + "<li>This is the first sentence.</li>"
+                + "<li>This is the second sentence.</li>" + "</ul>" + "</p>";
 
-		String realisedOutput = realiser.realise(document).getRealisation();
-		//		System.out.println(expectedOutput);
-		//		System.out.println(realisedOutput);
-		Assert.assertEquals(expectedOutput, realisedOutput);
-	}
+        String realisedOutput = realiser.realise(document).getRealisation();
+        //		System.out.println(expectedOutput);
+        //		System.out.println(realisedOutput);
+        Assert.assertEquals(expectedOutput, realisedOutput);
+    }
 
-	@Test
-	public void enumeratedList() {
-		Lexicon lexicon = Lexicon.getDefaultLexicon();
-		NLGFactory nlgFactory = new NLGFactory(lexicon);
-		Realiser realiser = new Realiser(lexicon);
-		realiser.setFormatter(new HTMLFormatter());
-		DocumentElement document = nlgFactory.createDocument("Document");
-		DocumentElement paragraph = nlgFactory.createParagraph();
-		DocumentElement list = nlgFactory.createEnumeratedList();
-		DocumentElement item1 = nlgFactory.createListItem();
-		DocumentElement item2 = nlgFactory.createListItem();
-		// NB: a list item employs orthographical operations only until sentence level;
-		// nest clauses within a sentence to generate more than 1 clause per list item. 
-		DocumentElement sentence1 = nlgFactory.createSentence("this", "be", "the first sentence");
-		DocumentElement sentence2 = nlgFactory.createSentence("this", "be", "the second sentence");
-		item1.addComponent(sentence1);
-		item2.addComponent(sentence2);
-		list.addComponent(item1);
-		list.addComponent(item2);
-		paragraph.addComponent(list);
-		document.addComponent(paragraph);
-		String expectedOutput = "<h1>Document</h1>" + "<p>" + "<ol>" + "<li>This is the first sentence.</li>"
-		                        + "<li>This is the second sentence.</li>" + "</ol>" + "</p>";
+    @Test
+    public void enumeratedList() {
+        Lexicon lexicon = Lexicon.getDefaultLexicon();
+        NLGFactory nlgFactory = new NLGFactory(lexicon);
+        Realiser realiser = new Realiser(lexicon);
+        realiser.setFormatter(new HTMLFormatter());
+        DocumentElement document = nlgFactory.createDocument("Document");
+        DocumentElement paragraph = nlgFactory.createParagraph();
+        DocumentElement list = nlgFactory.createEnumeratedList();
+        DocumentElement item1 = nlgFactory.createListItem();
+        DocumentElement item2 = nlgFactory.createListItem();
+        // NB: a list item employs orthographical operations only until sentence level;
+        // nest clauses within a sentence to generate more than 1 clause per list item.
+        DocumentElement sentence1 = nlgFactory.createSentence("this", "be", "the first sentence");
+        DocumentElement sentence2 = nlgFactory.createSentence("this", "be", "the second sentence");
+        item1.addComponent(sentence1);
+        item2.addComponent(sentence2);
+        list.addComponent(item1);
+        list.addComponent(item2);
+        paragraph.addComponent(list);
+        document.addComponent(paragraph);
+        String expectedOutput = "<h1>Document</h1>" + "<p>" + "<ol>" + "<li>This is the first sentence.</li>"
+                + "<li>This is the second sentence.</li>" + "</ol>" + "</p>";
 
-		String realisedOutput = realiser.realise(document).getRealisation();
-		//		System.out.println(expectedOutput);
-		//		System.out.println(realisedOutput);
-		Assert.assertEquals(expectedOutput, realisedOutput);
-	}
-
+        String realisedOutput = realiser.realise(document).getRealisation();
+        //		System.out.println(expectedOutput);
+        //		System.out.println(realisedOutput);
+        Assert.assertEquals(expectedOutput, realisedOutput);
+    }
 }

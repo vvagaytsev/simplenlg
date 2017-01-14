@@ -595,8 +595,8 @@ public abstract class NLGElement {
     }
 
     public String printTree(String indent) {
-        String thisIndent = indent == null ? " |-" : indent + " |-"; //$NON-NLS-1$ //$NON-NLS-2$
-        String childIndent = indent == null ? " |-" : indent + " |-"; //$NON-NLS-1$ //$NON-NLS-2$
+        String thisIndent = indent == null ? " |-" : indent + " |-";
+        String childIndent = indent == null ? " |-" : indent + " |-";
         StringBuilder print = new StringBuilder().append("NLGElement: ").append(toString()).append('\n');
 
         List<NLGElement> children = getChildren();

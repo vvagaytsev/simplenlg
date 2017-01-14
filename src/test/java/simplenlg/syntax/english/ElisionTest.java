@@ -20,26 +20,25 @@
 package simplenlg.syntax.english;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
-
-import junit.framework.Assert;
 import simplenlg.features.Feature;
 import simplenlg.phrasespec.SPhraseSpec;
 
 /**
- * Tests for elision of phrases and words
+ * Tests for elision of phrases and words.
  */
 @Ignore
 public class ElisionTest extends SimpleNLG4Test {
 
-	public ElisionTest(String name) {
-		super(name);
-	}
-	
-	/**
-	 * Test elision of phrases in various places in the sentence
-	 */
+    public ElisionTest(String name) {
+        super(name);
+    }
+
+    /**
+     * Test elision of phrases in various places in the sentence.
+     */
 //	public void testPhraseElision() {
 //		SPhraseSpec s1 = this.phraseFactory.createClause();
 //		s1.setSubject(this.np4); //the rock
@@ -62,44 +61,38 @@ public class ElisionTest extends SimpleNLG4Test {
 //		this.np5.setFeature(Feature.ELIDED, true);
 //		Assert.assertEquals("the rock kisses", this.realiser.realise(s1).getRealisation());
 //	}
-	
-	@Override
-	@After
-	public void tearDown() {
-		super.tearDown();
-	}
-	
-	
-	/**
-     * Test for elision of specific words rather than phrases
-     */
-	@Test
-    public void wordElisionTest() {
-            this.realiser.setDebugMode(true);
-            SPhraseSpec s1 = this.phraseFactory.createClause();
-            s1.setSubject(this.np4); //the rock
-            this.kiss.setComplement(this.np5);//kiss the curtain
-            s1.setVerbPhrase(this.kiss);
-            
-            this.np5.setFeature(Feature.ELIDED, true);
-            Assert.assertEquals("the rock kisses", this.realiser.realise(s1).getRealisation());
+    @Override
+    @After
+    public void tearDown() {
+        super.tearDown();
     }
-	
-	
-	
-	/**
-	 * Test for elision of specific words rather than phrases
-	 *
-	@Test
-	public void testWordElision() {
-		this.realiser.setDebugMode(true);
-		SPhraseSpec s1 = this.phraseFactory.createClause();
-		s1.setSubject(this.np4); //the rock
-		this.kiss.setComplement(this.np5);//kiss the curtain
-		s1.setVerbPhrase(this.kiss);
-		
-		this.kiss.getHead().setFeature(Feature.ELIDED, true);
-		Assert.assertEquals("the rock kisses the curtain", this.realiser.realise(s1).getRealisation());
-	} */
 
+    /**
+     * Test for elision of specific words rather than phrases.
+     */
+    @Test
+    public void wordElisionTest() {
+        this.realiser.setDebugMode(true);
+        SPhraseSpec s1 = this.phraseFactory.createClause();
+        s1.setSubject(this.np4); //the rock
+        this.kiss.setComplement(this.np5);//kiss the curtain
+        s1.setVerbPhrase(this.kiss);
+
+        this.np5.setFeature(Feature.ELIDED, true);
+        Assert.assertEquals("the rock kisses", this.realiser.realise(s1).getRealisation());
+    }
+
+    /**
+     * Test for elision of specific words rather than phrases.
+     *
+     @Test public void testWordElision() {
+     this.realiser.setDebugMode(true);
+     SPhraseSpec s1 = this.phraseFactory.createClause();
+     s1.setSubject(this.np4); //the rock
+     this.kiss.setComplement(this.np5);//kiss the curtain
+     s1.setVerbPhrase(this.kiss);
+
+     this.kiss.getHead().setFeature(Feature.ELIDED, true);
+     Assert.assertEquals("the rock kisses the curtain", this.realiser.realise(s1).getRealisation());
+     } */
 }

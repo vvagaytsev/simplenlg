@@ -48,12 +48,12 @@ public class DocumentElement extends NLGElement {
     /**
      * The feature relating to the title or heading of this element.
      */
-    private static final String FEATURE_TITLE = "textTitle"; //$NON-NLS-1$
+    private static final String FEATURE_TITLE = "textTitle";
 
     /**
      * The feature relating to the components (or child nodes) of this element.
      */
-    private static final String FEATURE_COMPONENTS = "textComponents"; //$NON-NLS-1$
+    private static final String FEATURE_COMPONENTS = "textComponents";
 
     /**
      * The blank constructor. Using this constructor will require manual setting
@@ -291,7 +291,7 @@ public class DocumentElement extends NLGElement {
 
         String realisation = getRealisation();
         if (realisation != null) {
-            print.append(" realisation=").append(realisation); //$NON-NLS-1$
+            print.append(" realisation=").append(realisation);
         }
         print.append('\n');
 

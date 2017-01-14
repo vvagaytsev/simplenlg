@@ -19,95 +19,84 @@
 
 package simplenlg.syntax.english;
 
-import junit.framework.Assert;
-
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Test;
-
 import simplenlg.features.Feature;
 import simplenlg.framework.CoordinatedPhraseElement;
 
 // TODO: Auto-generated Javadoc
+
 /**
  * This class groups together some tests for prepositional phrases and
  * coordinate prepositional phrases.
+ *
  * @author agatt
  */
 public class PrepositionalPhraseTest extends SimpleNLG4Test {
 
-	/**
-	 * Instantiates a new pP test.
-	 * 
-	 * @param name
-	 *            the name
-	 */
-	public PrepositionalPhraseTest(String name) {
-		super(name);
-	}
-	
-	@Override
-	@After
-	public void tearDown() {
-		super.tearDown();
-	}
+    /**
+     * Instantiates a new pP test.
+     *
+     * @param name the name
+     */
+    public PrepositionalPhraseTest(String name) {
+        super(name);
+    }
 
-	/**
-	 * Basic test for the pre-set PP fixtures.
-	 */
-	@Test
-	public void testBasic() {
-		Assert.assertEquals("in the room", this.realiser //$NON-NLS-1$
-				.realise(this.inTheRoom).getRealisation());
-		Assert.assertEquals("behind the curtain", this.realiser //$NON-NLS-1$
-				.realise(this.behindTheCurtain).getRealisation());
-		Assert.assertEquals("on the rock", this.realiser //$NON-NLS-1$
-				.realise(this.onTheRock).getRealisation());
-	}
+    @Override
+    @After
+    public void tearDown() {
+        super.tearDown();
+    }
 
-	/**
-	 * Test for coordinate NP complements of PPs.
-	 */
-	@Test
-	public void testComplementation() {
-		this.inTheRoom.clearComplements();
-		this.inTheRoom.addComplement(new CoordinatedPhraseElement(
-				this.phraseFactory.createNounPhrase("the", "room"), //$NON-NLS-1$ //$NON-NLS-2$
-				this.phraseFactory.createNounPhrase("a", "car"))); //$NON-NLS-1$//$NON-NLS-2$
-		Assert.assertEquals("in the room and a car", this.realiser //$NON-NLS-1$
-				.realise(this.inTheRoom).getRealisation());
-	}
+    /**
+     * Basic test for the pre-set PP fixtures.
+     */
+    @Test
+    public void testBasic() {
+        Assert.assertEquals("in the room", this.realiser.realise(this.inTheRoom).getRealisation());
+        Assert.assertEquals("behind the curtain", this.realiser.realise(this.behindTheCurtain).getRealisation());
+        Assert.assertEquals("on the rock", this.realiser.realise(this.onTheRock).getRealisation());
+    }
 
-	/**
-	 * Test for PP coordination.
-	 */
-	public void testCoordination() {
-		// simple coordination
+    /**
+     * Test for coordinate NP complements of PPs.
+     */
+    @Test
+    public void testComplementation() {
+        this.inTheRoom.clearComplements();
+        this.inTheRoom.addComplement(
+                new CoordinatedPhraseElement(
+                        this.phraseFactory.createNounPhrase("the", "room"),
+                        this.phraseFactory.createNounPhrase("a", "car")
+                )
+        );
+        Assert.assertEquals("in the room and a car", this.realiser.realise(this.inTheRoom).getRealisation());
+    }
 
-		CoordinatedPhraseElement coord1 = new CoordinatedPhraseElement(
-				this.inTheRoom, this.behindTheCurtain);
-		Assert.assertEquals("in the room and behind the curtain", this.realiser //$NON-NLS-1$
-				.realise(coord1).getRealisation());
+    /**
+     * Test for PP coordination.
+     */
+    public void testCoordination() {
+        // simple coordination
 
-		// change the conjunction
-		coord1.setFeature(Feature.CONJUNCTION, "or"); //$NON-NLS-1$
-		Assert.assertEquals("in the room or behind the curtain", this.realiser //$NON-NLS-1$
-				.realise(coord1).getRealisation());
+        CoordinatedPhraseElement coord1 = new CoordinatedPhraseElement(this.inTheRoom, this.behindTheCurtain);
+        Assert.assertEquals("in the room and behind the curtain", this.realiser.realise(coord1).getRealisation());
 
-		// new coordinate
-		CoordinatedPhraseElement coord2 = new CoordinatedPhraseElement(
-				this.onTheRock, this.underTheTable);
-		coord2.setFeature(Feature.CONJUNCTION, "or"); //$NON-NLS-1$
-		Assert.assertEquals("on the rock or under the table", this.realiser //$NON-NLS-1$
-				.realise(coord2).getRealisation());
+        // change the conjunction
+        coord1.setFeature(Feature.CONJUNCTION, "or");
+        Assert.assertEquals("in the room or behind the curtain", this.realiser.realise(coord1).getRealisation());
 
-		// coordinate two coordinates
-		CoordinatedPhraseElement coord3 = new CoordinatedPhraseElement(coord1,
-				coord2);
+        // new coordinate
+        CoordinatedPhraseElement coord2 = new CoordinatedPhraseElement(this.onTheRock, this.underTheTable);
+        coord2.setFeature(Feature.CONJUNCTION, "or");
+        Assert.assertEquals("on the rock or under the table", this.realiser.realise(coord2).getRealisation());
 
-		String text = this.realiser.realise(coord3).getRealisation();
-		Assert
-				.assertEquals(
-						"in the room or behind the curtain and on the rock or under the table", //$NON-NLS-1$
-						text);
-	}
+        // coordinate two coordinates
+        CoordinatedPhraseElement coord3 = new CoordinatedPhraseElement(coord1, coord2);
+
+        String text = this.realiser.realise(coord3).getRealisation();
+        Assert.assertEquals("in the room or behind the curtain and on the rock or under the table", text);
+    }
 }

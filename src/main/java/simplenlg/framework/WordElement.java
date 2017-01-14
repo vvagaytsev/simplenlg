@@ -346,21 +346,21 @@ public class WordElement extends NLGElement {
         if (_category != null) {
             buffer.append(_category);
         } else {
-            buffer.append("no category"); //$NON-NLS-1$
+            buffer.append("no category");
         }
         buffer.append(']');
         return buffer.toString();
     }
 
     public String toXML() {
-        String xml = String.format("<word>%n"); //$NON-NLS-1$
+        String xml = String.format("<word>%n");
         if (getBaseForm() != null)
-            xml = xml + String.format("  <base>%s</base>%n", getBaseForm()); //$NON-NLS-1$
+            xml = xml + String.format("  <base>%s</base>%n", getBaseForm());
         if (getCategory() != LexicalCategory.ANY)
-            xml = xml + String.format("  <category>%s</category>%n", //$NON-NLS-1$
+            xml = xml + String.format("  <category>%s</category>%n",
                     getCategory().toString().toLowerCase());
         if (getId() != null)
-            xml = xml + String.format("  <id>%s</id>%n", getId()); //$NON-NLS-1$
+            xml = xml + String.format("  <id>%s</id>%n", getId());
 
         SortedSet<String> featureNames = new TreeSet<>(
                 getAllFeatureNames()); // list features in alpha order
@@ -371,15 +371,15 @@ public class WordElement extends NLGElement {
                     // shown as <XX/> if true
                     boolean bvalue = (Boolean) value;
                     if (bvalue)
-                        xml = xml + String.format("  <%s/>%n", feature); //$NON-NLS-1$
+                        xml = xml + String.format("  <%s/>%n", feature);
                 } else { // otherwise include feature and value
-                    xml = xml + String.format("  <%s>%s</%s>%n", feature, value //$NON-NLS-1$
+                    xml = xml + String.format("  <%s>%s</%s>%n", feature, value
                             .toString(), feature);
                 }
             }
 
         }
-        xml = xml + String.format("</word>%n"); //$NON-NLS-1$
+        xml = xml + String.format("</word>%n");
         return xml;
     }
 

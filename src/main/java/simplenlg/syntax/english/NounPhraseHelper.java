@@ -294,20 +294,20 @@ abstract class NounPhraseHelper {
     private static NLGElement createPronoun(SyntaxProcessor parent,
                                             PhraseElement phrase) {
 
-        String pronoun = "it"; //$NON-NLS-1$
+        String pronoun = "it";
         NLGFactory phraseFactory = phrase.getFactory();
         Object personValue = phrase.getFeature(Feature.PERSON);
 
         if (Person.FIRST.equals(personValue)) {
-            pronoun = "I"; //$NON-NLS-1$
+            pronoun = "I";
         } else if (Person.SECOND.equals(personValue)) {
-            pronoun = "you"; //$NON-NLS-1$
+            pronoun = "you";
         } else {
             Object genderValue = phrase.getFeature(LexicalFeature.GENDER);
             if (Gender.FEMININE.equals(genderValue)) {
-                pronoun = "she"; //$NON-NLS-1$
+                pronoun = "she";
             } else if (Gender.MASCULINE.equals(genderValue)) {
-                pronoun = "he"; //$NON-NLS-1$
+                pronoun = "he";
             }
         }
         // AG: createWord now returns WordElement; so we embed it in an

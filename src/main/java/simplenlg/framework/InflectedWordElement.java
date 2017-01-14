@@ -74,7 +74,7 @@ public class InflectedWordElement extends NLGElement {
 
     @Override
     public String toString() {
-        return "InflectedWordElement[" + getBaseForm() + ':' //$NON-NLS-1$
+        return "InflectedWordElement[" + getBaseForm() + ':'
                 + getCategory().toString() + ']';
     }
 

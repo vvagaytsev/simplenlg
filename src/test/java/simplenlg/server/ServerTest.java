@@ -17,19 +17,17 @@
  * Contributor(s): Ehud Reiter, Albert Gatt, Dave Westwater,
  * Roman Kutlak, Margaret Mitchell, Saad Mahamood.
  */
-
 package simplenlg.server;
 
-import java.net.ServerSocket;
-
 import junit.framework.TestCase;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.net.ServerSocket;
+
 /**
- * Tests for simplenlg server
+ * Tests for simplenlg server.
  *
  * @author Roman Kutlak
  */
@@ -37,11 +35,11 @@ public class ServerTest extends TestCase {
 
     private SimpleServer serverapp;
     private ServerSocket socket;
-    
+
     @Before
     protected void setUp() {
         try {
-        	socket = new ServerSocket(0);
+            socket = new ServerSocket(0);
             serverapp = new SimpleServer(socket);
             Thread server = new Thread(serverapp);
             server.setDaemon(true);
@@ -51,25 +49,22 @@ public class ServerTest extends TestCase {
             e.printStackTrace();
         }
     }
-    
+
     @After
     protected void tearDown() {
         serverapp.terminate();
     }
-    
+
     @Test
     public void testServer() {
         assertNotNull(serverapp);
-        
+
         String expected = "Put the piano and the drum into the truck.";
-     
         SimpleClient clientApp = new SimpleClient();
-        
         String result = clientApp.run("localhost", socket.getLocalPort());
-        
+
         // Shutdown serverapp:
         serverapp.terminate();
-        
         assertEquals(expected, result);
     }
 }

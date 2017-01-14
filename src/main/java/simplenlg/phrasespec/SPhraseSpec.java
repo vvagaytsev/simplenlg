@@ -107,7 +107,7 @@ public class SPhraseSpec extends PhraseElement {
         setFeature(Feature.SUPRESSED_COMPLEMENTISER, false);
         setFeature(LexicalFeature.EXPLETIVE_SUBJECT, false);
         setFeature(Feature.COMPLEMENTISER, phraseFactory.createWord(
-                "that", LexicalCategory.COMPLEMENTISER)); //$NON-NLS-1$
+                "that", LexicalCategory.COMPLEMENTISER));
 
     }
 

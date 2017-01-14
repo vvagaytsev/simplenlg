@@ -136,7 +136,7 @@ public class ListElement extends NLGElement {
                     .append('=')
                     .append(entry.getValue()).append(' ');
         }
-        print.append("}\n"); //$NON-NLS-1$
+        print.append("}\n");
 
         List<NLGElement> children = getChildren();
         int length = children.size() - 1;

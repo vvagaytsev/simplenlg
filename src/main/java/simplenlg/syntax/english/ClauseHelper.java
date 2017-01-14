@@ -113,7 +113,7 @@ abstract class ClauseHelper {
                                     NLGFactory phraseFactory) {
 
         if (InterrogativeType.WHO_INDIRECT_OBJECT.equals(phrase.getFeature(Feature.INTERROGATIVE_TYPE))) {
-            NLGElement word = phraseFactory.createWord("to", LexicalCategory.PREPOSITION); //$NON-NLS-1$
+            NLGElement word = phraseFactory.createWord("to", LexicalCategory.PREPOSITION);
             realisedElement.addComponent(parent.realise(word));
         }
     }
@@ -162,7 +162,7 @@ abstract class ClauseHelper {
             List<NLGElement> allSubjects = phrase.getFeatureAsElementList(InternalFeature.SUBJECTS);
 
             if (!allSubjects.isEmpty() || phrase.hasFeature(Feature.INTERROGATIVE_TYPE)) {
-                realisedElement.addComponent(parent.realise(phraseFactory.createPrepositionPhrase("by"))); //$NON-NLS-1$
+                realisedElement.addComponent(parent.realise(phraseFactory.createPrepositionPhrase("by")));
             }
 
             for (NLGElement subject : allSubjects) {
@@ -464,15 +464,15 @@ abstract class ClauseHelper {
                     realiseInterrogativeKeyWord(((InterrogativeType) type).getString(),
                             LexicalCategory.PRONOUN,
                             parent,
-                            realisedElement, //$NON-NLS-1$
+                            realisedElement,
                             phraseFactory);
                     phrase.removeFeature(InternalFeature.SUBJECTS);
                     break;
 
                 case HOW_MANY:
-                    realiseInterrogativeKeyWord("how", LexicalCategory.PRONOUN, parent, realisedElement, //$NON-NLS-1$
+                    realiseInterrogativeKeyWord("how", LexicalCategory.PRONOUN, parent, realisedElement,
                             phraseFactory);
-                    realiseInterrogativeKeyWord("many", LexicalCategory.ADVERB, parent, realisedElement, //$NON-NLS-1$
+                    realiseInterrogativeKeyWord("many", LexicalCategory.ADVERB, parent, realisedElement,
                             phraseFactory);
                     break;
 
@@ -530,7 +530,7 @@ abstract class ClauseHelper {
                                                            ListElement realisedElement,
                                                            NLGFactory phraseFactory) {
         NLGElement splitVerb = null;
-        realiseInterrogativeKeyWord(keyword, LexicalCategory.PRONOUN, parent, realisedElement, //$NON-NLS-1$
+        realiseInterrogativeKeyWord(keyword, LexicalCategory.PRONOUN, parent, realisedElement,
                 phraseFactory);
 
         // if (!Tense.FUTURE.equals(phrase.getFeature(Feature.TENSE)) &&
@@ -559,7 +559,7 @@ abstract class ClauseHelper {
                                        NLGFactory phraseFactory,
                                        ListElement realisedElement) {
 
-        PhraseElement doPhrase = phraseFactory.createVerbPhrase("do"); //$NON-NLS-1$
+        PhraseElement doPhrase = phraseFactory.createVerbPhrase("do");
         doPhrase.setFeature(Feature.TENSE, phrase.getFeature(Feature.TENSE));
         doPhrase.setFeature(Feature.PERSON, phrase.getFeature(Feature.PERSON));
         doPhrase.setFeature(Feature.NUMBER, phrase.getFeature(Feature.NUMBER));
@@ -826,7 +826,7 @@ abstract class ClauseHelper {
                          * } else if (currentElement instanceof
 						 * CoordinatedPhraseElement &&
 						 * "and".equals(currentElement.getFeatureAsString(
-						 * //$NON-NLS-1$ Feature.CONJUNCTION))) { pluralSubjects
+						 *  Feature.CONJUNCTION))) { pluralSubjects
 						 * = true;
 						 */
                         }
