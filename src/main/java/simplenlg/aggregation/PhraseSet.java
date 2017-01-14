@@ -49,7 +49,7 @@ public class PhraseSet {
      */
     public PhraseSet(DiscourseFunction function, NLGElement... phrases) {
         this.function = function;
-        this.phrases = new ArrayList<NLGElement>(Arrays.asList(phrases));
+        this.phrases = new ArrayList<>(Arrays.asList(phrases));
     }
 
     /**

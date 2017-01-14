@@ -341,7 +341,7 @@ public abstract class PhraseChecker {
      * are found
      */
     public static List<PhraseSet> leftPeriphery(NLGElement... sentences) {
-        List<PhraseSet> funcsets = new ArrayList<PhraseSet>();
+        List<PhraseSet> funcsets = new ArrayList<>();
         PhraseSet cue = new PhraseSet(DiscourseFunction.CUE_PHRASE);
         PhraseSet front = new PhraseSet(DiscourseFunction.FRONT_MODIFIER);
         PhraseSet subj = new PhraseSet(DiscourseFunction.SUBJECT);
@@ -374,7 +374,7 @@ public abstract class PhraseChecker {
      * are found
      */
     public static List<PhraseSet> rightPeriphery(NLGElement... sentences) {
-        List<PhraseSet> funcsets = new ArrayList<PhraseSet>();
+        List<PhraseSet> funcsets = new ArrayList<>();
         PhraseSet comps = new PhraseSet(DiscourseFunction.OBJECT);
         // new PhraseSet(DiscourseFunction.INDIRECT_OBJECT);
         PhraseSet pmods = new PhraseSet(DiscourseFunction.POST_MODIFIER);

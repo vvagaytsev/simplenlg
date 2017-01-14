@@ -50,7 +50,7 @@ public class MultipleLexicon extends Lexicon {
      * create an empty multi lexicon
      */
     public MultipleLexicon() {
-        lexiconList = new ArrayList<Lexicon>();
+        lexiconList = new ArrayList<>();
         alwaysSearchAll = false;
     }
 
@@ -110,7 +110,7 @@ public class MultipleLexicon extends Lexicon {
 	 */
     @Override
     public List<WordElement> getWords(String baseForm, LexicalCategory category) {
-        List<WordElement> result = new ArrayList<WordElement>();
+        List<WordElement> result = new ArrayList<>();
         for (Lexicon lex : lexiconList) {
             List<WordElement> lexResult = lex.getWords(baseForm, category);
             if (lexResult != null && !lexResult.isEmpty()) {
@@ -127,7 +127,7 @@ public class MultipleLexicon extends Lexicon {
      */
     @Override
     public List<WordElement> getWordsByID(String id) {
-        List<WordElement> result = new ArrayList<WordElement>();
+        List<WordElement> result = new ArrayList<>();
         for (Lexicon lex : lexiconList) {
             List<WordElement> lexResult = lex.getWordsByID(id);
             if (lexResult != null && !lexResult.isEmpty()) {
@@ -144,7 +144,7 @@ public class MultipleLexicon extends Lexicon {
      */
     @Override
     public List<WordElement> getWordsFromVariant(String variant, LexicalCategory category) {
-        List<WordElement> result = new ArrayList<WordElement>();
+        List<WordElement> result = new ArrayList<>();
         for (Lexicon lex : lexiconList) {
             List<WordElement> lexResult = lex.getWordsFromVariant(variant, category);
             if (lexResult != null && !lexResult.isEmpty()) {

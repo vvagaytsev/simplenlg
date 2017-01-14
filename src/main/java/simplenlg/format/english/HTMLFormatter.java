@@ -185,7 +185,7 @@ public class HTMLFormatter extends NLGModule {
 
     @Override
     public List<NLGElement> realise(List<NLGElement> elements) { // realise a list of elements
-        List<NLGElement> realisedList = new ArrayList<NLGElement>();
+        List<NLGElement> realisedList = new ArrayList<>();
 
         if (elements != null) {
             for (NLGElement eachElement : elements) {

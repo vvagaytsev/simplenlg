@@ -335,7 +335,7 @@ public class OrthographyProcessor extends NLGModule {
 
     @Override
     public List<NLGElement> realise(List<NLGElement> elements) {
-        List<NLGElement> realisedList = new ArrayList<NLGElement>();
+        List<NLGElement> realisedList = new ArrayList<>();
 
         if (elements != null && !elements.isEmpty()) {
             for (NLGElement eachElement : elements) {

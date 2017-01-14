@@ -72,7 +72,7 @@ public class RecordSet {
      */
     public List<DocumentRealisation> getRecord() {
         if (record == null) {
-            record = new ArrayList<DocumentRealisation>();
+            record = new ArrayList<>();
         }
         return this.record;
     }

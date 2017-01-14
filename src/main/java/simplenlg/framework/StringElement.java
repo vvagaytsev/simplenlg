@@ -53,7 +53,7 @@ public class StringElement extends NLGElement {
      */
     @Override
     public List<NLGElement> getChildren() {
-        return new ArrayList<NLGElement>();
+        return new ArrayList<>();
     }
 
     @Override

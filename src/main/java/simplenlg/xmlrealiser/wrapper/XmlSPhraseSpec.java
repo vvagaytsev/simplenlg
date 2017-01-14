@@ -130,7 +130,7 @@ public class XmlSPhraseSpec
      */
     public List<XmlNLGElement> getSubj() {
         if (subj == null) {
-            subj = new ArrayList<XmlNLGElement>();
+            subj = new ArrayList<>();
         }
         return this.subj;
     }

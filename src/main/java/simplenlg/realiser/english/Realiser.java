@@ -215,7 +215,7 @@ public class Realiser extends NLGModule {
 
     @Override
     public List<NLGElement> realise(List<NLGElement> elements) {
-        List<NLGElement> realisedElements = new ArrayList<NLGElement>();
+        List<NLGElement> realisedElements = new ArrayList<>();
         if (null != elements) {
             for (NLGElement element : elements) {
                 NLGElement realisedElement = realise(element);

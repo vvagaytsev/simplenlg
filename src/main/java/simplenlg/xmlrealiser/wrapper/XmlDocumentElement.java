@@ -74,7 +74,7 @@ public class XmlDocumentElement
      */
     public List<XmlNLGElement> getChild() {
         if (child == null) {
-            child = new ArrayList<XmlNLGElement>();
+            child = new ArrayList<>();
         }
         return this.child;
     }

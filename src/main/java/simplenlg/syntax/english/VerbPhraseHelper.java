@@ -46,8 +46,8 @@ abstract class VerbPhraseHelper {
     static NLGElement realise(SyntaxProcessor parent, PhraseElement phrase) {
         ListElement realisedElement = null;
         Stack<NLGElement> vgComponents = null;
-        Stack<NLGElement> mainVerbRealisation = new Stack<NLGElement>();
-        Stack<NLGElement> auxiliaryRealisation = new Stack<NLGElement>();
+        Stack<NLGElement> mainVerbRealisation = new Stack<>();
+        Stack<NLGElement> auxiliaryRealisation = new Stack<>();
 
         if (phrase != null) {
             vgComponents = createVerbGroup(parent, phrase);
@@ -232,7 +232,7 @@ abstract class VerbPhraseHelper {
         Tense tenseValue = (Tense) phrase.getFeature(Feature.TENSE);
         String modal = phrase.getFeatureAsString(Feature.MODAL);
         boolean modalPast = false;
-        Stack<NLGElement> vgComponents = new Stack<NLGElement>();
+        Stack<NLGElement> vgComponents = new Stack<>();
         boolean interrogative = phrase.hasFeature(Feature.INTERROGATIVE_TYPE);
 
         if (Form.GERUND.equals(formValue) || Form.INFINITIVE.equals(formValue)) {

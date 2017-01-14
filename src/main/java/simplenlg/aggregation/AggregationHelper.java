@@ -45,7 +45,7 @@ public final class AggregationHelper {
             NLGElement phrase1, NLGElement phrase2) {
         List<NLGElement> children1 = getAllChildren(phrase1);
         List<NLGElement> children2 = getAllChildren(phrase2);
-        List<FunctionalSet> pairs = new ArrayList<FunctionalSet>();
+        List<FunctionalSet> pairs = new ArrayList<>();
 
         if (children1.size() == children2.size()) {
             Periphery periph = Periphery.LEFT;
@@ -79,7 +79,7 @@ public final class AggregationHelper {
     }
 
     private static List<NLGElement> getAllChildren(NLGElement element) {
-        List<NLGElement> children = new ArrayList<NLGElement>();
+        List<NLGElement> children = new ArrayList<>();
         List<NLGElement> components = element instanceof ListElement ? element
                 .getFeatureAsElementList(InternalFeature.COMPONENTS) : element
                 .getChildren();

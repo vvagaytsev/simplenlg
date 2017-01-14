@@ -78,7 +78,7 @@ public class PhraseElement extends NLGElement {
      */
     @Override
     public List<NLGElement> getChildren() {
-        List<NLGElement> children = new ArrayList<NLGElement>();
+        List<NLGElement> children = new ArrayList<>();
         ElementCategory category = getCategory();
         NLGElement currentElement;
 
@@ -198,7 +198,7 @@ public class PhraseElement extends NLGElement {
     public void addComplement(NLGElement newComplement) {
         List<NLGElement> complements = getFeatureAsElementList(InternalFeature.COMPLEMENTS);
         if (complements == null) {
-            complements = new ArrayList<NLGElement>();
+            complements = new ArrayList<>();
         }
 
         // check if the new complement has a discourse function; if not, assume
@@ -243,7 +243,7 @@ public class PhraseElement extends NLGElement {
         if (function == null || complements == null) {
             return;
         }
-        List<NLGElement> complementsToRemove = new ArrayList<NLGElement>();
+        List<NLGElement> complementsToRemove = new ArrayList<>();
         for (NLGElement complement : complements) {
             if (function == complement.getFeature(InternalFeature.DISCOURSE_FUNCTION)) {
                 complementsToRemove.add(complement);
@@ -270,7 +270,7 @@ public class PhraseElement extends NLGElement {
         StringElement newElement = new StringElement(newComplement);
         List<NLGElement> complements = getFeatureAsElementList(InternalFeature.COMPLEMENTS);
         if (complements == null) {
-            complements = new ArrayList<NLGElement>();
+            complements = new ArrayList<>();
         }
         complements.add(newElement);
         setFeature(InternalFeature.COMPLEMENTS, complements);
@@ -299,7 +299,7 @@ public class PhraseElement extends NLGElement {
     public void addPostModifier(NLGElement newPostModifier) {
         List<NLGElement> postModifiers = getFeatureAsElementList(InternalFeature.POSTMODIFIERS);
         if (postModifiers == null) {
-            postModifiers = new ArrayList<NLGElement>();
+            postModifiers = new ArrayList<>();
         }
         newPostModifier.setFeature(InternalFeature.DISCOURSE_FUNCTION, DiscourseFunction.POST_MODIFIER);
         postModifiers.add(newPostModifier);
@@ -316,7 +316,7 @@ public class PhraseElement extends NLGElement {
     public void addPostModifier(String newPostModifier) {
         List<NLGElement> postModifiers = getFeatureAsElementList(InternalFeature.POSTMODIFIERS);
         if (postModifiers == null) {
-            postModifiers = new ArrayList<NLGElement>();
+            postModifiers = new ArrayList<>();
         }
         postModifiers.add(new StringElement(newPostModifier));
         setFeature(InternalFeature.POSTMODIFIERS, postModifiers);
@@ -354,7 +354,7 @@ public class PhraseElement extends NLGElement {
     public void addFrontModifier(NLGElement newFrontModifier) {
         List<NLGElement> frontModifiers = getFeatureAsElementList(InternalFeature.FRONT_MODIFIERS);
         if (frontModifiers == null) {
-            frontModifiers = new ArrayList<NLGElement>();
+            frontModifiers = new ArrayList<>();
         }
         frontModifiers.add(newFrontModifier);
         setFeature(InternalFeature.FRONT_MODIFIERS, frontModifiers);
@@ -369,7 +369,7 @@ public class PhraseElement extends NLGElement {
     public void addFrontModifier(String newFrontModifier) {
         List<NLGElement> frontModifiers = getFeatureAsElementList(InternalFeature.FRONT_MODIFIERS);
         if (frontModifiers == null) {
-            frontModifiers = new ArrayList<NLGElement>();
+            frontModifiers = new ArrayList<>();
         }
         frontModifiers.add(new StringElement(newFrontModifier));
         setFeature(InternalFeature.FRONT_MODIFIERS, frontModifiers);
@@ -405,7 +405,7 @@ public class PhraseElement extends NLGElement {
     public void addPreModifier(NLGElement newPreModifier) {
         List<NLGElement> preModifiers = getFeatureAsElementList(InternalFeature.PREMODIFIERS);
         if (preModifiers == null) {
-            preModifiers = new ArrayList<NLGElement>();
+            preModifiers = new ArrayList<>();
         }
         preModifiers.add(newPreModifier);
         setFeature(InternalFeature.PREMODIFIERS, preModifiers);

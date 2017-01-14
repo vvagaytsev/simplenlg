@@ -113,10 +113,10 @@ public class XMLLexicon extends Lexicon {
      */
     private void createLexicon(URI lexiconURI) {
         // initialise objects
-        words = new HashSet<WordElement>();
-        indexByID = new HashMap<String, WordElement>();
-        indexByBase = new HashMap<String, List<WordElement>>();
-        indexByVariant = new HashMap<String, List<WordElement>>();
+        words = new HashSet<>();
+        indexByID = new HashMap<>();
+        indexByBase = new HashMap<>();
+        indexByVariant = new HashMap<>();
 
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -180,7 +180,7 @@ public class XMLLexicon extends Lexicon {
 
         // create word
         WordElement word = new WordElement();
-        List<Inflection> inflections = new ArrayList<Inflection>();
+        List<Inflection> inflections = new ArrayList<>();
 
         // now copy features
         NodeList nodes = wordNode.getChildNodes();
@@ -278,7 +278,7 @@ public class XMLLexicon extends Lexicon {
     private void updateIndex(WordElement word, String base,
                              Map<String, List<WordElement>> index) {
         if (!index.containsKey(base)) {
-            index.put(base, new ArrayList<WordElement>());
+            index.put(base, new ArrayList<>());
         }
         index.get(base).add(word);
     }
@@ -309,7 +309,7 @@ public class XMLLexicon extends Lexicon {
      */
     private List<WordElement> getWordsFromIndex(String indexKey,
                                                 LexicalCategory category, Map<String, List<WordElement>> indexMap) {
-        List<WordElement> result = new ArrayList<WordElement>();
+        List<WordElement> result = new ArrayList<>();
 
         // case 1: unknown, return empty list
         if (!indexMap.containsKey(indexKey)) {
@@ -340,7 +340,7 @@ public class XMLLexicon extends Lexicon {
      */
     @Override
     public List<WordElement> getWordsByID(String id) {
-        List<WordElement> result = new ArrayList<WordElement>();
+        List<WordElement> result = new ArrayList<>();
         if (indexByID.containsKey(id)) {
             result.add(new WordElement(indexByID.get(id)));
         }
@@ -367,7 +367,7 @@ public class XMLLexicon extends Lexicon {
      * @return
      */
     private Set<String> getVariants(WordElement word) {
-        Set<String> variants = new HashSet<String>();
+        Set<String> variants = new HashSet<>();
         variants.add(word.getBaseForm());
         ElementCategory category = word.getCategory();
         if (category instanceof LexicalCategory) {

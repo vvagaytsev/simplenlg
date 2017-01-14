@@ -59,7 +59,7 @@ public abstract class NLGElement {
     /**
      * The features of this element.
      */
-    protected final Map<String, Object> features = new HashMap<String, Object>();
+    protected final Map<String, Object> features = new HashMap<>();
 
     /**
      * The parent of this element.
@@ -217,7 +217,7 @@ public abstract class NLGElement {
      * @return the <code>List</code> of <code>NLGElement</code>s
      */
     public List<NLGElement> getFeatureAsElementList(String featureName) {
-        List<NLGElement> list = new ArrayList<NLGElement>();
+        List<NLGElement> list = new ArrayList<>();
 
         Object value = getFeature(featureName);
         if (value instanceof NLGElement) {
@@ -250,7 +250,7 @@ public abstract class NLGElement {
      * @return the <code>List</code> of <code>Object</code>s
      */
     public List<Object> getFeatureAsList(String featureName) {
-        List<Object> values = new ArrayList<Object>();
+        List<Object> values = new ArrayList<>();
         Object value = getFeature(featureName);
 
         if (value != null) {
@@ -285,7 +285,7 @@ public abstract class NLGElement {
      * @return the <code>List</code> of <code>String</code>s
      */
     public List<String> getFeatureAsStringList(String featureName) {
-        List<String> values = new ArrayList<String>();
+        List<String> values = new ArrayList<>();
         Object value = getFeature(featureName);
 
         if (value != null) {

@@ -154,7 +154,7 @@ public class UnWrapper {
             SPhraseSpec sp = factory.createClause();
             NLGElement vp = null;
 
-            List<NLGElement> subjects = new ArrayList<NLGElement>();
+            List<NLGElement> subjects = new ArrayList<>();
             for (XmlNLGElement p : wp.getSubj()) {
                 NLGElement p1 = UnwrapNLGElement(p);
                 checkFunction(DiscourseFunction.SUBJECT, p1);

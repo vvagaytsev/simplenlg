@@ -285,7 +285,7 @@ public class SPhraseSpec extends PhraseElement {
             subjectPhrase = (NLGElement) subject;
         else
             subjectPhrase = getFactory().createNounPhrase(subject);
-        List<NLGElement> subjects = new ArrayList<NLGElement>();
+        List<NLGElement> subjects = new ArrayList<>();
         subjects.add(subjectPhrase);
         setFeature(InternalFeature.SUBJECTS, subjects);
     }

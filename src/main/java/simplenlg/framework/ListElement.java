@@ -87,7 +87,7 @@ public class ListElement extends NLGElement {
     public void addComponent(NLGElement newComponent) {
         List<NLGElement> components = getFeatureAsElementList(InternalFeature.COMPONENTS);
         if (components == null) {
-            components = new ArrayList<NLGElement>();
+            components = new ArrayList<>();
         }
         setFeature(InternalFeature.COMPONENTS, components);
         components.add(newComponent);
@@ -101,7 +101,7 @@ public class ListElement extends NLGElement {
     public void addComponents(List<NLGElement> newComponents) {
         List<NLGElement> components = getFeatureAsElementList(InternalFeature.COMPONENTS);
         if (components == null) {
-            components = new ArrayList<NLGElement>();
+            components = new ArrayList<>();
         }
         setFeature(InternalFeature.COMPONENTS, components);
         components.addAll(newComponents);

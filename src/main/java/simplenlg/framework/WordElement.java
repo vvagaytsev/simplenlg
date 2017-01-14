@@ -56,7 +56,7 @@ public class WordElement extends NLGElement {
 
         InflectionSet(Inflection infl) {
             this.infl = infl;
-            this.forms = new HashMap<String, String>();
+            this.forms = new HashMap<>();
         }
 
         /*
@@ -134,7 +134,7 @@ public class WordElement extends NLGElement {
         this.baseForm = baseForm;
         setCategory(category);
         this.id = id;
-        this.inflVars = new EnumMap<Inflection, InflectionSet>(Inflection.class);
+        this.inflVars = new EnumMap<>(Inflection.class);
     }
 
     /**
@@ -362,7 +362,7 @@ public class WordElement extends NLGElement {
         if (getId() != null)
             xml = xml + String.format("  <id>%s</id>%n", getId()); //$NON-NLS-1$
 
-        SortedSet<String> featureNames = new TreeSet<String>(
+        SortedSet<String> featureNames = new TreeSet<>(
                 getAllFeatureNames()); // list features in alpha order
         for (String feature : featureNames) {
             Object value = getFeature(feature);
@@ -389,7 +389,7 @@ public class WordElement extends NLGElement {
      */
     @Override
     public List<NLGElement> getChildren() {
-        return new ArrayList<NLGElement>();
+        return new ArrayList<>();
     }
 
     @Override

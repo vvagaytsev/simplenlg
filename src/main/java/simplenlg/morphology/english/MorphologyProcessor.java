@@ -173,7 +173,7 @@ public class MorphologyProcessor extends NLGModule {
 
     @Override
     public List<NLGElement> realise(List<NLGElement> elements) {
-        List<NLGElement> realisedElements = new ArrayList<NLGElement>();
+        List<NLGElement> realisedElements = new ArrayList<>();
         NLGElement currentElement = null;
         NLGElement determiner = null;
         NLGElement prevElement = null;

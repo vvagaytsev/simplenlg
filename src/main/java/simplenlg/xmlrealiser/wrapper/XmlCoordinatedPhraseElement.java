@@ -98,7 +98,7 @@ public class XmlCoordinatedPhraseElement
      */
     public List<XmlNLGElement> getCoord() {
         if (coord == null) {
-            coord = new ArrayList<XmlNLGElement>();
+            coord = new ArrayList<>();
         }
         return this.coord;
     }

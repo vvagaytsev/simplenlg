@@ -47,7 +47,7 @@ public class Aggregator extends NLGModule {
      */
     @Override
     public void initialise() {
-        this._rules = new ArrayList<AggregationRule>();
+        this._rules = new ArrayList<>();
         this._factory = new NLGFactory();
     }
 

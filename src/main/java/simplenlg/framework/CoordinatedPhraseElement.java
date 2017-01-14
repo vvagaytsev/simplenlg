@@ -93,7 +93,7 @@ public class CoordinatedPhraseElement extends NLGElement {
     public void addCoordinate(Object newCoordinate) {
         List<NLGElement> coordinates = getFeatureAsElementList(InternalFeature.COORDINATES);
         if (coordinates == null) {
-            coordinates = new ArrayList<NLGElement>();
+            coordinates = new ArrayList<>();
             setFeature(InternalFeature.COORDINATES, coordinates);
         } else if (coordinates.isEmpty()) {
             setFeature(InternalFeature.COORDINATES, coordinates);
@@ -136,7 +136,7 @@ public class CoordinatedPhraseElement extends NLGElement {
     public void addPreModifier(NLGElement newPreModifier) {
         List<NLGElement> preModifiers = getFeatureAsElementList(InternalFeature.PREMODIFIERS);
         if (preModifiers == null) {
-            preModifiers = new ArrayList<NLGElement>();
+            preModifiers = new ArrayList<>();
         }
         preModifiers.add(newPreModifier);
         setFeature(InternalFeature.PREMODIFIERS, preModifiers);
@@ -152,7 +152,7 @@ public class CoordinatedPhraseElement extends NLGElement {
     public void addPreModifier(String newPreModifier) {
         List<NLGElement> preModifiers = getFeatureAsElementList(InternalFeature.PREMODIFIERS);
         if (preModifiers == null) {
-            preModifiers = new ArrayList<NLGElement>();
+            preModifiers = new ArrayList<>();
         }
         preModifiers.add(new StringElement(newPreModifier));
         setFeature(InternalFeature.PREMODIFIERS, preModifiers);
@@ -187,7 +187,7 @@ public class CoordinatedPhraseElement extends NLGElement {
     public void addPostModifier(NLGElement newPostModifier) {
         List<NLGElement> postModifiers = getFeatureAsElementList(InternalFeature.POSTMODIFIERS);
         if (postModifiers == null) {
-            postModifiers = new ArrayList<NLGElement>();
+            postModifiers = new ArrayList<>();
         }
         postModifiers.add(newPostModifier);
         setFeature(InternalFeature.POSTMODIFIERS, postModifiers);
@@ -203,7 +203,7 @@ public class CoordinatedPhraseElement extends NLGElement {
     public void addPostModifier(String newPostModifier) {
         List<NLGElement> postModifiers = getFeatureAsElementList(InternalFeature.POSTMODIFIERS);
         if (postModifiers == null) {
-            postModifiers = new ArrayList<NLGElement>();
+            postModifiers = new ArrayList<>();
         }
         postModifiers.add(new StringElement(newPostModifier));
         setFeature(InternalFeature.POSTMODIFIERS, postModifiers);
@@ -251,7 +251,7 @@ public class CoordinatedPhraseElement extends NLGElement {
     public void addComplement(NLGElement newComplement) {
         List<NLGElement> complements = getFeatureAsElementList(InternalFeature.COMPLEMENTS);
         if (complements == null) {
-            complements = new ArrayList<NLGElement>();
+            complements = new ArrayList<>();
         }
         complements.add(newComplement);
         setFeature(InternalFeature.COMPLEMENTS, complements);
@@ -269,7 +269,7 @@ public class CoordinatedPhraseElement extends NLGElement {
     public void addComplement(String newComplement) {
         List<NLGElement> complements = getFeatureAsElementList(InternalFeature.COMPLEMENTS);
         if (complements == null) {
-            complements = new ArrayList<NLGElement>();
+            complements = new ArrayList<>();
         }
         complements.add(new StringElement(newComplement));
         setFeature(InternalFeature.COMPLEMENTS, complements);

@@ -188,7 +188,7 @@ abstract class NounPhraseHelper {
         if (originalModifiers == null || originalModifiers.size() <= 1) {
             orderedModifiers = originalModifiers;
         } else {
-            orderedModifiers = new ArrayList<NLGElement>(originalModifiers);
+            orderedModifiers = new ArrayList<>(originalModifiers);
             boolean changesMade = false;
             do {
                 changesMade = false;

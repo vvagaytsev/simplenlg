@@ -73,10 +73,10 @@ public abstract class AggregationRule {
      * contains s1 and s2.
      */
     public List<NLGElement> apply(List<NLGElement> phrases) {
-        List<NLGElement> results = new ArrayList<NLGElement>();
+        List<NLGElement> results = new ArrayList<>();
 
         if (phrases.size() >= 2) {
-            List<NLGElement> removed = new ArrayList<NLGElement>();
+            List<NLGElement> removed = new ArrayList<>();
 
             for (int i = 0; i < phrases.size(); i++) {
                 NLGElement current = phrases.get(i);

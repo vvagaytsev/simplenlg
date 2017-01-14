@@ -28,6 +28,7 @@ package simplenlg.framework;
  * @author D. Westwater, University of Aberdeen.
  * @version 4.0
  */
+@FunctionalInterface
 public interface ElementCategory {
 
     /**

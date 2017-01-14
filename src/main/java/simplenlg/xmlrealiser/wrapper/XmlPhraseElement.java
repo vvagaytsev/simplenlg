@@ -99,7 +99,7 @@ public abstract class XmlPhraseElement
      */
     public List<XmlNLGElement> getFrontMod() {
         if (frontMod == null) {
-            frontMod = new ArrayList<XmlNLGElement>();
+            frontMod = new ArrayList<>();
         }
         return this.frontMod;
     }
@@ -128,7 +128,7 @@ public abstract class XmlPhraseElement
      */
     public List<XmlNLGElement> getPreMod() {
         if (preMod == null) {
-            preMod = new ArrayList<XmlNLGElement>();
+            preMod = new ArrayList<>();
         }
         return this.preMod;
     }
@@ -157,7 +157,7 @@ public abstract class XmlPhraseElement
      */
     public List<XmlNLGElement> getCompl() {
         if (compl == null) {
-            compl = new ArrayList<XmlNLGElement>();
+            compl = new ArrayList<>();
         }
         return this.compl;
     }
@@ -186,7 +186,7 @@ public abstract class XmlPhraseElement
      */
     public List<XmlNLGElement> getPostMod() {
         if (postMod == null) {
-            postMod = new ArrayList<XmlNLGElement>();
+            postMod = new ArrayList<>();
         }
         return this.postMod;
     }

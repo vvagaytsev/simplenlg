@@ -306,7 +306,7 @@ public class NIHDBLexicon extends Lexicon {
         List<LexRecord> records = lexResult.GetJavaObjs();
 
         // set up array of words to return
-        List<WordElement> wordElements = new ArrayList<WordElement>();
+        List<WordElement> wordElements = new ArrayList<>();
 
         // iterate through result records, adding to words as appropriate
         for (LexRecord record : records) {
@@ -505,7 +505,7 @@ public class NIHDBLexicon extends Lexicon {
         List<String> variants = nounEntry.GetVariants();
 
         if (!variants.isEmpty()) {
-            List<Inflection> wordVariants = new ArrayList<Inflection>();
+            List<Inflection> wordVariants = new ArrayList<>();
 
             for (String v : variants) {
                 int index = v.indexOf('|');
@@ -586,7 +586,7 @@ public class NIHDBLexicon extends Lexicon {
         List<String> variants = verbEntry.GetVariants();
 
         if (!variants.isEmpty()) {
-            List<Inflection> wordVariants = new ArrayList<Inflection>();
+            List<Inflection> wordVariants = new ArrayList<>();
 
             for (String v : variants) {
                 int index = v.indexOf('|');
@@ -703,7 +703,7 @@ public class NIHDBLexicon extends Lexicon {
         List<String> vars = record.GetSpellingVars();
 
         if (vars != null && !vars.isEmpty()) {
-            List<String> wordVars = new ArrayList<String>(vars);
+            List<String> wordVars = new ArrayList<>(vars);
             wordElement.setFeature(LexicalFeature.SPELL_VARS, wordVars);
         }
 
