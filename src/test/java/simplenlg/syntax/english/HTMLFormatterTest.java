@@ -92,7 +92,7 @@ public class HTMLFormatterTest extends SimpleNLG4Test {
 
         // from David Westwater 4-10-11
         DocumentElement element = phraseFactory.createList();
-        List<NLGElement> list = new ArrayList<NLGElement>();
+        List<NLGElement> list = new ArrayList<>();
         list.add(phraseFactory.createListItem(phraseFactory.createStringElement("Item 1")));
         list.add(phraseFactory.createListItem(phraseFactory.createStringElement("Item 2")));
         list.add(phraseFactory.createListItem(phraseFactory.createStringElement("Item 3")));

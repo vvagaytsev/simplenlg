@@ -46,7 +46,7 @@ import java.util.Properties;
 public class LexicalVariantsTest {
 
     // lexicon object -- an instance of Lexicon
-    Lexicon lexicon = null;
+    Lexicon lexicon;
 
     // factory for phrases
     NLGFactory factory;

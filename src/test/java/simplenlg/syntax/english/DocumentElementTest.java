@@ -46,6 +46,7 @@ public class DocumentElementTest extends SimpleNLG4Test {
         super(name);
     }
 
+    @Override
     @Before
     public void setUp() {
         super.setUp();

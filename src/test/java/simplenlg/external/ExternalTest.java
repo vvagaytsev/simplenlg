@@ -331,7 +331,7 @@ public class ExternalTest {
     @Test
     public void rafaelTest() {
         // Rafael Valle's tests
-        List<NLGElement> ss = new ArrayList<NLGElement>();
+        List<NLGElement> ss = new ArrayList<>();
         ClauseCoordinationRule coord = new ClauseCoordinationRule();
         coord.setFactory(this.phraseFactory);
 
@@ -378,8 +378,8 @@ public class ExternalTest {
         return s;
     }
 
-    private ArrayList<String> realizeAll(List<NLGElement> results) { // used by testRafael
-        ArrayList<String> ret = new ArrayList<String>();
+    private List<String> realizeAll(List<NLGElement> results) { // used by testRafael
+        List<String> ret = new ArrayList<>();
         for (NLGElement e : results) {
             String r = this.realiser.realise(e).getRealisation();
             ret.add(r);

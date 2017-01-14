@@ -45,7 +45,7 @@ import java.util.concurrent.TimeUnit;
 public class NIHDBLexiconTest {
 
     // lexicon object -- an instance of Lexicon
-    NIHDBLexicon lexicon = null;
+    NIHDBLexicon lexicon;
 
     // DB location -- change this to point to the lex access data dir
     static String DB_FILENAME = "src/test/resources/NIHLexicon/lexAccess2011.data";
@@ -210,7 +210,7 @@ public class NIHDBLexiconTest {
         try {
             Thread.currentThread().sleep(500);
         } catch (InterruptedException ignored) {
-            ;// do nothing
+            // do nothing
         }
 
         service.shutdownNow();
@@ -223,15 +223,16 @@ public class NIHDBLexiconTest {
     /*
      * Class that implements a thread from which a lexical item can be retrieved
      */
-    private class LexThread extends Thread {
+    private final class LexThread extends Thread {
 
         WordElement word;
         String base;
 
-        public LexThread(String base) {
+        private LexThread(String base) {
             this.base = base;
         }
 
+        @Override
         public void run() {
             word = lexicon.getWord(base, LexicalCategory.VERB);
         }

@@ -65,8 +65,8 @@ public class XMLRealiserParameterizedTests {
     }
 
     static Collection<Object[]> testRecordings(String recording) {
-        Collection<Object[]> tests = new ArrayList<Object[]>();
-        Object testElement[];
+        Collection<Object[]> tests = new ArrayList<>();
+        Object[] testElement;
         RecordSet records = null;
 
         try (StringReader reader = new StringReader(recording)) {

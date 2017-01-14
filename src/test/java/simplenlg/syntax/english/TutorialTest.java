@@ -275,7 +275,7 @@ public class TutorialTest {
         NPPhraseSpec subject = nlgFactory.createNounPhrase("Mary");
         NPPhraseSpec object = nlgFactory.createNounPhrase("the monkey");
         VPPhraseSpec verb = nlgFactory.createVerbPhrase("chase");
-        ;
+
         subject.addModifier("fast");
 
         SPhraseSpec p = nlgFactory.createClause();

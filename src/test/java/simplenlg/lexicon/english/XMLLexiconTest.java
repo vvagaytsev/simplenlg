@@ -38,7 +38,7 @@ import simplenlg.realiser.english.Realiser;
 public class XMLLexiconTest {
 
     // lexicon object -- an instance of Lexicon
-    XMLLexicon lexicon = null;
+    XMLLexicon lexicon;
 
     /**
      * Sets up the accessor and runs it -- takes ca. 26 sec

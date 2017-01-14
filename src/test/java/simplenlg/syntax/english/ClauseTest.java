@@ -102,6 +102,7 @@ public class ClauseTest extends SimpleNLG4Test {
         this.s4.setFeature(Feature.TENSE, Tense.FUTURE);
     }
 
+    @Override
     @After
     public void tearDown() {
         super.tearDown();

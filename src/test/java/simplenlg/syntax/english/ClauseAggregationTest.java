@@ -123,6 +123,7 @@ public class ClauseAggregationTest extends SimpleNLG4Test {
                         .createNounPhrase("the", "curtain")));
     }
 
+    @Override
     @After
     public void tearDown() {
         super.tearDown();

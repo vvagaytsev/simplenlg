@@ -36,6 +36,7 @@ public class ServerTest extends TestCase {
     private SimpleServer serverapp;
     private ServerSocket socket;
 
+    @Override
     @Before
     protected void setUp() {
         try {
@@ -50,6 +51,7 @@ public class ServerTest extends TestCase {
         }
     }
 
+    @Override
     @After
     protected void tearDown() {
         serverapp.terminate();

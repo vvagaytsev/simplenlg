@@ -71,7 +71,7 @@ public abstract class SimpleNLG4Test extends TestCase {
      *
      * @param name the name
      */
-    public SimpleNLG4Test(String name) {
+    protected SimpleNLG4Test(String name) {
         super(name);
     }
 

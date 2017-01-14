@@ -38,9 +38,9 @@ import simplenlg.realiser.english.Realiser;
  */
 public class PremodifierTest {
 
-    private Lexicon lexicon = null;
-    private NLGFactory phraseFactory = null;
-    private Realiser realiser = null;
+    private Lexicon lexicon;
+    private NLGFactory phraseFactory;
+    private Realiser realiser;
 
     @Before
     public void setup() {

@@ -85,7 +85,7 @@ public class StringElementTest {
     @Test
     public void tailNPStringElementTest() {
         SPhraseSpec senSpec = this.phraseFactory.createClause();
-        senSpec.addComplement((this.phraseFactory.createStringElement("mary loves")));
+        senSpec.addComplement(this.phraseFactory.createStringElement("mary loves"));
         NPPhraseSpec np = this.phraseFactory.createNounPhrase();
         np.setHead("cow");
         np.setDeterminer("the");
