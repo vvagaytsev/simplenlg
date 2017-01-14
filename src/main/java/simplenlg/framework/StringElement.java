@@ -48,8 +48,7 @@ public class StringElement extends NLGElement {
     }
 
     /**
-     * The string element contains no children so this method will always return
-     * an empty list.
+     * The string element contains no children so this method will always return an empty list.
      */
     @Override
     public List<NLGElement> getChildren() {
@@ -61,8 +60,10 @@ public class StringElement extends NLGElement {
         return getRealisation();
     }
 
-    /* (non-Javadoc)
-     * @see simplenlg.framework.NLGElement#equals(java.lang.Object)
+    /**
+     * (non-Javadoc)
+     *
+     * @see simplenlg.framework.NLGElement#equals(Object)
      */
     @Override
     public boolean equals(Object o) {
@@ -80,7 +81,7 @@ public class StringElement extends NLGElement {
                 .append("StringElement: content=\"")
                 .append(getRealisation())
                 .append('\"');
-        Map<String, Object> features = this.getAllFeatures();
+        Map<String, Object> features = getAllFeatures();
         if (features != null) {
             print.append(", features=").append(features);
         }

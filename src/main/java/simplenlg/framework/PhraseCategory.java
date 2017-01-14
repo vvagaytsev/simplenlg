@@ -82,13 +82,11 @@ public enum PhraseCategory implements ElementCategory {
     @Override
     public boolean equalTo(Object checkObject) {
         boolean match = false;
-
         if (checkObject != null) {
             if (checkObject instanceof DocumentCategory) {
                 match = this.equals(checkObject);
             } else {
-                match = this.toString()
-                        .equalsIgnoreCase(checkObject.toString());
+                match = this.toString().equalsIgnoreCase(checkObject.toString());
             }
         }
         return match;

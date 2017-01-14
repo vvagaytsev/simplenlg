@@ -66,12 +66,11 @@ public class DocumentElement extends NLGElement {
     /**
      * Creates a new DocumentElement with the given category and title.
      *
-     * @param category  the category for this element.
-     * @param textTitle the title of this element, predominantly used with DOCUMENT
-     *                  and SECTION types.
+     * @param category  the category for this element
+     * @param textTitle the title of this element, predominantly used with DOCUMENT and SECTION types
      */
     public DocumentElement(DocumentCategory category, String textTitle) {
-        this.setCategory(category);
+        setCategory(category);
         setTitle(textTitle);
     }
 
@@ -79,7 +78,7 @@ public class DocumentElement extends NLGElement {
      * Sets the title of this element. Titles are specifically used with
      * documents (the document name) and sections (headings).
      *
-     * @param textTitle the new title for this element.
+     * @param textTitle the new title for this element
      */
     public void setTitle(String textTitle) {
         this.setFeature(FEATURE_TITLE, textTitle);
@@ -88,7 +87,7 @@ public class DocumentElement extends NLGElement {
     /**
      * Retrieves the title of this element.
      *
-     * @return the title of this element as a string.
+     * @return the title of this element as a string
      */
     public String getTitle() {
         return this.getFeatureAsString(FEATURE_TITLE);
@@ -97,8 +96,7 @@ public class DocumentElement extends NLGElement {
     /**
      * Retrieves the child components of this element.
      *
-     * @return a <code>List</code> of <code>NLGElement</code>s representing the
-     * child components.
+     * @return a <code>List</code> of <code>NLGElement</code>s representing the child components
      */
     public List<NLGElement> getComponents() {
         return this.getFeatureAsElementList(FEATURE_COMPONENTS);
@@ -106,20 +104,18 @@ public class DocumentElement extends NLGElement {
 
     /**
      * <p>
-     * Add a single child component to the current list of child components. If
-     * there are no existing child components a new list is created.
+     * Add a single child component to the current list of child components.
+     * If there are no existing child components a new list is created.
      * </p>
      * <p>
      * Note that there are restrictions on which child types can be added to
      * which parent types.  Intermediate nodes are added if necessary; eg,
      * if a sentence is added to a document, the sentence will be embedded
-     * in a paragraph before it is added
-     * See <code>
-     * DocumentCategory</code> for further information.
+     * in a paragraph before it is added.
      * </p>
      *
-     * @param element the <code>NLGElement</code> to be added. If this is
-     *                <code>NULL</code> the method does nothing.
+     * @param element the <code>NLGElement</code> to be added; if this is <code>NULL</code> the method does nothing
+     * @see DocumentCategory for further information
      */
     public void addComponent(NLGElement element) {
         if (element != null) {
@@ -142,7 +138,7 @@ public class DocumentElement extends NLGElement {
     }
 
     /**
-     * add an element to a components list
+     * Add an element to a components list.
      *
      * @param element
      */
@@ -153,10 +149,9 @@ public class DocumentElement extends NLGElement {
         setComponents(components);
     }
 
-
     /**
-     * promote an NLGElement so that it is at the right level to be added to a DocumentElement/
-     * Promotion means adding surrounding nodes at higher doc levels
+     * Promotes an NLGElement so that it is at the right level to be added to a DocumentElement.
+     * Promotion means adding surrounding nodes at higher doc levels.
      *
      * @param element
      * @return
@@ -196,14 +191,13 @@ public class DocumentElement extends NLGElement {
      * </p>
      *
      * @param textComponents the <code>List</code> of <code>NLGElement</code>s to be added.
-     *                       If this is <code>NULL</code> the method does nothing.
+     *                       If this is <code>NULL</code> the method does nothing
      */
     public void addComponents(List<?> textComponents) {
         if (textComponents != null) {
-            ElementCategory thisCategory = this.getCategory();
+            ElementCategory thisCategory = getCategory();
             List<NLGElement> elementsToAdd = new ArrayList<>();
             ElementCategory category = null;
-
             for (Object eachElement : textComponents) {
                 if (eachElement instanceof NLGElement) {
                     category = ((NLGElement) eachElement).getCategory();
@@ -223,7 +217,7 @@ public class DocumentElement extends NLGElement {
                     components = new ArrayList<>();
                 }
                 components.addAll(elementsToAdd);
-                this.setFeature(FEATURE_COMPONENTS, components);
+                setFeature(FEATURE_COMPONENTS, components);
             }
         }
     }
@@ -231,11 +225,11 @@ public class DocumentElement extends NLGElement {
     /**
      * Removes the specified component from the list of child components.
      *
-     * @param textComponent the component to be removed.
+     * @param textComponent the component to be removed
      * @return <code>true</code> if the element was removed, or
      * <code>false</code> if the element did not exist, there is no
      * component list or the the given component to remove is
-     * <code>NULL</code>.
+     * <code>null</code>
      */
     public boolean removeComponent(NLGElement textComponent) {
         boolean removed = false;
@@ -259,8 +253,8 @@ public class DocumentElement extends NLGElement {
     }
 
     /**
-     * Child elements of a <code>DocumentElement</code> are the components. This
-     * method is the same as calling <code>getComponents()</code>.
+     * Child elements of a <code>DocumentElement</code> are the components.
+     * This method is the same as calling <code>getComponents()</code>.
      */
     @Override
     public List<NLGElement> getChildren() {
@@ -278,7 +272,7 @@ public class DocumentElement extends NLGElement {
      * @param components
      */
     public void setComponents(List<NLGElement> components) {
-        this.setFeature(FEATURE_COMPONENTS, components);
+        setFeature(FEATURE_COMPONENTS, components);
     }
 
     @Override
@@ -297,8 +291,7 @@ public class DocumentElement extends NLGElement {
 
         List<NLGElement> children = getChildren();
         int length = children.size() - 1;
-        int index = 0;
-
+        int index;
         if (!children.isEmpty()) {
             for (index = 0; index < length; index++) {
                 print.append(thisIndent).append(children.get(index).printTree(childIndent));

@@ -59,19 +59,18 @@ public class WordElement extends NLGElement {
             this.forms = new HashMap<>();
         }
 
-        /*
-         * set an inflectional form
+        /**
+         * Set an inflectional form.
          *
          * @param feature
-         *
          * @param form
          */
         void addForm(String feature, String form) {
             this.forms.put(feature, form);
         }
 
-        /*
-         * get an inflectional form
+        /**
+         * Get an inflectional form.
          */
         String getForm(String feature) {
             return this.forms.get(feature);
@@ -97,15 +96,14 @@ public class WordElement extends NLGElement {
     /**********************************************************/
 
     /**
-     * empty constructor
+     * Default constructor Creates empty instance.
      */
     public WordElement() {
         this(null, LexicalCategory.ANY, null);
     }
 
     /**
-     * create a WordElement with the specified baseForm (no category or ID
-     * specified)
+     * Creates a WordElement with the specified baseForm (no category or ID specified).
      *
      * @param baseForm - base form of WordElement
      */
@@ -114,7 +112,7 @@ public class WordElement extends NLGElement {
     }
 
     /**
-     * create a WordElement with the specified baseForm and category
+     * Create a WordElement with the specified baseForm and category.
      *
      * @param baseForm - base form of WordElement
      * @param category - category of WordElement
@@ -124,7 +122,7 @@ public class WordElement extends NLGElement {
     }
 
     /**
-     * create a WordElement with the specified baseForm, category, ID
+     * Creates a WordElement with the specified baseForm, category, ID.
      *
      * @param baseForm - base form of WordElement
      * @param category - category of WordElement
@@ -138,7 +136,7 @@ public class WordElement extends NLGElement {
     }
 
     /**
-     * creates a duplicate WordElement from an existing WordElement
+     * Creates a duplicate WordElement from an existing WordElement.
      *
      * @param currentWord - An existing WordElement
      */
@@ -150,7 +148,6 @@ public class WordElement extends NLGElement {
         this.defaultInfl = (Inflection) currentWord.getDefaultInflectionalVariant();
         setFeatures(currentWord);
     }
-
 
     /**********************************************************/
     // getters and setters
@@ -189,12 +186,10 @@ public class WordElement extends NLGElement {
      * if the word has more than one possible inflectional variant (for example,
      * it can be inflected in both a regular and irregular way).
      * <p>
-     * <p>
      * If the default inflectional variant is set, the inflectional forms of the
      * word may change as a result. This depends on whether inflectional forms
      * have been specifically associated with this variant, via
      * {@link #addInflectionalVariant(Inflection, String, String)}.
-     * <p>
      * <p>
      * The <code>NIHDBLexicon</code> associates different inflectional variants
      * with words, if they are so specified, and adds the correct forms.
@@ -204,12 +199,9 @@ public class WordElement extends NLGElement {
     public void setDefaultInflectionalVariant(Inflection variant) {
         setFeature(LexicalFeature.DEFAULT_INFL, variant);
         this.defaultInfl = variant;
-
         if (this.inflVars.containsKey(variant)) {
             InflectionSet set = inflVars.get(variant);
-            String[] forms = LexicalFeature.getInflectionalFeatures(this
-                    .getCategory());
-
+            String[] forms = LexicalFeature.getInflectionalFeatures(getCategory());
             if (forms != null) {
                 for (String f : forms) {
                     setFeature(f, set.getForm(f));
@@ -241,7 +233,6 @@ public class WordElement extends NLGElement {
      * Equivalent to
      * <code>setFeature(LexicalFeature.DEFAULT_SPELL, variant)</code>.
      * <p>
-     * <p>
      * By default, the spelling variant used is the base form. If otherwise set,
      * this forces the realiser to always use the spelling variant specified.
      *
@@ -260,9 +251,8 @@ public class WordElement extends NLGElement {
      */
     public String getDefaultSpellingVariant() {
         String defSpell = getFeatureAsString(LexicalFeature.DEFAULT_SPELL);
-        return defSpell == null ? this.getBaseForm() : defSpell;
+        return defSpell == null ? getBaseForm() : defSpell;
     }
-
 
     /**
      * Add an inflectional variant to this word element. This method is intended
@@ -273,7 +263,6 @@ public class WordElement extends NLGElement {
      * in useful in case the default inflectional variant is reset to a new one.
      * In that case, the stored forms for the new variant are used to inflect
      * the word.
-     * <p>
      * <p>
      * <strong>An example:</strong> The verb <i>lie</i> has both a regular form
      * (<I>lies, lied, lying</I>) and an irregular form (<I>lay, lain,</I> etc).
@@ -303,7 +292,7 @@ public class WordElement extends NLGElement {
     }
 
     /**
-     * Specify that this word has an inflectional variant (e.g. irregular)
+     * Specifies that this word has an inflectional variant (e.g. irregular).
      *
      * @param infl the variant
      */
@@ -312,7 +301,7 @@ public class WordElement extends NLGElement {
     }
 
     /**
-     * Check whether this word has a particular inflectional variant
+     * Checks whether this word has a particular inflectional variant.
      *
      * @param infl the variant
      * @return <code>true</code> if this word has the variant
@@ -329,7 +318,7 @@ public class WordElement extends NLGElement {
     public void setFeatures(WordElement currentWord) {
         if (null != currentWord && null != currentWord.getAllFeatures()) {
             for (String feature : currentWord.getAllFeatureNames()) {
-                this.setFeature(feature, currentWord.getFeature(feature));
+                setFeature(feature, currentWord.getFeature(feature));
             }
         }
     }
@@ -342,50 +331,46 @@ public class WordElement extends NLGElement {
     @Override
     public String toString() {
         ElementCategory _category = getCategory();
-        StringBuilder buffer = new StringBuilder("WordElement[").append(getBaseForm()).append(':');
-        if (_category != null) {
-            buffer.append(_category);
-        } else {
-            buffer.append("no category");
-        }
-        buffer.append(']');
-        return buffer.toString();
+        return "WordElement[" +
+                getBaseForm() +
+                ':' +
+                (_category != null ? _category : "no category") +
+                ']';
     }
 
     public String toXML() {
         String xml = String.format("<word>%n");
-        if (getBaseForm() != null)
+        if (getBaseForm() != null) {
             xml = xml + String.format("  <base>%s</base>%n", getBaseForm());
-        if (getCategory() != LexicalCategory.ANY)
+        }
+        if (getCategory() != LexicalCategory.ANY) {
             xml = xml + String.format("  <category>%s</category>%n",
                     getCategory().toString().toLowerCase());
-        if (getId() != null)
+        }
+        if (getId() != null) {
             xml = xml + String.format("  <id>%s</id>%n", getId());
-
-        SortedSet<String> featureNames = new TreeSet<>(
-                getAllFeatureNames()); // list features in alpha order
+        }
+        SortedSet<String> featureNames = new TreeSet<>(getAllFeatureNames()); // list features in alpha order
         for (String feature : featureNames) {
             Object value = getFeature(feature);
             if (value != null) { // ignore null features
                 if (value instanceof Boolean) { // booleans ignored if false,
                     // shown as <XX/> if true
-                    boolean bvalue = (Boolean) value;
-                    if (bvalue)
+                    if ((Boolean) value) {
                         xml = xml + String.format("  <%s/>%n", feature);
+                    }
                 } else { // otherwise include feature and value
                     xml = xml + String.format("  <%s>%s</%s>%n", feature, value
                             .toString(), feature);
                 }
             }
-
         }
         xml = xml + String.format("</word>%n");
         return xml;
     }
 
     /**
-     * This method returns an empty <code>List</code> as words do not have child
-     * elements.
+     * This method returns an empty <code>List</code> as words do not have child elements.
      */
     @Override
     public List<NLGElement> getChildren() {
@@ -404,22 +389,20 @@ public class WordElement extends NLGElement {
     }
 
     /**
-     * Check if this WordElement is equal to an object.
+     * Checks if this WordElement is equal to an object.
      *
      * @param o the object
      * @return <code>true</code> iff the object is a word element with the same
-     * id and the same baseform and the same features.
+     * id and the same baseform and the same features
      */
     @Override
     public boolean equals(Object o) {
         if (o instanceof WordElement) {
             WordElement we = (WordElement) o;
-            return (this.baseForm == we.baseForm || this.baseForm
-                    .equals(we.baseForm))
-                    && (this.id == we.id || this.id.equals(we.id))
-                    && we.features.equals(this.features);
+            return (this.baseForm == we.baseForm || this.baseForm.equals(we.baseForm)) &&
+                    (this.id == we.id || this.id.equals(we.id)) &&
+                    we.features.equals(this.features);
         }
-
         return false;
     }
 }

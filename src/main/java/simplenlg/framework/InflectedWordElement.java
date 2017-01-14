@@ -39,11 +39,10 @@ public class InflectedWordElement extends NLGElement {
 
     /**
      * Constructs a new inflected word using the giving word as the base form.
-     * Constructing the word also requires a lexical category (such as noun,
-     * verb).
+     * Constructing the word also requires a lexical category (such as noun, verb).
      *
-     * @param word     the base form for this inflected word.
-     * @param category the lexical category for the word.
+     * @param word     the base form for this inflected word
+     * @param category the lexical category for the word
      */
     public InflectedWordElement(String word, LexicalCategory category) {
         setFeature(LexicalFeature.BASE_FORM, word);
@@ -51,9 +50,9 @@ public class InflectedWordElement extends NLGElement {
     }
 
     /**
-     * Constructs a new inflected word from a WordElement
+     * Constructs a new inflected word from a WordElement.
      *
-     * @param word underlying wordelement
+     * @param word underlying WordElement
      */
     public InflectedWordElement(WordElement word) {
         setFeature(InternalFeature.BASE_WORD, word);
@@ -74,8 +73,7 @@ public class InflectedWordElement extends NLGElement {
 
     @Override
     public String toString() {
-        return "InflectedWordElement[" + getBaseForm() + ':'
-                + getCategory().toString() + ']';
+        return "InflectedWordElement[" + getBaseForm() + ':' + getCategory().toString() + ']';
     }
 
     @Override
@@ -89,8 +87,7 @@ public class InflectedWordElement extends NLGElement {
     }
 
     /**
-     * Retrieves the base form for this element. The base form is the originally
-     * supplied word.
+     * Retrieves the base form for this element. The base form is the originally supplied word.
      *
      * @return a <code>String</code> forming the base form of the element.
      */
@@ -101,8 +98,7 @@ public class InflectedWordElement extends NLGElement {
     /**
      * Sets the base word for this element.
      *
-     * @param word the <code>WordElement</code> representing the base word as
-     *             read from the lexicon.
+     * @param word the <code>WordElement</code> representing the base word as read from the lexicon
      */
     public void setBaseWord(WordElement word) {
         setFeature(InternalFeature.BASE_WORD, word);
@@ -111,8 +107,7 @@ public class InflectedWordElement extends NLGElement {
     /**
      * Retrieves the base word for this element.
      *
-     * @return the <code>WordElement</code> representing the base word as read
-     * from the lexicon.
+     * @return the <code>WordElement</code> representing the base word as read from the lexicon
      */
     public WordElement getBaseWord() {
         NLGElement baseWord = this.getFeatureAsElement(InternalFeature.BASE_WORD);

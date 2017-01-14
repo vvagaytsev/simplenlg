@@ -57,11 +57,11 @@ public class ListElement extends NLGElement {
     /**
      * Creates a new list element containing the given components.
      *
-     * @param components the initial components for this list element.
+     * @param components the initial components for this list element
      */
     public ListElement(List<NLGElement> components) {
         this();
-        this.addComponents(components);
+        addComponents(components);
     }
 
     @Override
@@ -72,17 +72,17 @@ public class ListElement extends NLGElement {
     /**
      * Creates a new list element containing the given component.
      *
-     * @param newComponent the initial component for this list element.
+     * @param newComponent the initial component for this list element
      */
     public ListElement(NLGElement newComponent) {
         this();
-        this.addComponent(newComponent);
+        addComponent(newComponent);
     }
 
     /**
      * Adds the given component to the list element.
      *
-     * @param newComponent the <code>NLGElement</code> component to be added.
+     * @param newComponent the <code>NLGElement</code> component to be added
      */
     public void addComponent(NLGElement newComponent) {
         List<NLGElement> components = getFeatureAsElementList(InternalFeature.COMPONENTS);
@@ -96,7 +96,7 @@ public class ListElement extends NLGElement {
     /**
      * Adds the given components to the list element.
      *
-     * @param newComponents a <code>List</code> of <code>NLGElement</code>s to be added.
+     * @param newComponents a <code>List</code> of <code>NLGElement</code>s to be added
      */
     public void addComponents(List<NLGElement> newComponents) {
         List<NLGElement> components = getFeatureAsElementList(InternalFeature.COMPONENTS);
@@ -110,8 +110,7 @@ public class ListElement extends NLGElement {
     /**
      * Replaces the current components in the list element with the given list.
      *
-     * @param newComponents a <code>List</code> of <code>NLGElement</code>s to be used as
-     *                      the components.
+     * @param newComponents a <code>List</code> of <code>NLGElement</code>s to be used as the components
      */
     public void setComponents(List<NLGElement> newComponents) {
         setFeature(InternalFeature.COMPONENTS, newComponents);
@@ -154,7 +153,7 @@ public class ListElement extends NLGElement {
     /**
      * Retrieves the number of components in this list element.
      *
-     * @return the number of components.
+     * @return the number of components
      */
     public int size() {
         return getChildren().size();
@@ -163,7 +162,7 @@ public class ListElement extends NLGElement {
     /**
      * Retrieves the first component in the list.
      *
-     * @return the <code>NLGElement</code> at the top of the list.
+     * @return the <code>NLGElement</code> at the top of the list
      */
     public NLGElement getFirst() {
         List<NLGElement> children = getChildren();

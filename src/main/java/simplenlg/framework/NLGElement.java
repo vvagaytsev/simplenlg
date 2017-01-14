@@ -79,7 +79,7 @@ public abstract class NLGElement {
     /**
      * Sets the category of this element.
      *
-     * @param newCategory the new <code>ElementCategory</code> for this element.
+     * @param newCategory the new <code>ElementCategory</code> for this element
      */
     public void setCategory(ElementCategory newCategory) {
         this.category = newCategory;
@@ -115,8 +115,8 @@ public abstract class NLGElement {
     /**
      * A convenience method for setting boolean features.
      *
-     * @param featureName  the name of the feature.
-     * @param featureValue the <code>boolean</code> value of the feature.
+     * @param featureName  the name of the feature
+     * @param featureValue the <code>boolean</code> value of the feature
      */
     public void setFeature(String featureName, boolean featureValue) {
         if (featureName != null) {
@@ -127,8 +127,8 @@ public abstract class NLGElement {
     /**
      * A convenience method for setting integer features.
      *
-     * @param featureName  the name of the feature.
-     * @param featureValue the <code>int</code> value of the feature.
+     * @param featureName  the name of the feature
+     * @param featureValue the <code>int</code> value of the feature
      */
     public void setFeature(String featureName, int featureValue) {
         if (featureName != null) {
@@ -139,8 +139,8 @@ public abstract class NLGElement {
     /**
      * A convenience method for setting long integer features.
      *
-     * @param featureName  the name of the feature.
-     * @param featureValue the <code>long</code> value of the feature.
+     * @param featureName  the name of the feature
+     * @param featureValue the <code>long</code> value of the feature
      */
     public void setFeature(String featureName, long featureValue) {
         if (featureName != null) {
@@ -151,8 +151,8 @@ public abstract class NLGElement {
     /**
      * A convenience method for setting floating point number features.
      *
-     * @param featureName  the name of the feature.
-     * @param featureValue the <code>float</code> value of the feature.
+     * @param featureName  the name of the feature
+     * @param featureValue the <code>float</code> value of the feature
      */
     public void setFeature(String featureName, float featureValue) {
         if (featureName != null) {
@@ -161,11 +161,10 @@ public abstract class NLGElement {
     }
 
     /**
-     * A convenience method for setting double precision floating point number
-     * features.
+     * A convenience method for setting double precision floating point number features.
      *
-     * @param featureName  the name of the feature.
-     * @param featureValue the <code>double</code> value of the feature.
+     * @param featureName  the name of the feature
+     * @param featureValue the <code>double</code> value of the feature
      */
     public void setFeature(String featureName, double featureValue) {
         if (featureName != null) {
@@ -176,8 +175,8 @@ public abstract class NLGElement {
     /**
      * Retrieves the value of the feature.
      *
-     * @param featureName the name of the feature.
-     * @return the <code>Object</code> value of the feature.
+     * @param featureName the name of the feature
+     * @return the <code>Object</code> value of the feature
      */
     public Object getFeature(String featureName) {
         return featureName != null ? this.features.get(featureName) : null;
@@ -187,14 +186,13 @@ public abstract class NLGElement {
      * Retrieves the value of the feature as a string. If the feature doesn't
      * exist then <code>null</code> is returned.
      *
-     * @param featureName the name of the feature.
+     * @param featureName the name of the feature
      * @return the <code>String</code> representation of the value. This is
-     * taken by calling the object's <code>toString()</code> method.
+     * taken by calling the object's <code>toString()</code> method
      */
     public String getFeatureAsString(String featureName) {
         Object value = getFeature(featureName);
         String stringValue = null;
-
         if (value != null) {
             stringValue = value.toString();
         }
@@ -212,12 +210,11 @@ public abstract class NLGElement {
      * If the feature does not exist then an empty list is returned.
      * </p>
      *
-     * @param featureName the name of the feature.
+     * @param featureName the name of the feature
      * @return the <code>List</code> of <code>NLGElement</code>s
      */
     public List<NLGElement> getFeatureAsElementList(String featureName) {
         List<NLGElement> list = new ArrayList<>();
-
         Object value = getFeature(featureName);
         if (value instanceof NLGElement) {
             list.add((NLGElement) value);
@@ -245,13 +242,12 @@ public abstract class NLGElement {
      * If the feature does not exist then an empty list is returned.
      * </p>
      *
-     * @param featureName the name of the feature.
+     * @param featureName the name of the feature
      * @return the <code>List</code> of <code>Object</code>s
      */
     public List<Object> getFeatureAsList(String featureName) {
         List<Object> values = new ArrayList<>();
         Object value = getFeature(featureName);
-
         if (value != null) {
             if (value instanceof Collection<?>) {
                 Iterator<?> iterator = ((Collection<?>) value).iterator();
@@ -264,7 +260,6 @@ public abstract class NLGElement {
                 values.add(value);
             }
         }
-
         return values;
     }
 
@@ -280,13 +275,12 @@ public abstract class NLGElement {
      * If the feature does not exist then an empty list is returned.
      * </p>
      *
-     * @param featureName the name of the feature.
+     * @param featureName the name of the feature
      * @return the <code>List</code> of <code>String</code>s
      */
     public List<String> getFeatureAsStringList(String featureName) {
         List<String> values = new ArrayList<>();
         Object value = getFeature(featureName);
-
         if (value != null) {
             if (value instanceof Collection<?>) {
                 Iterator<?> iterator = ((Collection<?>) value).iterator();
@@ -299,7 +293,6 @@ public abstract class NLGElement {
                 values.add(value.toString());
             }
         }
-
         return values;
     }
 
@@ -308,10 +301,10 @@ public abstract class NLGElement {
      * feature does not exist or cannot be converted to an integer then
      * <code>null</code> is returned.
      *
-     * @param featureName the name of the feature.
+     * @param featureName the name of the feature
      * @return the <code>Integer</code> representation of the value. Numbers are
      * converted to integers while Strings are parsed for integer
-     * values. Any other type will return <code>null</code>.
+     * values. Any other type will return <code>null</code>
      */
     public Integer getFeatureAsInteger(String featureName) {
         Object value = getFeature(featureName);
@@ -323,7 +316,7 @@ public abstract class NLGElement {
         } else if (value instanceof String) {
             try {
                 intValue = new Integer((String) value);
-            } catch (NumberFormatException exception) {
+            } catch (NumberFormatException ignored) {
                 intValue = null;
             }
         }
@@ -350,7 +343,7 @@ public abstract class NLGElement {
         } else if (value instanceof String) {
             try {
                 longValue = new Long((String) value);
-            } catch (NumberFormatException exception) {
+            } catch (NumberFormatException ignored) {
                 longValue = null;
             }
         }
@@ -362,10 +355,10 @@ public abstract class NLGElement {
      * feature does not exist or cannot be converted to a float then
      * <code>null</code> is returned.
      *
-     * @param featureName the name of the feature.
+     * @param featureName the name of the feature
      * @return the <code>Float</code> representation of the value. Numbers are
      * converted to floats while Strings are parsed for float values.
-     * Any other type will return <code>null</code>.
+     * Any other type will return <code>null</code>
      */
     public Float getFeatureAsFloat(String featureName) {
         Object value = getFeature(featureName);
@@ -377,7 +370,7 @@ public abstract class NLGElement {
         } else if (value instanceof String) {
             try {
                 floatValue = new Float((String) value);
-            } catch (NumberFormatException exception) {
+            } catch (NumberFormatException ignored) {
                 floatValue = null;
             }
         }
@@ -389,10 +382,10 @@ public abstract class NLGElement {
      * feature does not exist or cannot be converted to a double then
      * <code>null</code> is returned.
      *
-     * @param featureName the name of the feature.
+     * @param featureName the name of the feature
      * @return the <code>Double</code> representation of the value. Numbers are
      * converted to doubles while Strings are parsed for double values.
-     * Any other type will return <code>null</code>.
+     * Any other type will return <code>null</code>
      */
     public Double getFeatureAsDouble(String featureName) {
         Object value = getFeature(featureName);
@@ -404,7 +397,7 @@ public abstract class NLGElement {
         } else if (value instanceof String) {
             try {
                 doubleValue = new Double((String) value);
-            } catch (NumberFormatException exception) {
+            } catch (NumberFormatException ignored) {
                 doubleValue = null;
             }
         }
@@ -416,18 +409,16 @@ public abstract class NLGElement {
      * feature does not exist or is not a boolean then
      * <code>Boolean.FALSE</code> is returned.
      *
-     * @param featureName the name of the feature.
+     * @param featureName the name of the feature
      * @return the <code>Boolean</code> representation of the value. Any
-     * non-Boolean type will return <code>Boolean.FALSE</code>.
+     * non-Boolean type will return <code>Boolean.FALSE</code>
      */
     public Boolean getFeatureAsBoolean(String featureName) {
         Object value = getFeature(featureName);
         Boolean boolValue = Boolean.FALSE;
-
         if (value instanceof Boolean) {
             boolValue = (Boolean) value;
         }
-
         return boolValue;
     }
 
@@ -437,13 +428,12 @@ public abstract class NLGElement {
      * the feature does not exist or is of any other type then <code>null</code>
      * is returned.
      *
-     * @param featureName the name of the feature.
-     * @return the <code>NLGElement</code>.
+     * @param featureName the name of the feature
+     * @return the <code>NLGElement</code>
      */
     public NLGElement getFeatureAsElement(String featureName) {
         Object value = getFeature(featureName);
         NLGElement elementValue = null;
-
         if (value instanceof NLGElement) {
             elementValue = (NLGElement) value;
         } else if (value instanceof String) {
@@ -455,7 +445,7 @@ public abstract class NLGElement {
     /**
      * Retrieves the map containing all the features for this element.
      *
-     * @return a <code>Map</code> of <code>String</code>, <code>Object</code>.
+     * @return a <code>Map</code> of <code>String</code>, <code>Object</code>
      */
     public Map<String, Object> getAllFeatures() {
         return this.features;
@@ -464,9 +454,8 @@ public abstract class NLGElement {
     /**
      * Checks the feature map to see if the named feature is present in the map.
      *
-     * @param featureName the name of the feature to look for.
-     * @return <code>true</code> if the feature exists, <code>false</code>
-     * otherwise.
+     * @param featureName the name of the feature to look for
+     * @return <code>true</code> if the feature exists, <code>false</code> otherwise
      */
     public boolean hasFeature(String featureName) {
         return featureName != null && this.features.containsKey(featureName);
@@ -475,7 +464,7 @@ public abstract class NLGElement {
     /**
      * Deletes the named feature from the map.
      *
-     * @param featureName the name of the feature to be removed.
+     * @param featureName the name of the feature to be removed
      */
     public void removeFeature(String featureName) {
         this.features.remove(featureName);
@@ -491,8 +480,7 @@ public abstract class NLGElement {
     /**
      * Sets the parent element of this element.
      *
-     * @param newParent the <code>NLGElement</code> that is the parent of this
-     *                  element.
+     * @param newParent the <code>NLGElement</code> that is the parent of this element
      */
     public void setParent(NLGElement newParent) {
         this.parent = newParent;
@@ -501,7 +489,7 @@ public abstract class NLGElement {
     /**
      * Retrieves the parent of this element.
      *
-     * @return the <code>NLGElement</code> that is the parent of this element.
+     * @return the <code>NLGElement</code> that is the parent of this element
      */
     public NLGElement getParent() {
         return this.parent;
@@ -510,8 +498,7 @@ public abstract class NLGElement {
     /**
      * Sets the realisation of this element.
      *
-     * @param realised the <code>String</code> representing the final realisation for
-     *                 this element.
+     * @param realised the <code>String</code> representing the final realisation for this element
      */
     public void setRealisation(String realised) {
         this.realisation = realised;
@@ -520,17 +507,14 @@ public abstract class NLGElement {
     /**
      * Retrieves the final realisation of this element.
      *
-     * @return the <code>String</code> representing the final realisation for
-     * this element.
+     * @return the <code>String</code> representing the final realisation for this element
      */
     public String getRealisation() {
         int start = 0;
         int end = 0;
         if (null != this.realisation) {
             end = this.realisation.length();
-
-            while (start < this.realisation.length()
-                    && ' ' == this.realisation.charAt(start)) {
+            while (start < this.realisation.length() && ' ' == this.realisation.charAt(start)) {
                 start++;
             }
             if (start == this.realisation.length()) {
@@ -541,12 +525,10 @@ public abstract class NLGElement {
                 }
             }
         }
-
         // AG: changed this to return the empty string if the realisation is
         // null
         // avoids spurious nulls appearing in output for empty phrases.
-        return this.realisation == null ? "" : this.realisation.substring(
-                start, end);
+        return this.realisation == null ? "" : this.realisation.substring(start, end);
     }
 
     @Override
@@ -578,16 +560,14 @@ public abstract class NLGElement {
      * overridden for each specific type of element. Each type of element will
      * have its own way of determining the child elements.
      *
-     * @return a <code>List</code> of <code>NLGElement</code>s representing the
-     * children of this element.
+     * @return a <code>List</code> of <code>NLGElement</code>s representing the children of this element
      */
     public abstract List<NLGElement> getChildren();
 
     /**
      * Retrieves the set of features currently contained in the feature map.
      *
-     * @return a <code>Set</code> of <code>String</code>s representing the
-     * feature names. The set is unordered.
+     * @return a <code>Set</code> of <code>String</code>s representing the feature names; the set is unordered
      */
     public Set<String> getAllFeatureNames() {
         return this.features.keySet();
@@ -610,9 +590,8 @@ public abstract class NLGElement {
     /**
      * Determines if this element has its realisation equal to the given string.
      *
-     * @param elementRealisation the string to check against.
-     * @return <code>true</code> if the string matches the element's
-     * realisation, <code>false</code> otherwise.
+     * @param elementRealisation the string to check against
+     * @return <code>true</code> if the string matches the element's realisation, <code>false</code> otherwise
      */
     public boolean equals(String elementRealisation) {
         boolean match = false;
@@ -633,8 +612,7 @@ public abstract class NLGElement {
      * {@code setFeature(Feature.NUMBER, NumberAgreement.SINGULAR)} for the
      * singular.
      *
-     * @param isPlural <code>true</code> if this element is to be treated as a
-     *                 plural, <code>false</code> otherwise.
+     * @param isPlural <code>true</code> if this element is to be treated as a plural, <code>false</code> otherwise
      */
     public void setPlural(boolean isPlural) {
         if (isPlural) {
@@ -650,8 +628,7 @@ public abstract class NLGElement {
      * agreement.
      *
      * @return <code>true</code> if the <code>Feature.NUMBER</code> feature has
-     * the value <code>NumberAgreement.PLURAL</code>, <code>false</code>
-     * otherwise.
+     * the value <code>NumberAgreement.PLURAL</code>, <code>false</code> otherwise
      */
     public boolean isPlural() {
         return NumberAgreement.PLURAL.equals(getFeature(Feature.NUMBER));
@@ -662,13 +639,11 @@ public abstract class NLGElement {
 
     /**
      * Retrieves the tense for this element. The method is identical to calling
-     * {@code getFeature(Feature.TENSE)} and casting the result as
-     * <code>Tense<code>.
+     * {@code getFeature(Feature.TENSE)} and casting the result as <code>Tense<code>.
      * *
-     * WARNING: You should use getFeature(Feature.TENSE)
-     * getTense will be dropped from simplenlg at some point
+     * WARNING: You should use getFeature(Feature.TENSE) getTense will be dropped from simplenlg at some point.
      *
-     * @return the <code>Tense</code> of this element.
+     * @return the <code>Tense</code> of this element
      */
     @Deprecated
     public Tense getTense() {
@@ -685,9 +660,9 @@ public abstract class NLGElement {
      * {@code setFeature(Feature.TENSE, newTense)}.
      * <p>
      * WARNING: You should use setTense(Feature.TENSE, tense) setTense will be
-     * dropped from simplenlg at some point
+     * dropped from simplenlg at some point.
      *
-     * @param newTense the new tense for this element.
+     * @param newTense the new tense for this element
      */
     @Deprecated
     public void setTense(Tense newTense) {
@@ -699,10 +674,9 @@ public abstract class NLGElement {
      * {@code setFeature(Feature.NEGATED, isNegated)}.
      * <p>
      * WARNING: You should use setFeature(Feature.NEGATED, isNegated) setNegated
-     * will be dropped from simplenlg at some point
+     * will be dropped from simplenlg at some point.
      *
-     * @param isNegated <code>true</code> if the element is to be negated,
-     *                  <code>false</code> otherwise.
+     * @param isNegated <code>true</code> if the element is to be negated, <code>false</code> otherwise
      */
     @Deprecated
     public void setNegated(boolean isNegated) {
@@ -711,10 +685,10 @@ public abstract class NLGElement {
 
     /**
      * Determines if this element is to be treated as a negation. This method
-     * just examines the value of the NEGATED feature
+     * just examines the value of the NEGATED feature.
      * <p>
      * WARNING: You should use getFeature(Feature.NEGATED) getNegated will be
-     * dropped from simplenlg at some point
+     * dropped from simplenlg at some point.
      *
      * @return <code>true</code> if the <code>Feature.NEGATED</code> feature
      * exists and has the value <code>Boolean.TRUE</code>,

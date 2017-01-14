@@ -73,8 +73,7 @@ public class PhraseElement extends NLGElement {
      * </ul>
      * </p>
      *
-     * @return a <code>List</code> of <code>NLGElement</code>s representing the
-     * child elements of this phrase.
+     * @return a <code>List</code> of <code>NLGElement</code>s representing the child elements of this phrase
      */
     @Override
     public List<NLGElement> getChildren() {
@@ -145,7 +144,7 @@ public class PhraseElement extends NLGElement {
      * <code>StringElement</code>s. If <code>null</code> is passed in as the new
      * head then the head feature is removed.
      *
-     * @param newHead the new value for the head of this phrase.
+     * @param newHead the new value for the head of this phrase
      */
     public void setHead(Object newHead) {
         if (newHead == null) {
@@ -164,7 +163,7 @@ public class PhraseElement extends NLGElement {
     /**
      * Retrieves the current head of this phrase.
      *
-     * @return the <code>NLGElement</code> representing the head.
+     * @return the <code>NLGElement</code> representing the head
      */
     public NLGElement getHead() {
         return getFeatureAsElement(InternalFeature.HEAD);
@@ -178,7 +177,6 @@ public class PhraseElement extends NLGElement {
      * of a phrase whereas post-modifiers are optional.
      * </p>
      * <p>
-     * <p>
      * If the new complement being added is a <em>clause</em> or a
      * <code>CoordinatedPhraseElement</code> then its clause status feature is
      * set to <code>ClauseStatus.SUBORDINATE</code> and it's discourse function
@@ -186,31 +184,26 @@ public class PhraseElement extends NLGElement {
      * existing discourse function exists on the complement.
      * </p>
      * <p>
-     * <p>
      * Complements can have different functions. For example, the phrase <I>John
      * gave Mary a flower</I> has two complements, one a direct object and one
      * indirect. If a complement is not specified for its discourse function,
      * then this is automatically set to <code>DiscourseFunction.OBJECT</code>.
      * </p>
      *
-     * @param newComplement the new complement as an <code>NLGElement</code>.
+     * @param newComplement the new complement as an <code>NLGElement</code>
      */
     public void addComplement(NLGElement newComplement) {
         List<NLGElement> complements = getFeatureAsElementList(InternalFeature.COMPLEMENTS);
         if (complements == null) {
             complements = new ArrayList<>();
         }
-
-        // check if the new complement has a discourse function; if not, assume
-        // object
+        // check if the new complement has a discourse function; if not, assume object
         if (!newComplement.hasFeature(InternalFeature.DISCOURSE_FUNCTION)) {
             newComplement.setFeature(InternalFeature.DISCOURSE_FUNCTION, DiscourseFunction.OBJECT);
         }
-
         complements.add(newComplement);
         setFeature(InternalFeature.COMPLEMENTS, complements);
-        if (newComplement.isA(PhraseCategory.CLAUSE)
-                || newComplement instanceof CoordinatedPhraseElement) {
+        if (newComplement.isA(PhraseCategory.CLAUSE) || newComplement instanceof CoordinatedPhraseElement) {
             newComplement.setFeature(InternalFeature.CLAUSE_STATUS, ClauseStatus.SUBORDINATE);
             if (!newComplement.hasFeature(InternalFeature.DISCOURSE_FUNCTION)) {
                 newComplement.setFeature(InternalFeature.DISCOURSE_FUNCTION, DiscourseFunction.OBJECT);
@@ -219,13 +212,12 @@ public class PhraseElement extends NLGElement {
     }
 
     /**
-     * <p>
      * Sets a complement of the phrase element. If a complement already exists
      * of the same DISCOURSE_FUNCTION, it is removed. This replaces complements
      * set earlier via {@link #addComplement(NLGElement)}
      * </p>
      *
-     * @param newComplement the new complement as an <code>NLGElement</code>.
+     * @param newComplement the new complement as an <code>NLGElement</code>
      */
     public void setComplement(NLGElement newComplement) {
         DiscourseFunction function = (DiscourseFunction) newComplement.getFeature(InternalFeature.DISCOURSE_FUNCTION);
@@ -234,7 +226,7 @@ public class PhraseElement extends NLGElement {
     }
 
     /**
-     * remove complements of the specified DiscourseFunction
+     * Removes complements of the specified DiscourseFunction.
      *
      * @param function
      */
@@ -256,7 +248,6 @@ public class PhraseElement extends NLGElement {
     }
 
     /**
-     * <p>
      * Adds a new complement to the phrase element. Complements will be realised
      * in the syntax after the head element of the phrase. Complements differ
      * from post-modifiers in that complements are crucial to the understanding
@@ -264,7 +255,7 @@ public class PhraseElement extends NLGElement {
      * </p>
      *
      * @param newComplement the new complement as a <code>String</code>. It is used to
-     *                      create a <code>StringElement</code>.
+     *                      create a <code>StringElement</code>
      */
     public void addComplement(String newComplement) {
         StringElement newElement = new StringElement(newComplement);
@@ -277,13 +268,12 @@ public class PhraseElement extends NLGElement {
     }
 
     /**
-     * <p>
      * Sets the complement to the phrase element. This replaces any complements
      * set earlier.
      * </p>
      *
      * @param newComplement the new complement as a <code>String</code>. It is used to
-     *                      create a <code>StringElement</code>.
+     *                      create a <code>StringElement</code>
      */
     public void setComplement(String newComplement) {
         setFeature(InternalFeature.COMPLEMENTS, null);
@@ -294,7 +284,7 @@ public class PhraseElement extends NLGElement {
      * Adds a new post-modifier to the phrase element. Post-modifiers will be
      * realised in the syntax after the complements.
      *
-     * @param newPostModifier the new post-modifier as an <code>NLGElement</code>.
+     * @param newPostModifier the new post-modifier as an <code>NLGElement</code>
      */
     public void addPostModifier(NLGElement newPostModifier) {
         List<NLGElement> postModifiers = getFeatureAsElementList(InternalFeature.POSTMODIFIERS);
@@ -311,7 +301,7 @@ public class PhraseElement extends NLGElement {
      * realised in the syntax after the complements.
      *
      * @param newPostModifier the new post-modifier as a <code>String</code>. It is used to
-     *                        create a <code>StringElement</code>.
+     *                        create a <code>StringElement</code>
      */
     public void addPostModifier(String newPostModifier) {
         List<NLGElement> postModifiers = getFeatureAsElementList(InternalFeature.POSTMODIFIERS);
@@ -324,8 +314,7 @@ public class PhraseElement extends NLGElement {
 
     /**
      * Set the postmodifier for this phrase. This resets all previous
-     * postmodifiers to <code>null</code> and replaces them with the given
-     * string.
+     * postmodifiers to <code>null</code> and replaces them with the given string.
      *
      * @param newPostModifier the postmodifier
      */
@@ -336,8 +325,7 @@ public class PhraseElement extends NLGElement {
 
     /**
      * Set the postmodifier for this phrase. This resets all previous
-     * postmodifiers to <code>null</code> and replaces them with the given
-     * string.
+     * postmodifiers to <code>null</code> and replaces them with the given string.
      *
      * @param newPostModifier the postmodifier
      */
@@ -349,7 +337,7 @@ public class PhraseElement extends NLGElement {
     /**
      * Adds a new front modifier to the phrase element.
      *
-     * @param newFrontModifier the new front modifier as an <code>NLGElement</code>.
+     * @param newFrontModifier the new front modifier as an <code>NLGElement</code>
      */
     public void addFrontModifier(NLGElement newFrontModifier) {
         List<NLGElement> frontModifiers = getFeatureAsElementList(InternalFeature.FRONT_MODIFIERS);
@@ -364,7 +352,7 @@ public class PhraseElement extends NLGElement {
      * Adds a new front modifier to the phrase element.
      *
      * @param newFrontModifier the new front modifier as a <code>String</code>. It is used to
-     *                         create a <code>StringElement</code>.
+     *                         create a <code>StringElement</code>
      */
     public void addFrontModifier(String newFrontModifier) {
         List<NLGElement> frontModifiers = getFeatureAsElementList(InternalFeature.FRONT_MODIFIERS);
@@ -400,7 +388,7 @@ public class PhraseElement extends NLGElement {
     /**
      * Adds a new pre-modifier to the phrase element.
      *
-     * @param newPreModifier the new pre-modifier as an <code>NLGElement</code>.
+     * @param newPreModifier the new pre-modifier as an <code>NLGElement</code>
      */
     public void addPreModifier(NLGElement newPreModifier) {
         List<NLGElement> preModifiers = getFeatureAsElementList(InternalFeature.PREMODIFIERS);
@@ -415,7 +403,7 @@ public class PhraseElement extends NLGElement {
      * Adds a new pre-modifier to the phrase element.
      *
      * @param newPreModifier the new pre-modifier as a <code>String</code>. It is used to
-     *                       create a <code>StringElement</code>.
+     *                       create a <code>StringElement</code>
      */
     public void addPreModifier(String newPreModifier) {
         addPreModifier(new StringElement(newPreModifier));
@@ -423,8 +411,7 @@ public class PhraseElement extends NLGElement {
 
     /**
      * Set the premodifier for this phrase. This resets all previous
-     * premodifiers to <code>null</code> and replaces them with the given
-     * string.
+     * premodifiers to <code>null</code> and replaces them with the given string.
      *
      * @param newPreModifier the premodifier
      */
@@ -435,8 +422,7 @@ public class PhraseElement extends NLGElement {
 
     /**
      * Set the premodifier for this phrase. This resets all previous
-     * premodifiers to <code>null</code> and replaces them with the given
-     * string.
+     * premodifiers to <code>null</code> and replaces them with the given string.
      *
      * @param newPreModifier the premodifier
      */
@@ -446,7 +432,7 @@ public class PhraseElement extends NLGElement {
     }
 
     /**
-     * Add a modifier to a phrase Use heuristics to decide where it goes
+     * Add a modifier to a phrase Use heuristics to decide where it goes.
      *
      * @param modifier
      */
@@ -466,7 +452,7 @@ public class PhraseElement extends NLGElement {
     /**
      * Retrieves the current list of pre-modifiers for the phrase.
      *
-     * @return a <code>List</code> of <code>NLGElement</code>s.
+     * @return a <code>List</code> of <code>NLGElement</code>s
      */
     public List<NLGElement> getPreModifiers() {
         return getFeatureAsElementList(InternalFeature.PREMODIFIERS);
@@ -475,7 +461,7 @@ public class PhraseElement extends NLGElement {
     /**
      * Retrieves the current list of post modifiers for the phrase.
      *
-     * @return a <code>List</code> of <code>NLGElement</code>s.
+     * @return a <code>List</code> of <code>NLGElement</code>s
      */
     public List<NLGElement> getPostModifiers() {
         return getFeatureAsElementList(InternalFeature.POSTMODIFIERS);
@@ -484,7 +470,7 @@ public class PhraseElement extends NLGElement {
     /**
      * Retrieves the current list of frony modifiers for the phrase.
      *
-     * @return a <code>List</code> of <code>NLGElement</code>s.
+     * @return a <code>List</code> of <code>NLGElement</code>s
      */
     public List<NLGElement> getFrontModifiers() {
         return getFeatureAsElementList(InternalFeature.FRONT_MODIFIERS);
@@ -510,8 +496,7 @@ public class PhraseElement extends NLGElement {
         print.append("}\n");
         List<NLGElement> children = getChildren();
         int length = children.size() - 1;
-        int index = 0;
-        for (index = 0; index < length; index++) {
+        for (int index = 0; index < length; index++) {
             print.append(thisIndent).append(children.get(index).printTree(childIndent));
         }
         if (length >= 0) {
@@ -533,7 +518,7 @@ public class PhraseElement extends NLGElement {
      * referred to as specifiers.
      *
      * @param newDeterminer the new determiner for the phrase.
-     * @deprecated Use {@link NPPhraseSpec#setSpecifier(Object)} directly
+     * @deprecated use {@link NPPhraseSpec#setSpecifier(Object)} directly
      */
     @Deprecated
     public void setDeterminer(Object newDeterminer) {
