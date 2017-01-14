@@ -214,7 +214,7 @@ public class NLGFactory {
     private static final List<String> EXPLETIVE_PRONOUNS = Collections.singletonList("there");
 
     /**
-     * regex for determining if a string is a single word or not
+     * Regex for determining if a string is a single word or not.
      **/
     private static final String WORD_REGEX = "\\w*";
 
@@ -228,7 +228,7 @@ public class NLGFactory {
     /**
      * Creates a new phrase factory with the associated lexicon.
      *
-     * @param newLexicon the <code>Lexicon</code> to be used with this factory.
+     * @param newLexicon the <code>Lexicon</code> to be used with this factory
      */
     public NLGFactory(Lexicon newLexicon) {
         setLexicon(newLexicon);
@@ -238,7 +238,7 @@ public class NLGFactory {
      * Sets the lexicon to be used by this factory. Passing a parameter of
      * <code>null</code> will remove any existing lexicon from the factory.
      *
-     * @param newLexicon the new <code>Lexicon</code> to be used.
+     * @param newLexicon the new <code>Lexicon</code> to be used
      */
     public void setLexicon(Lexicon newLexicon) {
         this.lexicon = newLexicon;
@@ -254,9 +254,9 @@ public class NLGFactory {
      * @param word     the base word for the new element. This can be a
      *                 <code>NLGElement</code>, which is returned unchanged, or a
      *                 <code>String</code>, which is used to construct a new
-     *                 <code>WordElement</code>.
-     * @param category the <code>LexicalCategory</code> for the word.
-     * @return an <code>NLGElement</code> representing the word.
+     *                 <code>WordElement</code>
+     * @param category the <code>LexicalCategory</code> for the word
+     * @return an <code>NLGElement</code> representing the word
      */
     public NLGElement createWord(Object word, LexicalCategory category) {
         NLGElement wordElement = null;
@@ -280,13 +280,12 @@ public class NLGFactory {
     }
 
     /**
-     * Create an inflected word element. InflectedWordElement represents a word
+     * Creates an inflected word element. InflectedWordElement represents a word
      * that already specifies the morphological and other features that it
      * should exhibit in a realisation. While normally, phrases are constructed
      * using <code>WordElement</code>s, and features are set on phrases, it is
      * sometimes desirable to set features directly on words (for example, when
      * one wants to elide a specific word, but not its parent phrase).
-     * <p>
      * <p>
      * If the object passed is already a <code>WordElement</code>, then a new
      * <p>
@@ -302,7 +301,7 @@ public class NLGFactory {
      * @param word     the word
      * @param category the category
      * @return an <code>InflectedWordElement</code>, or the original supplied
-     * object if it is an <code>NLGElement</code>.
+     * object if it is an <code>NLGElement</code>
      */
     public NLGElement createInflectedWord(Object word, LexicalCategory category) {
         // first get the word element
@@ -311,11 +310,10 @@ public class NLGFactory {
             inflElement = new InflectedWordElement((WordElement) word);
         } else if (word instanceof String) {
             NLGElement baseword = createWord(word, category);
-            if (baseword != null && baseword instanceof WordElement) {
-                inflElement = new InflectedWordElement((WordElement) baseword);
-            } else {
-                inflElement = new InflectedWordElement((String) word, category);
-            }
+            inflElement = baseword instanceof WordElement ?
+                    new InflectedWordElement((WordElement) baseword)
+                    :
+                    new InflectedWordElement((String) word, category);
         } else if (word instanceof NLGElement) {
             inflElement = (NLGElement) word;
         }
@@ -325,8 +323,8 @@ public class NLGFactory {
     /**
      * A helper method to set the features on newly created pronoun words.
      *
-     * @param wordElement the created element representing the pronoun.
-     * @param word        the base word for the pronoun.
+     * @param wordElement the created element representing the pronoun
+     * @param word        the base word for the pronoun
      */
     private void setPronounFeatures(NLGElement wordElement, String word) {
         wordElement.setCategory(LexicalCategory.PRONOUN);
@@ -334,7 +332,6 @@ public class NLGFactory {
             wordElement.setFeature(Feature.PERSON, Person.FIRST);
         } else if (SECOND_PRONOUNS.contains(word)) {
             wordElement.setFeature(Feature.PERSON, Person.SECOND);
-
             if ("yourself".equalsIgnoreCase(word)) {
                 wordElement.setPlural(false);
             } else if ("yourselves".equalsIgnoreCase(word)) {
@@ -379,9 +376,9 @@ public class NLGFactory {
     /**
      * A helper method to look up the lexicon for the given word.
      *
-     * @param category    the <code>LexicalCategory</code> of the word.
-     * @param word        the base form of the word.
-     * @param wordElement the created element representing the word.
+     * @param category    the <code>LexicalCategory</code> of the word
+     * @param word        the base form of the word
+     * @param wordElement the created element representing the word
      */
     @SuppressWarnings("unused")
     private void doLexiconLookUp(LexicalCategory category, String word, NLGElement wordElement) {
@@ -404,7 +401,7 @@ public class NLGFactory {
     /**
      * Creates a blank preposition phrase with no preposition or complements.
      *
-     * @return a <code>PPPhraseSpec</code> representing this phrase.
+     * @return a <code>PPPhraseSpec</code> representing this phrase
      */
     public PPPhraseSpec createPrepositionPhrase() {
         return createPrepositionPhrase(null, null);
@@ -413,8 +410,8 @@ public class NLGFactory {
     /**
      * Creates a preposition phrase with the given preposition.
      *
-     * @param preposition the preposition to be used.
-     * @return a <code>PPPhraseSpec</code> representing this phrase.
+     * @param preposition the preposition to be used
+     * @return a <code>PPPhraseSpec</code> representing this phrase
      */
     public PPPhraseSpec createPrepositionPhrase(Object preposition) {
         return createPrepositionPhrase(preposition, null);
@@ -426,9 +423,9 @@ public class NLGFactory {
      * head feature of this phrase while the complement is added as a normal
      * phrase complement.
      *
-     * @param preposition the preposition to be used.
-     * @param complement  the complement of the phrase.
-     * @return a <code>PPPhraseSpec</code> representing this phrase.
+     * @param preposition the preposition to be used
+     * @param complement  the complement of the phrase
+     * @return a <code>PPPhraseSpec</code> representing this phrase
      */
     public PPPhraseSpec createPrepositionPhrase(Object preposition, Object complement) {
         PPPhraseSpec phraseElement = new PPPhraseSpec(this);
@@ -443,8 +440,8 @@ public class NLGFactory {
     /**
      * A helper method for setting the complement of a phrase.
      *
-     * @param phraseElement the created element representing this phrase.
-     * @param complement    the complement to be added.
+     * @param phraseElement the created element representing this phrase
+     * @param complement    the complement to be added
      */
     private void setComplement(PhraseElement phraseElement, Object complement) {
         NLGElement complementElement = createNLGElement(complement);
@@ -452,52 +449,55 @@ public class NLGFactory {
     }
 
     /**
-     * this method creates an NLGElement from an object If object is null,
+     * This method creates an NLGElement from an object If object is null,
      * return null If the object is already an NLGElement, it is returned
      * unchanged Exception: if it is an InflectedWordElement, return underlying
      * WordElement If it is a String which matches a lexicon entry or pronoun,
      * the relevant WordElement is returned If it is a different String, a
      * wordElement is created if the string is a single word Otherwise a
-     * StringElement is returned Otherwise throw an exception
+     * StringElement is returned Otherwise throw an exception.
      *
      * @param element  - object to look up
      * @param category - default lexical category of object
      * @return NLGelement
      */
     public NLGElement createNLGElement(Object element, LexicalCategory category) {
-        if (element == null)
+        if (element == null) {
             return null;
+        }
 
-            // InflectedWordElement - return underlying word
-        else if (element instanceof InflectedWordElement)
+        // InflectedWordElement - return underlying word
+        if (element instanceof InflectedWordElement) {
             return ((InflectedWordElement) element).getBaseWord();
+        }
 
-            // StringElement - look up in lexicon if it is a word
-            // otherwise return element
-        else if (element instanceof StringElement) {
-            if (stringIsWord(((StringElement) element).getRealisation(), category))
-                return createWord(((StringElement) element).getRealisation(), category);
-            else
-                return (StringElement) element;
+        // StringElement - look up in lexicon if it is a word
+        // otherwise return element
+        if (element instanceof StringElement) {
+            return stringIsWord(((StringElement) element).getRealisation(), category) ?
+                    createWord(((StringElement) element).getRealisation(), category)
+                    :
+                    (StringElement) element;
         }
 
         // other NLGElement - return element
-        else if (element instanceof NLGElement)
+        if (element instanceof NLGElement) {
             return (NLGElement) element;
+        }
 
-            // String - look up in lexicon if a word, otherwise return StringElement
-        else if (element instanceof String) {
-            if (stringIsWord((String) element, category))
-                return createWord(element, category);
-            else
-                return new StringElement((String) element);
+        // String - look up in lexicon if a word, otherwise return StringElement
+        if (element instanceof String) {
+            return stringIsWord((String) element, category) ?
+                    createWord(element, category)
+                    :
+                    new StringElement((String) element);
         }
 
         throw new IllegalArgumentException(element + " is not a valid type");
     }
 
     /**
-     * return true if string is a word
+     * Returns {@code true} if string is a word.
      *
      * @param string
      * @param category
@@ -509,7 +509,7 @@ public class NLGFactory {
     }
 
     /**
-     * create an NLGElement from the element, no default lexical category
+     * Creates an NLGElement from the element, no default lexical category.
      *
      * @param element
      * @return NLGelement
@@ -521,7 +521,7 @@ public class NLGFactory {
     /**
      * Creates a blank noun phrase with no subject or specifier.
      *
-     * @return a <code>NPPhraseSpec</code> representing this phrase.
+     * @return a <code>NPPhraseSpec</code> representing this phrase
      */
     public NPPhraseSpec createNounPhrase() {
         return createNounPhrase(null, null);
@@ -530,8 +530,8 @@ public class NLGFactory {
     /**
      * Creates a noun phrase with the given subject but no specifier.
      *
-     * @param noun the subject of the phrase.
-     * @return a <code>NPPhraseSpec</code> representing this phrase.
+     * @param noun the subject of the phrase
+     * @return a <code>NPPhraseSpec</code> representing this phrase
      */
     public NPPhraseSpec createNounPhrase(Object noun) {
         return noun instanceof NPPhraseSpec ? (NPPhraseSpec) noun : createNounPhrase(null, noun);
@@ -540,9 +540,9 @@ public class NLGFactory {
     /**
      * Creates a noun phrase with the given specifier and subject.
      *
-     * @param specifier the specifier or determiner for the noun phrase.
-     * @param noun      the subject of the phrase.
-     * @return a <code>NPPhraseSpec</code> representing this phrase.
+     * @param specifier the specifier or determiner for the noun phrase
+     * @param noun      the subject of the phrase
+     * @return a <code>NPPhraseSpec</code> representing this phrase
      */
     public NPPhraseSpec createNounPhrase(Object specifier, Object noun) {
         if (noun instanceof NPPhraseSpec) {
@@ -560,8 +560,8 @@ public class NLGFactory {
     /**
      * A helper method to set the head feature of the phrase.
      *
-     * @param phraseElement the phrase element.
-     * @param headElement   the head element.
+     * @param phraseElement the phrase element
+     * @param headElement   the head element
      */
     private void setPhraseHead(PhraseElement phraseElement, NLGElement headElement) {
         if (headElement != null) {
@@ -573,7 +573,7 @@ public class NLGFactory {
     /**
      * Creates a blank adjective phrase with no base adjective set.
      *
-     * @return a <code>AdjPhraseSpec</code> representing this phrase.
+     * @return a <code>AdjPhraseSpec</code> representing this phrase
      */
     public AdjPhraseSpec createAdjectivePhrase() {
         return createAdjectivePhrase(null);
@@ -582,8 +582,8 @@ public class NLGFactory {
     /**
      * Creates an adjective phrase wrapping the given adjective.
      *
-     * @param adjective the main adjective for this phrase.
-     * @return a <code>AdjPhraseSpec</code> representing this phrase.
+     * @param adjective the main adjective for this phrase
+     * @return a <code>AdjPhraseSpec</code> representing this phrase
      */
     public AdjPhraseSpec createAdjectivePhrase(Object adjective) {
         AdjPhraseSpec phraseElement = new AdjPhraseSpec(this);
@@ -595,7 +595,7 @@ public class NLGFactory {
     /**
      * Creates a blank verb phrase with no main verb.
      *
-     * @return a <code>VPPhraseSpec</code> representing this phrase.
+     * @return a <code>VPPhraseSpec</code> representing this phrase
      */
     public VPPhraseSpec createVerbPhrase() {
         return createVerbPhrase(null);
@@ -608,8 +608,8 @@ public class NLGFactory {
      * is taken to be the verb while all other words are assumed to form the
      * particle.
      *
-     * @param verb the verb to be wrapped.
-     * @return a <code>VPPhraseSpec</code> representing this phrase.
+     * @param verb the verb to be wrapped
+     * @return a <code>VPPhraseSpec</code> representing this phrase
      */
     public VPPhraseSpec createVerbPhrase(Object verb) {
         VPPhraseSpec phraseElement = new VPPhraseSpec(this);
@@ -621,7 +621,7 @@ public class NLGFactory {
     /**
      * Creates a blank adverb phrase that has no adverb.
      *
-     * @return a <code>AdvPhraseSpec</code> representing this phrase.
+     * @return a <code>AdvPhraseSpec</code> representing this phrase
      */
     public AdvPhraseSpec createAdverbPhrase() {
         return createAdverbPhrase(null);
@@ -630,8 +630,8 @@ public class NLGFactory {
     /**
      * Creates an adverb phrase wrapping the given adverb.
      *
-     * @param adverb the adverb for this phrase.
-     * @return a <code>AdvPhraseSpec</code> representing this phrase.
+     * @param adverb the adverb for this phrase
+     * @return a <code>AdvPhraseSpec</code> representing this phrase
      */
     public AdvPhraseSpec createAdverbPhrase(String adverb) {
         AdvPhraseSpec phraseElement = new AdvPhraseSpec(this);
@@ -643,7 +643,7 @@ public class NLGFactory {
     /**
      * Creates a blank clause with no subject, verb or objects.
      *
-     * @return a <code>SPhraseSpec</code> representing this phrase.
+     * @return a <code>SPhraseSpec</code> representing this phrase
      */
     public SPhraseSpec createClause() {
         return createClause(null, null, null);
@@ -653,10 +653,10 @@ public class NLGFactory {
      * Creates a clause with the given subject and verb but no objects.
      *
      * @param subject the subject for the clause as a <code>NLGElement</code> or
-     *                <code>String</code>. This forms a noun phrase.
+     *                <code>String</code>. This forms a noun phrase
      * @param verb    the verb for the clause as a <code>NLGElement</code> or
-     *                <code>String</code>. This forms a verb phrase.
-     * @return a <code>SPhraseSpec</code> representing this phrase.
+     *                <code>String</code>. This forms a verb phrase
+     * @return a <code>SPhraseSpec</code> representing this phrase
      */
     public SPhraseSpec createClause(Object subject, Object verb) {
         return createClause(subject, verb, null);
@@ -667,13 +667,13 @@ public class NLGFactory {
      * object but no indirect object.
      *
      * @param subject      the subject for the clause as a <code>NLGElement</code> or
-     *                     <code>String</code>. This forms a noun phrase.
+     *                     <code>String</code>. This forms a noun phrase
      * @param verb         the verb for the clause as a <code>NLGElement</code> or
-     *                     <code>String</code>. This forms a verb phrase.
+     *                     <code>String</code>. This forms a verb phrase
      * @param directObject the direct object for the clause as a <code>NLGElement</code>
      *                     or <code>String</code>. This forms a complement for the
-     *                     clause.
-     * @return a <code>SPhraseSpec</code> representing this phrase.
+     *                     clause
+     * @return a <code>SPhraseSpec</code> representing this phrase
      */
     public SPhraseSpec createClause(Object subject, Object verb, Object directObject) {
         SPhraseSpec phraseElement = new SPhraseSpec(this);
@@ -694,16 +694,14 @@ public class NLGFactory {
         return phraseElement;
     }
 
-	/*	*//**
+    /**
      * A helper method to set the verb phrase for a clause.
      *
-     * @param baseForm
-     *            the base form of the clause.
-     * @param verbPhrase
-     *            the verb phrase to be used in the clause.
-     * @param phraseElement
-     *            the current representation of the clause.
+     * @param baseForm the base form of the clause
+     * @param verbPhrase the verb phrase to be used in the clause
+     * @param phraseElement the current representation of the clause
      */
+
     /*
      * private void setVerbPhrase(StringBuffer baseForm, NLGElement verbPhrase,
 	 * PhraseElement phraseElement) { if (baseForm.length() > 0) {
@@ -787,7 +785,7 @@ public class NLGFactory {
     /**
      * Creates a blank canned text phrase with no text.
      *
-     * @return a <code>PhraseElement</code> representing this phrase.
+     * @return a <code>PhraseElement</code> representing this phrase
      */
     public NLGElement createStringElement() {
         return createStringElement(null);
@@ -796,8 +794,8 @@ public class NLGFactory {
     /**
      * Creates a canned text phrase with the given text.
      *
-     * @param text the canned text.
-     * @return a <code>PhraseElement</code> representing this phrase.
+     * @param text the canned text
+     * @return a <code>PhraseElement</code> representing this phrase
      */
     public NLGElement createStringElement(String text) {
         return new StringElement(text);
@@ -839,8 +837,8 @@ public class NLGFactory {
     /**
      * Creates a new document element with the given title.
      *
-     * @param title the title for this element.
-     * @return a <code>DocumentElement</code>.
+     * @param title the title for this element
+     * @return a <code>DocumentElement</code>
      */
     public DocumentElement createDocument(String title) {
         return new DocumentElement(DocumentCategory.DOCUMENT, title);
@@ -850,9 +848,8 @@ public class NLGFactory {
      * Creates a new document element with the given title and adds all of the
      * given components in the list
      *
-     * @param title      the title of this element.
-     * @param components a <code>List</code> of <code>NLGElement</code>s that form the
-     *                   components of this element.
+     * @param title      the title of this element
+     * @param components a <code>List</code> of <code>NLGElement</code>s that form the components of this element
      * @return a <code>DocumentElement</code>
      */
     public DocumentElement createDocument(String title, List<DocumentElement> components) {
@@ -864,12 +861,10 @@ public class NLGFactory {
     }
 
     /**
-     * Creates a new document element with the given title and adds the given
-     * component.
+     * Creates a new document element with the given title and adds the given component.
      *
-     * @param title     the title for this element.
-     * @param component an <code>NLGElement</code> that becomes the first component of
-     *                  this document element.
+     * @param title     the title for this element
+     * @param component an <code>NLGElement</code> that becomes the first component of this document element
      * @return a <code>DocumentElement</code>
      */
     public DocumentElement createDocument(String title, NLGElement component) {
@@ -883,7 +878,7 @@ public class NLGFactory {
     /**
      * Creates a new list element with no components.
      *
-     * @return a <code>DocumentElement</code> representing the list.
+     * @return a <code>DocumentElement</code> representing the list
      */
     public DocumentElement createList() {
         return new DocumentElement(DocumentCategory.LIST, null);
@@ -893,9 +888,8 @@ public class NLGFactory {
      * Creates a new list element and adds all of the given components in the
      * list
      *
-     * @param textComponents a <code>List</code> of <code>NLGElement</code>s that form the
-     *                       components of this element.
-     * @return a <code>DocumentElement</code> representing the list.
+     * @param textComponents a <code>List</code> of <code>NLGElement</code>s that form the components of this element
+     * @return a <code>DocumentElement</code> representing the list
      */
     public DocumentElement createList(List<DocumentElement> textComponents) {
         DocumentElement list = new DocumentElement(DocumentCategory.LIST, null);
@@ -904,12 +898,10 @@ public class NLGFactory {
     }
 
     /**
-     * Creates a new section element with the given title and adds the given
-     * component.
+     * Creates a new section element with the given title and adds the given component.
      *
-     * @param component an <code>NLGElement</code> that becomes the first component of
-     *                  this document element.
-     * @return a <code>DocumentElement</code> representing the section.
+     * @param component an <code>NLGElement</code> that becomes the first component of this document element
+     * @return a <code>DocumentElement</code> representing the section
      */
     public DocumentElement createList(NLGElement component) {
         DocumentElement list = new DocumentElement(DocumentCategory.LIST, null);
@@ -920,7 +912,7 @@ public class NLGFactory {
     /**
      * Creates a new enumerated list element with no components.
      *
-     * @return a <code>DocumentElement</code> representing the list.
+     * @return a <code>DocumentElement</code> representing the list
      * @author Rodrigo de Oliveira - Data2Text Ltd
      */
     public DocumentElement createEnumeratedList() {
@@ -928,12 +920,10 @@ public class NLGFactory {
     }
 
     /**
-     * Creates a new enumerated list element and adds all of the given components in the
-     * list
+     * Creates a new enumerated list element and adds all of the given components in the list.
      *
-     * @param textComponents a <code>List</code> of <code>NLGElement</code>s that form the
-     *                       components of this element.
-     * @return a <code>DocumentElement</code> representing the list.
+     * @param textComponents a <code>List</code> of <code>NLGElement</code>s that form the components of this element
+     * @return a <code>DocumentElement</code> representing the list
      * @author Rodrigo de Oliveira - Data2Text Ltd
      */
     public DocumentElement createEnumeratedList(List<DocumentElement> textComponents) {
@@ -943,12 +933,10 @@ public class NLGFactory {
     }
 
     /**
-     * Creates a new section element with the given title and adds the given
-     * component.
+     * Creates a new section element with the given title and adds the given component.
      *
-     * @param component an <code>NLGElement</code> that becomes the first component of
-     *                  this document element.
-     * @return a <code>DocumentElement</code> representing the section.
+     * @param component an <code>NLGElement</code> that becomes the first component of this document element
+     * @return a <code>DocumentElement</code> representing the section
      * @author Rodrigo de Oliveira - Data2Text Ltd
      */
     public DocumentElement createEnumeratedList(NLGElement component) {
@@ -960,17 +948,16 @@ public class NLGFactory {
     /**
      * Creates a list item for adding to a list element.
      *
-     * @return a <code>DocumentElement</code> representing the list item.
+     * @return a <code>DocumentElement</code> representing the list item
      */
     public DocumentElement createListItem() {
         return new DocumentElement(DocumentCategory.LIST_ITEM, null);
     }
 
     /**
-     * Creates a list item for adding to a list element. The list item has the
-     * given component.
+     * Creates a list item for adding to a list element. The list item has the given component.
      *
-     * @return a <code>DocumentElement</code> representing the list item.
+     * @return a <code>DocumentElement</code> representing the list item
      */
     public DocumentElement createListItem(NLGElement component) {
         DocumentElement listItem = new DocumentElement(DocumentCategory.LIST_ITEM, null);
@@ -988,11 +975,9 @@ public class NLGFactory {
     }
 
     /**
-     * Creates a new paragraph element and adds all of the given components in
-     * the list
+     * Creates a new paragraph element and adds all of the given components in the list.
      *
-     * @param components a <code>List</code> of <code>NLGElement</code>s that form the
-     *                   components of this element.
+     * @param components a <code>List</code> of <code>NLGElement</code>s that form the components of this element
      * @return a <code>DocumentElement</code> representing this paragraph
      */
     public DocumentElement createParagraph(List<DocumentElement> components) {
@@ -1004,10 +989,9 @@ public class NLGFactory {
     }
 
     /**
-     * Creates a new paragraph element and adds the given component
+     * Creates a new paragraph element and adds the given component.
      *
-     * @param component an <code>NLGElement</code> that becomes the first component of
-     *                  this document element.
+     * @param component an <code>NLGElement</code> that becomes the first component of this document element
      * @return a <code>DocumentElement</code> representing this paragraph
      */
     public DocumentElement createParagraph(NLGElement component) {
@@ -1021,7 +1005,7 @@ public class NLGFactory {
     /**
      * Creates a new section element.
      *
-     * @return a <code>DocumentElement</code> representing the section.
+     * @return a <code>DocumentElement</code> representing the section
      */
     public DocumentElement createSection() {
         return new DocumentElement(DocumentCategory.SECTION, null);
@@ -1030,21 +1014,19 @@ public class NLGFactory {
     /**
      * Creates a new section element with the given title.
      *
-     * @param title the title of the section.
-     * @return a <code>DocumentElement</code> representing the section.
+     * @param title the title of the section
+     * @return a <code>DocumentElement</code> representing the section
      */
     public DocumentElement createSection(String title) {
         return new DocumentElement(DocumentCategory.SECTION, title);
     }
 
     /**
-     * Creates a new section element with the given title and adds all of the
-     * given components in the list
+     * Creates a new section element with the given title and adds all of the given components in the list.
      *
-     * @param title      the title of this element.
-     * @param components a <code>List</code> of <code>NLGElement</code>s that form the
-     *                   components of this element.
-     * @return a <code>DocumentElement</code> representing the section.
+     * @param title      the title of this element
+     * @param components a <code>List</code> of <code>NLGElement</code>s that form the components of this element
+     * @return a <code>DocumentElement</code> representing the section
      */
     public DocumentElement createSection(String title, List<DocumentElement> components) {
         DocumentElement section = new DocumentElement(DocumentCategory.SECTION, title);
@@ -1055,13 +1037,11 @@ public class NLGFactory {
     }
 
     /**
-     * Creates a new section element with the given title and adds the given
-     * component.
+     * Creates a new section element with the given title and adds the given component.
      *
-     * @param title     the title for this element.
-     * @param component an <code>NLGElement</code> that becomes the first component of
-     *                  this document element.
-     * @return a <code>DocumentElement</code> representing the section.
+     * @param title     the title for this element
+     * @param component an <code>NLGElement</code> that becomes the first component of this document element
+     * @return a <code>DocumentElement</code> representing the section
      */
     public DocumentElement createSection(String title, NLGElement component) {
         DocumentElement section = new DocumentElement(DocumentCategory.SECTION, title);
@@ -1083,8 +1063,7 @@ public class NLGFactory {
     /**
      * Creates a new sentence element and adds all of the given components.
      *
-     * @param components a <code>List</code> of <code>NLGElement</code>s that form the
-     *                   components of this element.
+     * @param components a <code>List</code> of <code>NLGElement</code>s that form the components of this element
      * @return a <code>DocumentElement</code> representing this sentence
      */
     public DocumentElement createSentence(List<NLGElement> components) {
@@ -1094,10 +1073,9 @@ public class NLGFactory {
     }
 
     /**
-     * Creates a new sentence element
+     * Creates a new sentence element.
      *
-     * @param components an <code>NLGElement</code> that becomes the first component of
-     *                   this document element.
+     * @param components an <code>NLGElement</code> that becomes the first component of this document element
      * @return a <code>DocumentElement</code> representing this sentence
      */
     public DocumentElement createSentence(NLGElement components) {
@@ -1108,11 +1086,10 @@ public class NLGFactory {
 
     /**
      * Creates a sentence with the given subject and verb. The phrase factory is
-     * used to construct a clause that then forms the components of the
-     * sentence.
+     * used to construct a clause that then forms the components of the sentence.
      *
-     * @param subject the subject of the sentence.
-     * @param verb    the verb of the sentence.
+     * @param subject the subject of the sentence
+     * @param verb    the verb of the sentence
      * @return a <code>DocumentElement</code> representing this sentence
      */
     public DocumentElement createSentence(Object subject, Object verb) {
@@ -1120,13 +1097,12 @@ public class NLGFactory {
     }
 
     /**
-     * Creates a sentence with the given subject, verb and direct object. The
-     * phrase factory is used to construct a clause that then forms the
-     * components of the sentence.
+     * Creates a sentence with the given subject, verb and direct object.
+     * The phrase factory is used to construct a clause that then forms the components of the sentence.
      *
-     * @param subject    the subject of the sentence.
-     * @param verb       the verb of the sentence.
-     * @param complement the object of the sentence.
+     * @param subject    the subject of the sentence
+     * @param verb       the verb of the sentence
+     * @param complement the object of the sentence
      * @return a <code>DocumentElement</code> representing this sentence
      */
     public DocumentElement createSentence(Object subject, Object verb, Object complement) {
@@ -1140,7 +1116,7 @@ public class NLGFactory {
      * used to form a canned phrase (from the phrase factory) which is then
      * added as the component to sentence element.
      *
-     * @param cannedSentence the canned text as a <code>String</code>.
+     * @param cannedSentence the canned text as a <code>String</code>
      * @return a <code>DocumentElement</code> representing this sentence
      */
     public DocumentElement createSentence(String cannedSentence) {

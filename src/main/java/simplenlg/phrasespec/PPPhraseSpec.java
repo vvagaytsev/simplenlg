@@ -56,21 +56,20 @@ public class PPPhraseSpec extends PhraseElement {
 
     public PPPhraseSpec(NLGFactory phraseFactory) {
         super(PhraseCategory.PREPOSITIONAL_PHRASE);
-        this.setFactory(phraseFactory);
+        setFactory(phraseFactory);
     }
 
     /**
-     * sets the preposition (head) of a prepositional phrase
+     * Sets the preposition (head) of a prepositional phrase.
      *
      * @param preposition
      */
     public void setPreposition(Object preposition) {
-        if (preposition instanceof NLGElement)
+        if (preposition instanceof NLGElement) {
             setHead(preposition);
-        else {
+        } else {
             // create noun as word
             NLGElement prepositionalElement = getFactory().createWord(preposition, LexicalCategory.PREPOSITION);
-
             // set head of NP to nounElement
             setHead(prepositionalElement);
         }
@@ -84,7 +83,7 @@ public class PPPhraseSpec extends PhraseElement {
     }
 
     /**
-     * Sets the  object of a PP
+     * Sets the  object of a PP.
      *
      * @param object
      */
@@ -94,15 +93,16 @@ public class PPPhraseSpec extends PhraseElement {
         addComplement(objectPhrase);
     }
 
-
     /**
      * @return object of PP (assume only one)
      */
     public NLGElement getObject() {
         List<NLGElement> complements = getFeatureAsElementList(InternalFeature.COMPLEMENTS);
-        for (NLGElement complement : complements)
-            if (complement.getFeature(InternalFeature.DISCOURSE_FUNCTION) == DiscourseFunction.OBJECT)
+        for (NLGElement complement : complements) {
+            if (complement.getFeature(InternalFeature.DISCOURSE_FUNCTION) == DiscourseFunction.OBJECT) {
                 return complement;
+            }
+        }
         return null;
     }
 }

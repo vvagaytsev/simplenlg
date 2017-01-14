@@ -72,7 +72,7 @@ public abstract class NLGElement {
     private String realisation;
 
     /**
-     * The NLGFactory which created this element
+     * The NLGFactory which created this element.
      */
     private NLGFactory factory;
 
@@ -88,7 +88,7 @@ public abstract class NLGElement {
     /**
      * Retrieves the category for this element.
      *
-     * @return the category as a <code>ElementCategory</code>.
+     * @return the category as a <code>ElementCategory</code>
      */
     public ElementCategory getCategory() {
         return this.category;
@@ -99,9 +99,8 @@ public abstract class NLGElement {
      * is given the new value. If the value provided is <code>null</code> the
      * feature is removed from the map.
      *
-     * @param featureName  the name of the feature.
-     * @param featureValue the new value of the feature or <code>null</code> if the
-     *                     feature is to be removed.
+     * @param featureName  the name of the feature
+     * @param featureValue the new value of the feature or <code>null</code> if the feature is to be removed
      */
     public void setFeature(String featureName, Object featureValue) {
         if (featureName != null) {
@@ -747,13 +746,10 @@ public abstract class NLGElement {
     @Override
     public boolean equals(Object o) {
         boolean eq = false;
-
         if (o instanceof NLGElement) {
             NLGElement element = (NLGElement) o;
-            eq = this.category == element.category
-                    && this.features.equals(element.features);
+            eq = this.category == element.category && this.features.equals(element.features);
         }
-
         return eq;
     }
 }

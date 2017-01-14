@@ -77,11 +77,11 @@ import java.util.List;
 public class VPPhraseSpec extends PhraseElement {
 
     /**
-     * create an empty clause
+     * Creates an empty clause.
      */
     public VPPhraseSpec(NLGFactory phraseFactory) {
         super(PhraseCategory.VERB_PHRASE);
-        this.setFactory(phraseFactory);
+        setFactory(phraseFactory);
 
         // set default feature values
         setFeature(Feature.PERFECT, false);
@@ -96,26 +96,28 @@ public class VPPhraseSpec extends PhraseElement {
     }
 
     /**
-     * sets the verb (head) of a verb phrase.
-     * Extract particle from verb if necessary
+     * Sets the verb (head) of a verb phrase.
+     * Extract particle from verb if necessary.
      *
      * @param verb
      */
     public void setVerb(Object verb) {
         NLGElement verbElement;
-        if (verb instanceof String) { // if String given, check for particle
+        if (verb instanceof String) {
+            // if String given, check for particle
             int space = ((String) verb).indexOf(' ');
-
-            if (space == -1) { // no space, so no particle
+            if (space == -1) {
+                // no space, so no particle
                 verbElement = getFactory().createWord(verb, LexicalCategory.VERB);
-
-            } else { // space, so break up into verb and particle
+            } else {
+                // space, so break up into verb and particle
                 verbElement = getFactory().createWord(((String) verb)
                         .substring(0, space), LexicalCategory.VERB);
                 setFeature(Feature.PARTICLE, ((String) verb)
                         .substring(space + 1, ((String) verb).length()));
             }
-        } else { // Object is not a String
+        } else {
+            // Object is not a String
             verbElement = getFactory().createNLGElement(verb, LexicalCategory.VERB);
         }
         setHead(verbElement);
@@ -130,71 +132,72 @@ public class VPPhraseSpec extends PhraseElement {
     }
 
     /**
-     * Sets the direct object of a clause  (assumes this is the only direct object)
+     * Sets the direct object of a clause  (assumes this is the only direct object).
      *
      * @param object
      */
     public void setObject(Object object) {
-        NLGElement objectPhrase;
-        if (object instanceof PhraseElement || object instanceof CoordinatedPhraseElement)
-            objectPhrase = (NLGElement) object;
-        else
-            objectPhrase = getFactory().createNounPhrase(object);
-
+        NLGElement objectPhrase = object instanceof PhraseElement || object instanceof CoordinatedPhraseElement
+                ?
+                (NLGElement) object
+                :
+                getFactory().createNounPhrase(object);
         objectPhrase.setFeature(InternalFeature.DISCOURSE_FUNCTION, DiscourseFunction.OBJECT);
         setComplement(objectPhrase);
     }
 
-
     /**
-     * Returns the direct object of a clause (assumes there is only one)
+     * Returns the direct object of a clause (assumes there is only one).
      *
      * @return subject of clause (assume only one)
      */
     public NLGElement getObject() {
         List<NLGElement> complements = getFeatureAsElementList(InternalFeature.COMPLEMENTS);
-        for (NLGElement complement : complements)
-            if (complement.getFeature(InternalFeature.DISCOURSE_FUNCTION) == DiscourseFunction.OBJECT)
+        for (NLGElement complement : complements) {
+            if (complement.getFeature(InternalFeature.DISCOURSE_FUNCTION) == DiscourseFunction.OBJECT) {
                 return complement;
+            }
+        }
         return null;
     }
 
     /**
-     * Set the indirect object of a clause (assumes this is the only direct indirect object)
+     * Sets the indirect object of a clause (assumes this is the only direct indirect object).
      *
      * @param indirectObject
      */
     public void setIndirectObject(Object indirectObject) {
-        NLGElement indirectObjectPhrase;
-        if (indirectObject instanceof PhraseElement || indirectObject instanceof CoordinatedPhraseElement)
-            indirectObjectPhrase = (NLGElement) indirectObject;
-        else
-            indirectObjectPhrase = getFactory().createNounPhrase(indirectObject);
-
+        NLGElement indirectObjectPhrase = indirectObject instanceof PhraseElement ||
+                indirectObject instanceof CoordinatedPhraseElement
+                ?
+                (NLGElement) indirectObject
+                :
+                getFactory().createNounPhrase(indirectObject);
         indirectObjectPhrase.setFeature(InternalFeature.DISCOURSE_FUNCTION, DiscourseFunction.INDIRECT_OBJECT);
         setComplement(indirectObjectPhrase);
     }
 
     /**
-     * Returns the indirect object of a clause (assumes there is only one)
+     * Returns the indirect object of a clause (assumes there is only one).
      *
      * @return subject of clause (assume only one)
      */
     public NLGElement getIndirectObject() {
         List<NLGElement> complements = getFeatureAsElementList(InternalFeature.COMPLEMENTS);
-        for (NLGElement complement : complements)
-            if (complement.getFeature(InternalFeature.DISCOURSE_FUNCTION) == DiscourseFunction.INDIRECT_OBJECT)
+        for (NLGElement complement : complements) {
+            if (complement.getFeature(InternalFeature.DISCOURSE_FUNCTION) == DiscourseFunction.INDIRECT_OBJECT) {
                 return complement;
+            }
+        }
         return null;
     }
 
     // note that addFrontModifier, addPostModifier, addPreModifier are inherited from PhraseElement
     // likewise getFrontModifiers, getPostModifiers, getPreModifiers
 
-
     /**
-     * Add a modifier to a verb phrase
-     * Use heuristics to decide where it goes
+     * Add a modifier to a verb phrase.
+     * Use heuristics to decide where it goes.
      *
      * @param modifier
      */
@@ -204,15 +207,15 @@ public class VPPhraseSpec extends PhraseElement {
         // string which is one lexicographic word is looked up in lexicon,
         // if it is an adverb than it becomes a preModifier
         // Everything else is postModifier
-
-        if (modifier == null)
+        if (modifier == null) {
             return;
+        }
 
         // get modifier as NLGElement if possible
         NLGElement modifierElement = null;
-        if (modifier instanceof NLGElement)
+        if (modifier instanceof NLGElement) {
             modifierElement = (NLGElement) modifier;
-        else if (modifier instanceof String) {
+        } else if (modifier instanceof String) {
             String modifierString = (String) modifier;
             if (!modifierString.isEmpty() && !modifierString.contains(" "))
                 modifierElement = getFactory().createWord(modifier, LexicalCategory.ANY);
@@ -226,10 +229,11 @@ public class VPPhraseSpec extends PhraseElement {
 
         // extract WordElement if modifier is a single word
         WordElement modifierWord = null;
-        if (modifierElement != null && modifierElement instanceof WordElement)
+        if (modifierElement instanceof WordElement) {
             modifierWord = (WordElement) modifierElement;
-        else if (modifierElement != null && modifierElement instanceof InflectedWordElement)
+        } else if (modifierElement instanceof InflectedWordElement) {
             modifierWord = ((InflectedWordElement) modifierElement).getBaseWord();
+        }
 
         if (modifierWord != null && modifierWord.getCategory() == LexicalCategory.ADVERB) {
             addPreModifier(modifierWord);

@@ -371,7 +371,7 @@ public class UnWrapper {
             CoordinatedPhraseElement cp = new CoordinatedPhraseElement();
             ElementCategory cat = UnwrapCategory(wp.getCat());
 
-            if (cat != null && cat instanceof PhraseCategory) {
+            if (cat instanceof PhraseCategory) {
                 cp.setCategory(cat);
             }
             if (wp.getConj() != null) {
@@ -416,7 +416,7 @@ public class UnWrapper {
                 LexicalCategory lexCat = LexicalCategory.ANY;
                 ElementCategory cat = UnwrapCategory(wordElement.getCat());
 
-                if (cat != null && cat instanceof LexicalCategory) {
+                if (cat instanceof LexicalCategory) {
                     lexCat = (LexicalCategory) cat;
                 }
 

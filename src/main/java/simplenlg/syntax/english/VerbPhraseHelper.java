@@ -569,26 +569,20 @@ final class VerbPhraseHelper {
     private static NumberAgreement determineNumber(NLGElement parent,
                                                    PhraseElement phrase) {
         Object numberValue = phrase.getFeature(Feature.NUMBER);
-        NumberAgreement number = null;
-        if (numberValue != null && numberValue instanceof NumberAgreement) {
-            number = (NumberAgreement) numberValue;
-        } else {
-            number = NumberAgreement.SINGULAR;
-        }
+        NumberAgreement number = numberValue instanceof NumberAgreement ?
+                (NumberAgreement) numberValue
+                :
+                NumberAgreement.SINGULAR;
 
         // Ehud Reiter = modified below to force number from VP for WHAT_SUBJECT
         // and WHO_SUBJECT interrogatuves
         if (parent instanceof PhraseElement) {
-            if (parent.isA(PhraseCategory.CLAUSE)
-                    && (PhraseHelper.isExpletiveSubject((PhraseElement) parent)
-                    || InterrogativeType.WHO_SUBJECT.equals(parent
-                    .getFeature(Feature.INTERROGATIVE_TYPE)) || InterrogativeType.WHAT_SUBJECT
-                    .equals(parent
-                            .getFeature(Feature.INTERROGATIVE_TYPE)))
-                    && isCopular(phrase.getHead())) {
-
-                if (hasPluralComplement(phrase
-                        .getFeatureAsElementList(InternalFeature.COMPLEMENTS))) {
+            if (parent.isA(PhraseCategory.CLAUSE) &&
+                    (PhraseHelper.isExpletiveSubject((PhraseElement) parent) ||
+                            InterrogativeType.WHO_SUBJECT.equals(parent.getFeature(Feature.INTERROGATIVE_TYPE)) ||
+                            InterrogativeType.WHAT_SUBJECT.equals(parent.getFeature(Feature.INTERROGATIVE_TYPE))) &&
+                    isCopular(phrase.getHead())) {
+                if (hasPluralComplement(phrase.getFeatureAsElementList(InternalFeature.COMPLEMENTS))) {
                     number = NumberAgreement.PLURAL;
                 } else {
                     number = NumberAgreement.SINGULAR;
@@ -607,18 +601,13 @@ final class VerbPhraseHelper {
     private static boolean hasPluralComplement(List<NLGElement> complements) {
         boolean plural = false;
         Iterator<NLGElement> complementIterator = complements.iterator();
-        NLGElement eachComplement = null;
-        Object numberValue = null;
-
+        NLGElement eachComplement;
+        Object numberValue;
         while (complementIterator.hasNext() && !plural) {
             eachComplement = complementIterator.next();
-
-            if (eachComplement != null
-                    && eachComplement.isA(PhraseCategory.NOUN_PHRASE)) {
-
+            if (eachComplement != null && eachComplement.isA(PhraseCategory.NOUN_PHRASE)) {
                 numberValue = eachComplement.getFeature(Feature.NUMBER);
-                if (numberValue != null
-                        && NumberAgreement.PLURAL.equals(numberValue)) {
+                if (numberValue != null && NumberAgreement.PLURAL.equals(numberValue)) {
                     plural = true;
                 }
             }
@@ -634,26 +623,20 @@ final class VerbPhraseHelper {
      */
     public static boolean isCopular(NLGElement element) {
         boolean copular = false;
-
         if (element instanceof InflectedWordElement) {
-            copular = "be".equalsIgnoreCase(((InflectedWordElement) element)
-                    .getBaseForm());
-
+            copular = "be".equalsIgnoreCase(((InflectedWordElement) element).getBaseForm());
         } else if (element instanceof WordElement) {
-            copular = "be".equalsIgnoreCase(((WordElement) element)
-                    .getBaseForm());
-
+            copular = "be".equalsIgnoreCase(((WordElement) element).getBaseForm());
         } else if (element instanceof PhraseElement) {
             // get the head and check if it's "be"
-            NLGElement head = element instanceof SPhraseSpec ? ((SPhraseSpec) element)
-                    .getVerb()
-                    : ((PhraseElement) element).getHead();
-
+            NLGElement head = element instanceof SPhraseSpec ?
+                    ((SPhraseSpec) element).getVerb()
+                    :
+                    ((PhraseElement) element).getHead();
             if (head != null) {
                 copular = head instanceof WordElement && "be".equals(((WordElement) head).getBaseForm());
             }
         }
-
         return copular;
     }
 }

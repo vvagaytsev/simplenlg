@@ -52,18 +52,18 @@ public class AdjPhraseSpec extends PhraseElement {
 
     public AdjPhraseSpec(NLGFactory phraseFactory) {
         super(PhraseCategory.ADJECTIVE_PHRASE);
-        this.setFactory(phraseFactory);
+        setFactory(phraseFactory);
     }
 
     /**
-     * sets the adjective (head) of the phrase
+     * Sets the adjective (head) of the phrase.
      *
      * @param adjective
      */
     public void setAdjective(Object adjective) {
-        if (adjective instanceof NLGElement)
+        if (adjective instanceof NLGElement) {
             setHead(adjective);
-        else {
+        } else {
             // create noun as word
             NLGElement adjectiveElement = getFactory().createWord(adjective, LexicalCategory.ADJECTIVE);
             // set head of NP to nounElement
@@ -77,6 +77,5 @@ public class AdjPhraseSpec extends PhraseElement {
     public NLGElement getAdjective() {
         return getHead();
     }
-
     // inherit usual modifier routines
 }

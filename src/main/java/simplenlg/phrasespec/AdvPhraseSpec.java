@@ -52,18 +52,18 @@ public class AdvPhraseSpec extends PhraseElement {
 
     public AdvPhraseSpec(NLGFactory phraseFactory) {
         super(PhraseCategory.ADVERB_PHRASE);
-        this.setFactory(phraseFactory);
+        setFactory(phraseFactory);
     }
 
     /**
-     * sets the adverb (head) of the phrase
+     * Sets the adverb (head) of the phrase.
      *
      * @param adverb
      */
     public void setAdverb(Object adverb) {
-        if (adverb instanceof NLGElement)
+        if (adverb instanceof NLGElement) {
             setHead(adverb);
-        else {
+        } else {
             // create noun as word
             NLGElement adverbElement = getFactory().createWord(adverb, LexicalCategory.ADVERB);
             // set head of NP to nounElement
