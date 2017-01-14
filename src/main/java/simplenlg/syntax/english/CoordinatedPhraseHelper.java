@@ -34,7 +34,11 @@ import java.util.List;
  * @author D. Westwater, University of Aberdeen.
  * @version 4.0
  */
-abstract class CoordinatedPhraseHelper {
+final class CoordinatedPhraseHelper {
+
+    private CoordinatedPhraseHelper() {
+        throw new AssertionError("No instances allowed.");
+    }
 
     /**
      * The main method for realising coordinated phrases.

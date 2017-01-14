@@ -34,7 +34,11 @@ import java.util.List;
  * @author E. Reiter and D. Westwater, University of Aberdeen.
  * @version 4.0
  */
-abstract class PhraseHelper {
+final class PhraseHelper {
+
+    private PhraseHelper() {
+        throw new AssertionError("No instances allowed.");
+    }
 
     /**
      * The main method for realising phrases.

@@ -32,7 +32,7 @@ import java.util.List;
  * @author E. Reiter and D. Westwater, University of Aberdeen.
  * @version 4.0
  */
-abstract class NounPhraseHelper {
+final class NounPhraseHelper {
 
     /**
      * The qualitative position for ordering premodifiers.
@@ -53,6 +53,10 @@ abstract class NounPhraseHelper {
      * The noun position for ordering premodifiers.
      */
     private static final int NOUN_POSITION = 4;
+
+    private NounPhraseHelper() {
+        throw new AssertionError("No instances allowed.");
+    }
 
     /**
      * The main method for realising noun phrases.

@@ -33,7 +33,11 @@ import java.util.List;
  * @author D. Westwater, University of Aberdeen.
  * @version 4.0
  */
-abstract class ClauseHelper {
+final class ClauseHelper {
+
+    private ClauseHelper() {
+        throw new AssertionError("No instances allowed.");
+    }
 
     /**
      * The main method for controlling the syntax realisation of clauses.

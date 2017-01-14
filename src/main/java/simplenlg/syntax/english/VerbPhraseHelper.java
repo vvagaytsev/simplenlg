@@ -34,7 +34,11 @@ import java.util.Stack;
  * @author D. Westwater, University of Aberdeen.
  * @version 4.0
  */
-abstract class VerbPhraseHelper {
+final class VerbPhraseHelper {
+
+    private VerbPhraseHelper() {
+        throw new AssertionError("No instances allowed.");
+    }
 
     /**
      * The main method for realising verb phrases.

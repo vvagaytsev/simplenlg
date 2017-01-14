@@ -34,7 +34,11 @@ import java.util.List;
  *
  * @author agatt
  */
-public abstract class PhraseChecker {
+public final class PhraseChecker {
+
+    private PhraseChecker() {
+        throw new AssertionError("No instances allowed.");
+    }
 
     /**
      * Check that the sentences supplied are identical
