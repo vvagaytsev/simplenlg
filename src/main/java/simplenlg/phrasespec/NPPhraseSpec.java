@@ -152,6 +152,7 @@ public class NPPhraseSpec extends PhraseElement {
      * setDeterminer - Convenience method for when a person tries to set
      * a determiner (e.g. "the") to a NPPhraseSpec.
      */
+    @Override
     public void setDeterminer(Object determiner) {
         setSpecifier(determiner);
     }

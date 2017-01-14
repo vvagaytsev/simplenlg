@@ -79,6 +79,7 @@ public enum PhraseCategory implements ElementCategory {
      * <code>PhraseCategory.CLAUSE</code> but will also match the string
      * <em>"clause"</em> as well.
      */
+    @Override
     public boolean equalTo(Object checkObject) {
         boolean match = false;
 

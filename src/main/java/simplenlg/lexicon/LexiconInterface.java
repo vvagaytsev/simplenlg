@@ -18,7 +18,6 @@
  */
 package simplenlg.lexicon;
 
-
 public interface LexiconInterface {
 
 }

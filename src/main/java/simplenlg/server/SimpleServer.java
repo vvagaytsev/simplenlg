@@ -145,6 +145,7 @@ public class SimpleServer implements Runnable {
      * Note that the <code>exit()</code> and <code>exit(int)</code>
      * methods will terminate the program by calling System.exit().
      */
+    @Override
     public void run() {
         try {
             while (this.isActive) {

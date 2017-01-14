@@ -41,7 +41,7 @@ public abstract class AggregationRule {
     /**
      * Creates a new instance of AggregationRule
      */
-    public AggregationRule() {
+    protected AggregationRule() {
         this.factory = new NLGFactory();
     }
 

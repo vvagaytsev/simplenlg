@@ -83,6 +83,7 @@ public enum DocumentCategory implements ElementCategory {
      * <code>DocumentCategory.LIST</code> but will also match the string
      * <em>"list"</em> as well.
      */
+    @Override
     public boolean equalTo(Object checkObject) {
         boolean match = false;
 

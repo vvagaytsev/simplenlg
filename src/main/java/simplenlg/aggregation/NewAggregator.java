@@ -31,6 +31,7 @@ public class NewAggregator extends NLGModule {
     public NewAggregator() {
     }
 
+    @Override
     public void initialise() {
         this._syntax = new SyntaxProcessor();
         this._factory = new NLGFactory();

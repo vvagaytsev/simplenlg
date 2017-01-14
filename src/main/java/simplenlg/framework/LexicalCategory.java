@@ -108,6 +108,7 @@ public enum LexicalCategory implements ElementCategory {
      * <code>LexicalCategory.NOUN</code> but will also match the string
      * <em>"noun"</em> as well.
      */
+    @Override
     public boolean equalTo(Object checkObject) {
         boolean match = false;
 
