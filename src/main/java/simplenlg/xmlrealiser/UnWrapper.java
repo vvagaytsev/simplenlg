@@ -50,7 +50,7 @@ public class UnWrapper {
      *
      * @param xmlReader the xml reader
      * @return the nLG spec
-     * @throws XMLRealiserException the xML realiser exception
+     * @throws XMLRealiserException the XML realiser exception
      */
     public static NLGSpec getNLGSpec(
             Reader xmlReader) throws XMLRealiserException {
@@ -671,41 +671,41 @@ public class UnWrapper {
 
         // set on clauses.
         boolean sAggregateAuxiliary = wp.isAGGREGATEAUXILIARY() == null ? false : wp.isAGGREGATEAUXILIARY();
-        boolean vAggregateAuxiliary = vp == null ? false : vp.getFeatureAsBoolean(Feature.AGGREGATE_AUXILIARY).booleanValue();
+        boolean vAggregateAuxiliary = vp == null ? false : vp.getFeatureAsBoolean(Feature.AGGREGATE_AUXILIARY);
         sp.setFeature(Feature.AGGREGATE_AUXILIARY, sAggregateAuxiliary || vAggregateAuxiliary);
 
         // passive: can be set on S or VP
         boolean sPass = wp.isPASSIVE() == null ? false : wp.isPASSIVE();
         boolean vPass = vp == null ? false : vp.getFeatureAsBoolean(
-                Feature.PASSIVE).booleanValue();
+                Feature.PASSIVE);
         sp.setFeature(Feature.PASSIVE, sPass || vPass);
 
         // progressive: can be set on S or VP
         boolean sProg = wp.isPROGRESSIVE() == null ? false : wp.isPROGRESSIVE();
         boolean vProg = vp == null ? false : vp.getFeatureAsBoolean(
-                Feature.PROGRESSIVE).booleanValue();
+                Feature.PROGRESSIVE);
         sp.setFeature(Feature.PROGRESSIVE, sProg || vProg);
 
         // perfect: can be set on S or VP
         boolean sPerf = wp.isPERFECT() == null ? false : wp.isPERFECT();
         boolean vPerf = vp == null ? false : vp.getFeatureAsBoolean(
-                Feature.PERFECT).booleanValue();
+                Feature.PERFECT);
         sp.setFeature(Feature.PERFECT, sPerf || vPerf);
 
         // negation: can be set on S or VP
         boolean sNeg = wp.isNEGATED() == null ? false : wp.isNEGATED();
         boolean vNeg = vp == null ? false : vp.getFeatureAsBoolean(
-                Feature.NEGATED).booleanValue();
+                Feature.NEGATED);
         sp.setFeature(Feature.NEGATED, sNeg || vNeg);
 
         // set on clauses.
         boolean ssgg = wp.isSUPPRESSGENITIVEINGERUND() == null ? false : wp.isSUPPRESSGENITIVEINGERUND();
-        boolean vsgg = vp == null ? false : vp.getFeatureAsBoolean(Feature.SUPPRESS_GENITIVE_IN_GERUND).booleanValue();
+        boolean vsgg = vp == null ? false : vp.getFeatureAsBoolean(Feature.SUPPRESS_GENITIVE_IN_GERUND);
         sp.setFeature(Feature.SUPPRESS_GENITIVE_IN_GERUND, ssgg || vsgg);
 
         // set on clauses.
         boolean ssc = wp.isSUPRESSEDCOMPLEMENTISER() == null ? false : wp.isSUPRESSEDCOMPLEMENTISER();
-        boolean vsc = vp == null ? false : vp.getFeatureAsBoolean(Feature.SUPRESSED_COMPLEMENTISER).booleanValue();
+        boolean vsc = vp == null ? false : vp.getFeatureAsBoolean(Feature.SUPRESSED_COMPLEMENTISER);
         sp.setFeature(Feature.SUPRESSED_COMPLEMENTISER, ssc || vsc);
 
     }

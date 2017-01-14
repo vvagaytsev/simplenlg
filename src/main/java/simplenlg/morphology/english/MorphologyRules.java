@@ -89,7 +89,7 @@ public abstract class MorphologyRules extends NLGModule {
         // base form from baseWord if it exists, otherwise from element
         String baseForm = getBaseForm(element, baseWord);
 
-        if (element.isPlural() && !element.getFeatureAsBoolean(LexicalFeature.PROPER).booleanValue()) {
+        if (element.isPlural() && !element.getFeatureAsBoolean(LexicalFeature.PROPER)) {
 
             String pluralForm = null;
 
@@ -400,7 +400,7 @@ public abstract class MorphologyRules extends NLGModule {
      * @param realised the realisation of the word.
      */
     private static void checkPossessive(InflectedWordElement element, StringBuffer realised) {
-        if (element.getFeatureAsBoolean(Feature.POSSESSIVE).booleanValue()) {
+        if (element.getFeatureAsBoolean(Feature.POSSESSIVE)) {
             if (realised.charAt(realised.length() - 1) == 's') {
                 realised.append('\'');
             } else {
@@ -572,7 +572,7 @@ public abstract class MorphologyRules extends NLGModule {
         // base form from baseWord if it exists, otherwise from element
         String baseForm = getBaseForm(element, baseWord);
 
-        if (element.getFeatureAsBoolean(Feature.IS_COMPARATIVE).booleanValue()) {
+        if (element.getFeatureAsBoolean(Feature.IS_COMPARATIVE)) {
             realised = element.getFeatureAsString(LexicalFeature.COMPARATIVE);
 
             if (realised == null && baseWord != null) {
@@ -585,7 +585,7 @@ public abstract class MorphologyRules extends NLGModule {
                     realised = buildRegularComparative(baseForm);
                 }
             }
-        } else if (element.getFeatureAsBoolean(Feature.IS_SUPERLATIVE).booleanValue()) {
+        } else if (element.getFeatureAsBoolean(Feature.IS_SUPERLATIVE)) {
 
             realised = element.getFeatureAsString(LexicalFeature.SUPERLATIVE);
 
@@ -714,7 +714,7 @@ public abstract class MorphologyRules extends NLGModule {
         // base form from baseWord if it exists, otherwise from element
         String baseForm = getBaseForm(element, baseWord);
 
-        if (element.getFeatureAsBoolean(Feature.IS_COMPARATIVE).booleanValue()) {
+        if (element.getFeatureAsBoolean(Feature.IS_COMPARATIVE)) {
             realised = element.getFeatureAsString(LexicalFeature.COMPARATIVE);
 
             if (realised == null && baseWord != null) {
@@ -723,7 +723,7 @@ public abstract class MorphologyRules extends NLGModule {
             if (realised == null) {
                 realised = buildRegularComparative(baseForm);
             }
-        } else if (element.getFeatureAsBoolean(Feature.IS_SUPERLATIVE).booleanValue()) {
+        } else if (element.getFeatureAsBoolean(Feature.IS_SUPERLATIVE)) {
 
             realised = element.getFeatureAsString(LexicalFeature.SUPERLATIVE);
 
@@ -753,7 +753,7 @@ public abstract class MorphologyRules extends NLGModule {
      */
     public static NLGElement doPronounMorphology(InflectedWordElement element) {
         String realised = null;
-        if (!element.getFeatureAsBoolean(InternalFeature.NON_MORPH).booleanValue() && !isWHPronoun(element)) {
+        if (!element.getFeatureAsBoolean(InternalFeature.NON_MORPH) && !isWHPronoun(element)) {
             Object genderValue = element.getFeature(LexicalFeature.GENDER);
             Object personValue = element.getFeature(Feature.PERSON);
             Object discourseValue = element.getFeature(InternalFeature.DISCOURSE_FUNCTION);
@@ -766,19 +766,19 @@ public abstract class MorphologyRules extends NLGModule {
             }
 
             int positionIndex = 0;
-            if (element.getFeatureAsBoolean(LexicalFeature.REFLEXIVE).booleanValue()) {
+            if (element.getFeatureAsBoolean(LexicalFeature.REFLEXIVE)) {
                 positionIndex = 2;
-            } else if (element.getFeatureAsBoolean(Feature.POSSESSIVE).booleanValue()) {
+            } else if (element.getFeatureAsBoolean(Feature.POSSESSIVE)) {
                 positionIndex = 3;
                 if (DiscourseFunction.SPECIFIER.equals(discourseValue)) {
                     positionIndex++;
                 }
             } else {
                 positionIndex = (DiscourseFunction.SUBJECT.equals(discourseValue) && !element.getFeatureAsBoolean(
-                        Feature.PASSIVE).booleanValue()) || (DiscourseFunction.OBJECT.equals(discourseValue) && element.getFeatureAsBoolean(Feature.PASSIVE).booleanValue())
+                        Feature.PASSIVE)) || (DiscourseFunction.OBJECT.equals(discourseValue) && element.getFeatureAsBoolean(Feature.PASSIVE))
                         || DiscourseFunction.SPECIFIER.equals(discourseValue) || (
                         DiscourseFunction.COMPLEMENT.equals(discourseValue)
-                                && element.getFeatureAsBoolean(Feature.PASSIVE).booleanValue()) ? 0 : 1;
+                                && element.getFeatureAsBoolean(Feature.PASSIVE)) ? 0 : 1;
             }
             realised = PRONOUNS[numberIndex][positionIndex][personIndex];
         } else {

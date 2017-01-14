@@ -64,8 +64,7 @@ abstract class CoordinatedPhraseHelper {
 
             if (children != null && !children.isEmpty()) {
 
-                if (phrase.getFeatureAsBoolean(Feature.RAISE_SPECIFIER)
-                        .booleanValue()) {
+                if (phrase.getFeatureAsBoolean(Feature.RAISE_SPECIFIER)) {
                     raiseSpecifier(children);
                 }
 
@@ -81,8 +80,7 @@ abstract class CoordinatedPhraseHelper {
                 for (int index = 1; index < children.size(); index++) {
                     child = children.get(index);
                     setChildFeatures(phrase, child);
-                    if (phrase.getFeatureAsBoolean(Feature.AGGREGATE_AUXILIARY)
-                            .booleanValue()) {
+                    if (phrase.getFeatureAsBoolean(Feature.AGGREGATE_AUXILIARY)) {
                         child.setFeature(InternalFeature.REALISE_AUXILIARY,
                                 false);
                     }

@@ -154,7 +154,7 @@ abstract class PhraseHelper {
                 currentElement.setFeature(InternalFeature.DISCOURSE_FUNCTION,
                         function);
 
-                if (eachElement.getFeatureAsBoolean(Feature.APPOSITIVE).booleanValue()) {
+                if (eachElement.getFeatureAsBoolean(Feature.APPOSITIVE)) {
                     currentElement.setFeature(Feature.APPOSITIVE, true);
                 }
 
@@ -184,7 +184,7 @@ abstract class PhraseHelper {
 
             if (subjectNP.isA(PhraseCategory.NOUN_PHRASE)) {
                 expletive = subjectNP.getFeatureAsBoolean(
-                        LexicalFeature.EXPLETIVE_SUBJECT).booleanValue();
+                        LexicalFeature.EXPLETIVE_SUBJECT);
             } else if (subjectNP.isA(PhraseCategory.CANNED_TEXT)) {
                 expletive = "there".equalsIgnoreCase(subjectNP.getRealisation()); //$NON-NLS-1$
             }

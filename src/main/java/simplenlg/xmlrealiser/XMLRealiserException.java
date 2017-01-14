@@ -39,7 +39,7 @@ public class XMLRealiserException extends Throwable {
     }
 
     /**
-     * Instantiates a new xML realiser exception.
+     * Instantiates a new XML realiser exception.
      *
      * @param arg0 the arg0
      */
@@ -49,7 +49,7 @@ public class XMLRealiserException extends Throwable {
     }
 
     /**
-     * Instantiates a new xML realiser exception.
+     * Instantiates a new XML realiser exception.
      *
      * @param arg0 the arg0
      */
@@ -59,7 +59,7 @@ public class XMLRealiserException extends Throwable {
     }
 
     /**
-     * Instantiates a new xML realiser exception.
+     * Instantiates a new XML realiser exception.
      *
      * @param arg0 the arg0
      * @param arg1 the arg1

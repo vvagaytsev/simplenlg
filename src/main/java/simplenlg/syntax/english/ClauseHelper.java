@@ -158,7 +158,7 @@ abstract class ClauseHelper {
                                            NLGFactory phraseFactory) {
         NLGElement currentElement = null;
 
-        if (phrase.getFeatureAsBoolean(Feature.PASSIVE).booleanValue()) {
+        if (phrase.getFeatureAsBoolean(Feature.PASSIVE)) {
             List<NLGElement> allSubjects = phrase.getFeatureAsElementList(InternalFeature.SUBJECTS);
 
             if (!allSubjects.isEmpty() || phrase.hasFeature(Feature.INTERROGATIVE_TYPE)) {
@@ -298,7 +298,7 @@ abstract class ClauseHelper {
         int numComps = 0;
         boolean coordSubj = false;
 
-        if (phrase.getFeatureAsBoolean(Feature.PASSIVE).booleanValue() && verbPhrase != null
+        if (phrase.getFeatureAsBoolean(Feature.PASSIVE) && verbPhrase != null
                 && !InterrogativeType.WHAT_OBJECT.equals(phrase.getFeature(Feature.INTERROGATIVE_TYPE))) {
 
             // complements of a clause are stored in the VPPhraseSpec
@@ -343,7 +343,7 @@ abstract class ClauseHelper {
                     }
 
                     if (Form.GERUND.equals(phrase.getFeature(Feature.FORM))
-                            && !phrase.getFeatureAsBoolean(Feature.SUPPRESS_GENITIVE_IN_GERUND).booleanValue()) {
+                            && !phrase.getFeatureAsBoolean(Feature.SUPPRESS_GENITIVE_IN_GERUND)) {
                         subject.setFeature(Feature.POSSESSIVE, true);
                     }
                 }
@@ -386,7 +386,7 @@ abstract class ClauseHelper {
                                            NLGElement splitVerb) {
         if (!Form.INFINITIVE.equals(phrase.getFeature(Feature.FORM))
                 && !Form.IMPERATIVE.equals(phrase.getFeature(Feature.FORM))
-                && !phrase.getFeatureAsBoolean(Feature.PASSIVE).booleanValue() && splitVerb == null) {
+                && !phrase.getFeatureAsBoolean(Feature.PASSIVE) && splitVerb == null) {
             realisedElement.addComponents(realiseSubjects(phrase, parent).getChildren());
         }
     }
@@ -408,7 +408,7 @@ abstract class ClauseHelper {
 
             subject.setFeature(InternalFeature.DISCOURSE_FUNCTION, DiscourseFunction.SUBJECT);
             if (Form.GERUND.equals(phrase.getFeature(Feature.FORM))
-                    && !phrase.getFeatureAsBoolean(Feature.SUPPRESS_GENITIVE_IN_GERUND).booleanValue()) {
+                    && !phrase.getFeatureAsBoolean(Feature.SUPPRESS_GENITIVE_IN_GERUND)) {
                 subject.setFeature(Feature.POSSESSIVE, true);
             }
             currentElement = parent.realise(subject);
@@ -506,8 +506,8 @@ abstract class ClauseHelper {
      * correctly)
      */
     private static boolean hasAuxiliary(PhraseElement phrase) {
-        return phrase.hasFeature(Feature.MODAL) || phrase.getFeatureAsBoolean(Feature.PERFECT).booleanValue()
-                || phrase.getFeatureAsBoolean(Feature.PROGRESSIVE).booleanValue()
+        return phrase.hasFeature(Feature.MODAL) || phrase.getFeatureAsBoolean(Feature.PERFECT)
+                || phrase.getFeatureAsBoolean(Feature.PROGRESSIVE)
                 || Tense.FUTURE.equals(phrase.getFeature(Feature.TENSE));
     }
 
@@ -538,7 +538,7 @@ abstract class ClauseHelper {
         if (!hasAuxiliary(phrase) && !VerbPhraseHelper.isCopular(phrase)) {
             addDoAuxiliary(phrase, parent, phraseFactory, realisedElement);
 
-        } else if (!phrase.getFeatureAsBoolean(Feature.PASSIVE).booleanValue()) {
+        } else if (!phrase.getFeatureAsBoolean(Feature.PASSIVE)) {
             splitVerb = realiseSubjects(phrase, parent);
         }
 
@@ -625,10 +625,10 @@ abstract class ClauseHelper {
         NLGElement splitVerb = null;
 
         if (!(verbElement instanceof VPPhraseSpec && VerbPhraseHelper.isCopular(((VPPhraseSpec) verbElement).getVerb()))
-                && !phrase.getFeatureAsBoolean(Feature.PROGRESSIVE).booleanValue() && !phrase.hasFeature(Feature.MODAL)
+                && !phrase.getFeatureAsBoolean(Feature.PROGRESSIVE) && !phrase.hasFeature(Feature.MODAL)
                 && !Tense.FUTURE.equals(phrase.getFeature(Feature.TENSE))
-                && !phrase.getFeatureAsBoolean(Feature.NEGATED).booleanValue()
-                && !phrase.getFeatureAsBoolean(Feature.PASSIVE).booleanValue()) {
+                && !phrase.getFeatureAsBoolean(Feature.NEGATED)
+                && !phrase.getFeatureAsBoolean(Feature.PASSIVE)) {
             addDoAuxiliary(phrase, parent, phraseFactory, realisedElement);
         } else {
             splitVerb = realiseSubjects(phrase, parent);
@@ -669,7 +669,7 @@ abstract class ClauseHelper {
         NLGElement currentElement;
 
         if (ClauseStatus.SUBORDINATE.equals(phrase.getFeature(InternalFeature.CLAUSE_STATUS))
-                && !phrase.getFeatureAsBoolean(Feature.SUPRESSED_COMPLEMENTISER).booleanValue()) {
+                && !phrase.getFeatureAsBoolean(Feature.SUPRESSED_COMPLEMENTISER)) {
 
             currentElement = parent.realise(phrase.getFeatureAsElement(Feature.COMPLEMENTISER));
 

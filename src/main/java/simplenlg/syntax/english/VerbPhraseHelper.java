@@ -58,7 +58,7 @@ abstract class VerbPhraseHelper {
 
             if (!phrase.hasFeature(InternalFeature.REALISE_AUXILIARY)
                     || phrase.getFeatureAsBoolean(
-                    InternalFeature.REALISE_AUXILIARY).booleanValue()) {
+                    InternalFeature.REALISE_AUXILIARY)) {
 
                 realiseAuxiliaries(parent, realisedElement,
                         auxiliaryRealisation);
@@ -181,7 +181,7 @@ abstract class VerbPhraseHelper {
                 .getFeature(Feature.INTERROGATIVE_TYPE))) {
             realisedElement.addComponents(indirects.getChildren());
         }
-        if (!phrase.getFeatureAsBoolean(Feature.PASSIVE).booleanValue()) {
+        if (!phrase.getFeatureAsBoolean(Feature.PASSIVE)) {
             if (!InterrogativeType.isObject(phrase
                     .getFeature(Feature.INTERROGATIVE_TYPE))) {
                 realisedElement.addComponents(directs.getChildren());
@@ -263,15 +263,15 @@ abstract class VerbPhraseHelper {
         NLGElement frontVG = grabHeadVerb(phrase, tenseValue, modal != null);
         checkImperativeInfinitive(formValue, frontVG);
 
-        if (phrase.getFeatureAsBoolean(Feature.PASSIVE).booleanValue()) {
+        if (phrase.getFeatureAsBoolean(Feature.PASSIVE)) {
             frontVG = addBe(frontVG, vgComponents, Form.PAST_PARTICIPLE);
         }
 
-        if (phrase.getFeatureAsBoolean(Feature.PROGRESSIVE).booleanValue()) {
+        if (phrase.getFeatureAsBoolean(Feature.PROGRESSIVE)) {
             frontVG = addBe(frontVG, vgComponents, Form.PRESENT_PARTICIPLE);
         }
 
-        if (phrase.getFeatureAsBoolean(Feature.PERFECT).booleanValue()
+        if (phrase.getFeatureAsBoolean(Feature.PERFECT)
                 || modalPast) {
             frontVG = addHave(frontVG, vgComponents, modal, tenseValue);
         }
@@ -299,8 +299,7 @@ abstract class VerbPhraseHelper {
     private static void pushModal(String actualModal, PhraseElement phrase,
                                   Stack<NLGElement> vgComponents) {
         if (actualModal != null
-                && !phrase.getFeatureAsBoolean(InternalFeature.IGNORE_MODAL)
-                .booleanValue()) {
+                && !phrase.getFeatureAsBoolean(InternalFeature.IGNORE_MODAL)) {
             vgComponents.push(new InflectedWordElement(actualModal,
                     LexicalCategory.MODAL));
         }
@@ -353,7 +352,7 @@ abstract class VerbPhraseHelper {
             frontVG.setFeature(Feature.NUMBER, numToUse);
 
             //don't push the front VG if it's a negated interrogative WH object question
-            if (!(phrase.getFeatureAsBoolean(Feature.NEGATED).booleanValue() && (InterrogativeType.WHO_OBJECT
+            if (!(phrase.getFeatureAsBoolean(Feature.NEGATED) && (InterrogativeType.WHO_OBJECT
                     .equals(interrogType) || InterrogativeType.WHAT_OBJECT
                     .equals(interrogType)))) {
                 vgComponents.push(frontVG);
@@ -374,7 +373,7 @@ abstract class VerbPhraseHelper {
                                         Stack<NLGElement> vgComponents, NLGElement frontVG, boolean hasModal) {
         NLGElement newFront = frontVG;
 
-        if (phrase.getFeatureAsBoolean(Feature.NEGATED).booleanValue()) {
+        if (phrase.getFeatureAsBoolean(Feature.NEGATED)) {
             NLGFactory factory = phrase.getFactory();
 
             // before adding "do", check if this is an object WH
@@ -428,8 +427,7 @@ abstract class VerbPhraseHelper {
 
         NLGElement newFront = frontVG;
         if (hasModal
-                && !phrase.getFeatureAsBoolean(InternalFeature.IGNORE_MODAL)
-                .booleanValue()) {
+                && !phrase.getFeatureAsBoolean(InternalFeature.IGNORE_MODAL)) {
             if (frontVG != null) {
                 frontVG.setFeature(InternalFeature.NON_MORPH, true);
                 vgComponents.push(frontVG);

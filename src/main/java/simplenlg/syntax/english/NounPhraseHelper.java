@@ -65,10 +65,10 @@ abstract class NounPhraseHelper {
         ListElement realisedElement = null;
 
         if (phrase != null
-                && !phrase.getFeatureAsBoolean(Feature.ELIDED).booleanValue()) {
+                && !phrase.getFeatureAsBoolean(Feature.ELIDED)) {
             realisedElement = new ListElement();
 
-            if (phrase.getFeatureAsBoolean(Feature.PRONOMINAL).booleanValue()) {
+            if (phrase.getFeatureAsBoolean(Feature.PRONOMINAL)) {
                 realisedElement.addComponent(createPronoun(parent, phrase));
 
             } else {
@@ -134,8 +134,7 @@ abstract class NounPhraseHelper {
                                             SyntaxProcessor parent, ListElement realisedElement) {
 
         List<NLGElement> preModifiers = phrase.getPreModifiers();
-        if (phrase.getFeatureAsBoolean(Feature.ADJECTIVE_ORDERING)
-                .booleanValue()) {
+        if (phrase.getFeatureAsBoolean(Feature.ADJECTIVE_ORDERING)) {
             preModifiers = sortNPPreModifiers(preModifiers);
         }
         PhraseHelper.realiseList(parent, realisedElement, preModifiers,
@@ -156,8 +155,7 @@ abstract class NounPhraseHelper {
                 .getFeatureAsElement(InternalFeature.SPECIFIER);
 
         if (specifierElement != null
-                && !phrase.getFeatureAsBoolean(InternalFeature.RAISED)
-                .booleanValue() && !phrase.getFeatureAsBoolean(Feature.ELIDED).booleanValue()) {
+                && !phrase.getFeatureAsBoolean(InternalFeature.RAISED) && !phrase.getFeatureAsBoolean(Feature.ELIDED)) {
             if (!specifierElement.isA(LexicalCategory.PRONOUN) && specifierElement.getCategory() != PhraseCategory.NOUN_PHRASE) {
                 specifierElement.setFeature(Feature.NUMBER, phrase
                         .getFeature(Feature.NUMBER));
@@ -223,15 +221,12 @@ abstract class NounPhraseHelper {
                 || modifier.isA(PhraseCategory.ADJECTIVE_PHRASE)) {
             WordElement adjective = getHeadWordElement(modifier);
 
-            if (adjective.getFeatureAsBoolean(LexicalFeature.QUALITATIVE)
-                    .booleanValue()) {
+            if (adjective.getFeatureAsBoolean(LexicalFeature.QUALITATIVE)) {
                 position = QUALITATIVE_POSITION;
-            } else if (adjective.getFeatureAsBoolean(LexicalFeature.COLOUR)
-                    .booleanValue()) {
+            } else if (adjective.getFeatureAsBoolean(LexicalFeature.COLOUR)) {
                 position = COLOUR_POSITION;
             } else if (adjective
-                    .getFeatureAsBoolean(LexicalFeature.CLASSIFYING)
-                    .booleanValue()) {
+                    .getFeatureAsBoolean(LexicalFeature.CLASSIFYING)) {
                 position = CLASSIFYING_POSITION;
             }
         }
@@ -251,15 +246,12 @@ abstract class NounPhraseHelper {
                 || modifier.isA(PhraseCategory.ADJECTIVE_PHRASE)) {
             WordElement adjective = getHeadWordElement(modifier);
 
-            if (adjective.getFeatureAsBoolean(LexicalFeature.CLASSIFYING)
-                    .booleanValue()) {
+            if (adjective.getFeatureAsBoolean(LexicalFeature.CLASSIFYING)) {
                 position = CLASSIFYING_POSITION;
-            } else if (adjective.getFeatureAsBoolean(LexicalFeature.COLOUR)
-                    .booleanValue()) {
+            } else if (adjective.getFeatureAsBoolean(LexicalFeature.COLOUR)) {
                 position = COLOUR_POSITION;
             } else if (adjective
-                    .getFeatureAsBoolean(LexicalFeature.QUALITATIVE)
-                    .booleanValue()) {
+                    .getFeatureAsBoolean(LexicalFeature.QUALITATIVE)) {
                 position = QUALITATIVE_POSITION;
             } else {
                 position = CLASSIFYING_POSITION;

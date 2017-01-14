@@ -125,7 +125,7 @@ public class MorphologyProcessor extends NLGModule {
      */
     private NLGElement doMorphology(InflectedWordElement element) {
         NLGElement realisedElement = null;
-        if (element.getFeatureAsBoolean(InternalFeature.NON_MORPH).booleanValue()) {
+        if (element.getFeatureAsBoolean(InternalFeature.NON_MORPH)) {
             realisedElement = new StringElement(element.getBaseForm());
             realisedElement.setFeature(InternalFeature.DISCOURSE_FUNCTION,
                     element.getFeature(InternalFeature.DISCOURSE_FUNCTION));

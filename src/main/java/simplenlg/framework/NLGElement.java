@@ -723,7 +723,7 @@ public abstract class NLGElement {
      */
     @Deprecated
     public boolean isNegated() {
-        return getFeatureAsBoolean(Feature.NEGATED).booleanValue();
+        return getFeatureAsBoolean(Feature.NEGATED);
     }
 
     /**

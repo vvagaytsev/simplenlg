@@ -271,7 +271,7 @@ public class OrthographyProcessor extends NLGModule {
 
             stripLeadingCommas(realisation);
             capitaliseFirstLetter(realisation);
-            terminateSentence(realisation, element.getFeatureAsBoolean(InternalFeature.INTERROGATIVE).booleanValue());
+            terminateSentence(realisation, element.getFeatureAsBoolean(InternalFeature.INTERROGATIVE));
 
             ((DocumentElement) element).clearComponents();
             // realisation.append(' ');

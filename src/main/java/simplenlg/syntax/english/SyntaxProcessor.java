@@ -57,7 +57,7 @@ public class SyntaxProcessor extends NLGModule {
         NLGElement realisedElement = null;
 
         if (element != null
-                && !element.getFeatureAsBoolean(Feature.ELIDED).booleanValue()) {
+                && !element.getFeatureAsBoolean(Feature.ELIDED)) {
 
             if (element instanceof DocumentElement) {
                 List<NLGElement> children = element.getChildren();

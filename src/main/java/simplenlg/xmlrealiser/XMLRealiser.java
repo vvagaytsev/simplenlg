@@ -109,7 +109,7 @@ public final class XMLRealiser {
      *
      * @param args the args
      * @return the string
-     * @throws XMLRealiserException the xML realiser exception
+     * @throws XMLRealiserException the XML realiser exception
      */
     public static String main(Object[] args) throws XMLRealiserException {
 
@@ -216,7 +216,7 @@ public final class XMLRealiser {
      *
      * @param input the input
      * @return the request
-     * @throws XMLRealiserException the xML realiser exception
+     * @throws XMLRealiserException the XML realiser exception
      */
     public static RequestType getRequest(
             Reader input) throws XMLRealiserException {
@@ -235,7 +235,7 @@ public final class XMLRealiser {
      *
      * @param input the input
      * @return the recording
-     * @throws XMLRealiserException the xML realiser exception
+     * @throws XMLRealiserException the XML realiser exception
      */
     public static RecordSet getRecording(
             Reader input) throws XMLRealiserException {
@@ -255,7 +255,7 @@ public final class XMLRealiser {
      *
      * @param wt the wt
      * @return the string
-     * @throws XMLRealiserException the xML realiser exception
+     * @throws XMLRealiserException the XML realiser exception
      */
     public static String realise(
             XmlDocumentElement wt)
@@ -289,7 +289,7 @@ public final class XMLRealiser {
      * Start recording.
      *
      * @param path the path
-     * @throws XMLRealiserException the xML realiser exception
+     * @throws XMLRealiserException the XML realiser exception
      */
     public static void startRecording(String path) throws XMLRealiserException {
         if (record != null) {
@@ -311,7 +311,7 @@ public final class XMLRealiser {
      * Stop recording.
      *
      * @return the string
-     * @throws XMLRealiserException the xML realiser exception
+     * @throws XMLRealiserException the XML realiser exception
      */
     public static String stopRecording() throws XMLRealiserException {
         String file = "";

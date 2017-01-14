@@ -369,7 +369,7 @@ public class WordElement extends NLGElement {
             if (value != null) { // ignore null features
                 if (value instanceof Boolean) { // booleans ignored if false,
                     // shown as <XX/> if true
-                    boolean bvalue = ((Boolean) value).booleanValue();
+                    boolean bvalue = (Boolean) value;
                     if (bvalue)
                         xml = xml + String.format("  <%s/>%n", feature); //$NON-NLS-1$
                 } else { // otherwise include feature and value
