@@ -19,12 +19,12 @@
 package simplenlg.xmlrealiser;
 
 /**
- * This class represents an exception thrown by the xml realiser framework.
+ * This class represents an exception thrown by the XML realiser framework.
  *
  * @author Christopher Howell Agfa Healthcare Corporation
  * @author Albert Gatt, University of Malta
  */
-public class XMLRealiserException extends Throwable {
+public class XMLRealiserException extends Exception {
 
     /**
      * The Constant serialVersionUID.

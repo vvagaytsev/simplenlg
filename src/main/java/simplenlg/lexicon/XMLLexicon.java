@@ -35,6 +35,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * This class loads words from an XML lexicon. All features specified in the
@@ -66,7 +67,7 @@ public class XMLLexicon extends Lexicon {
     /**********************************************************************/
 
     /**
-     * Load an XML Lexicon from a named file
+     * Load an XML Lexicon from a named file.
      *
      * @param filename
      */
@@ -76,7 +77,7 @@ public class XMLLexicon extends Lexicon {
     }
 
     /**
-     * Load an XML Lexicon from a File
+     * Load an XML Lexicon from a File.
      *
      * @param file
      */
@@ -85,7 +86,7 @@ public class XMLLexicon extends Lexicon {
     }
 
     /**
-     * Load an XML Lexicon from a URI
+     * Load an XML Lexicon from a URI.
      *
      * @param lexiconURI
      */
@@ -107,9 +108,9 @@ public class XMLLexicon extends Lexicon {
     }
 
     /**
-     * method to actually load and index the lexicon from a URI
+     * Method to actually load and index the lexicon from a URI.
      *
-     * @param uri
+     * @param lexiconURI
      */
     private void createLexicon(URI lexiconURI) {
         // initialise objects
@@ -159,11 +160,10 @@ public class XMLLexicon extends Lexicon {
     }
 
     /**
-     * create a simplenlg WordElement from a Word node in a lexicon XML file
+     * Create a simplenlg WordElement from a Word node in a lexicon XML file.
      *
      * @param wordNode
      * @return
-     * @throws XPathUtilException
      */
     private WordElement convertNodeToWord(Node wordNode) {
         // if this isn't a Word node, ignore it
@@ -243,7 +243,7 @@ public class XMLLexicon extends Lexicon {
     }
 
     /**
-     * add word to internal indices
+     * Add word to internal indices.
      *
      * @param word
      */
@@ -269,7 +269,7 @@ public class XMLLexicon extends Lexicon {
     }
 
     /**
-     * convenience method to update an index
+     * Convenience method to update an index.
      *
      * @param word
      * @param base
@@ -300,7 +300,7 @@ public class XMLLexicon extends Lexicon {
     }
 
     /**
-     * get matching keys from an index map
+     * Get matching keys from an index map.
      *
      * @param indexKey
      * @param category
@@ -308,29 +308,24 @@ public class XMLLexicon extends Lexicon {
      * @return
      */
     private List<WordElement> getWordsFromIndex(String indexKey,
-                                                LexicalCategory category, Map<String, List<WordElement>> indexMap) {
-        List<WordElement> result = new ArrayList<>();
-
+                                                LexicalCategory category,
+                                                Map<String, List<WordElement>> indexMap) {
         // case 1: unknown, return empty list
         if (!indexMap.containsKey(indexKey)) {
-            return result;
+            return new ArrayList<>();
         }
-
         // case 2: category is ANY, return everything
         if (category == LexicalCategory.ANY) {
-            for (WordElement word : indexMap.get(indexKey)) {
-                result.add(new WordElement(word));
-            }
-            return result;
-        } else {
-            // case 3: other category, search for match
-            for (WordElement word : indexMap.get(indexKey)) {
-                if (word.getCategory() == category) {
-                    result.add(new WordElement(word));
-                }
-            }
+            return indexMap.get(indexKey).stream()
+                    .map(WordElement::new)
+                    .collect(Collectors.toList());
         }
-        return result;
+        // case 3: other category, search for match
+        return indexMap.get(indexKey)
+                .stream()
+                .filter(word -> word.getCategory() == category)
+                .map(WordElement::new)
+                .collect(Collectors.toList());
     }
 
     /*
@@ -360,8 +355,7 @@ public class XMLLexicon extends Lexicon {
     }
 
     /**
-     * quick-and-dirty routine for getting morph variants should be replaced by
-     * something better!
+     * Quick-and-dirty routine for getting morph variants should be replaced by something better!
      *
      * @param word
      * @return
@@ -397,21 +391,21 @@ public class XMLLexicon extends Lexicon {
     }
 
     /**
-     * quick-and-dirty routine for computing morph forms Should be replaced by
-     * something better!
+     * Quick-and-dirty routine for computing morph forms Should be replaced by something better!
      *
      * @param word
      * @param feature
-     * @param string
+     * @param suffix
      * @return
      */
-    private String getVariant(WordElement word, String feature, String suffix) {
+    private String getVariant(WordElement word,
+                              String feature,
+                              String suffix) {
         return word.hasFeature(feature) ? word.getFeatureAsString(feature) : getForm(word.getBaseForm(), suffix);
     }
 
     /**
-     * quick-and-dirty routine for standard orthographic changes Should be
-     * replaced by something better!
+     * Quick-and-dirty routine for standard orthographic changes Should be replaced by something better!
      *
      * @param base
      * @param suffix
@@ -427,8 +421,7 @@ public class XMLLexicon extends Lexicon {
 
         // rule 2 - drop final "e" if suffix starts with "e" or "i"
         // eg, like+ed = liked, not likeed
-        if (base.endsWith("e")
-                && (suffix.startsWith("e") || suffix.startsWith("i")))
+        if (base.endsWith("e") && (suffix.startsWith("e") || suffix.startsWith("i")))
             base = base.substring(0, base.length() - 1);
 
         // rule 3 - insert "e" if suffix is "s" and base ends in s, x, z, ch, sh

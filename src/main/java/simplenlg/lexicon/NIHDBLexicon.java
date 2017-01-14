@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class gets Words from the NIH Specialist Lexicon
+ * This class gets Words from the NIH Specialist Lexicon.
  *
  * @author ereiter
  */
@@ -43,26 +43,23 @@ public class NIHDBLexicon extends Lexicon {
     // default DB parameters
     private static final String DB_HSQL_DRIVER = "org.hsqldb.jdbc.JDBCDriver"; // DB driver
     private static final String DB_HQSL_JDBC = "jdbc:hsqldb:"; // JDBC specifier for
-    // HSQL
     private static final String DB_DEFAULT_USERNAME = "sa"; // DB username
     private static final String DB_DEFAULT_PASSWORD = ""; // DB password
     private static final String DB_HSQL_EXTENSION = ".data"; // filename extension for
-    // HSQL DB
 
     // class variables
-    private Connection conn = null; // DB connection
-    private LexAccessApi lexdb = null; // Lexicon access object
+    private Connection conn; // DB connection
+    private LexAccessApi lexdb; // Lexicon access object
 
     // if false, don't keep standard inflections in the Word object
-    private boolean keepStandardInflections = false;
+    private boolean keepStandardInflections;
 
     /****************************************************************************/
     // constructors
     /****************************************************************************/
 
     /**
-     * set up lexicon using file which contains downloaded lexAccess HSQL DB and
-     * default passwords
+     * Set up lexicon using file which contains downloaded lexAccess HSQL DB and default passwords.
      *
      * @param filename of HSQL DB
      */
@@ -88,8 +85,7 @@ public class NIHDBLexicon extends Lexicon {
     }
 
     /**
-     * set up lexicon using general DB parameters; DB must be NIH specialist
-     * lexicon from lexAccess
+     * Set up lexicon using general DB parameters; DB must be NIH specialist lexicon from lexAccess.
      *
      * @param driver
      * @param url
@@ -116,7 +112,7 @@ public class NIHDBLexicon extends Lexicon {
     /***************** methods to set global parameters ****************************/
 
     /**
-     * reports whether Words include standard (derivable) inflections
+     * Reports whether Words include standard (derivable) inflections.
      *
      * @return true if standard inflections are kept
      */
@@ -125,7 +121,7 @@ public class NIHDBLexicon extends Lexicon {
     }
 
     /**
-     * set whether Words should include standard (derivable) inflections
+     * Set whether Words should include standard (derivable) inflections.
      *
      * @param keepStandardInflections - if true, standard inflections are kept
      */
@@ -213,8 +209,8 @@ public class NIHDBLexicon extends Lexicon {
     }
 
     /**
-     * make a WordElement from a lexical record. Currently just specifies basic
-     * params and inflections Should do more in the future!
+     * Make a {@link WordElement} from a lexical record.
+     * Currently just specifies basic params and inflections Should do more in the future!
      *
      * @param record
      * @return
@@ -295,7 +291,7 @@ public class NIHDBLexicon extends Lexicon {
     }
 
     /**
-     * return list of WordElement from LexAccessApiResult
+     * Return list of {@link WordElement} from {@link LexAccessApiResult}.
      *
      * @param category  - desired category (eg, NOUN) (this filters list)
      * @param lexResult - the LexAccessApiResult
@@ -304,25 +300,22 @@ public class NIHDBLexicon extends Lexicon {
     private List<WordElement> getWordsFromLexResult(LexicalCategory category,
                                                     LexAccessApiResult lexResult) {
         List<LexRecord> records = lexResult.GetJavaObjs();
-
         // set up array of words to return
         List<WordElement> wordElements = new ArrayList<>();
-
         // iterate through result records, adding to words as appropriate
         for (LexRecord record : records) {
-
-            if (category == LexicalCategory.ANY
-                    || category == getSimplenlgCategory(record))
+            if (category == LexicalCategory.ANY || category == getSimplenlgCategory(record)) {
                 wordElements.add(makeWord(record));
+            }
         }
         return wordElements;
     }
 
     /**
-     * check if this record has a standard (regular) inflection
+     * Check if this record has a standard (regular) inflection.
      *
      * @param record
-     * @param simplenlg syntactic category
+     * @param category syntactic category
      * @return true if standard (regular) inflection
      */
     @SuppressWarnings({"unused", "incomplete-switch"})
@@ -350,7 +343,6 @@ public class NIHDBLexicon extends Lexicon {
                     variants = record.GetCatEntry().GetVerbEntry().GetVariants();
                 break;
         }
-
         return notEmpty(variants) && variants.contains("reg");
     }
 
@@ -360,9 +352,9 @@ public class NIHDBLexicon extends Lexicon {
     /***********************************************************************************/
 
     /**
-     * get the simplenlg LexicalCategory of a record
+     * Get the simplenlg LexicalCategory of a record.
      *
-     * @param cat
+     * @param record
      * @return
      */
     private LexicalCategory getSimplenlgCategory(LexRecord record) {
@@ -394,15 +386,14 @@ public class NIHDBLexicon extends Lexicon {
             return LexicalCategory.COMPLEMENTISER;
         else if ("modal".equalsIgnoreCase(cat))
             return LexicalCategory.MODAL;
-
             // return ANY for other cats
         else
             return LexicalCategory.ANY;
     }
 
     /**
-     * convert an inflection type in NIH lexicon into one used by simplenlg
-     * return null if no simplenlg equivalent to NIH inflection type
+     * Convert an inflection type in NIH lexicon into one used by simplenlg.
+     * Return {@code null} if no simplenlg equivalent to NIH inflection type.
      *
      * @param NIHInflection - inflection type in NIH lexicon
      * @return inflection type in simplenlg
@@ -430,11 +421,11 @@ public class NIHDBLexicon extends Lexicon {
     }
 
     /**
-     * extract adj information from NIH AdjEntry record, and add to a simplenlg
-     * WordElement For now just extract position info
+     * Extract adj information from NIH {@link AdjEntry} record,
+     * and add to a simplenlg {@link WordElement} For now just extract position info.
      *
      * @param wordElement
-     * @param AdjEntry
+     * @param adjEntry
      */
     private void addAdjectiveInfo(WordElement wordElement, AdjEntry adjEntry) {
         boolean qualitativeAdj = false;
@@ -461,11 +452,11 @@ public class NIHDBLexicon extends Lexicon {
     }
 
     /**
-     * extract adv information from NIH AdvEntry record, and add to a simplenlg
-     * WordElement For now just extract modifier type
+     * Extract adv information from NIH {@link AdvEntry} record,
+     * and add to a simplenlg {@link WordElement} For now just extract modifier type.
      *
      * @param wordElement
-     * @param AdvEntry
+     * @param advEntry
      */
     private void addAdverbInfo(WordElement wordElement, AdvEntry advEntry) {
         boolean verbModifier = false;
@@ -489,9 +480,8 @@ public class NIHDBLexicon extends Lexicon {
     }
 
     /**
-     * extract noun information from NIH NounEntry record, and add to a
-     * simplenlg WordElement For now just extract whether count/non-count and
-     * whether proper or not
+     * Extract noun information from NIH {@link NounEntry} record,
+     * and add to a simplenlg {@link WordElement} For now just extract whether count/non-count and whether proper or not.
      *
      * @param wordElement
      * @param nounEntry
@@ -513,13 +503,11 @@ public class NIHDBLexicon extends Lexicon {
 
                 if (index > -1) {
                     code = v.substring(0, index).toLowerCase().trim();
-
                 } else {
                     code = v.toLowerCase().trim();
                 }
 
                 Inflection infl = Inflection.getInflCode(code);
-
                 if (infl != null) {
                     wordVariants.add(infl);
                     wordElement.addInflectionalVariant(infl);
@@ -556,9 +544,8 @@ public class NIHDBLexicon extends Lexicon {
     }
 
     /**
-     * extract verb information from NIH VerbEntry record, and add to a
-     * simplenlg WordElement For now just extract transitive, instransitive,
-     * and/or ditransitive
+     * Extract verb information from NIH {@link VerbEntry} record,
+     * and add to a simplenlg {@link WordElement} For now just extract transitive, instransitive, and/or ditransitive.
      *
      * @param wordElement
      * @param verbEntry
@@ -621,7 +608,7 @@ public class NIHDBLexicon extends Lexicon {
     }
 
     /**
-     * convenience method to test that a list is not null and not empty
+     * Convenience method to test that a list is not {@code null} and not empty.
      *
      * @param list
      * @return
@@ -631,13 +618,10 @@ public class NIHDBLexicon extends Lexicon {
     }
 
     /**
-     * extract information about acronyms from NIH record, and add to a
-     * simplenlg WordElement.
+     * Extract information about acronyms from NIH record, and add to a simplenlg WordElement.
      * <p>
-     * <p>
-     * Acronyms are represented as lists of word elements. Any acronym will have
-     * a list of full form word elements, retrievable via
-     * {@link LexicalFeature#ACRONYM_OF}
+     * Acronyms are represented as lists of word elements.
+     * Any acronym will have a list of full form word elements, retrievable via {@link LexicalFeature#ACRONYM_OF}.
      *
      * @param wordElement
      * @param record
@@ -690,11 +674,9 @@ public class NIHDBLexicon extends Lexicon {
 
     /**
      * Extract info about the spelling variants of a word from an NIH record,
-     * and add to the simplenlg Woordelement.
+     * and add to the simplenlg {@link WordElement}.
      * <p>
-     * <p>
-     * Spelling variants are represented as lists of strings, retrievable via
-     * {@link LexicalFeature#SPELL_VARS}
+     * Spelling variants are represented as lists of strings, retrievable via {@link LexicalFeature#SPELL_VARS}.
      *
      * @param wordElement
      * @param record

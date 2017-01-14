@@ -53,6 +53,7 @@ public class RealisationRequest implements Runnable {
         this.socket = s;
     }
 
+    @Override
     public void run() {
         if (null == socket) {
             return;
@@ -108,22 +109,13 @@ public class RealisationRequest implements Runnable {
                 byte[] tmp = ("Exception: " + e.getMessage()).getBytes("UTF-8");
                 output.writeInt(tmp.length);
                 output.write(tmp);
-            } catch (IOException e1) {
-            }
-        } catch (XMLRealiserException e) {
-            e.printStackTrace();
-            try {
-                // attempt to send the error message to the client
-                byte[] tmp = ("Exception: " + e.getMessage()).getBytes("UTF-8");
-                output.writeInt(tmp.length);
-                output.write(tmp);
-            } catch (IOException e1) {
+            } catch (IOException ignored) {
             }
         } finally {
             try {
                 socket.close();
                 socket = null;
-            } catch (IOException e) {
+            } catch (IOException ignored) {
                 System.err.println("Could not close client socket!");
             }
         }

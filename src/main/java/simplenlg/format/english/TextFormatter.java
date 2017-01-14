@@ -22,6 +22,7 @@ import simplenlg.framework.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -213,13 +214,11 @@ public class TextFormatter extends NLGModule {
 
     @Override
     public List<NLGElement> realise(List<NLGElement> elements) {
-        List<NLGElement> realisedList = new ArrayList<>();
-
         if (elements != null) {
-            for (NLGElement eachElement : elements) {
-                realisedList.add(realise(eachElement));
-            }
+            return elements.stream()
+                    .map(this::realise)
+                    .collect(Collectors.toList());
         }
-        return realisedList;
+        return new ArrayList<>();
     }
 }
