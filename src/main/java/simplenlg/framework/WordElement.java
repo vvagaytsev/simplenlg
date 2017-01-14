@@ -399,9 +399,9 @@ public class WordElement extends NLGElement {
     public boolean equals(Object o) {
         if (o instanceof WordElement) {
             WordElement we = (WordElement) o;
-            return (this.baseForm == we.baseForm || this.baseForm.equals(we.baseForm)) &&
-                    (this.id == we.id || this.id.equals(we.id)) &&
-                    we.features.equals(this.features);
+            return Objects.equals(this.baseForm, we.baseForm) &&
+                    Objects.equals(this.id, we.id) &&
+                    Objects.equals(we.features, this.features);
         }
         return false;
     }
